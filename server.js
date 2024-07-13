@@ -9,20 +9,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Route to serve index.html
 app.get('/recipes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'recipes.html'));
+    res.sendFile(path.join(__dirname, 'public', 'default/recipes.html'));
 });
 
 app.get('/alles', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'alles.html'));
+    res.sendFile(path.join(__dirname, 'public', 'default/alles.html'));
 });
 app.get('/vegan', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'vegan.html'));
+    res.sendFile(path.join(__dirname, 'public', 'default/vegan.html'));
 });
 app.get('/vegetarisch', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'vegetarisch.html'));
+    res.sendFile(path.join(__dirname, 'public', 'default/vegetarisch.html'));
 });
 app.get('/myrecipes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'myrecipes.html'));
+    res.sendFile(path.join(__dirname, 'public', 'default/myrecipes.html'));
 });
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
