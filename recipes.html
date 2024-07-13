@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezeptseite</title>
+    <!-- Bootstrap CSS einbinden -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+ 
+</head>
+<body>
+
+<!-- Automatisches Pop-up mit Werbung -->
+<div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="adImage" src="/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <button id="offerButton" class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                <div style="margin-top: 10px;">
+                    <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
+                    <button class="btn btn-secondary small-button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                </div>
+                <div id="timerDisplay" class="text-danger mt-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Automatisches Pop-up mit Werbung -->
+<div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="adImage" src="/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <button id="offerButton" class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                <div style="margin-top: 10px;">
+                    <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
+                 
+                </div>
+                <div id="timerDisplay" class="text-danger mt-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cookie-Akzeptanz-Popup -->
+<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cookieModalLabel">Cookie-Hinweis</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p><strong>Werbung lesen:</strong> Durch das Klicken des Buttons „Zustimmen und weiter“ stimmen Sie der Verarbeitung der auf Ihrem Gerät bzw. Ihrer Endeinrichtung gespeicherten Daten wie z.B. persönlichen Identifikatoren oder IP-Adressen für diese Verarbeitungszwecke gem. § 25 Abs. 1 TDDDG sowie Art. 6 Abs. 1 lit. a DSGVO zu.</p>
+                            <button type="button" class="btn btn-primary btn-block" onclick="showAd('/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg')" data-dismiss="modal">Mit Werbung fortfahren</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p><strong>Werbefrei lesen:</strong> Oder nutzen Sie die Seite ohne Werbetracking und nahezu ohne Werbung, indem Sie ein Abo abonnieren oder sich hier mit Ihrem bestehenden Pur-Abo einloggen. Informationen zur Datenverarbeitung im Pur-Abo finden Sie in unserer Datenschutzerklärung und in den FAQ.</p>
+                            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Werbefrei fortfahren</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p><strong>Einstellungen:</strong> Einzelnen Zwecken der Datenverarbeitung können Sie über den Button „Einstellungen“ oder den Menüpunkt Cookies & Tracking am Ende jeder Seite zustimmen oder sie teilweise ablehnen. Ihre Zustimmung insgesamt können Sie jederzeit über den Link Privacy Einstellungen am Ende jeder Seite entziehen.</p>
+                            <button type="button" class="btn btn-outline-secondary btn-block" data-dismiss="modal" data-toggle="modal" data-target="#settingsModal">Einstellungen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Einstellungs-Modal -->
+<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="settingsModalLabel">Cookie-Einstellungen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="functionalSwitch">
+                                <label class="custom-control-label" for="functionalSwitch">Funktionale Zwecke</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="marketingSwitch">
+                                <label class="custom-control-label" for="marketingSwitch">Marketingzwecke</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="personalizedAdsSwitch">
+                                <label class="custom-control-label" for="personalizedAdsSwitch">Personalisierte Werbung</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveButton" disabled>Speichern</button>
+                <button type="button" class="btn btn-outline-danger" id="resetButton">Zustimmung zurücksetzen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const functionalSwitch = document.getElementById('functionalSwitch');
+        const marketingSwitch = document.getElementById('marketingSwitch');
+        const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
+        const saveButton = document.getElementById('saveButton');
+        const resetButton = document.getElementById('resetButton');
+
+        // Function to check all switches and enable save button if all are checked
+        const checkSwitches = () => {
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveButton.disabled = false;
+            } else {
+                saveButton.disabled = true;
+            }
+        };
+
+        // Event listeners for switch changes
+        functionalSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        marketingSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        personalizedAdsSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        // Save settings function
+        const saveSettings = () => {
+            console.log('Settings saved');
+            localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
+            $('#settingsModal').modal('hide'); // Close settings modal after saving
+            $('#cookieModal').modal('hide'); // Hide cookie modal after saving
+        };
+
+        // Event listener for save button click
+        saveButton.addEventListener('click', () => {
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveSettings();
+                saveButton.disabled = true; // Disable save button after saving
+            }
+        });
+
+        // Event listener for the "Zustimmung zurücksetzen" Button
+        resetButton.addEventListener('click', () => {
+            localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
+            saveButton.disabled = true; // Disable save button
+            functionalSwitch.checked = false; // Reset switches
+            marketingSwitch.checked = false;
+            personalizedAdsSwitch.checked = false;
+            $('#cookieModal').modal('show'); // Show cookie modal after resetting
+        });
+
+        // Check if user has already accepted cookies
+        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+        if (cookiesAccepted === 'true') {
+            $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
+        } else {
+            $('#cookieModal').modal('show'); // Show cookie modal if not accepted
+        }
+    });
+</script>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="recipes.html" onclick="openStart()">Startseite</a>
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="#vegetarisch" onclick="showModal('/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg')">Vegetarisch</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#vegan" onclick="showModal1('/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg')">Vegan</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#allesesser" onclick="showModal2('/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg')">Alles Esser</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte</a>
+        </li>
+    </ul>
+</nav>
+
+
+<!-- Hauptinhalt -->
+<div class="container">
+<br>
+<br>
+<br>
+<!-- Suchleiste -->
+<form class="form-inline my-2 my-lg-0">
+    <input class="form-control mr-sm-2" type="search" placeholder="Suchen" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
+</form>
+<br>
+<br>
+<br>
+<!-- Inhalt -->
+<div class="container mt-4">
+    <div class="row">
+        <!-- Kategorie Vegetarisch -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div id="vegetarisch">
+                <h2>Vegetarische Rezepte</h2>
+                <br><br>
+                <div class="recipe">
+                    <h3>Kartoffelsalat</h3>
+                    <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat.</p>
+                    <button class="btn btn-primary" onclick="showAd2('/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg')">Rezept anzeigen</button>
+                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategorie Vegan -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div id="vegan">
+                <h2>Vegane Rezepte</h2>
+                <br><br>
+                <div class="recipe">
+                    <h3>Avocado-Salat</h3>
+                    <img src="images/Vegan.webp" alt="Avocado-Salat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <p>Ein erfrischendes Rezept für einen köstlichen Avocado-Salat.</p>
+                    <button class="btn btn-primary" onclick="showAd3('/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg')">Rezept anzeigen</button>
+                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kategorie Allesesser -->
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div id="allesesser">
+                <h2>Rezepte für Allesesser</h2>
+                <br><br>
+                <div class="recipe">
+                    <h3>Hähnchenbrust-Gemüse</h3>
+                    <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <p>Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse.</p>
+                    <button class="btn btn-primary" onclick="showAd4('/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg')">Rezept anzeigen</button>
+                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Automatisches Pop-up mit Werbung -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                <button class="btn btn-secondary large-button" onclick="openVegetarianRecipes()">Zu den Rezepten</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Automatisches Pop-up mit Werbung -->
+    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg" alt="Werbung">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" onclick="openVegan()">Zu den Rezepten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe2()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe3()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe4()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- Automatisches Pop-up mit Werbung -->
+<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                <button class="btn btn-secondary large-button" onclick="openAll()">Zu den Rezepten</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Kartoffelsalat</h3>
+            <p>2 kg	Kartoffeln, festkochende
+                1 m.-große	Zwiebel(n), feinst gewürfelte
+                250 ml	Gemüsebrühe oder Geflügelbrühe
+                3 EL	Weißweinessig, milder, z. B. Marc de Champagne
+                2 EL	Dijonsenf mit grünem Pfeffer
+                200 g	Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt
+                6 kleine	Gewürzgurke(n), fein geschnittene
+                etwas	Gurkenflüssigkeit</p>
+                    <div class="modal-body">
+                        <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Avocadosalat</h3>
+            <p>1	Avocado(s)
+                6	Kirschtomate(n)
+                ½	Zwiebel(n)
+                1 kleine	Gurke(n)
+                1	Paprikaschote(n), gelbe
+                60 g	Feta-Käse
+                1 EL, gehäuft	Pinienkerne
+                Pfeffer, grober
+                Meersalz
+                etwas	Zitronensaft
+                etwas	Schnittlauch
+                Balsamicocreme
+                1 Prise(n)	Zucker</p>
+                    <div class="modal-body">
+                        <img src="images/Vegan.webp" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Hähnchenbrust-Gemüse            </h3>
+            <p>2 Stück(e)	Hühnerbrust, frische
+                1 große	Paprikaschote(n), (wahlweise gelb oder rot)
+                1 m.-große	Zucchini
+                4	Frühlingszwiebel(n)
+                2 Zehe/n	Knoblauch
+                350 ml	Tomate(n), passierte
+                2 EL	Tomatenmark
+                1 TL, gehäuft	Zucker
+                1 TL, gehäuft	Oregano
+                1 TL, gehäuft	Thymian
+                ½ TL	Harissa
+                ½ TL	Paprikapulver, (Pimentón de la Vera, picante)
+                etwas	Salz
+                etwas	Pfeffer, frisch gemahlener schwarzer
+                125 g	Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)</p>
+                    <div class="modal-body">
+                        <img src="images/haenchen.jpg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-dark text-white text-center py-3">
+    <p>&copy; 2024 Rezeptseite. Alle Rechte vorbehalten.</p>
+</footer>
+
+<!-- Bootstrap JS und jQuery einbinden -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  $(document).ready(function(){
+        // Automatisches Pop-up nach 3 Sekunden anzeigen
+       // Cookie-Akzeptanz-Popup anzeigen
+
+      // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
+    
+            $('#autoAdModal1').modal('show');
+        
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+    // Hier ist Platz für Ihren spezifischen Code, der auf das DOM zugreift
+    var buttonElement = document.getElementById('acceptCookiesButton');
+    if (buttonElement) {
+        buttonElement.addEventListener('click', function() {
+            // Ihre Funktionalität hier
+            localStorage.setItem('cookiesAccepted', 'true');
+        });
+    }
+});
+
+  // Rezeptdetails anzeigen
+  function showRecipeDetails(rezeptName) {
+        alert('Details zu ' + rezeptName);
+    }
+
+    // Cookie-Einstellungen anzeigen
+    $('#Einstellungen').click(function(){
+        $('#settingsModal').modal('show');
+    });
+
+
+   // Zurücksetzen der Cookies
+   $('#cookiesAccepted').click(function () {
+        // Hier werden die Cookies zurückgesetzt (z.B. durch Löschung der gespeicherten Zustimmungen)
+        alert('Cookies wurden zurückgesetzt.');
+    });
+    function deleteAllCookies() {
+    // Löschen aller Cookies
+    $.each($.cookie(), function (key, value) {
+        $.removeCookie(key);
+    });
+    
+    // Zurücksetzen des LocalStorage-Eintrags für Cookies-Akzeptanz
+    localStorage.removeItem('cookiesAccepted');
+    
+    // Feedback für den Benutzer
+    alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
+}
+
+</script>
+
+
+
+
+<script>
+    // Einstellungsmodal anzeigen, wenn auf den Einstellungsbutton geklickt wird
+    document.getElementById('Einstellungen').addEventListener('click', function() {
+       
+        $('#settingsModal').modal('show');
+     
+        const functionalSwitch = document.getElementById('functionalSwitch');
+        const marketingSwitch = document.getElementById('marketingSwitch');
+        const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
+        const saveButton = document.getElementById('saveButton');
+
+        // Function to save settings
+        const saveSettings = () => {
+            const settings = {
+                functional: functionalSwitch.checked,
+                marketing: marketingSwitch.checked,
+                personalizedAds: personalizedAdsSwitch.checked
+            };
+            console.log('Saved settings:', settings);
+            // Hier kannst du den Code zum Speichern der Einstellungen auf der Serverseite oder im Browser hinzufügen
+            // Beispiel: localStorage.setItem('cookieSettings', JSON.stringify(settings));
+            // Hier sollte die Logik stehen, um die Einstellungen zu speichern
+        };
+
+        const checkSwitches = () => {
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveButton.disabled = false;
+            } else {
+                saveButton.disabled = true;
+            }
+        }
+
+        functionalSwitch.addEventListener('change', () => {
+            checkSwitches();
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveSettings();
+            }
+        });
+
+        marketingSwitch.addEventListener('change', () => {
+            checkSwitches();
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveSettings();
+            }
+        });
+
+        personalizedAdsSwitch.addEventListener('change', () => {
+            checkSwitches();
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveSettings();
+            }
+        });
+
+    });
+</script>
+<script>
+    function openVegetarianRecipes() {
+        window.location.href = "vegetarisch.html";
+    }
+</script>
+<script>
+    function openStart() {
+        window.location.href = "recipes.html";
+    }
+</script>
+<script>
+    function openVegan() {
+        window.location.href = "vegan.html";
+    }
+</script>
+<script>
+    function openAll() {
+        window.location.href = "alles.html";
+    }
+</script>
+<script>
+      function showModal(imageUrl) {
+        // Bild setzen
+        $('#Modal').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#Modal').modal('show');
+       
+    }
+  /*  function showAd(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal').modal('show');
+       
+    }*/
+    // Funktion zum Anzeigen von Werbung
+    function showModal2(imageUrl) {
+        // Bild setzen
+        $('#Modal2').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#Modal2').modal('show');
+       
+    }
+
+    // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
+    setInterval(function() {
+        $('#Modal2').modal('show');
+    }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
+</script>
+<script>
+    // Funktion zum Anzeigen von Werbung
+    function showModal1(imageUrl) {
+        // Bild setzen
+        $('#Modal1').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#Modal1').modal('show');
+       
+    }
+
+    // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
+    setInterval(function() {
+        $('#Modal1').modal('show');
+    }, 30000); // 60000 Millisekunden entsprechen 60 Sekunden
+</script>
+<script>
+       
+        // Globale Variable für die hinzugefügten Rezepte
+        var hinzugefuegteRezepte = [];
+
+        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+        function loadRecipesFromLocalStorage() {
+            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+            if (storedRecipes) {
+                hinzugefuegteRezepte = JSON.parse(storedRecipes);
+            }
+        }
+
+
+        // Funktion zum Hinzufügen eines Rezepts
+        function rezeptHinzufuegen(button) {
+            var recipeName = button.parentElement.querySelector('h3').textContent;
+            var recipeDescription = button.parentElement.querySelector('p').textContent;
+
+            // Rezeptobjekt erstellen
+            var recipe = {
+                name: recipeName,
+                description: recipeDescription
+            };
+
+            // Rezept zur Liste hinzufügen
+            hinzugefuegteRezepte.push(recipe);
+            localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+
+            // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
+            alert("Rezept hinzugefügt");
+            updateCartButton();
+        }
+
+        // Funktion zum Aktualisieren des Warenkorb-Buttons
+        function updateCartButton() {
+            var cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+            }
+        }
+
+        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRecipesFromLocalStorage();
+            updateCartButton();
+        });
+
+        // Funktion zum Navigieren zur Startseite
+        function goToIndex() {
+            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+        }
+       // Timer für automatisches Schließen des Modals nach einer gewissen Zeit
+    var modal = $('#autoAdModal');
+    var offerButton = $('#offerButton');
+    var timerDisplay = $('#timerDisplay');
+
+    function closeModalAfterTime() {
+        var seconds = 30; // Zeit in Sekunden, nach der das Modal geschlossen wird
+        var countdownInterval = setInterval(function() {
+            seconds--;
+            timerDisplay.text('Schließe in ' + seconds + ' Sekunden');
+            if (seconds <= 0) {
+                clearInterval(countdownInterval);
+                modal.modal('hide'); // Modal automatisch schließen
+            }
+        }, 1000);
+    }
+
+    // Event-Listener für das Öffnen des Modals
+    modal.on('shown.bs.modal', function () {
+        closeModalAfterTime(); // Starte den Timer, wenn das Modal geöffnet wird
+    });
+
+    // Event-Listener für das Schließen des Modals
+    modal.on('hidden.bs.modal', function () {
+        // Zurücksetzen des Timers und anderer Zustände bei Bedarf
+    });
+
+    function showAd2(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal2').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal2').modal('show');
+    }
+    function showRecipe2(){
+        $('#Rezept2').modal('show');
+    }
+    function showAd3(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal3').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal3').modal('show');
+    }
+    function showRecipe3(){
+        $('#Rezept3').modal('show');
+    }
+    function showAd4(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal4').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal4').modal('show');
+    }
+    function showRecipe4(){
+        $('#Rezept4').modal('show');
+    }
+</script>
+</body>
+</html>

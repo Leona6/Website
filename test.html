@@ -1,0 +1,80 @@
+<div class="modal-body">
+    <img src="/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg" alt="Werbung" style="max-width: 100%; animation: pulse 1s infinite;">
+    <style>
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    <p>Kaufen Sie jetzt das beste Produkt!</p>
+    <!-- Rest des Codes bleibt gleich -->
+</div>
+<div class="modal-body">
+    <p>Kaufen Sie jetzt das beste Produkt!</p>
+    <button class="btn btn-success large-button" style="background-color: green;">Zum Angebot</button>
+    <div style="margin-top: 10px;">
+        <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
+        <button class="btn btn-secondary small-button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+    </div>
+</div>
+<div class="modal-body">
+    <p>Kaufen Sie jetzt das beste Produkt!</p>
+    <button class="btn btn-success btn-lg large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+    <div style="margin-top: 10px;">
+        <button class="btn btn-secondary btn-sm small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
+        <button class="btn btn-secondary btn-sm small-button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+    </div>
+</div>
+<button class="btn btn-success btn-lg large-button" onclick="window.location.href='https://amazon.de'">Jetzt kaufen!</button>
+<div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <!-- Rest des Codes bleibt gleich -->
+</div>
+<div class="modal-body">
+    <img src="/Users/leonacerimi/Desktop/Webseiten/images/werbung.jpg" alt="Werbung" style="max-width: 100%; animation: pulse 1s infinite;">
+    <p>Jetzt reduziert: Das ultimative Produkt!</p>
+    <button class="btn btn-success btn-lg large-button" onclick="window.location.href='https://amazon.de'">Jetzt kaufen!</button>
+    <div style="margin-top: 10px;">
+        <button class="btn btn-secondary btn-sm small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
+        <button class="btn btn-secondary btn-sm small-button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+    </div>
+</div>
+<button class="btn btn-success btn-lg large-button" onmouseover="this.style.backgroundColor='darkgreen'" onmouseout="this.style.backgroundColor='green'" onclick="window.location.href='https://amazon.de'">Jetzt kaufen!</button>
+<button class="btn btn-secondary btn-sm small-button" style="cursor: pointer;" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+<button class="btn btn-success btn-lg large-button" onclick="window.location.href='https://amazon.de'">Jetzt zugreifen!</button>
+<div id="countdown" style="font-size: 1.5rem; color: red;">Angebot endet in: <span id="countdownTimer">10:00</span></div>
+<script>
+    // Beispiel für Countdown-Funktion
+    var countdownTime = 600; // Zeit in Sekunden
+    var countdownTimer = document.getElementById('countdownTimer');
+
+    function startCountdown() {
+        var minutes, seconds;
+        var countdownInterval = setInterval(function() {
+            minutes = parseInt(countdownTime / 60, 10);
+            seconds = parseInt(countdownTime % 60, 10);
+
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            countdownTimer.textContent = minutes + ":" + seconds;
+
+            if (--countdownTime < 0) {
+                clearInterval(countdownInterval);
+                countdownTimer.textContent = "Angebot abgelaufen";
+                // Hier könnten weitere Aktionen ausgeführt werden, z.B. Modal schließen
+            }
+        }, 1000);
+    }
+
+    startCountdown();
+</script>
+<div class="modal-body">
+    <p>Entdecken Sie die erstaunlichen Funktionen unseres Produkts!</p>
+    <img src="/path/to/product-image.jpg" alt="Produktbild" style="max-width: 100%;">
+    <button class="btn btn-success btn-lg large-button" onclick="window.location.href='https://amazon.de'">Jetzt kaufen!</button>
+    <div style="margin-top: 10px;">
+        <button class="btn btn-secondary btn-sm small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
+        <button class="btn btn-secondary btn-sm small-button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+    </div>
+</div>

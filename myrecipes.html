@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meine Rezepte</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .recipe {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .delete-button {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            float: right;
+        }
+        .delete-button:hover {
+            background-color: #cc4c37;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <!-- Bereich für die hinzugefügten Rezepte -->
+        <div id="hinzugefuegteRezepte" class="recipe-list">
+            <h3 class="mb-3">Meine Rezepte</h3>
+            <div id="recipeContainer"></div>
+        </div>
+
+        <!-- Hauptinhalt -->
+        <div class="mt-4">
+            <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Startseite</button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Globale Variable für die hinzugefügten Rezepte
+        var hinzugefuegteRezepte = [];
+
+        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+        function loadRecipesFromLocalStorage() {
+            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+            if (storedRecipes) {
+                hinzugefuegteRezepte = JSON.parse(storedRecipes);
+                updateRecipeList(); // Rezeptliste aktualisieren
+            }
+        }
+
+        // Funktion zum Anzeigen der hinzugefügten Rezepte
+        function updateRecipeList() {
+            var recipeContainer = document.getElementById('recipeContainer');
+            recipeContainer.innerHTML = ''; // Liste leeren
+
+            hinzugefuegteRezepte.forEach(function(recipe, index) {
+                var recipeDiv = document.createElement('div');
+                recipeDiv.className = 'recipe card p-3';
+
+                var recipeName = document.createElement('h4');
+                recipeName.className = 'card-title';
+                recipeName.textContent = recipe.name;
+                recipeDiv.appendChild(recipeName);
+
+                var recipeDescription = document.createElement('p');
+                recipeDescription.className = 'card-text';
+                recipeDescription.textContent = recipe.description;
+                recipeDiv.appendChild(recipeDescription);
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Löschen';
+                deleteButton.className = 'btn btn-danger delete-button';
+                deleteButton.onclick = function () {
+                    // Rezept aus Liste entfernen
+                    hinzugefuegteRezepte.splice(index, 1);
+                    updateRecipeList(); // Liste aktualisieren nach Entfernung
+                    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+                };
+                recipeDiv.appendChild(deleteButton);
+
+                recipeContainer.appendChild(recipeDiv);
+            });
+
+            updateCartButton(); // Warenkorb-Button aktualisieren
+        }
+
+        // Funktion zum Aktualisieren des Warenkorb-Buttons
+        function updateCartButton() {
+            var cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+            }
+        }
+
+        // Beim Laden der Seite die gespeicherten Rezepte laden
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRecipesFromLocalStorage();
+            updateCartButton();
+        });
+
+        // Funktion zum Navigieren zur Startseite
+        function goToIndex() {
+            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+        }
+    </script>
+
+    <!-- Bootstrap JS und jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
