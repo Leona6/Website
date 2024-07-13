@@ -1,0 +1,139 @@
+     /* Stile für die Rezepte */
+     .recipe {
+        margin-bottom: 40px;
+    }
+
+    .recipe h3 {
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+
+    .recipe p {
+        margin-bottom: 20px;
+    }
+
+    /* Stile für die Schieberegler */
+    .slider {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 25px;
+        border-radius: 5px;
+        background: #d3d3d3;
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: .2s;
+        transition: opacity .2s;
+        margin: 10px 0;
+    }
+
+    .slider:hover {
+        opacity: 1;
+    }
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #4CAF50;
+        cursor: pointer;
+    }
+
+    /* Stil für die großen und kleinen Buttons */
+    .large-button {
+        font-size: 20px;
+        padding: 15px 30px;
+    }
+
+    .small-button {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .confirm-button {
+        font-size: 12px;
+        color: grey;
+    }
+
+    .deny-button {
+        font-size: 20px;
+        color: white;
+        background-color: red;
+        border: none;
+        padding: 10px 20px;
+    }
+    .modal-header {
+        background-color: #007bff;
+        color: white;
+    }
+    .modal-body img {
+        max-width: 100%;
+        height: auto;
+    }
+    .popup-content {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .popup-content h3 {
+        color: #d9534f;
+        margin-bottom: 15px;
+    }
+    .popup-content p {
+        font-size: 14px;
+        color: #333;
+    }
+    /* Popup-Styling */
+.popup {
+    display: none; /* Das Popup standardmäßig ausblenden */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); /* Fallback-Farbe */
+    background-color: rgba(0,0,0,0.4); /* Hintergrund mit Transparenz */
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* Schließen-Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+.deny-button {
+    font-size: 20px;
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 10px 20px;
+}

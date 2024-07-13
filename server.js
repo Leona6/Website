@@ -24,6 +24,27 @@ app.get('/vegetarisch', (req, res) => {
 app.get('/myrecipes', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'default/myrecipes.html'));
 });
+// Route to serve index.html
+app.get('/detection/recipes', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'detection/recipes.html'));
+});
+
+app.get('/detection/alles', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'detection/alles.html'));
+});
+app.get('/detection/vegan', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'detection/vegan.html'));
+});
+app.get('/detection/vegetarisch', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'detection/vegetarisch.html'));
+});
+app.get('/detection/myrecipes', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'detection/myrecipes.html'));
+});
+// Route to serve index.html
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
