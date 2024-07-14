@@ -4,27 +4,41 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recipe Links</title>
+  <!-- Bootstrap CSS einbinden -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <button  style="margin: 10px;">Phase 1</button>
-  <button  style="margin: 10px;">Phase 2</button>
+  <div class="container text-center mt-5">
+    <!-- Buttons in einem Container zentrieren -->
+    <button onclick="location.href='https://website-9pi4.onrender.com/default/recipes'" class="btn btn-primary btn-lg m-2">Phase 1</button>
+    <button onclick="location.href='https://website-9pi4.onrender.com/detection/recipes'" class="btn btn-secondary btn-lg m-2">Phase 2</button>
+  </div>
 
-  <h1>Recipe Links</h1>
-  <ul>
-    <li><a href="https://website-9pi4.onrender.com/default/recipes" title="All Recipes">Recipes</a></li>
-    <li><a href="https://website-9pi4.onrender.com/default/alles" title="All Recipes">Alles</a></li>
-    <li><a href="https://website-9pi4.onrender.com/default/vegan" title="Vegan Recipes">Vegan</a></li>
-    <li><a href="https://website-9pi4.onrender.com/default/vegetarisch" title="Vegetarian Recipes">Vegetarisch</a></li>
-    <li><a href="https://website-9pi4.onrender.com/default/myrecipes" title="My Recipes">My Recipes</a></li>
-  </ul>
-  
-  <h2>Detection Recipe Links</h2>
-  <ul>
-    <li><a href="https://website-9pi4.onrender.com/detection/recipes" title="Detection Recipes">Detection Recipes</a></li>
-    <li><a href="https://website-9pi4.onrender.com/detection/alles" title="Detection All Recipes">Detection Alles</a></li>
-    <li><a href="https://website-9pi4.onrender.com/detection/vegan" title="Detection Vegan Recipes">Detection Vegan</a></li>
-    <li><a href="https://website-9pi4.onrender.com/detection/vegetarisch" title="Detection Vegetarian Recipes">Detection Vegetarisch</a></li>
-    <li><a href="https://website-9pi4.onrender.com/detection/myrecipes" title="Detection My Recipes">Detection My Recipes</a></li>
-  </ul>
+  <div class="container mt-5">
+    <h1 class="text-center">Recipe Links</h1>
+    <ul class="list-unstyled text-center">
+      <li><a href="https://website-9pi4.onrender.com/default/recipes" class="btn btn-link">Recipes</a></li>
+      <li><a href="https://website-9pi4.onrender.com/default/alles" class="btn btn-link">Alles</a></li>
+      <li><a href="https://website-9pi4.onrender.com/default/vegan" class="btn btn-link">Vegan</a></li>
+      <li><a href="https://website-9pi4.onrender.com/default/vegetarisch" class="btn btn-link">Vegetarisch</a></li>
+      <li><a href="https://website-9pi4.onrender.com/default/myrecipes" class="btn btn-link">My Recipes</a></li>
+    </ul>
+  </div>
+
+  <div class="container mt-5">
+    <h2 class="text-center">Detection Recipe Links</h2>
+    <ul class="list-unstyled text-center">
+      <li><a href="https://website-9pi4.onrender.com/detection/recipes" class="btn btn-link">Detection Recipes</a></li>
+      <li><a href="https://website-9pi4.onrender.com/detection/alles" class="btn btn-link">Detection Alles</a></li>
+      <li><a href="https://website-9pi4.onrender.com/detection/vegan" class="btn btn-link">Detection Vegan</a></li>
+      <li><a href="https://website-9pi4.onrender.com/detection/vegetarisch" class="btn btn-link">Detection Vegetarisch</a></li>
+      <li><a href="https://website-9pi4.onrender.com/detection/myrecipes" class="btn btn-link">Detection My Recipes</a></li>
+    </ul>
+  </div>
+
+  <!-- Bootstrap JS und Popper.js einbinden -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
