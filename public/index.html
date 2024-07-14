@@ -8,10 +8,20 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+  <!-- Bootstrap Alert für Begrüßung -->
+  <div class="container mt-3">
+    <div id="greetingAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Hallo!</strong> Willkommen auf unserer Rezeptseite.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+
   <div class="container text-center mt-5">
     <!-- Buttons in einem Container zentrieren -->
-    <button onclick="location.href='https://website-9pi4.onrender.com/default/recipes'" class="btn btn-primary btn-lg m-2">Phase 1</button>
-    <button onclick="location.href='https://website-9pi4.onrender.com/detection/recipes'" class="btn btn-secondary btn-lg m-2">Phase 2</button>
+    <button onclick="location.href='https://website-9pi4.onrender.com/phase1'" class="btn btn-primary btn-lg m-2">Phase 1</button>
+    <button onclick="location.href='https://website-9pi4.onrender.com/phase2'" class="btn btn-secondary btn-lg m-2">Phase 2</button>
   </div>
 
   <div class="container mt-5">
@@ -40,5 +50,14 @@
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Optional: Custom Script, um den Alert nach 5 Sekunden zu verstecken -->
+  <script>
+    $(document).ready(function(){
+      setTimeout(function(){
+        $('#greetingAlert').alert('close');
+      }, 5000);
+    });
+  </script>
 </body>
 </html>
