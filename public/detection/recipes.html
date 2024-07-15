@@ -103,6 +103,26 @@
         </div>
     </div>
 </div>
+<!-- Bootstrap Alert als Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="alertModalLabel">Warnung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <strong id="alertMessage"></strong>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="alertClose">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Automatisches Pop-up mit Werbung -->
 <div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -377,72 +397,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const functionalSwitch = document.getElementById('functionalSwitch');
-        const marketingSwitch = document.getElementById('marketingSwitch');
-        const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
-        const saveButton = document.getElementById('saveButton');
-        const resetButton = document.getElementById('resetButton');
 
-        // Function to check all switches and enable save button if all are checked
-        const checkSwitches = () => {
-            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                saveButton.disabled = false;
-            } else {
-                saveButton.disabled = true;
-            }
-        };
-
-        // Event listeners for switch changes
-        functionalSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        marketingSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        personalizedAdsSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        // Save settings function
-        const saveSettings = () => {
-            console.log('Settings saved');
-            localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
-            $('#settingsModal').modal('hide'); // Close settings modal after saving
-            $('#cookieModal').modal('hide'); // Hide cookie modal after saving
-        };
-
-        // Event listener for save button click
-        saveButton.addEventListener('click', () => {
-            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                saveSettings();
-                saveButton.disabled = true; // Disable save button after saving
-            }
-        });
-
-        // Event listener for the "Zustimmung zurücksetzen" Button
-        resetButton.addEventListener('click', () => {
-            localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
-            saveButton.disabled = true; // Disable save button
-            functionalSwitch.checked = false; // Reset switches
-            marketingSwitch.checked = false;
-            personalizedAdsSwitch.checked = false;
-            $('#cookieModal').modal('show'); // Show cookie modal after resetting
-        });
-
-        // Check if user has already accepted cookies
-        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
-        if (cookiesAccepted === 'true') {
-            $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
-        } else {
-            $('#cookieModal').modal('show'); // Show cookie modal if not accepted
-            checkModalColors('cookieModal')
-        }
-    });
-</script>
 <!-- Rezepte-->
 
 <!-- Navbar -->
@@ -596,117 +551,188 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script>
-  $(document).ready(function(){
-        // Automatisches Pop-up nach 3 Sekunden anzeigen
-       // Cookie-Akzeptanz-Popup anzeigen
-    
-      // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
-      if (!localStorage.getItem('cookiesAccepted')) {
-            // Cookie-Akzeptanz-Popup anzeigen
-            
+ 
+ $(document).ready(function() {
+    // Timeout zum Öffnen des Cookie-Modals nach 3 Sekunden
+    setTimeout(function() {
+        $('#cookieModal').modal('show');
+    }, 3000);
+
+    // Funktion zum Prüfen der Farben in einem Modal
+    function checkModalColors(modalId) {
+        var modal = $('#' + modalId);
+        var buttons = modal.find('button');
+        var colors = [];
+
+        // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
+        function extractRgbValues(colorString) {
+            var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            if (match) {
+                return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+            } else {
+                // Standard-RGB zurückgeben, falls keine Übereinstimmung gefunden wurde
+                return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
+            }
+        }
+
+        // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
+        function compareColors(rgb, colorName) {
+            switch (colorName.toLowerCase()) {
+                case 'rot':
+                    return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
+                case 'gelb':
+                    return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
+                case 'grün':
+                    return rgb[0] < 100 && rgb[1] > 100 && rgb[2] < 120;
+                case 'blau':
+                    return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
+                case 'schwarz':
+                    return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
+                case 'grau':
+                    return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
+                default:
+                    return false;
+            }
+        }
+
+        // Durchlaufen aller Buttons im Modal
+        buttons.each(function(index, button) {
+            // Hintergrundfarbe des Buttons extrahieren
+            var computedStyle = window.getComputedStyle(button);
+            var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
+            var colorName = getColorName(backgroundColor);
+
+            // Konsolenausgabe zur Überprüfung
+            console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
+
+            // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
+            colors.push({ text: button.textContent.trim(), color: backgroundColor });
+        });
+
+        // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
+        function getColorName(rgb) {
+            // Schwellenwerte für Farben
+            var thresholds = {
+                rot: [150, 0, 0],        // Anpassung der Schwellenwerte für Rot
+                gelb: [255, 255, 0],     // Anpassung der Schwellenwerte für Gelb
+                grün: [0, 100, 0],       // Anpassung der Schwellenwerte für Grün
+                blau: [0, 0, 150],       // Anpassung der Schwellenwerte für Blau
+                schwarz: [30, 30, 30],   // Anpassung der Schwellenwerte für Schwarz
+                grau: [150, 150, 150]    // Anpassung der Schwellenwerte für Grau
+            };
+
+            // Überprüfen der Schwellenwerte für jede Farbe
+            for (var color in thresholds) {
+                if (areRgbValuesEqual(rgb, thresholds[color])) {
+                    return color;
+                }
+            }
+
+            // Falls keine Übereinstimmung gefunden wurde, 'Unbekannt' zurückgeben
+            return 'Unbekannt';
+        }
+
+        // Funktion zum Vergleichen von RGB-Werten
+        function areRgbValuesEqual(rgb1, rgb2) {
+            return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
+        }
+
+        // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
+        if (colors.length > 1 && !colors.every(function(color) {
+            return color.color === colors[0].color;
+        })) {
+            // Nachricht für das Alert-Modal
+            var message = 'Die Farben der Buttons im Modal sind unterschiedlich.';
+            $('#alertMessage').html(message);
+            $('#alertModal').modal({
+                backdrop: 'static', // Hintergrundklicks deaktivieren
+                keyboard: false     // Schließen per Tastatur deaktivieren
+            });
+        } else {
+            // Wenn keine Warnung angezeigt wird, öffne das Cookie-Modal
             $('#cookieModal').modal('show');
         }
-    });
-    document.addEventListener('DOMContentLoaded', function() {
-    // Hier ist Platz für Ihren spezifischen Code, der auf das DOM zugreift
-    var buttonElement = document.getElementById('acceptCookiesButton');
-    if (buttonElement) {
-        buttonElement.addEventListener('click', function() {
-            // Ihre Funktionalität hier
-            localStorage.setItem('cookiesAccepted', 'true');
-        });
     }
+
+    /*// Event Listener für das Schließen des Alert-Modals
+    $('#alertClose').click(function() {
+        $('#alertModal').modal('hide'); // Alert-Modal schließen
+        $('#cookieModal').modal('show'); // Cookie-Modal öffnen
+    });*/
+
+    // Initial Aufruf der Funktion zum Prüfen der Farben im Cookie-Modal
+    checkModalColors('cookieModal');
 });
-// Funktion zum Prüfen der Farben in einem Modal
-function checkModalColors(modalId) {
-            var modal = $('#' + modalId);
-            var buttons = modal.find('button');
-            var colors = [];
 
-            // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
-            function extractRgbValues(colorString) {
-                var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-                if (match) {
-                    return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
-                } else {
-                    // Gib ein Standard-RGB zurück, wenn keine Übereinstimmung gefunden wurde
-                    return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
-                }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const functionalSwitch = document.getElementById('functionalSwitch');
+        const marketingSwitch = document.getElementById('marketingSwitch');
+        const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
+        const saveButton = document.getElementById('saveButton');
+        const resetButton = document.getElementById('resetButton');
+
+        // Function to check all switches and enable save button if all are checked
+        const checkSwitches = () => {
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveButton.disabled = false;
+            } else {
+                saveButton.disabled = true;
             }
-
-            // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
-            function compareColors(rgb, colorName) {
-                switch (colorName.toLowerCase()) {
-                    case 'rot':
-                        return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
-                    case 'gelb':
-                        return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
-                    case 'grün':
-                        return rgb[0] < 100 && rgb[1] > 100 && rgb[2] < 120;
-                    case 'blau':
-                        return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
-                    case 'schwarz':
-                        return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
-                    case 'grau':
-                        return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
-                    default:
-                        return false;
-                }
-            }
-
-            // Durchlaufen aller Buttons im Modal
-            buttons.each(function(index, button) {
-                // Hintergrundfarbe des Buttons extrahieren
-                var computedStyle = window.getComputedStyle(button);
-                var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
-                var colorName = getColorName(backgroundColor);
-
-                // Konsolenausgabe zur Überprüfung
-                console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
-
-                // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
-                colors.push({ text: button.textContent.trim(), color: backgroundColor });
-            });
-
-            // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
-            function getColorName(rgb) {
-                // Schwellenwerte für Farben
-                    // Schwellenwerte für Farben
-        var thresholds = {
-            rot: [150, 0, 0],        // Anpassung der Schwellenwerte für Rot
-            gelb: [255, 255, 0],     // Anpassung der Schwellenwerte für Gelb
-            grün: [0, 100, 0],       // Anpassung der Schwellenwerte für Grün
-            blau: [0, 0, 150],       // Anpassung der Schwellenwerte für Blau
-            schwarz: [30, 30, 30],   // Anpassung der Schwellenwerte für Schwarz
-            grau: [150, 150, 150]    // Anpassung der Schwellenwerte für Grau
         };
 
-                // Überprüfe die Schwellenwerte für jede Farbe
-                for (var color in thresholds) {
-                    if (areRgbValuesEqual(rgb, thresholds[color])) {
-                        return color;
-                    }
-                }
+        // Event listeners for switch changes
+        functionalSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
 
-                // Falls keine Übereinstimmung gefunden wurde, gib "Unbekannt" zurück
-                return 'Unbekannt';
+        marketingSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        personalizedAdsSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        // Save settings function
+        const saveSettings = () => {
+            console.log('Settings saved');
+            localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
+            $('#settingsModal').modal('hide'); // Close settings modal after saving
+            $('#cookieModal').modal('hide'); // Hide cookie modal after saving
+        };
+
+        // Event listener for save button click
+        saveButton.addEventListener('click', () => {
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveSettings();
+                saveButton.disabled = true; // Disable save button after saving
             }
+        });
 
-            // Funktion zum Vergleichen von RGB-Werten
-            function areRgbValuesEqual(rgb1, rgb2) {
-                return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
-            }
+        // Event listener for the "Zustimmung zurücksetzen" Button
+        resetButton.addEventListener('click', () => {
+            localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
+            saveButton.disabled = true; // Disable save button
+            functionalSwitch.checked = false; // Reset switches
+            marketingSwitch.checked = false;
+            personalizedAdsSwitch.checked = false;
+           // $('#cookieModal').modal('show'); // Show cookie modal after resetting
+        });
 
-               // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
- // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
- if (colors.length > 1 && !colors.every(function(color) {
-        return color.color === colors[0].color;
-    })){
-        // Alert anzeigen, wenn Bedingung erfüllt ist
-        alert('Vorsicht! Die Farben der Buttons im Modal sind unterschiedlich. Dies könnte den Ziel haben Sie von der eigentlichen Aktion abzulenken oder auch Daten zu sammeln.');
-    }
-}
+        // Check if user has already accepted cookies
+        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+        if (cookiesAccepted === 'true') {
+           $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
+        } else {
+           //$('#cookieModal').modal('show'); // Show cookie modal if not accepted
+         //checkModalColors('cookieModal')
+        }
+    });
+
+
     // Rezeptdetails anzeigen
     function showRecipeDetails(rezeptName) {
         alert('Details zu ' + rezeptName);
@@ -736,41 +762,29 @@ function checkModalColors(modalId) {
     alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
 }
 
-
-</script>
-
-
-
-
-<script>
     // Einstellungsmodal anzeigen, wenn auf den Einstellungsbutton geklickt wird
     document.getElementById('Einstellungen').addEventListener('click', function() {
        
         $('#settingsModal').modal('show');
         
     });
-</script>
-<script>
+
     function openVegetarianRecipes() {
         window.location.href = "vegetarisch.html";
     }
-</script>
-<script>
+
     function openStart() {
         window.location.href = "recipes.html";
     }
-</script>
-<script>
+
     function openVegan() {
         window.location.href = "vegan.html";
     }
-</script>
-<script>
+
     function openAll() {
         window.location.href = "alles.html";
     }
-</script>
-<script>
+
     function showModal(imageUrl) {
         // Bild setzen
         checkModalColors('Modal')
@@ -798,8 +812,7 @@ function checkModalColors(modalId) {
     setInterval(function() {
         $('#Modal2').modal('show');
     }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
-</script>
-<script>
+
     // Funktion zum Anzeigen von Werbung
     function showModal1(imageUrl) {
         checkModalColors('Modal1')
@@ -813,8 +826,7 @@ function checkModalColors(modalId) {
     setInterval(function() {
         $('#Modal1').modal('show');
     }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
-</script>
-<script>
+
  // Globale Variable für die hinzugefügten Rezepte
  var hinzugefuegteRezepte = [];
 
@@ -859,6 +871,7 @@ function updateCartButton() {
 document.addEventListener('DOMContentLoaded', function() {
     loadRecipesFromLocalStorage();
     updateCartButton();
+    checkModalColors();
 });
 
 // Funktion zum Navigieren zur Startseite
@@ -918,6 +931,7 @@ function showAd2(imageUrl) {
     function showRecipe4(){
         $('#Rezept4').modal('show');
     }
+
 </script>
 </body>
 </html>

@@ -3,22 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Speichern von Rezepten im localStorage</title>
+    <title>Testdatei mit kombiniertem Modal und Farbprüfung</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    <div id="recipesContainer"></div>
 
-    <h1>Speichern und Anzeigen von Rezepten</h1>
-    <ul id="recipeList">
-        <li id="recipe1">Rezept 1</li>
-        <li id="recipe2">Rezept 2</li>
-        <li id="recipe3">Rezept 3</li>
-    </ul>
-    <button id="saveRecipesBtn">Meine Rezepte speichern</button>
-    <button id="showRecipesBtn">Meine Rezepte anzeigen</button>
+<!-- Kombiniertes Modal -->
+<div class="modal fade" id="combinedModal" tabindex="-1" role="dialog" aria-labelledby="combinedModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="combinedModalLabel">Kombiniertes Modal mit Buttons unterschiedlicher Farben</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-primary" style="background-color: red;">Roter Button</button>
+                    </div>
+                    <div class="col text-center">
+                        <button type="button" class="btn btn-primary" style="background-color: blue;">Blauer Button</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <script src="recipes.js"></script>
-    <script>
-        alert('Hallo')</script>
+<!-- Warnungs-Modal -->
+<div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="warningModalLabel">Warnung: Unterschiedliche Button-Farben</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Die Buttons im kombinierten Modal haben unterschiedliche Hintergrundfarben. Bitte überprüfen Sie dies.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button zum Öffnen des kombinierten Modals -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col text-center">
+            <button type="button" class="btn btn-primary" id="openCombinedModalButton">Kombiniertes Modal öffnen</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        // Event-Listener für das Öffnen des kombinierten Modals beim Laden der Seite
+        setTimeout(function() {
+            // Farben der Buttons im kombinierten Modal prüfen
+            checkButtonColors();
+        }, 1000); // Wartezeit von 1 Sekunde für Demonstration
+
+        // Funktion zur Überprüfung der Button-Farben im kombinierten Modal
+        function checkButtonColors() {
+            var button1 = $('#combinedModal').find('button').eq(0); // Erster Button
+            var button2 = $('#combinedModal').find('button').eq(1); // Zweiter Button
+
+            var color1 = button1.css('background-color');
+            var color2 = button2.css('background-color');
+
+            // Vergleiche Farben
+            if (color1 !== color2) {
+                // Zeige Warnungs-Modal vor dem kombinierten Modal
+                $('#warningModal').modal('show');
+            }
+
+            // Öffne das kombinierte Modal
+            $('#combinedModal').modal('show');
+        }
+
+        // Event-Listener für den Klick auf den Button zum Öffnen des kombinierten Modals
+        $('#openCombinedModalButton').click(function() {
+            // Farben der Buttons im kombinierten Modal prüfen
+            checkButtonColors();
+        });
+    });
+</script>
+
 </body>
 </html>
