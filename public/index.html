@@ -8,16 +8,6 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Bootstrap Alert für Begrüßung -->
-  <div class="container mt-3">
-    <div id="greetingAlert" class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Hallo!</strong> Willkommen auf unserer Rezeptseite.
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-  </div>
-
   <div class="container text-center mt-5">
     <!-- Buttons in einem Container zentrieren -->
     <button onclick="location.href='https://website-9pi4.onrender.com/phase1'" class="btn btn-primary btn-lg m-2">Phase 1</button>
@@ -46,17 +36,35 @@
     </ul>
   </div>
 
+  <!-- Bootstrap Modal für Begrüßung -->
+  <div class="modal fade" id="greetingModal" tabindex="-1" role="dialog" aria-labelledby="greetingModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="greetingModalLabel">Willkommen</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Hallo! Willkommen auf unserer Rezeptseite.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap JS und Popper.js einbinden -->
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Optional: Custom Script, um den Alert nach 5 Sekunden zu verstecken -->
+  <!-- Custom Script, um das Modal beim Laden der Seite zu zeigen -->
   <script>
     $(document).ready(function(){
-      setTimeout(function(){
-        $('#greetingAlert').alert('close');
-      }, 5000);
+      $('#greetingModal').modal('show');
     });
   </script>
 </body>
