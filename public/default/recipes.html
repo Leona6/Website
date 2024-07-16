@@ -22,7 +22,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;" >
                 <p>Kaufen Sie jetzt das beste Produkt!</p>
                 <button id="offerButton" class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
                 <div style="margin-top: 10px;">
@@ -45,7 +45,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;"  >
                 <p>Kaufen Sie jetzt das beste Produkt!</p>
                 <button id="offerButton" class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
                 <div style="margin-top: 10px;">
@@ -227,7 +227,7 @@
             <a class="nav-link" href="#allesesser" onclick="showModal2('images/werbung.jpg')">Alles Esser</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte</a>
+            <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte (0)</a>
         </li>
     </ul>
 </nav>
@@ -256,7 +256,7 @@
                 <br><br>
                 <div class="recipe">
                     <h3>Kartoffelsalat</h3>
-                    <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3" >
                     <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat.</p>
                     <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
@@ -425,7 +425,7 @@
                 6 kleine	Gewürzgurke(n), fein geschnittene
                 etwas	Gurkenflüssigkeit</p>
                     <div class="modal-body">
-                        <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
                         <br>
                         <br>
                         <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
@@ -454,7 +454,7 @@
                 Balsamicocreme
                 1 Prise(n)	Zucker</p>
                     <div class="modal-body">
-                        <img src="images/Vegan.webp" alt="Werbung" style="max-width: 100%;">
+                        <img src="images/Vegan.webp" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
                         <br>
                         <br>
                         <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
@@ -485,7 +485,7 @@
                 etwas	Pfeffer, frisch gemahlener schwarzer
                 125 g	Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)</p>
                     <div class="modal-body">
-                        <img src="images/haenchen.jpg" alt="Werbung" style="max-width: 100%;">
+                        <img src="images/haenchen.jpg" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
                         <br>
                         <br>
                         <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
@@ -689,6 +689,8 @@
             var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
             if (storedRecipes) {
                 hinzugefuegteRezepte = JSON.parse(storedRecipes);
+                //updateRecipeList(); // Rezeptliste aktualisieren
+    
             }
         }
 
@@ -697,11 +699,13 @@
         function rezeptHinzufuegen(button) {
             var recipeName = button.parentElement.querySelector('h3').textContent;
             var recipeDescription = button.parentElement.querySelector('p').textContent;
+            var recipeImage= button.parentElement.querySelector('img').src;
 
             // Rezeptobjekt erstellen
             var recipe = {
                 name: recipeName,
-                description: recipeDescription
+                description: recipeDescription,
+                image: recipeImage
             };
 
             // Rezept zur Liste hinzufügen
@@ -710,6 +714,8 @@
 
             // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
             alert("Rezept hinzugefügt");
+     
+            //updateRecipeList();
             updateCartButton();
         }
 
@@ -724,6 +730,7 @@
         // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
         document.addEventListener('DOMContentLoaded', function() {
             loadRecipesFromLocalStorage();
+            //updateRecipeList();
             updateCartButton();
         });
 

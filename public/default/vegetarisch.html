@@ -174,7 +174,7 @@ animation: glow 1.5s infinite;
                 <a class="nav-link" href="alles.html">Alles Esser</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte</a>
+                <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte (0)</a>
             </li>
         </ul>
     </div>
@@ -1041,18 +1041,6 @@ animation: glow 1.5s infinite;
 </script>
 <script>
 
-
-        // Globale Variable für die hinzugefügten Rezepte
-        var hinzugefuegteRezepte = [];
-
-        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
-        function loadRecipesFromLocalStorage() {
-            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
-            if (storedRecipes) {
-                hinzugefuegteRezepte = JSON.parse(storedRecipes);
-            }
-        }
-
         // Funktion zum Anzeigen der Werbung
         $(document).ready(function() {
            // $('#autoAdModal').modal('show');
@@ -1063,46 +1051,65 @@ animation: glow 1.5s infinite;
             $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
             $('#autoAdModal').modal('show');
         }
+</script>
+<script>
+  // Globale Variable für die hinzugefügten Rezepte
+  var hinzugefuegteRezepte = [];
 
-        // Funktion zum Hinzufügen eines Rezepts
-        function rezeptHinzufuegen(button) {
-            var recipeName = button.parentElement.querySelector('h3').textContent;
-            var recipeDescription = button.parentElement.querySelector('p').textContent;
+// Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+function loadRecipesFromLocalStorage() {
+    var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+    if (storedRecipes) {
+        hinzugefuegteRezepte = JSON.parse(storedRecipes);
+        //updateRecipeList(); // Rezeptliste aktualisieren
 
-            // Rezeptobjekt erstellen
-            var recipe = {
-                name: recipeName,
-                description: recipeDescription
-            };
+    }
+}
 
-            // Rezept zur Liste hinzufügen
-            hinzugefuegteRezepte.push(recipe);
-            localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
-            // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
-            alert("Rezept hinzugefügt");
-            updateCartButton();
-        }
+// Funktion zum Hinzufügen eines Rezepts
+function rezeptHinzufuegen(button) {
+    var recipeName = button.parentElement.querySelector('h3').textContent;
+    var recipeDescription = button.parentElement.querySelector('p').textContent;
+    var recipeImage= button.parentElement.querySelector('img').src;
 
-        // Funktion zum Aktualisieren des Warenkorb-Buttons
-        function updateCartButton() {
-            var cartButton = document.getElementById('cartButton');
-            if (cartButton) {
-                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
-            }
-        }
+    // Rezeptobjekt erstellen
+    var recipe = {
+        name: recipeName,
+        description: recipeDescription,
+        image: recipeImage
+    };
 
-        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
-        document.addEventListener('DOMContentLoaded', function() {
-            loadRecipesFromLocalStorage();
-            updateCartButton();
-        });
+    // Rezept zur Liste hinzufügen
+    hinzugefuegteRezepte.push(recipe);
+    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
-        // Funktion zum Navigieren zur Startseite
-        function goToIndex() {
-            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
-        }
+    // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
+    alert("Rezept hinzugefügt");
 
+    //updateRecipeList();
+    updateCartButton();
+}
+
+// Funktion zum Aktualisieren des Warenkorb-Buttons
+function updateCartButton() {
+    var cartButton = document.getElementById('cartButton');
+    if (cartButton) {
+        cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+    }
+}
+
+// Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+document.addEventListener('DOMContentLoaded', function() {
+    loadRecipesFromLocalStorage();
+    //updateRecipeList();
+    updateCartButton();
+});
+
+// Funktion zum Navigieren zur Startseite
+function goToIndex() {
+    window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+}
     // Funktion zum Anzeigen des Popups mit dem Werbebild
     function showModal(imageUrl) {
         var modalImage = document.querySelector('#autoAdModal img');
