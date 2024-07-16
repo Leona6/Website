@@ -6,6 +6,25 @@
   <title>Recipe Links</title>
   <!-- Bootstrap CSS einbinden -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .button-container {
+        display: flex;
+        gap: 10px;
+    }
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
   <div class="container text-center mt-5">
@@ -35,13 +54,18 @@
     </ul>
   </div>
 
-  <!-- Bootstrap Alert für "Hallo" -->
-  <div id="helloAlert" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
+  <!-- Bootstrap Alert für "Hallo" <div id="helloAlert" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
     <strong>Hallo!</strong> Sie haben den Button geklickt.
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
+-->
+<div class="button-container">
+  <button href= "https://website-9pi4.onrender.com/default/recipes">Phase 1</button>
+  <button href="https://website-9pi4.onrender.com/detection/recipes">Phase 2</button>
+</div>
+
 
   <!-- Bootstrap Modal für Begrüßung -->
   <div class="modal fade" id="greetingModal" tabindex="-1" role="dialog" aria-labelledby="greetingModalLabel" aria-hidden="true">
