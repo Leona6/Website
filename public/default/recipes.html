@@ -146,71 +146,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', (event) => {
-        const functionalSwitch = document.getElementById('functionalSwitch');
-        const marketingSwitch = document.getElementById('marketingSwitch');
-        const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
-        const saveButton = document.getElementById('saveButton');
-        const resetButton = document.getElementById('resetButton');
 
-        // Function to check all switches and enable save button if all are checked
-        const checkSwitches = () => {
-            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                saveButton.disabled = false;
-            } else {
-                saveButton.disabled = true;
-            }
-        };
-
-        // Event listeners for switch changes
-        functionalSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        marketingSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        personalizedAdsSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        // Save settings function
-        const saveSettings = () => {
-            console.log('Settings saved');
-            localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
-            $('#settingsModal').modal('hide'); // Close settings modal after saving
-            $('#cookieModal').modal('hide'); // Hide cookie modal after saving
-        };
-
-        // Event listener for save button click
-        saveButton.addEventListener('click', () => {
-            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                saveSettings();
-                saveButton.disabled = true; // Disable save button after saving
-            }
-        });
-
-        // Event listener for the "Zustimmung zurücksetzen" Button
-        resetButton.addEventListener('click', () => {
-            localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
-            saveButton.disabled = true; // Disable save button
-            functionalSwitch.checked = false; // Reset switches
-            marketingSwitch.checked = false;
-            personalizedAdsSwitch.checked = false;
-            $('#cookieModal').modal('show'); // Show cookie modal after resetting
-        });
-
-        // Check if user has already accepted cookies
-        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
-        if (cookiesAccepted === 'true') {
-            $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
-        } else {
-            $('#cookieModal').modal('show'); // Show cookie modal if not accepted
-        }
-    });
-</script>
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -257,7 +193,16 @@
                 <div class="recipe">
                     <h3>Kartoffelsalat</h3>
                     <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3" >
-                    <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat.</p>
+                    <p class="recipe-text-container">Ein leckeres Rezept für einen klassischen Kartoffelsalat.
+                        2 kg	Kartoffeln, festkochende
+                        1 m.-große	Zwiebel(n), feinst gewürfelte
+                        250 ml	Gemüsebrühe oder Geflügelbrühe
+                        3 EL	Weißweinessig, milder, z. B. Marc de Champagne
+                        2 EL	Dijonsenf mit grünem Pfeffer
+                        200 g	Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt
+                        6 kleine	Gewürzgurke(n), fein geschnittene
+                        etwas	Gurkenflüssigkeit
+                    </p>
                     <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -272,7 +217,21 @@
                 <div class="recipe">
                     <h3>Avocado-Salat</h3>
                     <img src="images/Vegan.webp" alt="Avocado-Salat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                    <p>Ein erfrischendes Rezept für einen köstlichen Avocado-Salat.</p>
+                    <p class="recipe-text-container">Ein erfrischendes Rezept für einen köstlichen Avocado-Salat.
+                        1	Avocado(s)
+                6	Kirschtomate(n)
+                ½	Zwiebel(n)
+                1 kleine	Gurke(n)
+                1	Paprikaschote(n), gelbe
+                60 g	Feta-Käse
+                1 EL, gehäuft	Pinienkerne
+                Pfeffer, grober
+                Meersalz
+                etwas	Zitronensaft
+                etwas	Schnittlauch
+                Balsamicocreme
+                1 Prise(n)	Zucker
+                    </p>
                     <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -287,7 +246,23 @@
                 <div class="recipe">
                     <h3>Hähnchenbrust-Gemüse</h3>
                     <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                    <p>Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse.</p>
+                    <p class="recipe-text-container">Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse.
+                        2 Stück(e)	Hühnerbrust, frische
+                1 große	Paprikaschote(n), (wahlweise gelb oder rot)
+                1 m.-große	Zucchini
+                4	Frühlingszwiebel(n)
+                2 Zehe/n	Knoblauch
+                350 ml	Tomate(n), passierte
+                2 EL	Tomatenmark
+                1 TL, gehäuft	Zucker
+                1 TL, gehäuft	Oregano
+                1 TL, gehäuft	Thymian
+                ½ TL	Harissa
+                ½ TL	Paprikapulver, (Pimentón de la Vera, picante)
+                etwas	Salz
+                etwas	Pfeffer, frisch gemahlener schwarzer
+                125 g	Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)
+                    </p>
                     <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -416,7 +391,7 @@
         <div class="modal-content">
         <div class="recipe">
             <h3>Kartoffelsalat</h3>
-            <p>2 kg	Kartoffeln, festkochende
+            <p id="ingredients">2 kg	Kartoffeln, festkochende
                 1 m.-große	Zwiebel(n), feinst gewürfelte
                 250 ml	Gemüsebrühe oder Geflügelbrühe
                 3 EL	Weißweinessig, milder, z. B. Marc de Champagne
@@ -440,7 +415,7 @@
         <div class="modal-content">
         <div class="recipe">
             <h3>Avocadosalat</h3>
-            <p>1	Avocado(s)
+            <p id="ingredients-1">1	Avocado(s)
                 6	Kirschtomate(n)
                 ½	Zwiebel(n)
                 1 kleine	Gurke(n)
@@ -469,7 +444,7 @@
         <div class="modal-content">
         <div class="recipe">
             <h3>Hähnchenbrust-Gemüse            </h3>
-            <p>2 Stück(e)	Hühnerbrust, frische
+            <p id="ingredients-2">2 Stück(e)	Hühnerbrust, frische
                 1 große	Paprikaschote(n), (wahlweise gelb oder rot)
                 1 m.-große	Zucchini
                 4	Frühlingszwiebel(n)
@@ -616,6 +591,71 @@
     });
 </script>
 <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const functionalSwitch = document.getElementById('functionalSwitch');
+        const marketingSwitch = document.getElementById('marketingSwitch');
+        const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
+        const saveButton = document.getElementById('saveButton');
+        const resetButton = document.getElementById('resetButton');
+
+        // Function to check all switches and enable save button if all are checked
+        const checkSwitches = () => {
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveButton.disabled = false;
+            } else {
+                saveButton.disabled = true;
+            }
+        };
+
+        // Event listeners for switch changes
+        functionalSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        marketingSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        personalizedAdsSwitch.addEventListener('change', () => {
+            checkSwitches();
+        });
+
+        // Save settings function
+        const saveSettings = () => {
+            console.log('Settings saved');
+            localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
+            $('#settingsModal').modal('hide'); // Close settings modal after saving
+            $('#cookieModal').modal('hide'); // Hide cookie modal after saving
+        };
+
+        // Event listener for save button click
+        saveButton.addEventListener('click', () => {
+            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                saveSettings();
+                saveButton.disabled = true; // Disable save button after saving
+            }
+        });
+
+        // Event listener for the "Zustimmung zurücksetzen" Button
+        resetButton.addEventListener('click', () => {
+            localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
+            saveButton.disabled = true; // Disable save button
+            functionalSwitch.checked = false; // Reset switches
+            marketingSwitch.checked = false;
+            personalizedAdsSwitch.checked = false;
+            $('#cookieModal').modal('show'); // Show cookie modal after resetting
+        });
+
+        // Check if user has already accepted cookies
+        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+        if (cookiesAccepted === 'true') {
+            $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
+        } else {
+            $('#cookieModal').modal('show'); // Show cookie modal if not accepted
+        }
+    });
+</script>
+<script>
     function openVegetarianRecipes() {
         window.location.href = "vegetarisch.html";
     }
@@ -697,15 +737,27 @@
 
         // Funktion zum Hinzufügen eines Rezepts
         function rezeptHinzufuegen(button) {
+            var recipeDiv = button.parentElement; 
             var recipeName = button.parentElement.querySelector('h3').textContent;
             var recipeDescription = button.parentElement.querySelector('p').textContent;
             var recipeImage= button.parentElement.querySelector('img').src;
+
+
+    // Zutaten aus dem nächsten <p>-Tag extrahieren
+    var recipeIngredients = recipeDiv.querySelectorAll('p')[1]?.textContent || '';
+    console.log("Rezeptname:", recipeName);
+    console.log("Beschreibung:", recipeDescription);
+    console.log("Bild-URL:", recipeImage);
+    console.log("Zutaten:", recipeIngredients);
+
+  ///  console.log("Zutaten:", recipeIngredients);
 
             // Rezeptobjekt erstellen
             var recipe = {
                 name: recipeName,
                 description: recipeDescription,
-                image: recipeImage
+                image: recipeImage,
+                ingredients: recipeIngredients // Zutaten hinzufügen
             };
 
             // Rezept zur Liste hinzufügen
@@ -792,6 +844,10 @@
     function showRecipe4(){
         $('#Rezept4').modal('show');
     }
+</script>
+<script>
+
+
 </script>
 </body>
 </html>

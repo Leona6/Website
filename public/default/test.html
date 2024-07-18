@@ -3,151 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meine Rezepte</title>
-    <!-- Bootstrap CSS -->
+    <title>Rezepte</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .recipe {
-            border: 1px solid #ccc;
-            padding: 10px;
+        .recipe-text-container {
+            position: relative;
+            max-height: 80px; /* Höhe des sichtbaren Textbereichs */
+            overflow: hidden;
+            transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
             margin-bottom: 10px;
         }
-        .delete-button {
-            background-color: #ff6347;
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            cursor: pointer;
-            float: right;
+        .recipe-text-container.expanded {
+            max-height: none; /* Entfernen der Begrenzung für den erweiterten Text */
         }
-        .delete-button:hover {
-            background-color: #cc4c37;
+        .read-more-button {
+            display: block;
+            cursor: pointer;
+            color: blue;
+            background-color: transparent;
+            border: none;
+            text-decoration: underline;
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container mt-4">
-        <!-- Bereich für die hinzugefügten Rezepte -->
-        <div id="hinzugefuegteRezepte" class="recipe-list">
-            <h3 class="mb-3">Meine Rezepte</h3>
-            <div id="recipeContainer"></div>
-        </div>
-
-        <!-- Hauptinhalt -->
-        <div class="mt-4">
-            <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Startseite</button>
-        </div>
-    </div>
-
-    <!-- Beispiel-Modals (fiktiv) -->
-    <div id="modalsContainer"></div>
-
-    <!-- Beispielmodal -->
-    <div class="modal fade" id="recipeModal" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="recipeModalLabel">Rezeptname</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+        <div class="row">
+            <!-- Kategorie Vegetarisch -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div id="vegetarisch">
+                    <h2>Vegetarische Rezepte</h2>
+                    <br><br>
+                    <div class="recipe">
+                        <h3>Kartoffelsalat</h3>
+                        <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <div class="recipe-text-container" id="text-Kartoffelsalat">
+                            <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat. 2 kg Kartoffeln, festkochende 1 m.-große Zwiebel(n), feinst gewürfelte 250 ml Gemüsebrühe oder Geflügelbrühe 3 EL Weißweinessig, milder, z. B. Marc de Champagne 2 EL Dijonsenf mit grünem Pfeffer 200 g Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt 6 kleine Gewürzgurke(n), fein geschnittene etwas Gurkenflüssigkeit</p>
+                        </div>
+                       
+                        <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <img src="" class="img-fluid mb-3" id="recipeImage" alt="Rezeptbild">
-                    <p id="recipeDescription"></p>
-                    <p id="recipeIngredients"></p>
+            </div>
+
+            <!-- Kategorie Vegan -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div id="vegan">
+                    <h2>Vegane Rezepte</h2>
+                    <br><br>
+                    <div class="recipe">
+                        <h3>Avocado-Salat</h3>
+                        <img src="images/Vegan.webp" alt="Avocado-Salat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <div class="recipe-text-container" id="text-AvocadoSalat">
+                            <p>Ein erfrischendes Rezept für einen köstlichen Avocado-Salat. 1 Avocado(s) 6 Kirschtomate(n) ½ Zwiebel(n) 1 kleine Gurke(n) 1 Paprikaschote(n), gelbe 60 g Feta-Käse 1 EL, gehäuft Pinienkerne Pfeffer, grober Meersalz etwas Zitronensaft etwas Schnittlauch Balsamicocreme 1 Prise(n) Zucker</p>
+                        </div>
+                      
+                        <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
+            </div>
+
+            <!-- Kategorie Allesesser -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div id="allesesser">
+                    <h2>Rezepte für Allesesser</h2>
+                    <br><br>
+                    <div class="recipe">
+                        <h3>Hähnchenbrust-Gemüse</h3>
+                        <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <div class="recipe-text-container" id="text-Haehnchenbrust">
+                            <p>Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse. 2 Stück(e) Hühnerbrust, frische 1 große Paprikaschote(n), (wahlweise gelb oder rot) 1 m.-große Zucchini 4 Frühlingszwiebel(n) 2 Zehe/n Knoblauch 350 ml Tomate(n), passierte 2 EL Tomatenmark 1 TL, gehäuft Zucker 1 TL, gehäuft Oregano 1 TL, gehäuft Thymian ½ TL Harissa ½ TL Paprikapulver, (Pimentón de la Vera, picante) etwas Salz etwas Pfeffer, frisch gemahlener schwarzer 125 g Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)</p>
+                        </div>
+                        
+                        <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- JavaScript -->
     <script>
-        // Beispielrezept hinzufügen
-        var hinzugefuegteRezepte = [
-            {
-                name: 'Amerikanische Pancakes',
-                imageUrl: 'images/amerikanische-pancakes.jpg',
-                description: 'Leckere Pancakes für ein Frühstück.',
-                ingredients: '3 Eier, 100 ml Milch, 200 ml Naturjoghurt, 150 g Mehl, 1 Pck. Backpulver, 1 Prise Salz, 2 EL Zucker, Olivenöl, Ahornsirup'
+        function toggleText(textId, button) {
+            var textContainer = document.getElementById(textId);
+            var btnText = button;
+
+            if (textContainer.classList.contains('expanded')) {
+                textContainer.classList.remove('expanded');
+                btnText.innerHTML = "Weiterlesen";
+            } else {
+                textContainer.classList.add('expanded');
+                btnText.innerHTML = "Weniger anzeigen";
             }
-        ];
-
-        // Funktion zum Laden der Rezepte
-        function loadRecipes() {
-            var recipeContainer = document.getElementById('recipeContainer');
-
-            hinzugefuegteRezepte.forEach(function(recipe, index) {
-                var recipeDiv = document.createElement('div');
-                recipeDiv.className = 'recipe card p-3';
-
-                var recipeName = document.createElement('h4');
-                recipeName.className = 'card-title';
-                recipeName.textContent = recipe.name;
-                recipeDiv.appendChild(recipeName);
-
-                var recipeDescription = document.createElement('p');
-                recipeDescription.className = 'card-text';
-                recipeDescription.textContent = recipe.description;
-                recipeDiv.appendChild(recipeDescription);
-
-                if (recipe.imageUrl) {
-                    var recipeImage = document.createElement('img');
-                    recipeImage.src = recipe.imageUrl;
-                    recipeImage.alt = recipe.name;
-                    recipeImage.className = 'img-fluid mb-3';
-                    recipeDiv.appendChild(recipeImage);
-                } else {
-                    console.log('Bild nicht vorhanden für: ' + recipe.name);
-                }
-
-                var showButton = document.createElement('button');
-                showButton.textContent = 'Rezept anzeigen';
-                showButton.className = 'btn btn-info show-button';
-                showButton.onclick = function () {
-                    showModal(recipe.name, recipe.imageUrl, recipe.description, recipe.ingredients);
-                };
-                recipeDiv.appendChild(showButton);
-
-                var deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Löschen';
-                deleteButton.className = 'btn btn-danger delete-button';
-                deleteButton.onclick = function () {
-                    hinzugefuegteRezepte.splice(index, 1);
-                    loadRecipes();
-                };
-                recipeDiv.appendChild(deleteButton);
-
-                recipeContainer.appendChild(recipeDiv);
-            });
-        }
-
-        // Funktion zum Anzeigen des Modals
-        function showModal(name, imageUrl, description, ingredients) {
-            document.getElementById('recipeModalLabel').textContent = name;
-            document.getElementById('recipeImage').src = imageUrl;
-            document.getElementById('recipeDescription').textContent = description;
-            document.getElementById('recipeIngredients').textContent = ingredients;
-            $('#recipeModal').modal('show');
-        }
-
-        // Starten der Seite
-        document.addEventListener('DOMContentLoaded', function() {
-            loadRecipes();
-        });
-
-        // Funktion zum Navigieren zur Startseite
-        function goToIndex() {
-            window.location.href = "index.html"; // Passen Sie den URL-Pfad entsprechend an
         }
     </script>
-
-    <!-- Bootstrap JS und jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -35,7 +35,7 @@
 
         <!-- Hauptinhalt -->
         <div class="mt-4">
-           
+            <button id="cartButton" class="btn btn-primary">Meine Rezepte (0)</button>
             <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Startseite</button>
         </div>
     </div>
@@ -43,7 +43,6 @@
     <!-- Modals Container -->
     <div id="modalsContainer"></div>
 
-    <!-- JavaScript -->
     <script>
         // Globale Variable für die hinzugefügten Rezepte
         var hinzugefuegteRezepte = [];
@@ -53,67 +52,82 @@
             var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
             if (storedRecipes) {
                 hinzugefuegteRezepte = JSON.parse(storedRecipes);
-                updateRecipeList(); // Rezeptliste aktualisieren
+                console.log('Gespeicherte Rezepte:', hinzugefuegteRezepte); // Konsolenausgabe hinzufügen
+        updateRecipeList(); // Rezeptliste aktualisieren
+                
             }
         }
 
-        // Funktion zum Anzeigen der hinzugefügten Rezepte
-        function updateRecipeList() {
-            var recipeContainer = document.getElementById('recipeContainer');
-            var modalsContainer = document.getElementById('modalsContainer');
-            recipeContainer.innerHTML = ''; // Liste leeren
-            modalsContainer.innerHTML = ''; // Modals leeren
+     // Funktion zum Anzeigen der hinzugefügten Rezepte
+function updateRecipeList() {
+    var recipeContainer = document.getElementById('recipeContainer');
+    var modalsContainer = document.getElementById('modalsContainer');
+    recipeContainer.innerHTML = ''; // Liste leeren
+    modalsContainer.innerHTML = ''; // Modals leeren
 
-            hinzugefuegteRezepte.forEach(function(recipe, index) {
-                var recipeDiv = document.createElement('div');
-                recipeDiv.className = 'recipe card p-3';
+    hinzugefuegteRezepte.forEach(function(recipe, index) {
+        var recipeDiv = document.createElement('div');
+        recipeDiv.className = 'recipe card p-3';
 
-                if (recipe.image) {
-                    var recipeImage = document.createElement('img');
-                    recipeImage.src = recipe.image; // Setzen der Bild-URL als Quelle
-                    recipeImage.alt = recipe.name;
-                    recipeImage.className = 'img-fluid mb-3';
-                    recipeDiv.appendChild(recipeImage);
-                } else {
-                    console.log('Bild nicht vorhanden für: ' + recipe.name);
-                }
-
-                var recipeName = document.createElement('h4');
-                recipeName.className = 'card-title';
-                recipeName.textContent = recipe.name;
-                recipeDiv.appendChild(recipeName);
-
-                var recipeDescription = document.createElement('p');
-                recipeDescription.className = 'card-text';
-                recipeDescription.textContent = recipe.description;
-                recipeDiv.appendChild(recipeDescription);
-
-                var showButton = document.createElement('button');
-                showButton.textContent = 'Rezept anzeigen';
-                showButton.className = 'btn btn-info show-button';
-                showButton.onclick = function () {
-                    // Rezept anzeigen: Modal öffnen und Daten anzeigen
-                    showModal(recipe.name, recipe.image, recipe.description, recipe.ingredients);
-                };
-                recipeDiv.appendChild(showButton);
-
-                var deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Löschen';
-                deleteButton.className = 'btn btn-danger delete-button';
-                deleteButton.onclick = function () {
-                    // Rezept aus Liste entfernen
-                    hinzugefuegteRezepte.splice(index, 1);
-                    updateRecipeList(); // Liste aktualisieren nach Entfernung
-                    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
-                    updateCartButton(); // Warenkorb-Button aktualisieren
-                };
-                recipeDiv.appendChild(deleteButton);
-
-                recipeContainer.appendChild(recipeDiv);
-            });
-
-            updateCartButton(); // Warenkorb-Button aktualisieren
+        if (recipe.image) {
+            var recipeImage = document.createElement('img');
+            recipeImage.src = recipe.image; // Setzen der Bild-URL als Quelle
+            recipeImage.alt = recipe.name;
+            recipeImage.className = 'img-fluid mb-3';
+            recipeDiv.appendChild(recipeImage);
+        } else {
+            console.log('Bild nicht vorhanden für: ' + recipe.name);
         }
+
+        var recipeName = document.createElement('h4');
+        recipeName.className = 'card-title';
+        recipeName.textContent = recipe.name;
+        recipeDiv.appendChild(recipeName);
+
+        var recipeDescription = document.createElement('p');
+        recipeDescription.className = 'card-text';
+        recipeDescription.innerHTML = recipe.description.replace(/\n/g, '<br>'); // Zeilenumbrüche einfügen
+        recipeDiv.appendChild(recipeDescription);
+
+        var recipeIngredients = document.createElement('p');
+        recipeIngredients.className = 'card-text';
+        recipeIngredients.innerHTML = recipe.ingredients || 'Zutaten nicht verfügbar'; 
+        recipeDiv.appendChild(recipeIngredients);
+
+        var descriptionAndIngredients = recipe.description.split('\n\n'); // Annahme: Beschreibung und Zutaten durch doppelte Zeilenumbrüche getrennt
+        if (descriptionAndIngredients.length > 1) {
+            recipeIngredients.innerHTML = descriptionAndIngredients[1].replace(/\n/g, '<br>'); // Zutaten anzeigen
+        } else {
+          
+        }
+        recipeDiv.appendChild(recipeIngredients);
+
+        var showButton = document.createElement('button');
+        showButton.textContent = 'Rezept anzeigen';
+        showButton.className = 'btn btn-info show-button';
+        showButton.onclick = function () {
+            // Rezept anzeigen: Modal öffnen und Daten anzeigen
+            showModal(recipe.name, recipe.image, recipe.description, recipeIngredients.innerHTML);
+        };
+        recipeDiv.appendChild(showButton);
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Löschen';
+        deleteButton.className = 'btn btn-danger delete-button';
+        deleteButton.onclick = function () {
+            // Rezept aus Liste entfernen
+            hinzugefuegteRezepte.splice(index, 1);
+            updateRecipeList(); // Liste aktualisieren nach Entfernung
+            localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+            updateCartButton(); // Warenkorb-Button aktualisieren
+        };
+        recipeDiv.appendChild(deleteButton);
+
+        recipeContainer.appendChild(recipeDiv);
+    });
+
+    updateCartButton(); // Warenkorb-Button aktualisieren
+}
 
         // Funktion zum Aktualisieren des Warenkorb-Buttons
         function updateCartButton() {
@@ -134,42 +148,52 @@
             window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
         }
 
-        function showModal(name, imageUrl, description, ingredients) {
-            var modalId = 'Rezept' + Date.now(); // Eindeutige ID für jedes Modal
-            var modalHtml = `
-                <div class="modal fade" id="${modalId}" tabindex="-1" role="dialog" aria-labelledby="recipeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="recipeModalLabel">${name}</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <img src="${imageUrl}" class="img-fluid mb-3" alt="${name}">
-                                <p>${description}</p>
-                                <p>${ingredients}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
-                            </div>
-                        </div>
+   // Funktion zum Anzeigen eines Rezeptmodals
+function showModal(name, imageUrl, description, ingredients) {
+    console.log('Modal-Daten:', {
+        name: name,
+        imageUrl: imageUrl,
+        description: description,
+        ingredients: ingredients
+    }); 
+    var modalId = 'Rezept' + Date.now(); // Eindeutige ID für jedes Modal
+
+    var modalHtml = `
+        <div class="modal fade" id="${modalId}" tabindex="-1" role="dialog" aria-labelledby="${modalId}Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="${modalId}Label">${name}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="${imageUrl}" class="img-fluid mb-3" alt="${name}">
+                        <p>${description}</p>
+                        <h5>Zutaten:</h5>
+                        <p>${ingredients || 'Zutaten nicht verfügbar'}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
                     </div>
                 </div>
-            `;
-            // Modal zur Modalsammlung hinzufügen
-            var modalsContainer = document.getElementById('modalsContainer');
-            modalsContainer.insertAdjacentHTML('beforeend', modalHtml);
+            </div>
+        </div>
+    `;
 
-            // Modal öffnen
-            $('#' + modalId).modal('show');
+    // Modal zur Modalsammlung hinzufügen
+    var modalsContainer = document.getElementById('modalsContainer');
+    modalsContainer.insertAdjacentHTML('beforeend', modalHtml);
 
-            // Modal entfernen, wenn es geschlossen wird
-            $('#' + modalId).on('hidden.bs.modal', function () {
-                $(this).remove();
-            });
-        }
+    // Modal öffnen
+    $('#' + modalId).modal('show');
+
+    // Modal entfernen, wenn es geschlossen wird
+    $('#' + modalId).on('hidden.bs.modal', function () {
+        $(this).remove();
+    });
+}
     </script>
 
     <!-- Bootstrap JS und jQuery -->

@@ -132,3 +132,13 @@ display: none;
 #adImage {
 animation: glow 1.5s infinite;
 }
+.recipe-text-container {
+    position: relative;
+    max-height: 80px; /* Höhe des sichtbaren Textbereichs */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
+    margin-bottom: 10px;
+}
+.recipe-text-container.expanded {
+    max-height: none; /* Entfernen der Begrenzung für den erweiterten Text */
+}
