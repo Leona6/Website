@@ -750,20 +750,20 @@
 
 
     // Zutaten aus dem nächsten <p>-Tag extrahieren
-    var recipeIngredients = recipeDiv.querySelectorAll('p')[1]?.textContent || '';
+        var paragraphs = recipeDiv.querySelectorAll('p');
+paragraphs.forEach((p, index) => console.log(`P-Tag ${index}: ${p.textContent}`));
+
     console.log("Rezeptname:", recipeName);
     console.log("Beschreibung:", recipeDescription);
     console.log("Bild-URL:", recipeImage);
-    console.log("Zutaten:", recipeIngredients);
 
-  ///  console.log("Zutaten:", recipeIngredients);
 
             // Rezeptobjekt erstellen
             var recipe = {
                 name: recipeName,
                 description: recipeDescription,
                 image: recipeImage,
-                ingredients: recipeIngredients // Zutaten hinzufügen
+               // ingredients: recipeIngredients // Zutaten hinzufügen
             };
 
             // Rezept zur Liste hinzufügen
