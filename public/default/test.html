@@ -1,126 +1,43 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rezepte</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        .recipe-container {
-            display: flex;
-            flex-wrap: wrap;
-            position: relative;
-        }
-        .recipe {
-            flex: 1 0 30%;
-            margin: 10px;
-            box-sizing: border-box;
-        }
-        .hidden-recipes {
-            display: none;
-            flex: 1 0 30%;
-            margin: 10px;
-            box-sizing: border-box;
-        }
-        .show-more-button {
-            display: inline-block;
-            text-align: center;
-            cursor: pointer;
-            color: blue;
-            background-color: transparent;
-            border: none;
-            font-size: 16px;
-            font-family: Arial, sans-serif;
-            margin-left: auto;
-            margin-right: 0;
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            background: #f8f9fa;
-            padding: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-12">
-                <div id="vegetarisch">
-                    <h2>Vegetarische Rezepte</h2>
-                    <div class="recipe-container">
-                        <!-- Sichtbare Rezepte -->
-                        <div class="recipe">
-                            <h3>Kartoffelsalat</h3>
-                            <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                            <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat.</p>
-                            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                        </div>
-
-                        <div class="recipe">
-                            <h3>Rezept 2</h3>
-                            <img src="images/vegetarisch2.jpeg" alt="Rezept 2 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                            <p>Beschreibung für Rezept 2.</p>
-                            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                        </div>
-
-                        <div class="recipe">
-                            <h3>Rezept 3</h3>
-                            <img src="images/vegetarisch3.jpeg" alt="Rezept 3 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                            <p>Beschreibung für Rezept 3.</p>
-                            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                        </div>
-
-                        <!-- Versteckte Rezepte -->
-                        <div class="hidden-recipes">
-                            <div class="recipe">
-                                <h3>Rezept 4</h3>
-                                <img src="images/vegetarisch4.jpeg" alt="Rezept 4 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                                <p>Beschreibung für Rezept 4.</p>
-                                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                            </div>
-
-                            <div class="recipe">
-                                <h3>Rezept 5</h3>
-                                <img src="images/vegetarisch5.jpeg" alt="Rezept 5 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                                <p>Beschreibung für Rezept 5.</p>
-                                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                            </div>
-
-                            <div class="recipe">
-                                <h3>Rezept 6</h3>
-                                <img src="images/vegetarisch6.jpeg" alt="Rezept 6 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                                <p>Beschreibung für Rezept 6.</p>
-                                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                            </div>
-                        </div>
-
-                        <!-- Button zum Anzeigen der versteckten Rezepte -->
-                        <button class="show-more-button" onclick="toggleRecipes()">Mehr anzeigen</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function toggleRecipes() {
-            var hiddenRecipes = document.querySelector('.hidden-recipes');
-            var button = document.querySelector('.show-more-button');
-
-            if (hiddenRecipes.style.display === 'none' || hiddenRecipes.style.display === '') {
-                hiddenRecipes.style.display = 'flex';
-                button.innerHTML = 'Weniger anzeigen';
-            } else {
-                hiddenRecipes.style.display = 'none';
-                button.innerHTML = 'Mehr anzeigen';
-            }
-        }
-    </script>
-</body>
+<!DOCTYPE html> 
+<html lang="en"> 
+  
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" 
+          content="width=device-width, 
+                   initial-scale=1.0"> 
+    <title>Read more read less button</title> 
+    <link rel="stylesheet" 
+          href="style.css"> 
+</head> 
+  
+<body> 
+    <h1>GeeksforGeeks</h1> 
+    <h3>A "read more - read less" 
+        button using JavaScript. 
+    </h3> 
+    <div class="mybox"> 
+        <div> 
+            A data structure is not only used 
+            for organizing the data. It is also 
+            used for processing, retrieving, and 
+            storing data.<span id="span1">...</span> 
+            <span class="mybox1" id="mybox1id"> 
+                There are different basic and advanced 
+                types of data structures that are used 
+                in almost every program or software 
+                system that has been developed. 
+                So we must have good knowledge about 
+                data structures. 
+            </span> 
+        </div> 
+        <button id="mybuttonid" 
+                onclick="changeReadMore()"> 
+            Read More 
+        </button> 
+    </div> 
+  
+    <script src="script.js"></script> 
+</body> 
+  
 </html>
