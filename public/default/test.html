@@ -6,82 +6,102 @@
     <title>Rezepte</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .recipe-text-container {
+        .recipe-container {
+            display: flex;
+            flex-wrap: wrap;
             position: relative;
-            max-height: 80px; /* Höhe des sichtbaren Textbereichs */
-            overflow: hidden;
-            transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
-            margin-bottom: 10px;
         }
-        .recipe-text-container.expanded {
-            max-height: none; /* Entfernen der Begrenzung für den erweiterten Text */
+        .recipe {
+            flex: 1 0 30%;
+            margin: 10px;
+            box-sizing: border-box;
         }
-        .read-more-button {
-            display: block;
+        .hidden-recipes {
+            display: none;
+            flex: 1 0 30%;
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        .show-more-button {
+            display: inline-block;
+            text-align: center;
             cursor: pointer;
             color: blue;
             background-color: transparent;
             border: none;
-            text-decoration: underline;
             font-size: 16px;
             font-family: Arial, sans-serif;
-            margin-top: 10px;
+            margin-left: auto;
+            margin-right: 0;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background: #f8f9fa;
+            padding: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container mt-4">
         <div class="row">
-            <!-- Kategorie Vegetarisch -->
-            <div class="col-lg-4 col-md-6 mb-4">
+            <div class="col-12">
                 <div id="vegetarisch">
                     <h2>Vegetarische Rezepte</h2>
-                    <br><br>
-                    <div class="recipe">
-                        <h3>Kartoffelsalat</h3>
-                        <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                        <div class="recipe-text-container" id="text-Kartoffelsalat">
-                            <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat. 2 kg Kartoffeln, festkochende 1 m.-große Zwiebel(n), feinst gewürfelte 250 ml Gemüsebrühe oder Geflügelbrühe 3 EL Weißweinessig, milder, z. B. Marc de Champagne 2 EL Dijonsenf mit grünem Pfeffer 200 g Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt 6 kleine Gewürzgurke(n), fein geschnittene etwas Gurkenflüssigkeit</p>
+                    <div class="recipe-container">
+                        <!-- Sichtbare Rezepte -->
+                        <div class="recipe">
+                            <h3>Kartoffelsalat</h3>
+                            <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                            <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat.</p>
+                            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
-                       
-                        <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Kategorie Vegan -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div id="vegan">
-                    <h2>Vegane Rezepte</h2>
-                    <br><br>
-                    <div class="recipe">
-                        <h3>Avocado-Salat</h3>
-                        <img src="images/Vegan.webp" alt="Avocado-Salat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                        <div class="recipe-text-container" id="text-AvocadoSalat">
-                            <p>Ein erfrischendes Rezept für einen köstlichen Avocado-Salat. 1 Avocado(s) 6 Kirschtomate(n) ½ Zwiebel(n) 1 kleine Gurke(n) 1 Paprikaschote(n), gelbe 60 g Feta-Käse 1 EL, gehäuft Pinienkerne Pfeffer, grober Meersalz etwas Zitronensaft etwas Schnittlauch Balsamicocreme 1 Prise(n) Zucker</p>
+                        <div class="recipe">
+                            <h3>Rezept 2</h3>
+                            <img src="images/vegetarisch2.jpeg" alt="Rezept 2 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                            <p>Beschreibung für Rezept 2.</p>
+                            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
-                      
-                        <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
-                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Kategorie Allesesser -->
-            <div class="col-lg-4 col-md-6 mb-4">
-                <div id="allesesser">
-                    <h2>Rezepte für Allesesser</h2>
-                    <br><br>
-                    <div class="recipe">
-                        <h3>Hähnchenbrust-Gemüse</h3>
-                        <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                        <div class="recipe-text-container" id="text-Haehnchenbrust">
-                            <p>Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse. 2 Stück(e) Hühnerbrust, frische 1 große Paprikaschote(n), (wahlweise gelb oder rot) 1 m.-große Zucchini 4 Frühlingszwiebel(n) 2 Zehe/n Knoblauch 350 ml Tomate(n), passierte 2 EL Tomatenmark 1 TL, gehäuft Zucker 1 TL, gehäuft Oregano 1 TL, gehäuft Thymian ½ TL Harissa ½ TL Paprikapulver, (Pimentón de la Vera, picante) etwas Salz etwas Pfeffer, frisch gemahlener schwarzer 125 g Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)</p>
+                        <div class="recipe">
+                            <h3>Rezept 3</h3>
+                            <img src="images/vegetarisch3.jpeg" alt="Rezept 3 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                            <p>Beschreibung für Rezept 3.</p>
+                            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
-                        
-                        <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
-                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+
+                        <!-- Versteckte Rezepte -->
+                        <div class="hidden-recipes">
+                            <div class="recipe">
+                                <h3>Rezept 4</h3>
+                                <img src="images/vegetarisch4.jpeg" alt="Rezept 4 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                                <p>Beschreibung für Rezept 4.</p>
+                                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                            </div>
+
+                            <div class="recipe">
+                                <h3>Rezept 5</h3>
+                                <img src="images/vegetarisch5.jpeg" alt="Rezept 5 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                                <p>Beschreibung für Rezept 5.</p>
+                                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                            </div>
+
+                            <div class="recipe">
+                                <h3>Rezept 6</h3>
+                                <img src="images/vegetarisch6.jpeg" alt="Rezept 6 Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                                <p>Beschreibung für Rezept 6.</p>
+                                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                            </div>
+                        </div>
+
+                        <!-- Button zum Anzeigen der versteckten Rezepte -->
+                        <button class="show-more-button" onclick="toggleRecipes()">Mehr anzeigen</button>
                     </div>
                 </div>
             </div>
@@ -89,16 +109,16 @@
     </div>
 
     <script>
-        function toggleText(textId, button) {
-            var textContainer = document.getElementById(textId);
-            var btnText = button;
+        function toggleRecipes() {
+            var hiddenRecipes = document.querySelector('.hidden-recipes');
+            var button = document.querySelector('.show-more-button');
 
-            if (textContainer.classList.contains('expanded')) {
-                textContainer.classList.remove('expanded');
-                btnText.innerHTML = "Weiterlesen";
+            if (hiddenRecipes.style.display === 'none' || hiddenRecipes.style.display === '') {
+                hiddenRecipes.style.display = 'flex';
+                button.innerHTML = 'Weniger anzeigen';
             } else {
-                textContainer.classList.add('expanded');
-                btnText.innerHTML = "Weniger anzeigen";
+                hiddenRecipes.style.display = 'none';
+                button.innerHTML = 'Mehr anzeigen';
             }
         }
     </script>

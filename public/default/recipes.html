@@ -182,101 +182,190 @@
 <br>
 <br>
 <br>
-<!-- Inhalt -->
 <div class="container mt-4">
     <div class="row">
         <!-- Kategorie Vegetarisch -->
-        <div class="col-lg-4 col-md-6 mb-4">
+        <div class="col-12">
             <div id="vegetarisch">
                 <h2>Vegetarische Rezepte</h2>
-                <br><br>
-                <div class="recipe">
-                    <h3>Kartoffelsalat</h3>
-                    <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3" >
-                    <p class="recipe-text-container">Ein leckeres Rezept für einen klassischen Kartoffelsalat.
+                <div class="recipe-container">
+                    <!-- Sichtbare Rezepte -->
+                    <div class="recipe">
+                        <h3>Kartoffelsalat</h3>
+                        <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <p class="recipe-text-container">Ein leckeres Rezept für einen klassischen Kartoffelsalat.
+                            <br><br>
+                            2 kg Kartoffeln, festkochende<br>
+                            1 m.-große Zwiebel(n), feinst gewürfelte<br>
+                            250 ml Gemüsebrühe oder Geflügelbrühe<br>
+                            3 EL Weißweinessig, milder, z. B. Marc de Champagne<br>
+                            2 EL Dijonsenf mit grünem Pfeffer<br>
+                            200 g Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt<br>
+                            6 kleine Gewürzgurke(n), fein geschnittene<br>
+                            etwas Gurkenflüssigkeit
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
                         <br>
                         <br>
-                        2 kg	Kartoffeln, festkochende
-                        1 m.-große	Zwiebel(n), feinst gewürfelte
-                        250 ml	Gemüsebrühe oder Geflügelbrühe
-                        3 EL	Weißweinessig, milder, z. B. Marc de Champagne
-                        2 EL	Dijonsenf mit grünem Pfeffer
-                        200 g	Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt
-                        6 kleine	Gewürzgurke(n), fein geschnittene
-                        etwas	Gurkenflüssigkeit
-                    </p>
-                    <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                </div>
-            </div>
-        </div>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
 
-        <!-- Kategorie Vegan -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div id="vegan">
-                <h2>Vegane Rezepte</h2>
-                <br><br>
-                <div class="recipe">
-                    <h3>Avocado-Salat</h3>
-                    <img src="images/Vegan.webp" alt="Avocado-Salat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                    <p class="recipe-text-container">Ein erfrischendes Rezept für einen köstlichen Avocado-Salat.
+                    <div class="recipe">
+                        <h3>Linsensuppe</h3>
+                        <img src="images/linsensuppe.jpeg" alt="Linsensuppe Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <p>Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer Vielzahl von Gemüsesorten wie Karotten, Sellerie und Tomaten.</p>
+                        <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
                         <br>
                         <br>
-                        1	Avocado(s)
-                6	Kirschtomate(n)
-                ½	Zwiebel(n)
-                1 kleine	Gurke(n)
-                1	Paprikaschote(n), gelbe
-                60 g	Feta-Käse
-                1 EL, gehäuft	Pinienkerne
-                Pfeffer, grober
-                Meersalz
-                etwas	Zitronensaft
-                etwas	Schnittlauch
-                Balsamicocreme
-                1 Prise(n)	Zucker
-                    </p>
-                    <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
-                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                </div>
-            </div>
-        </div>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
 
-        <!-- Kategorie Allesesser -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div id="allesesser">
-                <h2>Rezepte für Allesesser</h2>
-                <br><br>
-                <div class="recipe">
-                    <h3>Hähnchenbrust-Gemüse</h3>
-                    <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                    <p class="recipe-text-container">Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse.
+                    <div class="recipe">
+                        <h3>Veggie-Schaschlik</h3>
+                        <img src="images/veggie-schaschlik.jpg.webp" alt="Veggie-Schaschlik Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <p>Vielfalt an frischem Gemüse und optional Tofu oder Seitan, die in einer würzigen Marinade eingelegt und anschließend auf Spießen gegrillt werden.</p>
                         <br>
                         <br>
-                        2 Stück(e)	Hühnerbrust, frische
-                1 große	Paprikaschote(n), (wahlweise gelb oder rot)
-                1 m.-große	Zucchini
-                4	Frühlingszwiebel(n)
-                2 Zehe/n	Knoblauch
-                350 ml	Tomate(n), passierte
-                2 EL	Tomatenmark
-                1 TL, gehäuft	Zucker
-                1 TL, gehäuft	Oregano
-                1 TL, gehäuft	Thymian
-                ½ TL	Harissa
-                ½ TL	Paprikapulver, (Pimentón de la Vera, picante)
-                etwas	Salz
-                etwas	Pfeffer, frisch gemahlener schwarzer
-                125 g	Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)
-                    </p>
-                    <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
-                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                        <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
+
+
+                    <!-- Button zum Anzeigen der versteckten Rezepte -->
+                    <a href="vegetarisch.html" class="show-more-button"><span>Mehr anzeigen</span></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+ 
+<div class="container mt-4">
+    <div class="row">
+        <!-- Kategorie Vegan -->
+        <div class="col-12">
+            <div id="vegan">
+                <h2>Vegane Rezepte</h2>
+                <div class="recipe-container">
+                    <!-- Sichtbare Rezepte -->
+                    <div class="recipe">
+                        <h3>Avocado-Salat</h3>
+                        <img src="images/Vegan.webp" alt="Avocado-Salat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <p class="recipe-text-container">Ein erfrischendes Rezept für einen köstlichen Avocado-Salat.
+                            <br><br>
+                            1 Avocado(s)<br>
+                            6 Kirschtomate(n)<br>
+                            ½ Zwiebel(n)<br>
+                            1 kleine Gurke(n)<br>
+                            1 Paprikaschote(n), gelbe<br>
+                            60 g Feta-Käse<br>
+                            1 EL, gehäuft Pinienkerne<br>
+                            Pfeffer, grober<br>
+                            Meersalz<br>
+                            etwas Zitronensaft<br>
+                            etwas Schnittlauch<br>
+                            Balsamicocreme<br>
+                            1 Prise(n) Zucker
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
+
+                    <div class="recipe">
+                        <h3>Bruschetta di Modena</h3>
+                        <img src="images/bruschetta-di-modena.jpg.webp" alt="Bruschetta di Modena Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <p>Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili.</p>
+                        <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
+
+                    <div class="recipe">
+                        <h3>Hummus</h3>
+                        <img src="images/hummus-bi-tahina.jpg.webp" alt="Hummus Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                        <p>Ein cremiger, würziger Hummus aus Kichererbsen, Tahini, Zitronensaft und Knoblauch. Ideal als Dip oder als Brotaufstrich.</p>
+                        <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                    </div>
+
+                    <!-- Button zum Anzeigen der versteckten Rezepte -->
+                    <a href="vegan.html" class="show-more-button"><span>Mehr anzeigen</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                    <div class="container mt-4">
+                        <div class="row">
+                            <!-- Kategorie Allesesser -->
+                            <div class="col-12">
+                                <div id="allesesser">
+                                    <h2>Rezepte für Allesesser</h2>
+                                    <div class="recipe-container">
+                                        <!-- Sichtbare Rezepte -->
+                                        <div class="recipe">
+                                            <h3>Hähnchenbrust-Gemüse</h3>
+                                            <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                                            <p class="recipe-text-container">Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse.
+                                                <br><br>
+                                                2 Stück(e) Hühnerbrust, frische<br>
+                                                1 große Paprikaschote(n), (wahlweise gelb oder rot)<br>
+                                                1 m.-große Zucchini<br>
+                                                4 Frühlingszwiebel(n)<br>
+                                                2 Zehe/n Knoblauch<br>
+                                                350 ml Tomate(n), passierte<br>
+                                                2 EL Tomatenmark<br>
+                                                1 TL, gehäuft Zucker<br>
+                                                1 TL, gehäuft Oregano<br>
+                                                1 TL, gehäuft Thymian<br>
+                                                ½ TL Harissa<br>
+                                                ½ TL Paprikapulver, (Pimentón de la Vera, picante)<br>
+                                                etwas Salz<br>
+                                                etwas Pfeffer, frisch gemahlener schwarzer<br>
+                                                125 g Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)
+                                            </p>
+                                            <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
+                                            <br>
+                                            <br>
+                                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        </div>
+                
+                                        <div class="recipe">
+                                            <h4>Bruschetta</h4>
+                                            <img src="images/bruschetta.webp" alt="Bruschetta Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                                            <p>Geröstetes Brot mit frischen Tomaten, Basilikum und Knoblauch.</p>
+                                            <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
+                                            <br>
+                                            <br>
+                                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        </div>
+                
+                                        <div class="recipe">
+                                            <h4>Börek mit Joghurt Dip</h4>
+                                            <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Börek mit Joghurt Dip Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                                            <p>Hauchdünne Filoteig-Blätter umhüllen eine Creme aus Feta, Joghurt und Kräutern.</p>
+                                            <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept anzeigen</button>
+                                            <br>
+                                            <br>
+                                            <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        </div>
+                                    </div>
+                                     <!-- Button zum Anzeigen der versteckten Rezepte -->
+                       <!-- Button zum Anzeigen der versteckten Rezepte -->
+                       <a href="alles.html" class="show-more-button"><span>Mehr anzeigen</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 <!-- Automatisches Pop-up mit Werbung -->
 <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

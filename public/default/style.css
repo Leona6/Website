@@ -142,3 +142,43 @@ animation: glow 1.5s infinite;
 .recipe-text-container.expanded {
     max-height: none; /* Entfernen der Begrenzung für den erweiterten Text */
 }
+.recipe-container {
+    display: flex;
+    flex-wrap: nowrap; /* Rezepte in einer Reihe ohne Umbruch */
+    overflow-x: auto; /* Horizontal scrollbar, falls nötig */
+    gap: 20px; /* Abstand zwischen den Rezepten */
+    padding: 10px;
+    position: relative;
+}
+.recipe {
+    flex: 1 0 auto; /* Flexbox-Eigenschaften für die Rezepte */
+    width: 30%; /* Breite der Rezepte in der Reihe */
+    box-sizing: border-box;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.show-more-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: blue;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+}
+.show-more-button::before {
+    content: '→'; /* Pfeil nach rechts als Inhalt */
+    font-size: 20px;
+    margin-right: 8px;
+}
+.show-more-button span {
+    font-size: 16px;
+}
