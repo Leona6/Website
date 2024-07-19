@@ -8,146 +8,88 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-       .deny-button {
-            font-size: 20px;
-            color: white;
-            background-color: red;
-            border: none;
-            padding: 10px 20px;
-        }
-          /* Stile für die Rezepte */
-  .recipe {
-    margin-bottom: 40px;
+      body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f8f9fa;
 }
 
-.recipe h3 {
-    margin-top: 0;
-    margin-bottom: 20px;
+.container {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.recipe p {
-    margin-bottom: 20px;
+h2 {
+    color: #333;
 }
 
-/* Stile für die Schieberegler */
-.slider {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 25px;
-    border-radius: 5px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    margin: 10px 0;
+h3 {
+    color: #555;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
 }
 
-.slider:hover {
-    opacity: 1;
+.recipe {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    background-color: #fafafa;
+    transition: box-shadow 0.3s ease;
 }
 
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
+.recipe:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
+.recipe img {
+    border-radius: 8px;
 }
 
-/* Stil für die großen und kleinen Buttons */
-.large-button {
-    font-size: 20px;
-    padding: 15px 30px;
+.recipe-description {
+    color: #666;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
 }
 
-.small-button {
-    font-size: 12px;
-    padding: 5px 10px;
-}
-
-.confirm-button {
-    font-size: 12px;
-    color: grey;
-}
-
-.deny-button {
-    font-size: 20px;
-    color: white;
-    background-color: red;
+.btn-primary {
+    background-color: #007bff;
     border: none;
-    padding: 10px 20px;
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
 }
-.modal-body {
-    padding: 20px;
+
+.btn-primary:hover {
+    background-color: #0056b3;
 }
-.custom-range {
-    width: 100%;
+
+.mb-4 {
+    margin-bottom: 1.5rem;
 }
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
+
+.text-center {
+    text-align: center;
 }
-.hidden {
-display: none;
-}
-.modal-body p {
-    margin-bottom: 1rem;
-}
-.modal-body img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
-}
-.large-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    transition: transform 0.2s ease-in-out;
-    margin-bottom: 10px; /* Abstand unter dem großen Button */
-}
-.large-button:hover {
-    transform: translateY(-2px);
-}
-.small-button {
-    padding: 8px 16px;
-    font-size: 0.875rem;
-    transition: transform 0.2s ease-in-out;
-}
-.small-button:hover {
-    transform: translateY(-2px);
-}
-.btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-}
-.btn-success:hover, .btn-success:focus {
-    background-color: #218838;
-    border-color: #1e7e34;
-}
-@keyframes glow {
-0% {
-    filter: brightness(1);
-}
-50% {
-    filter: brightness(1.5);
-}
-100% {
-    filter: brightness(1);
-}
-}
+
 
 #adImage {
 animation: glow 1.5s infinite;
+}
+.recipe-description {
+    position: relative;
+    max-height: 80px; /* Höhe des sichtbaren Textbereichs */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
+    margin-bottom: 10px;
+   
+}
+
+.more {
+    display: none;
 }
         
 </style>
@@ -198,8 +140,18 @@ animation: glow 1.5s infinite;
         <div class="recipe">
             <h3>Linsensuppe</h3>
             <img src="images/linsensuppe.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-            <p>Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer Vielzahl von Gemüsesorten wie Karotten, Sellerie und Tomaten.</p>
+            <p class="recipe-description">Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer Vielzahl von Gemüsesorten wie Karotten, Sellerie und Tomaten. 1 Dose	Pizzatomaten, ca. 400 g
+                1 Dose	Kokosmilch, ca. 400 g
+                1	Zwiebel(n)
+                175 g	Linsen, rote
+                3 TL	Chilipulver
+                2 TL	Kurkumapulver
+                600 ml	Gemüsebrühe
+                Sonnenblumenöl zum Braten
+                Salz</p>
             <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
+            <br>
+            <br>
             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
         </div>
     </div>
@@ -207,8 +159,24 @@ animation: glow 1.5s infinite;
         <div class="recipe">
             <h3>Veggie-Schaschlik</h3>
             <img src="images/veggie-schaschlik.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-            <p>Vielfalt an frischem Gemüse und optional Tofu oder Seitan, die in einer würzigen Marinade eingelegt und anschließend auf Spießen gegrillt werden.</p>
+            <p class="recipe-description">Vielfalt an frischem Gemüse und optional Tofu oder Seitan, die in einer würzigen Marinade eingelegt und anschließend auf Spießen gegrillt werden. 2 kleine	Zucchini
+                10	Champignons
+                2	Zwiebel(n), rote
+                1	Paprikaschote(n), rote
+                1	Paprikaschote(n), gelbe
+                Für die Marinade:
+                
+                2 EL	Sojasauce
+                2 EL	Sesamöl
+                ½ TL	Chiliflocken
+                1 EL	Ingwerwurzel, frisch gerieben
+                1	Knoblauchzehe(n)
+                1 EL	Zitronensaft
+                1 EL	Zucker
+                1 EL	Tomatenmark</p>
             <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
+            <br>
+            <br>
             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
         </div>
     </div>
@@ -216,8 +184,17 @@ animation: glow 1.5s infinite;
         <div class="recipe">
             <h3>Gefüllte Champignons</h3>
             <img src="images/gefuellte-champignons.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-            <p>Kombination aus saftigen Pilzen und würziger Füllung </p>
+            <p class="recipe-description">Kombination aus saftigen Pilzen und würziger Füllung. 8 große	Champignons, frische
+                1 Becher	Schmand, evtl. laktosefrei
+                1	Zwiebel(n)
+                80 g	Schinken oder Speck, gewürfelt, evtl.
+                ½ Bund	Schnittlauch
+                80 g	Käse, geriebener (z. B. Emmentaler)
+                Salz und Pfeffer
+                etwas	Butter oder Öl</p>
             <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
+            <br>
+            <br>
             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
         </div>
     </div>
@@ -236,7 +213,14 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Kartoffelsalat</h3>
                 <img src="images/kartoffelsalat.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat.</p>
+                <p class="recipe-description">Ein leckeres Rezept für einen klassischen Kartoffelsalat. 2 kg	Kartoffeln, festkochende
+                    1 m.-große	Zwiebel(n), feinst gewürfelt
+                    250 ml	Gemüsebrühe oder Geflügelbrühe
+                    3 EL	Weißweinessig, milder, z.B. Marc de Champagne
+                    2 EL	Dijonsenf, mit grünem Pfeffer
+                    200 g	Mayonnaise, selbstgemacht oder wirklich gutes Fertigprodukt
+                    6 kleine	Gewürzgurke(n), fein geschnitten
+                    etwas	Gurkenflüssigkeit</p>
                 <button class="btn btn-primary" onclick="showAd('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -245,7 +229,24 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Quinoa-Salat-geröstetem-Gemüse</h3>
                 <img src="images/quinoasalat.jpeg" alt="Gemüsecurry Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Quinoa mit geröstetem Gemüse wie Paprika, Zucchini und Auberginen gemischt und mit einem frischen Dressing serviert.</p>
+                <p class="recipe-description">Quinoa mit geröstetem Gemüse wie Paprika, Zucchini und Auberginen gemischt und mit einem frischen Dressing serviert. 1	Aubergine(n), mundgerecht gewürfelt
+                    1 große	Zwiebel(n), fein gewürfelt
+                    2 TL	Gewürzmischung (Zahtar)
+                    1	Lorbeerblatt
+                    150 g	Quinoa, gekocht
+                    150 g	Naturreis, gekocht
+                    Olivenöl, kalt gepresst
+                    Meersalz
+                    Pfeffer, frisch gemahlen
+                    Für das Dressing:
+                    
+                    1 EL	Joghurt, n.B. laktosefrei, oder griechischer
+                    1	Zitrone(n), Saft davon
+                    1 Zehe/n	Knoblauch, klein
+                    ½ EL	Sesampaste
+                    3 EL	Olivenöl, kalt gepresst
+                    Meersalz
+                    Pfeffer, frisch gemahlen</p>
                 <button class="btn btn-primary" onclick="showAd1('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -254,7 +255,17 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Spinat-Feta Quiche</h3>
                 <img src="images/spinatquiche.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Eine herzhafte Quiche mit einer Füllung aus frischem Spinat, Feta-Käse und Eiern in einer knusprigen Teighülle.</p>
+                <p class="recipe-description">Eine herzhafte Quiche mit einer Füllung aus frischem Spinat, Feta-Käse und Eiern in einer knusprigen Teighülle. 275 g	Blätterteig, TK
+                    450 g	Spinat, TK
+                    1 kleine	Zwiebel(n), gehackt
+                    40 g	Pinienkerne
+                    10	Cocktailtomaten
+                    etwas	Gouda, gerieben
+                    3	Ei(er)
+                    2	Knoblauchzehe(n)
+                    1 Prise(n)	Salz und Pfeffer
+                    wenig	Muskat, frisch gerieben
+                    200 g	</p>
                 <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -263,7 +274,26 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Gemüse-Risotto</h3>
                 <img src="images/gemueserisotto.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p> Ein cremiges Risotto aus Arborio-Reis, gekocht mit Gemüsebrühe und gemischt mit einer Vielzahl von saisonalem Gemüse wie Pilzen, Spargel und Erbsen.</p>
+                <p class="recipe-description"> Ein cremiges Risotto aus Arborio-Reis, gekocht mit Gemüsebrühe und gemischt mit einer Vielzahl von saisonalem Gemüse wie Pilzen, Spargel und Erbsen. 125 g	Risotto
+                    1	Zwiebel(n), fein geschnitten
+                    1 Zehe/n	Knoblauch, fein geschnitten
+                    ½ TL	Kurkuma
+                    etwas	Pflanzenöl
+                    150 ml	Weißwein
+                    etwas	Möhre(n), klein gewürfelt
+                    1 Handvoll	Bohnen, grüne
+                    1 Handvoll	Paprikaschote(n), gewürfelt
+                    1 Handvoll	Champignons, in Scheiben geschnitten
+                    1 Handvoll	Maiskörner
+                    1 Handvoll	Erbsen, TK
+                    1 Handvoll	Zucchini, gewürfelt
+                    300 ml	Fleischbrühe
+                    Salz und Pfeffer, schwarz, frisch gemahlen
+                    70 g	Parmesan, frisch gerieben
+                    etwas	Butter
+                    8	Garnele(n), geputzt
+                    etwas	Butter
+                    1 Zehe/n	Knoblauch, in Scheibchen geschnitten</p>
                 <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -272,7 +302,21 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Vegetarische Pizza</h3>
                 <img src="images/gemüsepizza.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Eine Pizza mit einer Auswahl an Gemüsezutaten wie Paprika, Zwiebeln, Pilzen, Oliven und Artischockenherzen, belegt mit Käse und Tomatensoße.</p>
+                <p class="recipe-description">Eine Pizza mit einer Auswahl an Gemüsezutaten wie Paprika, Zwiebeln, Pilzen, Oliven und Artischockenherzen, belegt mit Käse und Tomatensoße. 300 g	Weizenmehl Type 550
+                    1 Pck.	Trockenhefe
+                    1 TL	Salz
+                    170 ml	Wasser
+                    Für den Belag:
+                    
+                    6 EL	Knoblauchöl oder Olivenöl
+                    1 EL	Tomatenmark
+                    n. B.	Knoblauch, gewürfelt
+                    2	Spitzpaprika oder Gemüsepaprika, rot
+                    250 g	Champignons
+                    1	Zwiebel(n)
+                    Salz und Pfeffer
+                    Kräuter, italienische, frisch oder getrocknet
+                    Harissa</p>
                 <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -281,7 +325,26 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Vegetarische Burger</h3>
                 <img src="images/veggieburger.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Burger-Patties aus pürierten Süßkartoffeln und schwarzen Bohnen, gewürzt und gebraten, serviert auf einem Burgerbrötchen mit Salat und Sauce nach Wahl.</p>
+                <p class="recipe-description">Burger-Patties aus pürierten Süßkartoffeln und schwarzen Bohnen, gewürzt und gebraten, serviert auf einem Burgerbrötchen mit Salat und Sauce nach Wahl. 200 g	Kräuterseitling(e)
+                    1 EL	Olivenöl
+                    ½ TL	Salz
+                    Für die Patties:
+                    
+                    ¼	Zwiebel(n)
+                    10 g	Petersilie, glatte
+                    1 Dose/n	Kidneybohnen, 400 g, 250 g Abtropfgewicht
+                    1	Knoblauchzehe(n)
+                    1 TL	Salz
+                    1 TL	Kreuzkümmelpulver
+                    ½ TL	Korianderpulver
+                    ½ TL	Pfeffer
+                    1	Eigelb
+                    10 g	Semmelbrösel
+                    1 EL	Olivenöl zum Bestreichen
+                    n. B.	Käse, optional
+                    Außerdem:
+                    
+                    Burger Buns</p>
                 <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -290,7 +353,19 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Vegetarische-Tacos</h3>
                 <img src="images/veggietacos.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Weiche Tortillas gefüllt mit gewürzten Kichererbsen, frischem Gemüse, Guacamole und Salsa.</p>
+                <p class="recipe-description">Weiche Tortillas gefüllt mit gewürzten Kichererbsen, frischem Gemüse, Guacamole und Salsa. 6	Tacoschale(n) (Tacoshells)
+                    2	Knoblauchzehe(n)
+                    1 Dose	Tomate(n), gehackte
+                    1 Dose	Bohnen, schwarze
+                    2 EL	Tabasco
+                    ½ TL	Kreuzkümmel
+                    Salz
+                    Für die Garnitur:
+                    
+                    6	Kirschtomate(n)
+                    ½	Avocado(s)
+                    ½ Dose	Maiskörner
+                    ½ Bund	Koriander</p>
                 <button class="btn btn-primary" onclick="showAd7('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -299,7 +374,18 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Gemüse-Curry-Pfanne</h3>
                 <img src="images/gemuesecurry.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Ein würziges Curry aus verschiedenen Gemüsesorten wie Kartoffeln, Karotten, Erbsen und Blumenkohl, gekocht in einer cremigen Kokosmilchsoße.</p>
+                <p class="recipe-description">Ein würziges Curry aus verschiedenen Gemüsesorten wie Kartoffeln, Karotten, Erbsen und Blumenkohl, gekocht in einer cremigen Kokosmilchsoße. 2 Tasse/n	Reis, Sorte nach Belieben
+                    4 Tasse/n	Wasser oder Gemüsebrühe
+                    1 große	Paprikaschote(n)
+                    5	Champignons
+                    einige	Bohnen, z. B. grüne
+                    1	Zwiebel(n)
+                    1	Knoblauchzehe(n)
+                    2 EL	Currypulver
+                    1 TL	Kurkuma, je nach Geschmack
+                    etwas	Salz und Pfeffer
+                    etwas	Petersilie
+                    Öl</p>
                 <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -311,7 +397,15 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Spaghetti-Eis Dessert</h3>
                 <img src="images/spaghetti-eis-dessert.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>Eisdessert-Kreation, die optisch an einen Teller Spaghetti mit Tomatensauce und Parmesan erinnert.</p>
+                <p class="recipe-description">Eisdessert-Kreation, die optisch an einen Teller Spaghetti mit Tomatensauce und Parmesan erinnert. 500 g	Mascarpone
+                    500 g	Magerquark
+                    100 g	Puderzucker
+                    2 EL	Zitronensaft
+                    2 Pck.	Vanillezucker
+                    2 Becher	Sahne
+                    1 Beutel	Erdbeeren (TK, großer Beutel), evtl. frische Beeren
+                    n. B.	Puderzucker
+                    etwas	Kuvertüre, weiße, geraspelt</p>
                 <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -320,7 +414,18 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Kaiserschmarrn - Tiroler Landgasthofrezept</h3>
                 <img src="images/kaiserschmarrn-tiroler-landgasthofrezept.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p> zerrissenen Pfannkuchen, der typischerweise mit Puderzucker bestreut und mit Apfelmus oder Zwetschgenröster serviert wird</p>
+                <p class="recipe-description"> zerrissenen Pfannkuchen, der typischerweise mit Puderzucker bestreut und mit Apfelmus oder Zwetschgenröster serviert wird. 100 g	Rosinen
+                    5 EL	Rum, Cognac oder Wasser
+                    6	Eigelb
+                    1 Pck.	Bourbon-Vanillezucker
+                    1 EL, gehäuft	Zucker
+                    1 Prise(n)	Salz
+                    250 g	Mehl
+                    500 ml	Milch
+                    50 g	Butter, zerlassene
+                    6	Eiweiß
+                    4 TL	Puderzucker
+                    n. B.	Butter zum Braten, ca. 15 - 25 g je Pfanne</p>
                 <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>
@@ -329,7 +434,15 @@ animation: glow 1.5s infinite;
             <div class="recipe">
                 <h3>Amerikanische Pancakes</h3>
                 <img src="images/amerikanische-pancakes.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p>fluffige, dicke Pfannkuchen mit Ahornsirup und Beeren</p>
+                <p class="recipe-description">fluffige, dicke Pfannkuchen mit Ahornsirup und Beeren. 3	Ei(er)
+                    100 ml	Milch
+                    200 ml	Naturjoghurt
+                    150 g	Mehl
+                    1 Pck.	Backpulver
+                    1 Prise(n)	Salz
+                    2 EL	Zucker
+                    Olivenöl
+                    Ahornsirup</p>
                 <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept anzeigen</button>
                 <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
             </div>

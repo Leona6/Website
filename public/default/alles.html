@@ -96,8 +96,19 @@ body {
         width: 100%;
     }
 }
-
-
+.more {
+    display: none;
+}
+.recipe-text-container {
+    position: relative;
+    max-height: 80px; /* Höhe des sichtbaren Textbereichs */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
+    margin-bottom: 10px;
+}
+.recipe-text-container.expanded {
+    max-height: none; /* Entfernen der Begrenzung für den erweiterten Text */
+}
 </style>
 <body>
 
@@ -138,8 +149,7 @@ body {
                 <h4>Bruschetta</h4>
                 <img src="images/bruschetta.webp" alt="Bruschetta Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Geröstetes Brot mit frischen Tomaten, Basilikum und Knoblauch.</p>
-                    <p>1 kg Strauchtomate(n), 3 Zwiebel(n), 4 Zehe(n) Knoblauch, Meersalz und Pfeffer aus der Mühle, Olivenöl, 1 Ciabatta, 1 Bund Basilikum, n. B. Parmesan oder Mozzarella</p>
+                    <p class="recipe-text-container">Geröstetes Brot mit frischen Tomaten, Basilikum und Knoblauch. 1 kg Strauchtomate(n), 3 Zwiebel(n), 4 Zehe(n) Knoblauch, Meersalz und Pfeffer aus der Mühle, Olivenöl, 1 Ciabatta, 1 Bund Basilikum, n. B. Parmesan oder Mozzarella</p>
                     <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -148,8 +158,8 @@ body {
                 <h4>Börek mit Joghurt Dip</h4>
                 <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Börek mit Joghurt Dip Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Hauchdünne Filoteig-Blätter umhüllen eine Creme aus Feta, Joghurt und Kräutern.</p>
-                    <p>Yufka-Teigblätter, 200 g Feta-Käse, 200 g milder Käse, 2 Kartoffel(n), 3 Ei(er), 200 ml Milch, 125 g Butter, 1 Handvoll Petersilie, 1 Handvoll Dill, Pfeffer, Pul Biber, Schwarzkümmel, 1 Eigelb</p>
+                   
+                    <p class="recipe-text-container">Hauchdünne Filoteig-Blätter umhüllen eine Creme aus Feta, Joghurt und Kräutern.Yufka-Teigblätter, 200 g Feta-Käse, 200 g milder Käse, 2 Kartoffel(n), 3 Ei(er), 200 ml Milch, 125 g Butter, 1 Handvoll Petersilie, 1 Handvoll Dill, Pfeffer, Pul Biber, Schwarzkümmel, 1 Eigelb</p>
                     <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -158,8 +168,7 @@ body {
                 <h4>Blätterteig-Lachs-Schnecken</h4>
                 <img src="images/blaetterteig-lachs-schnecken.jpg.webp" alt="Blätterteig-Lachs-Schnecken Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Hauchdünne Teig-Blätter umhüllen Lachscreme aus Frischkäse und Räucherlachs.</p>
-                    <p>1 Rolle Blätterteig, 100 g Frischkäse, 200 g Räucherlachs, etwas Dill, 1 Ei</p>
+                    <p class="recipe-text-container">Hauchdünne Teig-Blätter umhüllen Lachscreme aus Frischkäse und Räucherlachs.1 Rolle Blätterteig, 100 g Frischkäse, 200 g Räucherlachs, etwas Dill, 1 Ei</p>
                     <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -172,8 +181,8 @@ body {
                 <h4>Spaghetti Bolognese</h4>
                 <img src="images/spaghetti-bolognese.jpg.webp" alt="Spaghetti Bolognese Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Eine klassische Pasta mit einer würzigen Hackfleischsoße.</p>
-                    <p>250 g Spaghetti, 2 Ei(er), 1 Eigelb, 2 Scheibe(n) Speck, 30 g Parmesan oder Pecorino, Salz und Pfeffer</p>
+
+                    <p class="recipe-text-container">Eine klassische Pasta mit einer würzigen Hackfleischsoße.250 g Spaghetti, 2 Ei(er), 1 Eigelb, 2 Scheibe(n) Speck, 30 g Parmesan oder Pecorino, Salz und Pfeffer</p>
                     <button class="btn btn-primary" onclick="showAd('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -182,8 +191,8 @@ body {
                 <h4>Hähnchen-Curry</h4>
                 <img src="images/haehnchen-curry.jpg.webp" alt="Hähnchen-Curry Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Zartes Hähnchenfleisch in einer aromatischen Currysoße mit Gemüse und Kokosmilch.</p>
-                    <p>300 g Hähnchenbrustfilet, 50 g Schalotten, 100 g Ananas, 100 g Pfirsich, 100 g Sahne, 1 EL Öl, 1 EL Saucenbinder, 1 EL Currypulver, Salz und Pfeffer, 100 ml Geflügelbrühe</p>
+    
+                    <p class="recipe-text-container">Zartes Hähnchenfleisch in einer aromatischen Currysoße mit Gemüse und Kokosmilch.300 g Hähnchenbrustfilet, 50 g Schalotten, 100 g Ananas, 100 g Pfirsich, 100 g Sahne, 1 EL Öl, 1 EL Saucenbinder, 1 EL Currypulver, Salz und Pfeffer, 100 ml Geflügelbrühe</p>
                     <button class="btn btn-primary" onclick="showAd1('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -192,8 +201,7 @@ body {
                 <h4>Gemüsepfanne mit Reis</h4>
                 <img src="images/gemuesecurry.jpeg" alt="Gemüsepfanne mit Reis Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Eine bunte Mischung aus frischem Gemüse, gebraten und serviert über duftendem Reis.</p>
-                    <p>1 Zucchini, 5 Tomaten, 3 Paprika, 400 g Champignons, Olivenöl, Knoblauch, Salz und Pfeffer, 2 Beutel Reis, 125 g Crème fraîche</p>
+                    <p class="recipe-text-container">Eine bunte Mischung aus frischem Gemüse, gebraten und serviert über duftendem Reis.1 Zucchini, 5 Tomaten, 3 Paprika, 400 g Champignons, Olivenöl, Knoblauch, Salz und Pfeffer, 2 Beutel Reis, 125 g Crème fraîche</p>
                     <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -202,8 +210,7 @@ body {
                 <h4>Gegrillter Lachs mit Kartoffeln und Salat</h4>
                 <img src="images/lachs-kartoffel-pfanne.jpg.webp" alt="Gegrillter Lachs Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Frisches Lachsfilet vom Grill mit einer Beilage aus Kartoffeln und einem frischen Salat.</p>
-                    <p>1 kg Kartoffel(n), mehlig kochend, 500 ml Sahne, Meersalz und frisch gemahlener schwarzer Pfeffer, Muskat, frisch gerieben, 1 Bund Schnittlauch, 2 Zwiebel(n), Butter, 1 Fischfilet(s) (Lachsfilet) für 4 Personen, 1 Limette(n), Salz (australisches Murray River Salt)</p>
+                    <p class="recipe-text-container">Frisches Lachsfilet vom Grill mit einer Beilage aus Kartoffeln und einem frischen Salat.1 kg Kartoffel(n), mehlig kochend, 500 ml Sahne, Meersalz und frisch gemahlener schwarzer Pfeffer, Muskat, frisch gerieben, 1 Bund Schnittlauch, 2 Zwiebel(n), Butter, 1 Fischfilet(s) (Lachsfilet) für 4 Personen, 1 Limette(n), Salz (australisches Murray River Salt)</p>
                     <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -212,8 +219,8 @@ body {
                 <h4>Rinderfilet mit Kartoffelgratin</h4>
                 <img src="images/rinderfilet-aus-dem-ofen.jpg.webp" alt="Rinderfilet Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Zartes Rinderfilet, perfekt gebraten, serviert mit einem cremigen Kartoffelgratin.</p>
-                    <p>400 g Kartoffeln, festkochende, n. B. Salz und Pfeffer, 2 Prisen Muskatnuss, frisch geriebene, 150 g Sahne, 50 g Gouda, gerieben, Fett für die Form, 50 g Cranberrys, 400 g Bohnen, grüne, 3 Stängel Petersilie, 1 Zwiebel(n), 2 Rinderfiletsteak(s) à ca. 200 g, 2 EL Rapsöl, 3 Thymianzweig(e), 2 Rosmarinzweig(e), 70 g Butter, 1 Bio-Orange(n), 1 Eigelb, 1 EL Obstessig</p>
+                   
+                    <p class="recipe-text-container">Zartes Rinderfilet, perfekt gebraten, serviert mit einem cremigen Kartoffelgratin.400 g Kartoffeln, festkochende, n. B. Salz und Pfeffer, 2 Prisen Muskatnuss, frisch geriebene, 150 g Sahne, 50 g Gouda, gerieben, Fett für die Form, 50 g Cranberrys, 400 g Bohnen, grüne, 3 Stängel Petersilie, 1 Zwiebel(n), 2 Rinderfiletsteak(s) à ca. 200 g, 2 EL Rapsöl, 3 Thymianzweig(e), 2 Rosmarinzweig(e), 70 g Butter, 1 Bio-Orange(n), 1 Eigelb, 1 EL Obstessig</p>
                     <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -222,8 +229,8 @@ body {
                 <h4>Ratatouille</h4>
                 <img src="images/ratatouille.jpg.webp" alt="Ratatouille Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Ein mediterranes Gemüsegericht aus Tomaten, Zucchini, Auberginen und Paprika, geschmort in einer würzigen Soße.</p>
-                    <p>1 m.-große Aubergine(n), 2 m.-große Zucchini, 2 große Paprikaschote(n), rote, 2 große Paprikaschote(n), gelbe, 1 gr. Dose(n) Tomaten, geschälte, 1 große Gemüsezwiebel(n), 4 Knoblauchzehe(n), 1 TL Rosmarin, frischer, gehackter, 1 EL Thymian, frischer, gehackter, 1 EL Salbei, frischer, gehackter, ½ TL Lavendelblüten, getrocknete und zerriebene, 1 TL, gehäuft Zucker, 100 ml Olivenöl, etwas Meersalz und Pfeffer, schwarzer, aus der Mühle, ½ Tube(n) Tomatenmark</p>
+
+                    <p class="recipe-text-container">Ein mediterranes Gemüsegericht aus Tomaten, Zucchini, Auberginen und Paprika, geschmort in einer würzigen Soße. 1 m.-große Aubergine(n), 2 m.-große Zucchini, 2 große Paprikaschote(n), rote, 2 große Paprikaschote(n), gelbe, 1 gr. Dose(n) Tomaten, geschälte, 1 große Gemüsezwiebel(n), 4 Knoblauchzehe(n), 1 TL Rosmarin, frischer, gehackter, 1 EL Thymian, frischer, gehackter, 1 EL Salbei, frischer, gehackter, ½ TL Lavendelblüten, getrocknete und zerriebene, 1 TL, gehäuft Zucker, 100 ml Olivenöl, etwas Meersalz und Pfeffer, schwarzer, aus der Mühle, ½ Tube(n) Tomatenmark</p>
                     <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -232,8 +239,8 @@ body {
                 <h4>Gefüllte Paprika mit Hackfleisch</h4>
                 <img src="images/gefuellte-paprika-nach-uroma-susanne.jpg.webp" alt="Gefüllte Paprika Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Paprikaschoten gefüllt mit einer Mischung aus Hackfleisch, Reis und Gewürzen, im Ofen gebacken.</p>
-                    <p>1.000 g Hackfleisch, halb und halb, 2 große Zwiebel(n), klein gehackt, 3 EL Paniermehl, 1 großes Ei(er), 2 TL Senf, mittelscharf, 2 TL Mehl, 2 TL Schnittlauch, klein gehackt, 1 Zehe(n) Knoblauch, gepresst, 1 TL Salz, 1 TL, gehäuft Paprikapulver, 1 TL Pfeffer, 6 große Paprikaschote(n), 5 EL Ketchup, 6 EL Tomatenmark, 300 g Sahne, 100 g Schmand, 3 TL Kräuterfrischkäse, 1 Zehe(n) Knoblauch, gepresst, 2 EL Schnittlauch, klein gehackt, 1 Msp. Rosmarin, 1 Msp. Thymian, 1 EL Zucker, 1 TL Brühe, klare, 1.000 ml Wasser, 1 kleine Gemüsezwiebel(n), 300 g Reis, evtl. Basmati-Reis</p>
+                   
+                    <p class="recipe-text-container">Paprikaschoten gefüllt mit einer Mischung aus Hackfleisch, Reis und Gewürzen, im Ofen gebacken. 1.000 g Hackfleisch, halb und halb, 2 große Zwiebel(n), klein gehackt, 3 EL Paniermehl, 1 großes Ei(er), 2 TL Senf, mittelscharf, 2 TL Mehl, 2 TL Schnittlauch, klein gehackt, 1 Zehe(n) Knoblauch, gepresst, 1 TL Salz, 1 TL, gehäuft Paprikapulver, 1 TL Pfeffer, 6 große Paprikaschote(n), 5 EL Ketchup, 6 EL Tomatenmark, 300 g Sahne, 100 g Schmand, 3 TL Kräuterfrischkäse, 1 Zehe(n) Knoblauch, gepresst, 2 EL Schnittlauch, klein gehackt, 1 Msp. Rosmarin, 1 Msp. Thymian, 1 EL Zucker, 1 TL Brühe, klare, 1.000 ml Wasser, 1 kleine Gemüsezwiebel(n), 300 g Reis, evtl. Basmati-Reis</p>
                     <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -246,8 +253,8 @@ body {
                 <h4>Schokoladenkuchen</h4>
                 <img src="images/saftiger-schokokuchen.jpg.webp" alt="Schokoladenkuchen Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Ein klassischer Schokoladenkuchen, saftig und schokoladig, perfekt für Naschkatzen.</p>
-                    <p>200 g Margarine, 200 g Zucker, 180 g Mehl, 3 Ei(er), 2 TL Backpulver, 200 ml Milch, 45 g Kakaopulver, 45 g Kokosraspel, 50 g Schokostreusel, evtl. Schokoglasur, Fett für die Form</p>
+
+                    <p class="recipe-text-container">Ein klassischer Schokoladenkuchen, saftig und schokoladig, perfekt für Naschkatzen. 200 g Margarine, 200 g Zucker, 180 g Mehl, 3 Ei(er), 2 TL Backpulver, 200 ml Milch, 45 g Kakaopulver, 45 g Kokosraspel, 50 g Schokostreusel, evtl. Schokoglasur, Fett für die Form</p>
                     <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -257,7 +264,7 @@ body {
                 <img src="images/tiramisu.jpg.webp" alt="Tiramisu Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
                     <p>Ein klassisches italienisches Dessert mit Schichten von Löffelbiskuits und Mascarpone-Creme.</p>
-                    <p>500 g Mascarpone, 100 g Puderzucker, 200 g Löffelbiskuits, 4 Eigelb, 2 Eiweiß, 3 Tasse(n) Kaffee, gekochter, abgekühlt, 2 EL Amaretto, evtl. auch 3, Kakaopulver, ungesüßtes, zum Bestreuen</p>
+                    <p class="recipe-text-container">Ein klassisches italienisches Dessert mit Schichten von Löffelbiskuits und Mascarpone-Creme. 500 g Mascarpone, 100 g Puderzucker, 200 g Löffelbiskuits, 4 Eigelb, 2 Eiweiß, 3 Tasse(n) Kaffee, gekochter, abgekühlt, 2 EL Amaretto, evtl. auch 3, Kakaopulver, ungesüßtes, zum Bestreuen</p>
                     <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -266,8 +273,7 @@ body {
                 <h4>Creme Brulee</h4>
                 <img src="images/creme-brulee.jpg.webp" alt="Creme Brulee Bild" class="img-fluid mb-3">
                 <div class="recipe-description">
-                    <p>Ein elegantes französisches Dessert mit einer knusprigen Karamellschicht.</p>
-                    <p>400 ml Sahne mit hohem Fettgehalt, 140 ml Vollmilch, 85 g Zucker, braun oder weiß, 5 Eigelb, 1 Vanilleschote(n), das Mark, evt. auch etwas flüssige Vanilleessenz, Zitronenabrieb, Zucker, fein, weiß, zum Karamellisieren</p>
+                    <p class="recipe-text-container">Ein elegantes französisches Dessert mit einer knusprigen Karamellschicht. 400 ml Sahne mit hohem Fettgehalt, 140 ml Vollmilch, 85 g Zucker, braun oder weiß, 5 Eigelb, 1 Vanilleschote(n), das Mark, evt. auch etwas flüssige Vanilleessenz, Zitronenabrieb, Zucker, fein, weiß, zum Karamellisieren</p>
                     <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
                     <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                 </div>
@@ -555,7 +561,7 @@ body {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="recipe">
-                <h3> Spaghetti-Bolognese</h3>
+                <h4> Spaghetti-Bolognese</h3>
                 <p>250 g	Spaghetti,
                     2	Ei(er),
                     1	Eigelb,
@@ -577,7 +583,7 @@ body {
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="recipe">
-                <h3> Hähnchen-Curry</h3>
+                <h4> Hähnchen-Curry</h3>
                 <p>300 g	Hähnchenbrustfilet(s),
                     50 g	Schalotte(n), fein gehackt,
                     100 g	Ananas aus der Dose, in Stückchen,
@@ -840,7 +846,7 @@ Kakaopulver, ungesüßtes, zum Bestreuen
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="recipe">
-                <h3>creme-brulee</h3>
+                <h4>creme-brulee</h3>
                 <p>
                     400 ml	Sahne mit hohem Fettgehalt
                     140 ml	Vollmilch
@@ -966,8 +972,9 @@ Kakaopulver, ungesüßtes, zum Bestreuen
 </script>
 <script>
 
-      // Globale Variable für die hinzugefügten Rezepte
-      var hinzugefuegteRezepte = [];
+    // Globale Variable für die hinzugefügten Rezepte
+    // Globale Variable für die hinzugefügten Rezepte
+    var hinzugefuegteRezepte = [];
 
 // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
 function loadRecipesFromLocalStorage() {
@@ -979,12 +986,36 @@ function loadRecipesFromLocalStorage() {
     }
 }
 
-
-// Funktion zum Hinzufügen eines Rezepts
 function rezeptHinzufuegen(button) {
-    var recipeName = button.parentElement.querySelector('h4').textContent;
-    var recipeDescription = button.parentElement.querySelector('p').textContent;
-    var recipeImage= button.parentElement.querySelector('img').src;
+    // Gehe eine Ebene nach oben zum Container 'recipe'
+    var recipeContainer = button.closest('.recipe');
+    
+    if (!recipeContainer) {
+        console.error('Recipe container nicht gefunden');
+        return;
+    }
+
+    // Finde die Elemente innerhalb des Containers
+    var recipeNameElement = recipeContainer.querySelector('h4');
+    var recipeDescriptionElement = recipeContainer.querySelector('.recipe-text-container');
+    var recipeImageElement = recipeContainer.querySelector('img');
+
+    // Debug-Ausgaben
+    console.log('recipeContainer:', recipeContainer);
+    console.log('recipeNameElement:', recipeNameElement);
+    console.log('recipeDescriptionElement:', recipeDescriptionElement);
+    console.log('recipeImageElement:', recipeImageElement);
+
+    // Überprüfen, ob alle benötigten Elemente gefunden wurden
+    if (!recipeNameElement || !recipeDescriptionElement || !recipeImageElement) {
+        console.error('Fehlende Elemente in der Rezeptbeschreibung');
+        return;
+    }
+
+    // Werte extrahieren
+    var recipeName = recipeNameElement.textContent;
+    var recipeDescription = recipeDescriptionElement.textContent;
+    var recipeImage = recipeImageElement.src;
 
     // Rezeptobjekt erstellen
     var recipe = {
@@ -993,16 +1024,15 @@ function rezeptHinzufuegen(button) {
         image: recipeImage
     };
 
-    // Rezept zur Liste hinzufügen
+    // Rezept zu einer Liste hinzufügen und in localStorage speichern
+    var hinzugefuegteRezepte = JSON.parse(localStorage.getItem('hinzugefuegteRezepte')) || [];
     hinzugefuegteRezepte.push(recipe);
     localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
-    // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
     alert("Rezept hinzugefügt");
-
-    //updateRecipeList();
     updateCartButton();
 }
+
 
 // Funktion zum Aktualisieren des Warenkorb-Buttons
 function updateCartButton() {
