@@ -66,3 +66,20 @@
 .show-more-button span {
     font-size: 16px;
 }
+/* Stile für das Einklappen der Rezepte */
+.recipe-text-container {
+    position: relative;
+    max-height: 80px; /* Höhe des sichtbaren Textbereichs */
+    overflow: hidden;
+    transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
+    margin-bottom: 10px;
+}
+
+.recipe-text-container.expanded {
+    max-height: none; /* Entfernen der Begrenzung für den erweiterten Text */
+}
+
+.read-more {
+    color: blue;
+    cursor: pointer;
+}
