@@ -1,165 +1,47 @@
-  /* Stile für die Rezepte */
-  .recipe {
+/* Grundlegende Stile für die Rezepte */
+.recipe {
     margin-bottom: 40px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.recipe h3 {
+.recipe h3, .recipe h4 {
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .recipe p {
     margin-bottom: 20px;
 }
 
-/* Stile für die Schieberegler */
-.slider {
-    -webkit-appearance: none;
+/* Stil für die Bilder in den Rezepten */
+.recipe img {
     width: 100%;
-    height: 25px;
-    border-radius: 5px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    margin: 10px 0;
+    height: 300px; /* Einheitliche Höhe für alle Bilder */
+    object-fit: cover; /* Bild wird entsprechend der Höhe beschnitten */
+    border-radius: 8px;
+    margin-bottom: 15px;
 }
 
-.slider:hover {
-    opacity: 1;
-}
-
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-.slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    background: #4CAF50;
-    cursor: pointer;
-}
-
-/* Stil für die großen und kleinen Buttons */
-.large-button {
-    font-size: 20px;
-    padding: 15px 30px;
-}
-
-.small-button {
-    font-size: 12px;
-    padding: 5px 10px;
-}
-
-.confirm-button {
-    font-size: 12px;
-    color: grey;
-}
-
-.deny-button {
-    font-size: 20px;
-    color: white;
-    background-color: red;
-    border: none;
-    padding: 10px 20px;
-}
-.modal-body {
-    padding: 20px;
-}
-.custom-range {
-    width: 100%;
-}
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
-}
-.hidden {
-display: none;
-}
-.modal-body p {
-    margin-bottom: 1rem;
-}
-.modal-body img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
-}
-.large-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    transition: transform 0.2s ease-in-out;
-    margin-bottom: 10px; /* Abstand unter dem großen Button */
-}
-.large-button:hover {
-    transform: translateY(-2px);
-}
-.small-button {
-    padding: 8px 16px;
-    font-size: 0.875rem;
-    transition: transform 0.2s ease-in-out;
-}
-.small-button:hover {
-    transform: translateY(-2px);
-}
-.btn-success {
-    background-color: #28a745;
-    border-color: #28a745;
-}
-.btn-success:hover, .btn-success:focus {
-    background-color: #218838;
-    border-color: #1e7e34;
-}
-@keyframes glow {
-0% {
-    filter: brightness(1);
-}
-50% {
-    filter: brightness(1.5);
-}
-100% {
-    filter: brightness(1);
-}
-}
-
-#adImage {
-animation: glow 1.5s infinite;
-}
-.recipe-text-container {
-    position: relative;
-    max-height: 80px; /* Höhe des sichtbaren Textbereichs */
-    overflow: hidden;
-    transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
-    margin-bottom: 10px;
-}
-.recipe-text-container.expanded {
-    max-height: none; /* Entfernen der Begrenzung für den erweiterten Text */
-}
+/* Container für Rezepte */
 .recipe-container {
     display: flex;
-    flex-wrap: nowrap; /* Rezepte in einer Reihe ohne Umbruch */
-    overflow-x: auto; /* Horizontal scrollbar, falls nötig */
-    gap: 20px; /* Abstand zwischen den Rezepten */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 20px;
     padding: 10px;
     position: relative;
 }
+
+/* Einzelne Rezepte */
 .recipe {
-    flex: 1 0 auto; /* Flexbox-Eigenschaften für die Rezepte */
-    width: 30%; /* Breite der Rezepte in der Reihe */
+    flex: 1 0 30%; /* Breite der Rezepte in der Reihe */
     box-sizing: border-box;
-    background: #f9f9f9;
-    border-radius: 8px;
-    padding: 10px;
-    margin: 10px;
 }
 
+/* Button "Mehr anzeigen" */
 .show-more-button {
     display: flex;
     align-items: center;
@@ -174,11 +56,13 @@ animation: glow 1.5s infinite;
     right: 10px;
     text-align: center;
 }
+
 .show-more-button::before {
-    content: '→'; /* Pfeil nach rechts als Inhalt */
+    content: '→';
     font-size: 20px;
     margin-right: 8px;
 }
+
 .show-more-button span {
     font-size: 16px;
 }
