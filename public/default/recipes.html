@@ -207,7 +207,7 @@
                                 600 ml	Gemüsebrühe<br>
                                 Sonnenblumenöl zum Braten<br>
                                 Salz</p>
-                            <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
                             <br><br>
                             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
@@ -233,7 +233,7 @@
                                 1 EL	Zucker<br>
                                 1 EL	Tomatenmark</p>
                             
-                            <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
                             <br><br>
                             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
@@ -278,7 +278,7 @@
                         </div>
 
                         <div class="recipe">
-                            <h3>Bruschetta di Modena</h3>
+                            <h3>Vegane Bruschetta</h3>
                             <img src="images/bruschetta-di-modena.jpg.webp" alt="Bruschetta di Modena Bild" class="img-fluid">
                             <p class="recipe-text-container">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili.
                                 <br><br>
@@ -294,7 +294,7 @@
                                 1 Prise(n)	Zucker<br>
                                 n. B.	Olivenöl
                             </p>
-                            <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="showAd7('images/werbung.jpg')">Rezept anzeigen</button>
                             <br><br>
                             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
@@ -316,7 +316,7 @@
                                 evtl.	Paprikapulver, rosenscharfes<br>
                                 1 Bund	Petersilie zur Dekoration
                             </p>
-                            <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
                             <br><br>
                             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
@@ -337,7 +337,7 @@
                     <h2>Rezepte für Allesesser</h2>
                     <div class="recipe-container">
                         <div class="recipe">
-                            <h3>Hähnchenbrust-Gemüse</h3>
+                            <h3>Hähnchenbrust</h3>
                             <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" class="img-fluid">
                             <p class="recipe-text-container">Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse.
                                 <br><br>
@@ -377,7 +377,7 @@
                      1 Bund	Basilikum<br>
                      n. B.	Parmesan oder Mozzarella
                             </p>
-                            <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="showAd9('images/werbung.jpg')">Rezept anzeigen</button>
                             <br><br>
                             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
@@ -402,7 +402,7 @@
                     1	Eigelb
                              
                             </p>
-                            <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept anzeigen</button>
+                            <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
                             <br><br>
                             <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                         </div>
@@ -507,6 +507,114 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe5()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe6()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe7()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe8()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe9()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe10()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -587,7 +695,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
         <div class="recipe">
-            <h3>Hähnchenbrust-Gemüse            </h3>
+            <h3>Hähnchenbrust-Gemüse</h3>
             <p id="ingredients-2">2 Stück(e)	Hühnerbrust, frische
                 1 große	Paprikaschote(n), (wahlweise gelb oder rot)
                 1 m.-große	Zucchini
@@ -614,6 +722,182 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Linsensuppe </h3>
+            <p id="ingredients-2"> 
+                1 Dose	Pizzatomaten, ca. 400 g<br>
+                1 Dose	Kokosmilch, ca. 400 g<br>
+                1	Zwiebel(n)<br>
+                175 g	Linsen, rote<br>
+                3 TL	Chilipulver<br>
+                2 TL	Kurkumapulver<br>
+                600 ml	Gemüsebrühe<br>
+                Sonnenblumenöl zum Braten<br>
+                Salz</p>
+                    <div class="modal-body">
+                        <img src="images/linsensuppe.jpeg" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Veggie-Schaschlik</h3>
+            <p id="ingredients-2">  
+                2 kleine	Zucchini<br>
+                10	Champignons<br>
+                2	Zwiebel(n), rote<br>
+                1	Paprikaschote(n), rote<br>
+                1	Paprikaschote(n), gelbe<br>
+                Für die Marinade: <br>
+                
+                2 EL	Sojasauce<br>
+                2 EL	Sesamöl<br>
+                ½ TL	Chiliflocken<br>
+                1 EL	Ingwerwurzel, frisch gerieben<br>
+                1	Knoblauchzehe(n)<br>
+                1 EL	Zitronensaft<br>
+                1 EL	Zucker<br>
+                1 EL	Tomatenmark</p>
+                    <div class="modal-body">
+                        <img src="images/veggie-schaschlik.jpg.webp" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Vegane Brushetta</h3>
+            2	Ciabatta<br>
+            8	Tomate(n), (Strauchtomaten)<br>
+            1	Zwiebel(n)<br>
+            4	Knoblauchzehe(n)<br>
+            1 Bund	Basilikum<br>
+            1 EL	Aceto balsamico, weiß<br>
+            1 Spritzer	Limettensaft<br>
+            Salz<br>
+            Pfeffer, schwarzer, frisch gemahlen<br>
+            1 Prise(n)	Zucker<br>
+            n. B.	Olivenöl
+        </p>
+                    <div class="modal-body">
+                        <img src="images/bruschetta-di-modena.jpg.webp" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Hummus</h3>
+            <p id="ingredients-2">                        
+                1 Dose	Kichererbsen, ca. 400 - 500 g<br>
+                2 EL	Tahin<br>
+                3	Zitrone(n), Saft davon<br>
+                4	Knoblauchzehe(n), durchgepresste<br>
+                n. B.	Öl, neutrales, nichts Bitteres<br>
+                2 EL	Kreuzkümmelpulver, evtl. mehr<br>
+                1	Chilischote(n), getrocknete, scharfe, fein gehackte<br>
+                1 EL	Currypulver<br>
+                n. B.	Salz und Pfeffer, weißer<br>
+                evtl.	Paprikapulver, rosenscharfes<br>
+                1 Bund	Petersilie zur Dekoration
+            </p>
+                    <div class="modal-body">
+                        <img src="images/hummus-bi-tahina.jpg.webp" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Bruschetta </h3>
+            <p id="ingredients-2">
+                
+                    1 kg	Strauchtomate(n)<br>
+                    3	Zwiebel(n)<br>
+                    4 Zehe/n	Knoblauch<br>
+                    Meersalz und Pfeffer aus der Mühle<br>
+                    Olivenöl<br>
+                    1	Ciabatta
+                    1 Bund	Basilikum<br>
+                    n. B.	Parmesan oder Mozzarella
+                           </p>
+                    <div class="modal-body">
+                        <img src="images/bruschetta.webp" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="recipe">
+            <h3>Börek mit Joghurt Dip</h3>
+            <p id="ingredients-2">
+                   
+                    200 g	Feta-Käse, türkischer (Ziege oder Schaf)<br>
+                    200 g	Käse, geriebener, milder<br>
+                    2 m.-große	Kartoffel(n)<br>
+                    3	Ei(er)<br>
+                    200 ml	Milch<br>
+                    125 g	Butter<br>
+                    1 Handvoll	Petersilie, glatte, gehackt<br>
+                    1 Handvoll	Dill, frischer, gehackt<br>
+                    Pfeffer<br>
+                    Pul Biber (türkische Chilimischung)<br>
+                    Schwarzkümmel<br>
+                    1	Eigelb
+                             
+                            </p>
+                    <div class="modal-body">
+                        <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Werbung" style="max-width: 100%;" class="img-fluid mb-3">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+        </div>
+   
+        </div>
+    </div>
+</div>
+
+
 
 <!-- Footer -->
 <footer class="bg-dark text-white text-center py-3">
@@ -987,6 +1271,60 @@ paragraphs.forEach((p, index) => console.log(`P-Tag ${index}: ${p.textContent}`)
     }
     function showRecipe4(){
         $('#Rezept4').modal('show');
+    }
+    function showAd5(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal5').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal5').modal('show');
+    }
+    function showRecipe5(){
+        $('#Rezept5').modal('show');
+    }
+    function showAd6(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal6').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal6').modal('show');
+    }
+    function showRecipe6(){
+        $('#Rezept6').modal('show');
+    }
+    function showAd7(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal7').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal7').modal('show');
+    }
+    function showRecipe7(){
+        $('#Rezept7').modal('show');
+    }
+    function showAd8(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal8').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal8').modal('show');
+    }
+    function showRecipe8(){
+        $('#Rezept8').modal('show');
+    }
+    function showAd9(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal9').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal9').modal('show');
+    }
+    function showRecipe9(){
+        $('#Rezept9').modal('show');
+    }
+    function showAd10(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal10').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal10').modal('show');
+    }
+    function showRecipe10(){
+        $('#Rezept10').modal('show');
     }
 </script>
 <script>
