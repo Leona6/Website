@@ -12,14 +12,23 @@
             border-radius: 5px;
             overflow: hidden;
             margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 800px; /* Feste Höhe für die Karten */
+            max-height: 800px; /* Maximale Höhe für die Karten */
+            /* Optional: Hinzufügen eines Scroll-Verhaltens */
+            position: relative;
         }
         .recipe-card img {
             width: 100%;
-            height: 300px; /* Höhe der Bilder festlegen */
+            height: 200px; /* Höhe der Bilder festlegen */
             object-fit: cover; /* Bild zuschneiden, um das Container-Verhältnis zu füllen */
         }
-        .recipe-card .card-body {
-            padding: 15px;
+        .card-body {
+            flex: 1;
+            overflow-y: auto; /* Scrollbar hinzufügen, wenn der Inhalt länger ist */
+            display: flex;
+            flex-direction: column;
         }
         .delete-button {
             background-color: #ff6347;
@@ -31,6 +40,9 @@
         }
         .delete-button:hover {
             background-color: #cc4c37;
+        }
+        .modal-body img {
+            height: auto;
         }
     </style>
 </head>
@@ -63,6 +75,8 @@
                 hinzugefuegteRezepte = JSON.parse(storedRecipes);
                 console.log('Gespeicherte Rezepte:', hinzugefuegteRezepte); // Konsolenausgabe hinzufügen
                 updateRecipeList(); // Rezeptliste aktualisieren
+            } else {
+                console.log('Keine Rezepte im Local Storage gefunden.');
             }
         }
 
@@ -83,6 +97,7 @@
                 var cardBodyDiv = document.createElement('div');
                 cardBodyDiv.className = 'card-body';
 
+                // Bild hinzufügen, falls vorhanden
                 if (recipe.image) {
                     var recipeImage = document.createElement('img');
                     recipeImage.src = recipe.image;
@@ -98,29 +113,29 @@
 
                 var recipeDescription = document.createElement('p');
                 recipeDescription.className = 'card-text';
-                recipeDescription.innerHTML = recipe.description.replace(/\n/g, '<br>'); // Zeilenumbrüche einfügen
+                recipeDescription.innerHTML = recipe.description ? recipe.description.replace(/\n/g, '<br>') : 'Keine Beschreibung verfügbar';
                 cardBodyDiv.appendChild(recipeDescription);
 
                 var recipeIngredients = document.createElement('p');
                 recipeIngredients.className = 'card-text';
-                recipeIngredients.innerHTML = recipe.ingredients || 'Zutaten nicht verfügbar';
+                recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : 'Zutaten nicht verfügbar';
                 cardBodyDiv.appendChild(recipeIngredients);
 
-                var showButton = document.createElement('button');
+                /*var showButton = document.createElement('button');
                 showButton.textContent = 'Rezept anzeigen';
                 showButton.className = 'btn btn-info show-button';
-                showButton.onclick = function () {
-                    showModal(recipe.name, recipe.image, recipe.description, recipeIngredients.innerHTML);
+                showButton.onclick = function() {
+                    showModal(recipe.name, recipe.image, recipe.description, recipe.ingredients);
                 };
-                cardBodyDiv.appendChild(showButton);
+                cardBodyDiv.appendChild(showButton);*/
 
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Löschen';
                 deleteButton.className = 'btn btn-danger delete-button';
-                deleteButton.onclick = function () {
+                deleteButton.onclick = function() {
                     hinzugefuegteRezepte.splice(index, 1);
-                    updateRecipeList(); // Liste aktualisieren nach Entfernung
                     localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+                    updateRecipeList(); // Liste aktualisieren nach Entfernung
                     updateCartButton(); // Warenkorb-Button aktualisieren
                 };
                 cardBodyDiv.appendChild(deleteButton);
@@ -161,6 +176,7 @@
                 description: description,
                 ingredients: ingredients
             });
+
             var modalId = 'Rezept' + Date.now(); // Eindeutige ID für jedes Modal
 
             var modalHtml = `
@@ -175,7 +191,7 @@
                             </div>
                             <div class="modal-body">
                                 <img src="${imageUrl}" class="img-fluid mb-3" alt="${name}">
-                                <p>${description}</p>
+                                <p>${description || 'Keine Beschreibung verfügbar'}</p>
                                 <h5>Zutaten:</h5>
                                 <p>${ingredients || 'Zutaten nicht verfügbar'}</p>
                             </div>
@@ -195,7 +211,7 @@
             $('#' + modalId).modal('show');
 
             // Modal entfernen, wenn es geschlossen wird
-            $('#' + modalId).on('hidden.bs.modal', function () {
+            $('#' + modalId).on('hidden.bs.modal', function() {
                 $(this).remove();
             });
         }

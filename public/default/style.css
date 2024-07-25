@@ -31,14 +31,21 @@
     flex-wrap: nowrap;
     overflow-x: auto;
     gap: 20px;
-    padding: 10px;
-    position: relative;
+    position: relative; /* Wichtiger Schritt, damit der absolut positionierte Button innerhalb des Containers bleibt */
+    padding-bottom: 50px; 
 }
 
 /* Einzelne Rezepte */
 .recipe {
     flex: 1 0 30%; /* Breite der Rezepte in der Reihe */
     box-sizing: border-box;
+}
+
+/* Container für den Button */
+.show-more-container {
+    position: relative;
+    text-align: right; /* Rechtsbündig innerhalb des Containers */
+    padding-right: 20px; /* Platz nach rechts */
 }
 
 /* Button "Mehr anzeigen" */
@@ -52,8 +59,8 @@
     cursor: pointer;
     color: blue;
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 350px; /* Position nach oben verschoben */
+    right: -200px;  /* Position weiter nach rechts verschoben */
     text-align: center;
 }
 
@@ -66,6 +73,7 @@
 .show-more-button span {
     font-size: 16px;
 }
+
 /* Stile für das Einklappen der Rezepte */
 .recipe-text-container {
     position: relative;
@@ -82,4 +90,73 @@
 .read-more {
     color: blue;
     cursor: pointer;
+}
+
+/* Grundlegende Stile für die Karten */
+.card {
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background: #f9f9f9;
+}
+
+.card-header {
+    background: #fff;
+    border-bottom: 1px solid #e9ecef;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-title {
+    margin-bottom: 0;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+/* Stil für die Bilder in den Rezepten */
+.card-img-top {
+    border-radius: 8px 8px 0 0;
+    object-fit: cover;
+}
+
+/* Stile für die Buttons */
+.button {
+    margin-top: 15px;
+}
+
+/* Stile für die Modale */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh; /* Maximale Höhe des Modals */
+    overflow: hidden; /* Verhindert, dass der Inhalt über das Modal hinausgeht */
+}
+
+.modal-body {
+    flex: 1; /* Lässt den Body den verbleibenden Platz im Modal ausfüllen */
+    overflow-y: auto; /* Ermöglicht vertikales Scrollen */
+    padding: 15px;
+}
+
+.modal-header {
+    background: #f9f9f9;
+    border-bottom: 1px solid #eaeaea;
+    padding: 15px;
+}
+
+.modal-footer {
+    background: #f9f9f9;
+    border-top: 1px solid #eaeaea;
+    padding: 15px;
+}
+
+/* Stil für den Abstand zwischen den Buttons */
+.d-flex {
+    margin-top: 10px;
+}
+/* Anpassung der Buttons in den Modalen */
+.btn-primary.button, .btn-secondary.button {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
 }
