@@ -8,89 +8,179 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-   body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f8f9fa;
+    /* Basis-Stile */
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    h3 {
+        color: #555;
+        border-bottom: 2px solid #ddd;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Rezeptkarten-Styling */
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #fafafa;
+        transition: box-shadow 0.3s ease;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .card-body {
+        padding: 1rem;
+    }
+
+    .card-title {
+        font-size: 22px;
+        color: #222;
+        margin-bottom: 15px;
+    }
+
+    .card-text {
+        font-size: 15px;
+        color: #666;
+        max-height: 80px; /* Höhe des sichtbaren Textbereichs */
+        overflow: hidden;
+        transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
+        margin-bottom: 15px;
+    }
+
+    .card-text.expanded {
+        max-height: none; /* Keine Begrenzung für den erweiterten Text */
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Button-Styling */
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Utility-Klassen */
+    .mb-4 {
+        margin-bottom: 1.5rem;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    /* Animation für Werbebild */
+    #adImage {
+        animation: glow 1.5s infinite;
+    }
+
+    @keyframes glow {
+        0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 25px #ff0, 0 0 30px #ff0, 0 0 35px #ff0; }
+        50% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0, 0 0 40px #ff0, 0 0 50px #ff0, 0 0 60px #ff0, 0 0 70px #ff0; }
+        100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 25px #ff0, 0 0 30px #ff0, 0 0 35px #ff0; }
+    }
+
+    /* Stile für den "Mehr anzeigen"-Button (falls verwendet) */
+    .more-btn {
+        display: inline-block;
+        margin-top: 10px;
+        color: #007bff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .read-more {
+        color: blue;
+        cursor: pointer;
+    }
+/* Stile für die Modale */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh; /* Maximale Höhe des Modals */
+    overflow: hidden; /* Verhindert, dass der Inhalt über das Modal hinausgeht */
 }
 
-.container {
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.modal-body {
+    flex: 1; /* Lässt den Body den verbleibenden Platz im Modal ausfüllen */
+    overflow-y: auto; /* Ermöglicht vertikales Scrollen */
+    padding: 15px;
 }
 
-h2 {
-    color: #333;
+.modal-header {
+    background: #f9f9f9;
+    border-bottom: 1px solid #eaeaea;
+    padding: 15px;
 }
 
-h3 {
-    color: #555;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+.modal-footer {
+    background: #f9f9f9;
+    border-top: 1px solid #eaeaea;
+    padding: 15px;
 }
 
-.recipe {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    background-color: #fafafa;
-    transition: box-shadow 0.3s ease;
+/* Stil für den Abstand zwischen den Buttons */
+.d-flex {
+    margin-top: 10px;
 }
 
-.recipe:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+/* Anpassung der Buttons in den Modalen */
+.btn-primary.button, .btn-secondary.button {
+    margin-top: 10px;
+    display: block;
+    width: 100%;
 }
 
-.recipe img {
-    border-radius: 8px;
-}
-
-.recipe-description {
-    color: #666;
-    font-size: 0.9rem;
-    margin: 0.5rem 0;
-}
-
-.btn-primary {
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    transition: background-color 0.3s ease;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-.mb-4 {
-    margin-bottom: 1.5rem;
-}
-
-.text-center {
-    text-align: center;
-}
-
-
-#adImage {
-animation: glow 1.5s infinite;
-}
-.recipe-description {
-    position: relative;
-    max-height: 80px; /* Höhe des sichtbaren Textbereichs */
-    overflow: hidden;
-    transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
-    margin-bottom: 10px;
-   
-}
-
-.more {
-    display: none;
-}
 </style>
 <body>
 
@@ -121,12 +211,6 @@ animation: glow 1.5s infinite;
     </div>
 </nav>
 
-
-<!-- Hauptinhalt -->
-<div class="container">
-<br>
-<br>
-<br>
 <!-- Hauptinhalt -->
 <div class="container">
     <h2>Vegane Rezepte</h2>
@@ -135,228 +219,278 @@ animation: glow 1.5s infinite;
     <br>
     <br>
     <div class="row">
+        <!-- Bruschetta di Modena Card -->
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Bruschetta di modena</h3>
-                <img src="images/bruschetta-di-modena.jpg.webp" alt="Veganes Chili Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. 
-                    2	Ciabatta
-                    8	Tomate(n), (Strauchtomaten)
-                    1	Zwiebel(n)
-                    4	Knoblauchzehe(n)
-                    1 Bund	Basilikum
-                    1 EL	Aceto balsamico, weiß
-                    1 Spritzer	Limettensaft
-                    Salz
-                    Pfeffer, schwarzer, frisch gemahlen
-                    1 Prise(n)	Zucker
-                    n. B.	Olivenöl</p>
-                <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+            <div class="card">
+                <img src="images/bruschetta-di-modena.jpg.webp" alt="Bruschetta di Modena" class="card-img-top" style="max-height: 200px;">
+                <div class="card-body">
+                    <h3 class="card-title">Vegane Bruschetta</h3>
+                    <p class="card-text">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. 
+                        <br><br>
+                        2 Ciabatta<br>
+                        8 Tomaten (Strauchtomaten)<br>
+                        1 Zwiebel<br>
+                        4 Knoblauchzehen<br>
+                        1 Bund Basilikum<br>
+                        1 EL Aceto balsamico, weiß<br>
+                        1 Spritzer Limettensaft<br>
+                        Salz<br>
+                        Pfeffer, schwarzer, frisch gemahlen<br>
+                        1 Prise Zucker<br>
+                        n. B. Olivenöl</p>
+                    <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
+                    <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Hummus</h3>
-                <img src="images/hummus-bi-tahina.jpg.webp" alt="Veganes Chili Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. Servieren Sie es mit Reis oder Nachos.
-                    1 Dose	Kichererbsen, ca. 400 - 500 g
-                    2 EL	Tahin
-                    3	Zitrone(n), Saft davon
-                    4	Knoblauchzehe(n), durchgepresste
-                    n. B.	Öl, neutrales, nichts Bitteres
-                    2 EL	Kreuzkümmelpulver, evtl. mehr
-                    1	Chilischote(n), getrocknete, scharfe, fein gehackte
-                    1 EL	Currypulver
-                    n. B.	Salz und Pfeffer, weißer
-                    evtl.	Paprikapulver, rosenscharfes
-                    1 Bund	Petersilie zur Dekoration</p>
+     <!-- Hummus Card -->
+     <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+            <img src="images/hummus-bi-tahina.jpg.webp" alt="Hummus" class="card-img-top" style="max-height: 200px;">
+            <div class="card-body">
+                <h3 class="card-title">Hummus</h3>
+                <p class="card-text">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. 
+                     <br><br>
+                    1 Dose Kichererbsen, ca. 400 - 500 g<br>
+                    2 EL Tahin<br>
+                    3 Zitronen, Saft davon<br>
+                    4 Knoblauchzehen, durchgepresst<br>
+                    n. B. Öl, neutrales, nichts Bitteres<br>
+                    2 EL Kreuzkümmelpulver, evtl. mehr<br>
+                    1 Chilischote, getrocknete, scharfe, fein gehackte<br>
+                    1 EL Currypulver<br>
+                    n. B. Salz und Pfeffer, weißer<br>
+                    evtl. Paprikapulver, rosenscharfes<br>
+                    1 Bund Petersilie zur Dekoration</p>
                 <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Tomatensuppe</h3>
-                <img src="images/frische-tomatensuppe.jpg.webp" alt="Veganes Chili Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. Servieren Sie es mit Reis oder Nachos.1 kg	Tomate(n)
-                    2	Zwiebel(n)
-                    3	Knoblauchzehe(n)
-                    Olivenöl zum Braten
-                    ¾ Liter	Gemüsebrühe
-                    Salz und Pfeffer, weißer
-                    Kräutersalz
-                    Thymian, getrocknet
-                    3 TL	Tomatenmark
+    </div>
+    <!-- Tomatensuppe Card -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+            <img src="images/frische-tomatensuppe.jpg.webp" alt="Tomatensuppe" class="card-img-top" style="max-height: 200px;">
+            <div class="card-body">
+                <h3 class="card-title">Tomatensuppe</h3>
+                <p class="card-text">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. 
+                     <br><br>
+                    1 kg Tomaten<br>
+                    2 Zwiebeln<br>
+                    3 Knoblauchzehen<br>
+                    Olivenöl zum Braten<br>
+                    ¾ Liter Gemüsebrühe<br>
+                    Salz und Pfeffer, weißer<br>
+                    Kräutersalz<br>
+                    Thymian, getrocknet<br>
+                    3 TL Tomatenmark<br>
                     Petersilie</p>
                 <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                 <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
             </div>
         </div>
-    <h3>Hauptspeisen</h3>
-    <div class="row">
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Veganes Chili</h3>
-                <img src="images/chilli.webp" alt="Veganes Chili Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. Servieren Sie es mit Reis oder Nachos.90 g	Sojagranulat
-                    100 g	Grünkernschrot
-                    ½ Liter	Gemüsebrühe
-                    etwas	Öl zum Braten, evtl. Chiliöl
-                    1	Paprikaschote(n), rote
-                    1 m.-große	Zucchini
-                    1 große	Zwiebel(n)
-                    1 kl. Dose/n	Tomaten, geschälte
-                    2 kl. Dose/n	Kidneybohnen
-                    1 kl. Dose/n	Mais
-                    5 kleine	Chilischote(n), rote
-                    1 Pck.	Tomaten, passierte
-                    2 EL	Meersalz, feines
-                    1 EL	Pfeffer
-                    1 Prise(n)	Cayennepfeffer
-                    1 Prise(n)	Paprikapulver, rosenscharfes
-                    1 Prise(n)	Zucker
-                    1 Prise(n)	Salz (Tomatensalz)
-                    etwas	Tomatenmark
-                    2 EL	Basilikum, getrocknetes
-                    n. B.	Chilipulver</p>
-                <button class="btn btn-primary" onclick="showAd('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+    </div>
+</div>
+<h3>Hauptspeisen</h3>
+<div class="row">
+    <!-- Veganes Chili Card -->
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+            <img src="images/chilli.webp" alt="Veganes Chili" class="card-img-top" style="max-height: 200px;">
+            <div class="card-body">
+                <h3 class="card-title">Veganes-Chili</h3>
+                <p class="card-text">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen, Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili. 
+                    <br><br>
+                    90 g Sojagranulat<br>
+                    100 g Grünkernschrot<br>
+                    ½ Liter Gemüsebrühe<br>
+                    etwas Öl zum Braten, evtl. Chiliöl<br>
+                    1 Paprikaschote, rot<br>
+                    1 m.-große Zucchini<br>
+                    1 große Zwiebel<br>
+                    1 kl. Dose Tomaten, geschälte<br>
+                    2 kl. Dosen Kidneybohnen<br>
+                    1 kl. Dose Mais<br>
+                    5 kleine Chilischoten, rot<br>
+                    1 Pck. Tomaten, passierte<br>
+                    2 EL Meersalz, feines<br>
+                    1 EL Pfeffer<br>
+                    1 Prise Cayennepfeffer<br>
+                    1 Prise Paprikapulver, rosenscharfes<br>
+                    1 Prise Zucker<br>
+                    1 Prise Salz (Tomatensalz)<br>
+                    etwas Tomatenmark<br>
+                    2 EL Basilikum, getrocknetes<br>
+                    n. B. Chilipulver</p>
+                <button class="btn btn-primary" onclick="showAd17('images/werbung.jpg')">Rezept anzeigen</button>
+                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Linsen-Curry mit Kokosmilch</h3>
-                <img src="images/linsencurry.webp" alt="Linsen-Curry Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Rote Linsen in einer würzigen Kokosmilch-Curry-Sauce mit Ingwer, Knoblauch, Kurkuma und Garam Masala kochen. Servieren Sie es mit Basmatireis.400 g	Kartoffel(n), fest kochende
-                    200 g	Linsen, rote
-                    1 EL	Olivenöl
-                    1 Bund	Frühlingszwiebel(n)
-                    2 EL	Currypulver
-                    2 TL	Tomatenmark
-                    400 ml	Kokosmilch
-                    250 ml	Gemüsebrühe
-                    Salz und Pfeffer</p>
-                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-            </div>
+    </div>
+ <!-- Linsen-Curry mit Kokosmilch Card -->
+ <div class="col-lg-4 col-md-6 mb-4">
+    <div class="card">
+        <img src="images/linsencurry.webp" alt="Linsen-Curry mit Kokosmilch" class="card-img-top" style="max-height: 200px;">
+        <div class="card-body">
+            <h3 class="card-title">Linsen-Curry</h3>
+            <p class="card-text">Rote Linsen in einer würzigen Kokosmilch-Curry-Sauce mit Ingwer, Knoblauch, Kurkuma und Garam Masala kochen.
+                <br><br>
+                400 g Kartoffeln, fest kochende<br>
+                200 g Linsen, rote<br>
+                1 EL Olivenöl<br>
+                1 Bund Frühlingszwiebeln<br>
+                2 EL Currypulver<br>
+                2 TL Tomatenmark<br>
+                400 ml Kokosmilch<br>
+                250 ml Gemüsebrühe<br>
+                Salz und Pfeffer</p>
+            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Gemüsepfanne mit Tofu</h3>
-                <img src="images/tofu.webp" alt="Gemüsepfanne mit Tofu Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Eine bunte Mischung aus gebratenem Tofu und saisonalem Gemüse wie Brokkoli, Paprika, Karotten und Zuckerschoten in einer Sojasauce-Marinade.1/2	Zwiebel(n)
-                    1/2	Paprikaschote(n), rote
-                    125 g	Räuchertofu, gewürfelt
-                    1/2	Zucchini
-                    4	Champignons
-                    50 g	Cashewnüsse
-                    75 g	Sojasprossen
-                    150 g	Reis
-                    200 ml	Kokosmilch
-                    etwas	Sojasauce
-                    Salz und Pfeffer
-                    etwas	Currypulver
-                    evtl.	Gewürz(e) nach Wahl
-                    evtl.	Ingwer</p>
-                <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-            </div>
+    </div>
+</div>  
+
+<!-- Gemüsepfanne mit Tofu Card -->
+<div class="col-lg-4 col-md-6 mb-4">
+    <div class="card">
+        <img src="images/tofu.webp" alt="Gemüsepfanne mit Tofu" class="card-img-top" style="max-height: 200px;">
+        <div class="card-body">
+            <h3 class="card-title">Gemüsepfanne</h3>
+            <p class="card-text">Eine bunte Mischung aus gebratenem Tofu und saisonalem Gemüse wie Brokkoli, Paprika, Karotten und Zuckerschoten in einer Sojasauce-Marinade. 
+                <br><br>
+                1/2 Zwiebel<br>
+                1/2 Paprikaschote, rot<br>
+                125 g Räuchertofu<br>
+                1 TL Paprikapulver, rosenscharf<br>
+                1 TL Kreuzkümmel<br>
+                3 TL Sesamöl<br>
+                250 g Zuckerschoten<br>
+                2 Karotten<br>
+                2 TL Sojasauce<br>
+                1 TL Agavendicksaft<br>
+                1 TL Stärke<br>
+                n. B. Pfeffer, schwarzer</p>
+            <button class="btn btn-primary" onclick="showAd0('images/werbung.jpg')">Rezept anzeigen</button>
+             <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Vegane Pizza mit Gemüsebelag</h3>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
                 <img src="images/veganpizza.webp" alt="Vegane Pizza Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer Vielzahl von Gemüsesorten wie Karotten, Sellerie und Tomaten.300 g	Weizenmehl Type 550
-                    1 Pck.	Trockenhefe
-                    1 TL	Salz
-                    170 ml	Wasser
-                    Für den Belag:
-                    
-                    6 EL	Knoblauchöl oder Olivenöl
-                    1 EL	Tomatenmark
-                    n. B.	Knoblauch, gewürfelt
-                    2	Spitzpaprika oder Gemüsepaprika, rot
-                    250 g	Champignons
-                    1	Zwiebel(n)
-                    Salz und Pfeffer
-                    Kräuter, italienische, frisch oder getrocknet
-                    Harissa</p>
-                <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-            </div>
-        </div>
+                <div class="card-body">
+                    <h3 class="card-title">Vegane Pizza</h3>
+                    <p class="card-text">Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer Vielzahl von Gemüsesorten wie Karotten, Sellerie und Tomaten.
+                        <br><br>
+                        300 g	Weizenmehl Type 550
+                         1 Pck.	Trockenhefe
+                         1 TL	Salz
+                         170 ml	Wasser
+                         Für den Belag:
+                         
+                         6 EL	Knoblauchöl oder Olivenöl
+                         1 EL	Tomatenmark
+                         n. B.	Knoblauch, gewürfelt
+                         2	Spitzpaprika oder Gemüsepaprika, rot
+                         250 g	Champignons
+                         1	Zwiebel(n)
+                         Salz und Pfeffer
+                         Kräuter, italienische, frisch oder getrocknet
+                         Harissa</p>
+                     <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
+                    <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                
+                </div>
+           </div>
+</div>
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Zucchini-Nudeln mit Avocado-Pesto</h3>
+            <div class="card">
                 <img src="images/pesto.webp" alt="Zucchini-Nudeln mit Avocado-Pesto Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Zucchini-Nudeln mit cremigem Avocado-Pesto aus Avocado, Basilikum, Knoblauch, Zitronensaft und Pinienkernen. Mit Kirschtomaten garnieren.300 g	Hähnchenbrust oder Hähnchenstreifen
-                    4 m.-große	Zucchini
-                    einige	Oliven
-                    einige	Tomate(n), getrocknete in Öl
-                    1 große	Avocado(s)
-                    3	Knoblauchzehe(n)
-                    40 g	Cashewkerne
-                    2 Bund	Basilikum
-                    40 g	Hartkäse, gerieben, z. B. Parmesan oder Bergkäse
-                    Olivenöl
-                    Salz und Pfeffer</p>
-                <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-            </div>
+                <div class="card-body">
+                    <h3 class="card-title">Zucchini-Nudeln</h3>
+                    <p class="card-text">Zucchini-Nudeln mit cremigem Avocado-Pesto aus Avocado, Basilikum, Knoblauch, Zitronensaft und Pinienkernen. 
+                        <br><br>
+                        300 g	Hähnchenbrust oder Hähnchenstreifen
+                         4 m.-große	Zucchini
+                         einige	Oliven
+                         einige	Tomate(n), getrocknete in Öl
+                         1 große	Avocado(s)
+                         3	Knoblauchzehe(n)
+                         40 g	Cashewkerne
+                         2 Bund	Basilikum
+                         40 g	Hartkäse, gerieben, z. B. Parmesan oder Bergkäse
+                         Olivenöl
+                         Salz und Pfeffer</p>
+                     <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
+                
+                </div>
+          </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Kichererbsen-Spinat-Curry</h3>
+            <div class="card">
                 <img src="images/veganerbsen.webp" alt="Kichererbsen-Spinat-Curry Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Ein herzhaftes Curry aus Kichererbsen, Spinat, Tomaten und Gewürzen wie Kurkuma, Kreuzkümmel und Koriander. Servieren Sie es mit Naan-Brot oder Reis. 1 Pck.	Blattspinat, TK, ca. 400 - 450 g
-                    2	Zwiebel(n)
-                    2	Knoblauchzehe(n)
-                    2	Tomate(n), frisch, oder 1/2 Dose stückige Tomaten (von einer 400 g Dose)
-                    1 kl. Dose/n	Kichererbsen, gut abgetropft, 400 g Dose
-                    1 kl. Stück(e)	Ingwerwurzel, etwa so groß wie eine halbe Knoblauchzehe
-                    1 Dose	Kokosmilch, cremig, 400 g
-                    2 EL	Kokosöl
-                    ½ TL	Salz
-                    ½ TL	Paprikapulver
-                    ½ TL	Kurkumapulver
-                    ½ TL	Korianderblätter, gerebelt
-                    Chiliflocken</p>
-                <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                <div class="card-body">
+                    <h3 class="card-title">Kichererbsen-Curry</h3>
+                    <p class="card-text">Ein herzhaftes Curry aus Kichererbsen, Spinat, Tomaten und Gewürzen wie Kurkuma, Kreuzkümmel und Koriander. 
+                        <br><br>
+                        1 Pck.	Blattspinat, TK, ca. 400 - 450 g
+                         2	Zwiebel(n)
+                         2	Knoblauchzehe(n)
+                         2	Tomate(n), frisch, oder 1/2 Dose stückige Tomaten (von einer 400 g Dose)
+                         1 kl. Dose/n	Kichererbsen, gut abgetropft, 400 g Dose
+                         1 kl. Stück(e)	Ingwerwurzel, etwa so groß wie eine halbe Knoblauchzehe
+                         1 Dose	Kokosmilch, cremig, 400 g
+                         2 EL	Kokosöl
+                         ½ TL	Salz
+                         ½ TL	Paprikapulver
+                         ½ TL	Kurkumapulver
+                         ½ TL	Korianderblätter, gerebelt
+                         Chiliflocken</p>
+                     <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
+                     <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                
+                </div>
             </div>
         </div>
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Veganer Gemüseburger</h3>
+            <div class="card">
                 <img src="images/burger.webp" alt="Veganer Gemüseburger Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Gemüse-Burgerpattys aus püriertem Gemüse wie Süßkartoffeln, Bohnen und Pilzen mit einer würzigen BBQ-Sauce. Servieren Sie sie in einem Vollkorn-Burgerbrötchen mit Salat und Tomate.200 g	Grünkernschrot
-                    40 g	Sonnenblumenkerne
-                    100 g	Haferflocken
-                    3 Zehe/n	Knoblauch
-                    4 TL	Gemüsebrühepulver
-                    2	Zwiebel(n)
-                    1 TL	Salz
-                    2 TL	Currypulver
-                    2 EL	Tomatenmark
-                    1 Bund	Schnittlauch
-                    Außerdem:
-                    
-                    4	Burgerbrötchen
-                    4	Tomate(n)
-                    3	Essiggurke(n)
-                    2 TL	Sweet Chili Sauce
-                    1 TL	Ketchup
-                    1 TL	Senf</p>
-                <button class="btn btn-primary" onclick="showAd7('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                <div class="card-body">
+                    <h3 class="card-title">Veganer Gemüseburger</h3>
+                    <p class="card-text">Gemüse-Burgerpattys aus püriertem Gemüse wie Süßkartoffeln, Bohnen und Pilzen mit einer würzigen BBQ-Sauce. 
+                        <br><br>
+                          200 g	Grünkernschrot
+                          40 g	Sonnenblumenkerne
+                          100 g	Haferflocken
+                          3 Zehe/n	Knoblauch
+                          4 TL	Gemüsebrühepulver
+                          2	Zwiebel(n)
+                          1 TL	Salz
+                          2 TL	Currypulver
+                          2 EL	Tomatenmark
+                          1 Bund	Schnittlauch
+                          Außerdem:
+                          
+                          4	Burgerbrötchen
+                          4	Tomate(n)
+                          3	Essiggurke(n)
+                          2 TL	Sweet Chili Sauce
+                          1 TL	Ketchup
+                          1 TL	Senf</p>
+                      <button class="btn btn-primary" onclick="showAd7('images/werbung.jpg')">Rezept anzeigen</button>
+                       <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
             </div>
         </div>
+    </div>
         <div class="col-lg-4 col-md-6 mb-4">
-            <div class="recipe">
-                <h3>Gebratener Tofu mit Erdnusssauce</h3>
+            <div class="card">
                 <img src="images/tofucurry.webp" alt="Gebratener Tofu mit Erdnusssauce Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <p class="recipe-description">Gebratener Tofu in einer würzigen Erdnusssauce aus Erdnussbutter, Sojasauce, Ingwer und Knoblauch. Mit Frühlingszwiebeln und Sesam bestreuen und mit Reis servieren. 250 g	Tofu, fest, in dicke Würfel geschnitten
+                <div class="card-body">
+                <h3 class="card-title">Gebratener Tofu</h3>
+              
+                <p class="card-text">Gebratener Tofu in einer würzigen Erdnusssauce aus Erdnussbutter, Sojasauce, Ingwer und Knoblauch. Mit Frühlingszwiebeln und Sesam bestreuen und mit Reis servieren. 
+                    <br><br>
+                    250 g	Tofu, fest, in dicke Würfel geschnitten
                     6 EL	Pflanzenöl
                     3	Knoblauchzehe(n), zerdrückt
                     175 g	Sojasprossen
@@ -368,58 +502,67 @@ animation: glow 1.5s infinite;
                     evtl.	Koriandergrün, zum Garnieren
                     Salz und Pfeffer</p>
                 <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
-                <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                 <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
             </div>
         </div>
         <br>
-    <br>
-    <br>
-       
+        <br>
+        <br>
     </div>
 </div>
+
 <h3>Desserts</h3>
 <br>
 <br>
+
 <div class="row">
 <div class="col-lg-4 col-md-6 mb-4">
-    <div class="recipe">
-        <h3>Vegane Schokoladenmousse</h3>
+    <div class="card">
         <img src="images/mousse.webp" alt="Vegane Schokoladenmousse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-        <p class="recipe-description">Eine cremige Schokoladenmousse aus Avocado, Kakao, Ahornsirup und Vanilleextrakt. Mit frischen Beeren garnieren. 4 EL	Kokosmilch
-            4 EL	Kakao
-            1 EL	Erdnussbutter
-            1 Msp.	Stevia
-            1 Prise(n)	Zimt</p>
+        <div class="card-body">
+            <h3 class="card-title">Vegane Schokomousse</h3>
+            <p class="card-text">Eine cremige Schokoladenmousse aus Avocado, Kakao, Ahornsirup und Vanilleextrakt. Mit frischen Beeren garnieren. 4 EL	Kokosmilch
+                4 EL	Kakao
+                1 EL	Erdnussbutter
+                1 Msp.	Stevia
+                1 Prise(n)	Zimt</p>
         <button class="btn btn-primary" onclick="showAd9('images/werbung.jpg')">Rezept anzeigen</button>
-        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+         <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
     </div>
 </div>
+
 <div class="col-lg-4 col-md-6 mb-4">
-    <div class="recipe">
-        <h3>Veganer Grießpudding</h3>
+    <div class="card">
         <img src="images/griesspudding-vegan.jpg.webp" alt="Vegane Schokoladenmousse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-        <p class="recipe-description">Eine cremiger Grießpudding aus Himbeeren und Kokosmilch. 50 g	Grieß
-            300 ml	Kokosmilch
-            2 EL	Zucker
-            2 EL	Himbeeren
-            2 EL	Kokosflocken</p>
-        <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept anzeigen</button>
-        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+       <div class="card-body">
+        <h3 class="card-title">Veganer Grießpudding</h3>
+        <p class="card-text">Eine cremiger Grießpudding aus Himbeeren und Kokosmilch. 50 g	Grieß
+             300 ml	Kokosmilch
+             2 EL	Zucker
+             2 EL	Himbeeren
+             2 EL	Kokosflocken</p>
+         <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept anzeigen</button>
+          <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+       </div>
     </div>
 </div>
+
 <div class="col-lg-4 col-md-6 mb-4">
-    <div class="recipe">
-        <h3>Veganer Schokokuchen</h3>
+    <div class="card">
         <img src="images/veganer-schokokuchen.jpg.webp" alt="Vegane Schokoladenmousse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-        <p class="recipe-description">Saftiger Schokokuchen. 200 g	Mehl
-            35 g	Backkakao
-            180 g	Zucker oder Erythrit (hier verwendet als kalorienreduzierte Variante)
-            1 TL	Vanilleextrakt
-            ½ Pck.	Backpulver
-            240 ml	Wasser
-            100 ml	Sonnenblumenöl</p>
-        <button class="btn btn-primary" onclick="showAd15('images/werbung.jpg')">Rezept anzeigen</button>
-        <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+        <div class="card-body">
+            <h3 class="card-title">Veganer Schokokuchen</h3>
+            <p class="card-text">Saftiger Schokokuchen. 200 g	Mehl
+                35 g	Backkakao
+                180 g	Zucker oder Erythrit (hier verwendet als kalorienreduzierte Variante)
+                1 TL	Vanilleextrakt
+                ½ Pck.	Backpulver
+                240 ml	Wasser
+                100 ml	Sonnenblumenöl</p>
+            <button class="btn btn-primary" onclick="showAd15('images/werbung.jpg')">Rezept anzeigen</button>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
     </div>
 </div>
 
@@ -444,7 +587,24 @@ animation: glow 1.5s infinite;
         </div>
     </div>
 </div>
-
+<div class="modal fade" id="autoAdModal0" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <button class= "btn btn-success large-button"  onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe0()">Zum Rezept</button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -719,430 +879,622 @@ animation: glow 1.5s infinite;
     </div>
 </div>
 </div>
+<div class="modal fade" id="autoAdModal16" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <button  class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe16()">Zum Rezept</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 <!-- Rezepte-->
     <!-- Automatisches Pop-up mit Rezepten -->
     <div class="modal fade" id="Rezept1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>Veganes Chili</h3>
-                <p>90 g	Sojagranulat
-                    100 g	Grünkernschrot
-                    ½ Liter	Gemüsebrühe
-                    etwas	Öl zum Braten, evtl. Chiliöl
-                    1	Paprikaschote(n), rote
-                    1 m.-große	Zucchini
-                    1 große	Zwiebel(n)
-                    1 kl. Dose/n	Tomaten, geschälte
-                    2 kl. Dose/n	Kidneybohnen
-                    1 kl. Dose/n	Mais
-                    5 kleine	Chilischote(n), rote
-                    1 Pck.	Tomaten, passierte
-                    2 EL	Meersalz, feines
-                    1 EL	Pfeffer
-                    1 Prise(n)	Cayennepfeffer
-                    1 Prise(n)	Paprikapulver, rosenscharfes
-                    1 Prise(n)	Zucker
-                    1 Prise(n)	Salz (Tomatensalz)
-                    etwas	Tomatenmark
-                    2 EL	Basilikum, getrocknetes
-                    n. B.	Chilipulver</p>
-                        <div class="modal-body">
-                            <img src="images/chilli.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Veganes Chilli</h3>
                         </div>
-            </div>
+                        <div class="card-body">
+                                <p>2 - 3 Chilischoten<br>
+                                    1 rote Paprika<br>
+                                    2 Knoblauchzehen<br>
+                                    1 Zwiebel<br>
+                                    2 EL Rapsöl<br>
+                                    3 EL Tomatenmark<br>
+                                   1 ELgetrockneter Oregano<br>
+                                     1 EL  Paprikapulver rosenscharf<br>
+                                      1 TL Kreuzkümmel<br>
+                                     1 Msp.  Cayennepfeffer oder Chilipulver (optional)<br>
+                                  200 ml Gemüsebrühe (am besten selbst gekocht, alternativ Bio-Instantbrühe)<br>
+                                    800 gstückige Tomaten (Dose)<br>
+                                      1 TL Ahornsirup<br>
+                                   1 Dose  Kidneybohnen (Abtropfgewicht je Dose: ca. 265 g)<br>
+                                  1 Doseschwarze Bohnen (Abtropfgewicht je Dose: ca. 250 g)<br>
+                                     1 Dose Mais (Abtropfgewicht je Dose: ca. 285 g)<br>
+                                   Salz<br>
+                                     Pfeffer<br>
+                                     </p>
+                            <div class="modal-body">
+                                <img src="images/chilli.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
+                </div>
+
+                
+              
        
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Quinoa-Salat mit Gemüse</h3>
-                <p>120 g	Quinoa
-                    200 ml	Gemüsebrühe
-                    2	Romatomate(n)
-                    1 m.-große	Zucchini
-                    3	Frühlingszwiebel(n)
-                    ½ Bund	Petersilie, glatte
-                    Minze, frisch, mehrere Stängel
-                    Koriandergrün, frisch, mehrere Stängel
-                    ½ TL	Kreuzkümmelpulver
-                    Zitronensaft
-                    Salz und Pfeffer, schwarzer, aus der Mühle
-                    Olivenöl</p>
-                        <div class="modal-body">
-                            <img src="images/linsencurry.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
+   
+   
+        <!-- Automatisches Pop-up mit Rezepten -->
+        <div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="card recipe-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Linsen-Curry mit Kokosmilch</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>400 g	Kartoffel(n), fest kochende<br>
+                                    200 g	Linsen, rote<br>
+                                    1 EL	Olivenöl<br>
+                                    1 Bund	Frühlingszwiebel(n)<br>
+                                    2 EL	Currypulver<br>
+                                    2 TL	Tomatenmark<br>
+                                    400 ml	Kokosmilch<br>
+                                    250 ml	Gemüsebrühe<br>
+                                    Salz und Pfeffer</p>
+                                <div class="modal-body">
+                                    <img src="images/linsencurry.webp" alt="Werbung" style="max-width: 100%;">
+                                    <br>
+                                    <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                    </div>
+                </div>
             </div>
-       
+        </div>
+ 
+    <!-- Automatisches Pop-up mit Rezepten -->
+         <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="card recipe-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Zucchini-Nudeln mit Avocado-Pesto</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>300 g	Hähnchenbrust oder Hähnchenstreifen<br>
+                                    4 m.-große	Zucchini<br>
+                                    einige	Oliven<br>
+                                    einige	Tomate(n), getrocknete in Öl<br>
+                                    1 große	Avocado(s)<br>
+                                    3	Knoblauchzehe(n)<br>
+                                    40 g	Cashewkerne<br>
+                                    2 Bund	Basilikum<br>
+                                    40 g	Hartkäse, gerieben, z. B. Parmesan oder Bergkäse<br>
+                                    Olivenöl<br>
+                                    Salz und Pfeffer<br>
+                                </p>
+                                <div class="modal-body">
+                                    <img src="images/pesto.webp" alt="Werbung" style="max-width: 100%;">
+                                    <br>
+                                    <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Linsen-Curry mit Kokosmilch</h3>
-                <p>400 g	Kartoffel(n), fest kochende
-                    200 g	Linsen, rote
-                    1 EL	Olivenöl
-                    1 Bund	Frühlingszwiebel(n)
-                    2 EL	Currypulver
-                    2 TL	Tomatenmark
-                    400 ml	Kokosmilch
-                    250 ml	Gemüsebrühe
-                    Salz und Pfeffer</p>
-                        <div class="modal-body">
-                            <img src="images/linsencurry.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
+    
+    
+    <!-- Automatisches Pop-up mit Rezepten -->
     <div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>Gemüsepfanne mit Tofu</h3>
-                <p>1/2	Zwiebel(n)
-                    1/2	Paprikaschote(n), rote
-                    125 g	Räuchertofu, gewürfelt
-                    1/2	Zucchini
-                    4	Champignons
-                    50 g	Cashewnüsse
-                    75 g	Sojasprossen
-                    150 g	Reis
-                    200 ml	Kokosmilch
-                    etwas	Sojasauce
-                    Salz und Pfeffer
-                    etwas	Currypulver
-                    evtl.	Gewürz(e) nach Wahl
-                    evtl.	Ingwer</p>
-                        <div class="modal-body">
-                            <img src="images/tofu.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Gemüsepfanne</h3>
                         </div>
-            </div>
-       
+                        <div class="card-body">
+                            <p>1/2	Zwiebel(n)<br>
+                                1/2	Paprikaschote(n), rote<br>
+                                125 g	Räuchertofu, gewürfelt<br>
+                                1/2	Zucchini<br>
+                                4	Champignons
+                                50 g	Cashewnüsse<br>
+                                75 g	Sojasprossen<br>
+                                150 g	Reis<br>
+                                200 ml	Kokosmilch<br>
+                                etwas	Sojasauce<br>
+                                Salz und Pfeffer<br>
+                                etwas	Currypulver<br>
+                                evtl.	Gewürz(e) nach Wahl<br>
+                                evtl.	Ingwer</p>
+                            <div class="modal-body">
+                                <img src="images/tofu.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+       <!-- Automatisches Pop-up mit Rezepten -->
+       <div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>
-                    Vegane Pizza mit Gemüsebelag</h3>
-                <p>300 g	Weizenmehl Type 550
-                    1 Pck.	Trockenhefe
-                    1 TL	Salz
-                    170 ml	Wasser
-                    Für den Belag:
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title">  Vegane Pizza mit Gemüsebelag</h3>
+                        </div>
+                        <div class="card-body">
+                            <p>300 g	Weizenmehl Type 550<br>
+                                1 Pck.	Trockenhefe<br>
+                                1 TL	Salz<br>
+                                170 ml	Wasser<br>
+                                Für den Belag:<br>
+                                
+                                6 EL	Knoblauchöl oder Olivenöl<br>
+                                1 EL	Tomatenmark<br>
+                                n. B.	Knoblauch, gewürfelt<br>
+                                2	Spitzpaprika oder Gemüsepaprika, rot<br>
+                                250 g	Champignons<br>
+                                1	Zwiebel(n)<br>
+                                Salz und Pfeffer<br>
+                                Kräuter, italienische, frisch oder getrocknet<br>
+                                Harissa<br>
+                            </p>
+                            <div class="modal-body">
+                                <img src="images/veganpizza.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+         <!-- Automatisches Pop-up mit Rezepten -->
+         <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="card recipe-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Zucchini-Nudeln mit Avocado-Pesto</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>300 g	Hähnchenbrust oder Hähnchenstreifen<br>
+                                    4 m.-große	Zucchini<br>
+                                    einige	Oliven<br>
+                                    einige	Tomate(n), getrocknete in Öl<br>
+                                    1 große	Avocado(s)<br>
+                                    3	Knoblauchzehe(n)<br>
+                                    40 g	Cashewkerne<br>
+                                    2 Bund	Basilikum<br>
+                                    40 g	Hartkäse, gerieben, z. B. Parmesan oder Bergkäse<br>
+                                    Olivenöl<br>
+                                    Salz und Pfeffer<br>
+                                </p>
+                                <div class="modal-body">
+                                    <img src="images/pesto.webp" alt="Werbung" style="max-width: 100%;">
+                                    <br>
+                                    <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                    </div>
+                                </div>
+                            </div>
                     
-                    6 EL	Knoblauchöl oder Olivenöl
-                    1 EL	Tomatenmark
-                    n. B.	Knoblauch, gewürfelt
-                    2	Spitzpaprika oder Gemüsepaprika, rot
-                    250 g	Champignons
-                    1	Zwiebel(n)
-                    Salz und Pfeffer
-                    Kräuter, italienische, frisch oder getrocknet
-                    Harissa</p>
-                        <div class="modal-body">
-                            <img src="images/veganpizza.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    
+
+     <!-- Automatisches Pop-up mit Rezepten -->
+     <div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>Zucchini-Nudeln mit Avocado-Pesto</h3>
-                <p>300 g	Hähnchenbrust oder Hähnchenstreifen
-                    4 m.-große	Zucchini
-                    einige	Oliven
-                    einige	Tomate(n), getrocknete in Öl
-                    1 große	Avocado(s)
-                    3	Knoblauchzehe(n)
-                    40 g	Cashewkerne
-                    2 Bund	Basilikum
-                    40 g	Hartkäse, gerieben, z. B. Parmesan oder Bergkäse
-                    Olivenöl
-                    Salz und Pfeffer</p>
-                        <div class="modal-body">
-                            <img src="images/pesto.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title"> Kichererbsen-Spinat-Curry</h3>
                         </div>
-            </div>
-       
+                        <div class="card-body">
+                            <p>1 Pck.	Blattspinat, TK, ca. 400 - 450 g<br>
+                                2	Zwiebel(n)<br>
+                                2	Knoblauchzehe(n)<br>
+                                2	Tomate(n), frisch, oder 1/2 Dose stückige Tomaten (von einer 400 g Dose)<br>
+                                1 kl. Dose/n	Kichererbsen, gut abgetropft, 400 g Dose<br>
+                                1 kl. Stück(e)	Ingwerwurzel, etwa so groß wie eine halbe Knoblauchzehe<br>
+                                1 Dose	Kokosmilch, cremig, 400 g<br>
+                                2 EL	Kokosöl<br>
+                                ½ TL	Salz<br>
+                                ½ TL	Paprikapulver<br>
+                                ½ TL	Kurkumapulver<br>
+                                ½ TL	Korianderblätter, gerebelt<br>
+                                Chiliflocken<br>
+                            </p>
+                            <div class="modal-body">
+                                <img src="images/veganerbsen.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>
-                    Kichererbsen-Spinat-Curry</h3>
-                <p>1 Pck.	Blattspinat, TK, ca. 400 - 450 g
-                    2	Zwiebel(n)
-                    2	Knoblauchzehe(n)
-                    2	Tomate(n), frisch, oder 1/2 Dose stückige Tomaten (von einer 400 g Dose)
-                    1 kl. Dose/n	Kichererbsen, gut abgetropft, 400 g Dose
-                    1 kl. Stück(e)	Ingwerwurzel, etwa so groß wie eine halbe Knoblauchzehe
-                    1 Dose	Kokosmilch, cremig, 400 g
-                    2 EL	Kokosöl
-                    ½ TL	Salz
-                    ½ TL	Paprikapulver
-                    ½ TL	Kurkumapulver
-                    ½ TL	Korianderblätter, gerebelt
-                    Chiliflocken</p>
-                        <div class="modal-body">
-                            <img src="images/veganerbsen.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Veganer Gemüseburger</h3>
-                <p>200 g	Grünkernschrot
-                    40 g	Sonnenblumenkerne
-                    100 g	Haferflocken
-                    3 Zehe/n	Knoblauch
-                    4 TL	Gemüsebrühepulver
-                    2	Zwiebel(n)
-                    1 TL	Salz
-                    2 TL	Currypulver
-                    2 EL	Tomatenmark
-                    1 Bund	Schnittlauch
-                    Außerdem:
+</div>
+
+          <!-- Automatisches Pop-up mit Rezepten -->
+          <div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="card recipe-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Veganer Gemüseburger</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>200 g	Grünkernschrot<br>
+                                    40 g	Sonnenblumenkerne<br>
+                                    100 g	Haferflocken<br>
+                                    3 Zehe/n	Knoblauch<br>
+                                    4 TL	Gemüsebrühepulver<br>
+                                    2	Zwiebel(n)<br>
+                                    1 TL	Salz<br>
+                                    2 TL	Currypulver<br>
+                                    2 EL	Tomatenmark<br>
+                                    1 Bund	Schnittlauch<br>
+                                    Außerdem:<br>
+                                    
+                                    4	Burgerbrötchen<br>
+                                    4	Tomate(n)<br>
+                                    3	Essiggurke(n)<br>
+                                    2 TL	Sweet Chili Sauce<br>
+                                    1 TL	Ketchup<br>
+                                    1 TL	Senf<br>
+                                </p>
+                                <div class="modal-body">
+                                    <img src="images/burger.webp" alt="Werbung" style="max-width: 100%;">
+                                    <br>
+                                    <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                    </div>
+                                </div>
+                            </div>
                     
-                    4	Burgerbrötchen
-                    4	Tomate(n)
-                    3	Essiggurke(n)
-                    2 TL	Sweet Chili Sauce
-                    1 TL	Ketchup
-                    1 TL	Senf</p>
-                        <div class="modal-body">
-                            <img src="images/burger.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+ 
+        <!-- Automatisches Pop-up mit Rezepten -->
+        <div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="card recipe-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Gebratener Tofu mit Erdnusssauce</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    250 g	Tofu, fest, in dicke Würfel geschnitten<br>
+                    6 EL	Pflanzenöl<br>
+                    3	Knoblauchzehe(n), zerdrückt<br>
+                    175 g	Sojasprossen<br>
+                    50 g	Pak Choi, grob gehackt (ersatzweise Spinat)<br>
+                    75 g	Erdnüsse, geröstet, gehackt<br>
+                    2 EL	Sojasauce, hell<br>
+                    150 ml	Kokosmilch, ungesüßt<br>
+                    2	Chilischote(n), getrocknet oder frisch, gehackt<br>
+                    evtl.	Koriandergrün, zum Garnieren<br>
+                    Salz und Pfeffer<br>
+                                </p>
+                                <div class="modal-body">
+                                    <img src="images/tofucurry.webp" alt="Werbung" style="max-width: 100%;">
+                                    <br>
+                                    <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- Automatisches Pop-up mit Rezepten -->
+      <div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>Gebratener Tofu mit Erdnusssauce</h3>
-                <p>250 g	Tofu, fest, in dicke Würfel geschnitten
-                    6 EL	Pflanzenöl
-                    3	Knoblauchzehe(n), zerdrückt
-                    175 g	Sojasprossen
-                    50 g	Pak Choi, grob gehackt (ersatzweise Spinat)
-                    75 g	Erdnüsse, geröstet, gehackt
-                    2 EL	Sojasauce, hell
-                    150 ml	Kokosmilch, ungesüßt
-                    2	Chilischote(n), getrocknet oder frisch, gehackt
-                    evtl.	Koriandergrün, zum Garnieren
-                    Salz und Pfeffer</p>
-                        <div class="modal-body">
-                            <img src="images/tofucurry.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Vegane Schokoladenmousse</h3>
                         </div>
-            </div>
-       
+                        <div class="card-body">
+                            <p>
+                                4 EL	Kokosmilch<br>
+                                4 EL	Kakao<br>
+                                1 EL	Erdnussbutter<br>
+                                1 Msp.	Stevia<br>
+                                1 Prise(n)	Zimt<br>
+                            </p>
+                            <div class="modal-body">
+                                <img src="images/mousse.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+</div>
+
+
+        <!-- Automatisches Pop-up mit Rezepten -->
+        <div class="modal fade" id="Rezept11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="card recipe-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Bruschetta di modena</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>2	Ciabatta<br>
+                                    8	Tomate(n), (Strauchtomaten)<br>
+                                    1	Zwiebel(n)<br>
+                                    4	Knoblauchzehe(n)<br>
+                                    1 Bund	Basilikum<br>
+                                    1 EL	Aceto balsamico, weiß<br>
+                                    1 Spritzer	Limettensaft<br>
+                                    Salz<br>
+                                    Pfeffer, schwarzer, frisch gemahlen<br>
+                                    1 Prise(n)	Zucker<br>
+                                    n. B.	Olivenöl<br>
+                                    </p>
+                                <div class="modal-body">
+                                    <img src="images/bruschetta-di-modena.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                                    <br>
+                                    <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                    </div>
+                            </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    
+         <!-- Automatisches Pop-up mit Rezepten -->
+         <div class="modal fade" id="Rezept12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="card recipe-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Hummus</h3>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    Dose	Kichererbsen, ca. 400 - 500 gr. <br>
+                    2 EL	Tahin<br>
+                    3	Zitrone(n), Saft davon<br>
+                    4	Knoblauchzehe(n), durchgepresste<br>
+                    n. B.	Öl, neutrales, nichts Bitteres<br>
+                    2 EL	Kreuzkümmelpulver, evtl. mehr<br>
+                    1	Chilischote(n), getrocknete, scharfe, fein gehackte<br>
+                    1 EL	Currypulver<br>
+                    n. B.	Salz und Pfeffer, weißer<br>
+                    evtl.	Paprikapulver, rosenscharfes<br>
+                    1 Bund	Petersilie zur Dekoration<br>
+                                </p>
+                                <div class="modal-body">
+                                    <img src="images/hummus-bi-tahina.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                                    <br>
+                                    <br>
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                    </div>
+                                </div>
+                            </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <!-- Automatisches Pop-up mit Rezepten -->
+     <div class="modal fade" id="Rezept13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>Vegane Schokoladenmousse</h3>
-                <p>4 EL	Kokosmilch
-                    4 EL	Kakao
-                    1 EL	Erdnussbutter
-                    1 Msp.	Stevia
-                    1 Prise(n)	Zimt
-                   
-                    </p>
-                        <div class="modal-body">
-                            <img src="images/mousse.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Tomatensuppe</h3>
                         </div>
-            </div>
-       
+                        <div class="card-body">
+                            <p>
+                                1 kg	Tomate(n)<br>
+                    2	Zwiebel(n)<br>
+                    3	Knoblauchzehe(n)<br>
+                    Olivenöl zum Braten<br>
+                    ¾ Liter	Gemüsebrühe<br>
+                    Salz und Pfeffer, weißer<br>
+                    Kräutersalz<br>
+                    Thymian, getrocknet<br>
+                    3 TL	Tomatenmark<br>
+                    Petersilie<br>
+                            </p>
+                            <div class="modal-body">
+                                <img src="images/frische-tomatensuppe.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+</div>
+
+      <!-- Automatisches Pop-up mit Rezepten -->
+      <div class="modal fade" id="Rezept14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>Bruschetta di modena</h3>
-                <p>2	Ciabatta
-                    8	Tomate(n), (Strauchtomaten)
-                    1	Zwiebel(n)
-                    4	Knoblauchzehe(n)
-                    1 Bund	Basilikum
-                    1 EL	Aceto balsamico, weiß
-                    1 Spritzer	Limettensaft
-                    Salz
-                    Pfeffer, schwarzer, frisch gemahlen
-                    1 Prise(n)	Zucker
-                    n. B.	Olivenöl
-                    </p>
-                        <div class="modal-body">
-                            <img src="images/bruschetta-di-modena.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Grießpudding</h3>
                         </div>
-            </div>
-       
+                        <div class="card-body">
+                            <p>
+                                50 g	Grieß<br>
+                                300 ml	Kokosmilch<br>
+                                2 EL	Zucker<br>
+                                2 EL	Himbeeren<br>
+                                2 EL	Kokosflocken<br>
+                            </p>
+                            <div class="modal-body">
+                                <img src="images/griesspudding-vegan.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+</div>
+ 
+      <!-- Automatisches Pop-up mit Rezepten -->
+      <div class="modal fade" id="Rezept15" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-            <div class="recipe">
-                <h3>Hummus</h3>
-                <p> Dose	Kichererbsen, ca. 400 - 500 g
-                    2 EL	Tahin
-                    3	Zitrone(n), Saft davon
-                    4	Knoblauchzehe(n), durchgepresste
-                    n. B.	Öl, neutrales, nichts Bitteres
-                    2 EL	Kreuzkümmelpulver, evtl. mehr
-                    1	Chilischote(n), getrocknete, scharfe, fein gehackte
-                    1 EL	Currypulver
-                    n. B.	Salz und Pfeffer, weißer
-                    evtl.	Paprikapulver, rosenscharfes
-                    1 Bund	Petersilie zur Dekoration
-                    </p>
-                        <div class="modal-body">
-                            <img src="images/hummus-bi-tahina.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h3 class="card-title">Schokokuchen</h3>
                         </div>
-            </div>
-       
+                        <div class="card-body">
+                            <p>
+                                200 g	Mehl<br>
+                                35 g	Backkakao<br>
+                                180 g	Zucker oder Erythrit (hier verwendet als kalorienreduzierte Variante)<br>
+                                1 TL	Vanilleextrakt<br>
+                                ½ Pck.	Backpulver<br>
+                                240 ml	Wasser<br>
+                                100 ml	Sonnenblumenöl<br>
+                            </p>
+                            <div class="modal-body">
+                                <img src="images/veganer-schokokuchen.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                                <br>
+                                <br>
+                                <div class="d-flex justify-content-between">
+                                    <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+                                    <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                </div>
+                            </div>
+                        </div>
+                
+                </div>
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Tomatensuppe</h3>
-                <p>1 kg	Tomate(n)
-                    2	Zwiebel(n)
-                    3	Knoblauchzehe(n)
-                    Olivenöl zum Braten
-                    ¾ Liter	Gemüsebrühe
-                    Salz und Pfeffer, weißer
-                    Kräutersalz
-                    Thymian, getrocknet
-                    3 TL	Tomatenmark
-                    Petersilie
-                    </p>
-                        <div class="modal-body">
-                            <img src="images/frische-tomatensuppe.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Grießpudding</h3>
-                <p>50 g	Grieß
-                    300 ml	Kokosmilch
-                    2 EL	Zucker
-                    2 EL	Himbeeren
-                    2 EL	Kokosflocken
-                    </p>
-                        <div class="modal-body">
-                            <img src="images/griesspudding-vegan.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept15" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Schokokuchen</h3>
-                <p>200 g	Mehl
-                    35 g	Backkakao
-                    180 g	Zucker oder Erythrit (hier verwendet als kalorienreduzierte Variante)
-                    1 TL	Vanilleextrakt
-                    ½ Pck.	Backpulver
-                    240 ml	Wasser
-                    100 ml	Sonnenblumenöl
-                    </p>
-                        <div class="modal-body">
-                            <img src="images/veganer-schokokuchen.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
+</div>
 
 
 
@@ -1169,64 +1521,97 @@ animation: glow 1.5s infinite;
         }
 </script>
 <script>  // Globale Variable für die hinzugefügten Rezepte
-    var hinzugefuegteRezepte = [];
 
-    // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
-    function loadRecipesFromLocalStorage() {
-        var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
-        if (storedRecipes) {
-            hinzugefuegteRezepte = JSON.parse(storedRecipes);
-            //updateRecipeList(); // Rezeptliste aktualisieren
+        // Globale Variable für die hinzugefügten Rezepte
+        var hinzugefuegteRezepte = [];
 
+        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+        function loadRecipesFromLocalStorage() {
+            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+            if (storedRecipes) {
+                hinzugefuegteRezepte = JSON.parse(storedRecipes);
+                // updateRecipeList(); // Rezeptliste aktualisieren
+            }
         }
+
+        // Funktion zum Hinzufügen eines Rezepts
+        function rezeptHinzufuegen(button) {
+            var modalContent = button.closest('.modal-content');
+           var recipeDiv = button.parentElement;  
+           // var recipeName = button.parentElement.querySelector('h4').textContent;
+           // var recipeDescription = button.parentElement.querySelector('p').textContent;
+            //var recipeImage= button.parentElement.querySelector('img').src;
+            var recipeModalName = modalContent.querySelector('h3').textContent;
+           var recipeModalDescription = modalContent.querySelector('p').innerHTML;
+           var recipeModalImage = modalContent.querySelector('img').src;
+         if (!modalContent) {
+        console.error('Modal content not found.');
+        return;
     }
+    // Zutaten aus dem nächsten <p>-Tag extrahieren
+        var paragraphs = recipeDiv.querySelectorAll('p');
+paragraphs.forEach((p, index) => console.log(`P-Tag ${index}: ${p.textContent}`));
+
+console.log("Rezeptname:", recipeModalName);
+    console.log("Beschreibung:", recipeModalDescription);
+    console.log("Bild-URL:", recipeModalImage);
 
 
-    // Funktion zum Hinzufügen eines Rezepts
-    function rezeptHinzufuegen(button) {
-        var recipeName = button.parentElement.querySelector('h3').textContent;
-        var recipeDescription = button.parentElement.querySelector('p').textContent;
-        var recipeImage= button.parentElement.querySelector('img').src;
+    
+    var recipeNameElement = modalContent.querySelector('h3');
+    var recipeDescriptionElement = modalContent.querySelector('p');
+    var recipeImageElement = modalContent.querySelector('img');
 
-        // Rezeptobjekt erstellen
-        var recipe = {
-            name: recipeName,
-            description: recipeDescription,
-            image: recipeImage
-        };
+            var recipe = {
+                name: recipeModalName,
+                description: recipeModalDescription,
+                image: recipeModalImage,
+               // modalName: recipelName,
+       // modaldescription: recipeDescription,
+       // modalimage: recipeImage
+            };
+      // Rezept zur Liste hinzufügen
+      hinzugefuegteRezepte.push(recipe);
+            localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
-        // Rezept zur Liste hinzufügen
-        hinzugefuegteRezepte.push(recipe);
-        localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
-
-        // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
-        alert("Rezept hinzugefügt");
- 
-        //updateRecipeList();
-        updateCartButton();
-    }
-
-    // Funktion zum Aktualisieren des Warenkorb-Buttons
-    function updateCartButton() {
-        var cartButton = document.getElementById('cartButton');
-        if (cartButton) {
-            cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+            // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
+            alert("Rezept hinzugefügt");
+     
+            //updateRecipeList();
+            updateCartButton();
         }
-    }
+        // Funktion zum Aktualisieren des Warenkorb-Buttons
+        function updateCartButton() {
+            var cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+            }
+        }
 
-    // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
-    document.addEventListener('DOMContentLoaded', function() {
-        loadRecipesFromLocalStorage();
-        //updateRecipeList();
-        updateCartButton();
-    });
 
-    // Funktion zum Navigieren zur Startseite
-    function goToIndex() {
-        window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
-    }
-    function showRecipe(){
-        $('#Rezept1').modal('show');
+        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+        document.addEventListener('DOMContentLoaded', function() {
+            loadRecipesFromLocalStorage();
+            // updateRecipeList();
+            updateCartButton();
+        });
+
+        // Funktion zum Einklappen und Erweitern der Rezepttexte
+        document.querySelectorAll('.read-more').forEach(function(element) {
+            element.addEventListener('click', function() {
+                var recipeTextContainer = element.previousElementSibling;
+                recipeTextContainer.classList.toggle('expanded');
+                element.textContent = recipeTextContainer.classList.contains('expanded') ? 'Weniger lesen' : 'Mehr lesen';
+            });
+        });
+
+        // Funktion zum Navigieren zur Startseite
+        function goToIndex() {
+            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+        }
+
+    function showRecipe0(){
+        $('#Rezept4').modal('show');
     }
     function showRecipe1(){
         $('#Rezept2').modal('show');
@@ -1272,6 +1657,15 @@ animation: glow 1.5s infinite;
     }
     function showRecipe15(){
         $('#Rezept15').modal('show');
+    }
+    function showRecipe16(){
+        $('#Rezept1').modal('show');
+    }
+    function showAd0(imageUrl) {
+        // Bild setzen
+        $('#autoAdModal0').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal0').modal('show');
     }
     function showAd1(imageUrl) {
         // Bild setzen
@@ -1339,7 +1733,7 @@ animation: glow 1.5s infinite;
         // Modal anzeigen
         $('#autoAdModal11').modal('show');
     }
-    function showAd12(imageUrl) {
+   function showAd12(imageUrl) {
         // Bild setzen
         $('#autoAdModal12').find('.modal-body img').attr('src', imageUrl);
         // Modal anzeigen
@@ -1361,6 +1755,17 @@ animation: glow 1.5s infinite;
         // Modal anzeigen
         $('#autoAdModal15').modal('show');
     }
+    function showAd16(imageUrl){
+        $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal15').modal('show');
+    }
+    function showAd17(imageUrl){
+        $('#autoAdModal16').find('.modal-body img').attr('src', imageUrl);
+        // Modal anzeigen
+        $('#autoAdModal16').modal('show');
+    }
+    
     
     
     
