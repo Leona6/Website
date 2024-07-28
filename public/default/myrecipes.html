@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,22 +15,30 @@
             margin-bottom: 15px;
             display: flex;
             flex-direction: column;
-            height: 800px; /* Feste Höhe für die Karten */
-            max-height: 800px; /* Maximale Höhe für die Karten */
+            height: 800px;
+            /* Feste Höhe für die Karten */
+            max-height: 800px;
+            /* Maximale Höhe für die Karten */
             /* Optional: Hinzufügen eines Scroll-Verhaltens */
             position: relative;
         }
+
         .recipe-card img {
             width: 100%;
-            height: 200px; /* Höhe der Bilder festlegen */
-            object-fit: cover; /* Bild zuschneiden, um das Container-Verhältnis zu füllen */
+            height: 200px;
+            /* Höhe der Bilder festlegen */
+            object-fit: cover;
+            /* Bild zuschneiden, um das Container-Verhältnis zu füllen */
         }
+
         .card-body {
             flex: 1;
-            overflow-y: auto; /* Scrollbar hinzufügen, wenn der Inhalt länger ist */
+            overflow-y: auto;
+            /* Scrollbar hinzufügen, wenn der Inhalt länger ist */
             display: flex;
             flex-direction: column;
         }
+
         .delete-button {
             background-color: #ff6347;
             color: white;
@@ -38,14 +47,17 @@
             cursor: pointer;
             float: right;
         }
+
         .delete-button:hover {
             background-color: #cc4c37;
         }
+
         .modal-body img {
             height: auto;
         }
     </style>
 </head>
+
 <body>
     <div class="container mt-4">
         <!-- Bereich für die hinzugefügten Rezepte -->
@@ -87,7 +99,7 @@
             recipeContainer.innerHTML = ''; // Liste leeren
             modalsContainer.innerHTML = ''; // Modals leeren
 
-            hinzugefuegteRezepte.forEach(function(recipe, index) {
+            hinzugefuegteRezepte.forEach(function (recipe, index) {
                 var recipeCard = document.createElement('div');
                 recipeCard.className = 'col-md-4'; // Bootstrap Grid-Klasse für drei Spalten
 
@@ -132,7 +144,7 @@
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Löschen';
                 deleteButton.className = 'btn btn-danger delete-button';
-                deleteButton.onclick = function() {
+                deleteButton.onclick = function () {
                     hinzugefuegteRezepte.splice(index, 1);
                     localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
                     updateRecipeList(); // Liste aktualisieren nach Entfernung
@@ -158,7 +170,7 @@
         }
 
         // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             loadRecipesFromLocalStorage();
             updateCartButton();
         });
@@ -211,7 +223,7 @@
             $('#' + modalId).modal('show');
 
             // Modal entfernen, wenn es geschlossen wird
-            $('#' + modalId).on('hidden.bs.modal', function() {
+            $('#' + modalId).on('hidden.bs.modal', function () {
                 $(this).remove();
             });
         }
@@ -222,4 +234,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

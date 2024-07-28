@@ -9,7 +9,8 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-    body {
+   /* Basis-Stile */
+   body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
         background-color: #f8f9fa;
@@ -559,7 +560,7 @@
                     <img src="images/gemuesecurry.jpeg" alt="Kartoffelsalat Bild"
                         style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
                     <div class="card-body">
-                        <h3 class="card-title">Gemüse-Curry-Pfanne</h3>
+                        <h3 class="card-title">Gemüse-Pfanne</h3>
 
                         <p class="card-text">Ein würziges Curry aus verschiedenen Gemüsesorten wie Kartoffeln, Karotten,
                             Erbsen und Blumenkohl, gekocht in einer cremigen Kokosmilchsoße.
@@ -596,7 +597,7 @@
                     <img src="images/spaghetti-eis-dessert.jpg.webp" alt="Kartoffelsalat Bild"
                         style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
                     <div class="card-body">
-                        <h3 class="card-title">Spaghetti-Eis Dessert</h3>
+                        <h3 class="card-title">Spaghetti-Eis</h3>
 
                         <p class="card-text">Eisdessert-Kreation, die optisch an einen Teller Spaghetti mit Tomatensauce
                             und Parmesan erinnert.
@@ -651,7 +652,7 @@
                     <img src="images/amerikanische-pancakes.jpg.webp" alt="Kartoffelsalat Bild"
                         style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
                     <div class="card-body">
-                        <h3 class="card-title">Amerikanische Pancakes</h3>
+                        <h3 class="card-title">Pancakes</h3>
 
                         <p class="card-text">fluffige, dicke Pfannkuchen mit Ahornsirup und Beeren.
                             <br><br>
@@ -1000,74 +1001,98 @@
     </div>
 
     <!-- Rezepte-->
-    <!-- Automatisches Pop-up mit Rezepten -->
-    <div class="modal fade" id="Rezept1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Kartoffelsalat</h3>
-                    <p>2 kg Kartoffeln, festkochende
-                        1 m.-große Zwiebel(n), feinst gewürfelt
-                        250 ml Gemüsebrühe oder Geflügelbrühe
-                        3 EL Weißweinessig, milder, z.B. Marc de Champagne
-                        2 EL Dijonsenf, mit grünem Pfeffer
-                        200 g Mayonnaise, selbstgemacht oder wirklich gutes Fertigprodukt
-                        6 kleine Gewürzgurke(n), fein geschnitten
-                        etwas Gurkenflüssigkeit</p>
-                    <div class="modal-body">
-                        <img src="images/kartoffelsalat.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+      <!-- Automatisches Pop-up mit Rezepten -->
+      <div class="modal fade" id="Rezept1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-body">
+                  <div class="card recipe-card">
+                      <div class="card-header">
+                          <h3 class="card-title">Kartoffelsalat</h3>
+                      </div>
+                      <div class="card-body">
+                        <p>2 kg Kartoffeln, festkochende<br>
+                            1 m.-große Zwiebel(n), feinst gewürfelt<br>
+                            250 ml Gemüsebrühe oder Geflügelbrühe<br>
+                            3 EL Weißweinessig, milder, z.B. Marc de Champagne<br>
+                            2 EL Dijonsenf, mit grünem Pfeffer<br>
+                            200 g Mayonnaise, selbstgemacht oder wirklich gutes Fertigprodukt<br>
+                            6 kleine Gewürzgurke(n), fein geschnitten<br>
+                            etwas Gurkenflüssigkeit<br></p>
+                          <div class="modal-body">
+                              <img src="images/kartoffelsalat.jpeg" alt="Werbung" style="max-width: 100%;">
+                              <br>
+                              <br>
+                              <div class="d-flex justify-content-between">
+                                  <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                      hinzufügen</button>
+                                  <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 
-    <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Quinoa-Salat mit geröstetem Gemüse</h3>
-                    <p>1 Aubergine(n), mundgerecht gewürfelt
-                        1 große Zwiebel(n), fein gewürfelt
-                        2 TL Gewürzmischung (Zahtar)
-                        1 Lorbeerblatt
-                        150 g Quinoa, gekocht
-                        150 g Naturreis, gekocht
-                        Olivenöl, kalt gepresst
-                        Meersalz
-                        Pfeffer, frisch gemahlen
-                        Für das Dressing:
-
-                        1 EL Joghurt, n.B. laktosefrei, oder griechischer
-                        1 Zitrone(n), Saft davon
-                        1 Zehe/n Knoblauch, klein
-                        ½ EL Sesampaste
-                        3 EL Olivenöl, kalt gepresst
-                        Meersalz
-                        Pfeffer, frisch gemahlen</p>
-                    <div class="modal-body">
-                        <img src="images/quinoasalat.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+          <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                  <div class="modal-body">
+                      <div class="card recipe-card">
+                          <div class="card-header">
+                              <h3 class="card-title">Quinoa-Salat mit geröstetem Gemüse</h3>
+                          </div>
+                          <div class="card-body">
+                            <p>1 Aubergine(n), mundgerecht gewürfelt
+                                1 große Zwiebel(n), fein gewürfelt
+                                2 TL Gewürzmischung (Zahtar)
+                                1 Lorbeerblatt
+                                150 g Quinoa, gekocht
+                                150 g Naturreis, gekocht
+                                Olivenöl, kalt gepresst
+                                Meersalz
+                                Pfeffer, frisch gemahlen
+                                Für das Dressing:
+        
+                                1 EL Joghurt, n.B. laktosefrei, oder griechischer
+                                1 Zitrone(n), Saft davon
+                                1 Zehe/n Knoblauch, klein
+                                ½ EL Sesampaste
+                                3 EL Olivenöl, kalt gepresst
+                                Meersalz
+                                Pfeffer, frisch gemahlen</p>
+                              <div class="modal-body">
+                                  <img src="images/quinoasalat.jpeg" alt="Werbung" style="max-width: 100%;">
+                                  <br>
+                                  <br>
+                                  <div class="d-flex justify-content-between">
+                                      <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                          hinzufügen</button>
+                                      <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+    
     <div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Spinat-Feta Quiche</h3>
-                    <p>275 g Blätterteig, TK
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Spinat-Feta Quiche</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>275 g Blätterteig, TK
                         450 g Spinat, TK
                         1 kleine Zwiebel(n), gehackt
                         40 g Pinienkerne
@@ -1077,25 +1102,35 @@
                         2 Knoblauchzehe(n)
                         1 Prise(n) Salz und Pfeffer
                         wenig Muskat, frisch gerieben
-                        200 g </p>
-                    <div class="modal-body">
-                        <img src="images/spinatquiche.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        200 g</p>
+                        <div class="modal-body">
+                            <img src="images/spinatquiche.jpeg" alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+   
     <div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Linsensuppe</h3>
-                    <p>1 Dose Pizzatomaten, ca. 400 g
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Linsensuppe</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>1 Dose Pizzatomaten, ca. 400 g
                         1 Dose Kokosmilch, ca. 400 g
                         1 Zwiebel(n)
                         175 g Linsen, rote
@@ -1104,24 +1139,33 @@
                         600 ml Gemüsebrühe
                         Sonnenblumenöl zum Braten
                         Salz</p>
-                    <div class="modal-body">
-                        <img src="images/linsensuppe.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/linsensuppe.jpeg" alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Gemüse-Risotto</h3>
-                    <p>125 g Risotto
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Gemüse-Risotto</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>125 g Risotto
                         1 Zwiebel(n), fein geschnitten
                         1 Zehe/n Knoblauch, fein geschnitten
                         ½ TL Kurkuma
@@ -1141,24 +1185,33 @@
                         8 Garnele(n), geputzt
                         etwas Butter
                         1 Zehe/n Knoblauch, in Scheibchen geschnitten</p>
-                    <div class="modal-body">
-                        <img src="images/gemueserisotto.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/gemueserisotto.jpeg" alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Vegetarische Pizza</h3>
-                    <p>300 g Weizenmehl Type 550
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Vegetarische Pizza</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>300 g Weizenmehl Type 550
                         1 Pck. Trockenhefe
                         1 TL Salz
                         170 ml Wasser
@@ -1173,23 +1226,33 @@
                         Salz und Pfeffer
                         Kräuter, italienische, frisch oder getrocknet
                         Harissa</p>
-                    <div class="modal-body">
-                        <img src="images/gemüsepizza.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/gemüsepizza.jpeg" alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
     <div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Vegetarische Burger</h3>
-                    <p>200 g Kräuterseitling(e)
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Vegetarische Burger</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>200 g Kräuterseitling(e)
                         1 EL Olivenöl
                         ½ TL Salz
                         Für die Patties:
@@ -1209,23 +1272,34 @@
                         Außerdem:
 
                         Burger Buns</p>
-                    <div class="modal-body">
-                        <img src="images/veggieburger.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/veggieburger.jpeg" alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+  
     <div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Vegetarische-Tacos</h3>
-                    <p>6 Tacoschale(n) (Tacoshells)
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Vegetarische-Tacos</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>6 Tacoschale(n) (Tacoshells)
                         2 Knoblauchzehe(n)
                         1 Dose Tomate(n), gehackte
                         1 Dose Bohnen, schwarze
@@ -1238,24 +1312,33 @@
                         ½ Avocado(s)
                         ½ Dose Maiskörner
                         ½ Bund Koriander</p>
-                    <div class="modal-body">
-                        <img src="images/veggietacos.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/veggietacos.jpeg" alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
     <div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Gemüse-Curry-Pfanne</h3>
-                    <p>2 Tasse/n Reis, Sorte nach Belieben
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Gemüse-Curry-Pfanne</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>2 Tasse/n Reis, Sorte nach Belieben
                         4 Tasse/n Wasser oder Gemüsebrühe
                         1 große Paprikaschote(n)
                         5 Champignons
@@ -1267,24 +1350,33 @@
                         etwas Salz und Pfeffer
                         etwas Petersilie
                         Öl</p>
-                    <div class="modal-body">
-                        <img src="images/gemuesecurry.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/gemuesecurry.jpeg" alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
     <div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Veggie-Schaschlik</h3>
-                    <p>2 kleine Zucchini
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Veggie-Schaschlik</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>2 kleine Zucchini
                         10 Champignons
                         2 Zwiebel(n), rote
                         1 Paprikaschote(n), rote
@@ -1299,24 +1391,33 @@
                         1 EL Zitronensaft
                         1 EL Zucker
                         1 EL Tomatenmark</p>
-                    <div class="modal-body">
-                        <img src="images/veggie-schaschlik.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/veggie-schaschlik.jpg.webp"  alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
     <div class="modal fade" id="Rezept11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Gefüllte Champignons</h3>
-                    <p>8 große Champignons, frische
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Gefüllte Champignons</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>8 große Champignons, frische
                         1 Becher Schmand, evtl. laktosefrei
                         1 Zwiebel(n)
                         80 g Schinken oder Speck, gewürfelt, evtl.
@@ -1324,24 +1425,33 @@
                         80 g Käse, geriebener (z. B. Emmentaler)
                         Salz und Pfeffer
                         etwas Butter oder Öl</p>
-                    <div class="modal-body">
-                        <img src="images/gefuellte-champignons.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/gefuellte-champignons.jpg.webp"  alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
     <div class="modal fade" id="Rezept12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>spaghetti-eis-dessert</h3>
-                    <p>500 g Mascarpone
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Spaghetti-eis-dessert</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>500 g Mascarpone
                         500 g Magerquark
                         100 g Puderzucker
                         2 EL Zitronensaft
@@ -1350,24 +1460,33 @@
                         1 Beutel Erdbeeren (TK, großer Beutel), evtl. frische Beeren
                         n. B. Puderzucker
                         etwas Kuvertüre, weiße, geraspelt</p>
-                    <div class="modal-body">
-                        <img src="images/spaghetti-eis-dessert.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/spaghetti-eis-dessert.jpg.webp"  alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
     <div class="modal fade" id="Rezept13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Kaiserschmarrn - Tiroler Landgasthofrezept</h3>
-                    <p>100 g Rosinen
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Kaiserschmarrn - Tiroler Landgasthofrezept</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>100 g Rosinen
                         5 EL Rum, Cognac oder Wasser
                         6 Eigelb
                         1 Pck. Bourbon-Vanillezucker
@@ -1379,25 +1498,34 @@
                         6 Eiweiß
                         4 TL Puderzucker
                         n. B. Butter zum Braten, ca. 15 - 25 g je Pfanne</p>
-                    <div class="modal-body">
-                        <img src="images/kaiserschmarrn-tiroler-landgasthofrezept.jpg.webp" alt="Werbung"
-                            style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/kaiserschmarrn-tiroler-landgasthofrezept.jpg.webp"  alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
+</div>
+
     <div class="modal fade" id="Rezept14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Amerikanische Pancakes</h3>
-                    <p>3 Ei(er)
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card recipe-card">
+                    <div class="card-header">
+                        <h3 class="card-title">Amerikanische Pancakes</h3>
+                    </div>
+                    <div class="card-body">
+                      <p>3 Ei(er)
                         100 ml Milch
                         200 ml Naturjoghurt
                         150 g Mehl
@@ -1406,18 +1534,22 @@
                         2 EL Zucker
                         Olivenöl
                         Ahornsirup</p>
-                    <div class="modal-body">
-                        <img src="images/amerikanische-pancakes.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                        <div class="modal-body">
+                            <img src="images/amerikanische-pancakes.jpg.webp"  alt="Werbung" style="max-width: 100%;">
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
+</div>
 
 
 
@@ -1451,63 +1583,93 @@
         }
     </script>
     <script>
-        // Globale Variable für die hinzugefügten Rezepte
-        var hinzugefuegteRezepte = [];
+       // Globale Variable für die hinzugefügten Rezepte
+       var hinzugefuegteRezepte = [];
 
-        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
-        function loadRecipesFromLocalStorage() {
-            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
-            if (storedRecipes) {
-                hinzugefuegteRezepte = JSON.parse(storedRecipes);
-                //updateRecipeList(); // Rezeptliste aktualisieren
+// Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+function loadRecipesFromLocalStorage() {
+    var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+    if (storedRecipes) {
+        hinzugefuegteRezepte = JSON.parse(storedRecipes);
+        // updateRecipeList(); // Rezeptliste aktualisieren
+    }
+}
 
-            }
-        }
+// Funktion zum Hinzufügen eines Rezepts
+function rezeptHinzufuegen(button) {
+    var modalContent = button.closest('.modal-content');
+    var recipeDiv = button.parentElement;
+    // var recipeName = button.parentElement.querySelector('h4').textContent;
+    // var recipeDescription = button.parentElement.querySelector('p').textContent;
+    //var recipeImage= button.parentElement.querySelector('img').src;
+    var recipeModalName = modalContent.querySelector('h3').textContent;
+    var recipeModalDescription = modalContent.querySelector('p').innerHTML;
+    var recipeModalImage = modalContent.querySelector('img').src;
+    if (!modalContent) {
+        console.error('Modal content not found.');
+        return;
+    }
+    // Zutaten aus dem nächsten <p>-Tag extrahieren
+    var paragraphs = recipeDiv.querySelectorAll('p');
+    paragraphs.forEach((p, index) => console.log(`P-Tag ${index}: ${p.textContent}`));
+
+    console.log("Rezeptname:", recipeModalName);
+    console.log("Beschreibung:", recipeModalDescription);
+    console.log("Bild-URL:", recipeModalImage);
 
 
-        // Funktion zum Hinzufügen eines Rezepts
-        function rezeptHinzufuegen(button) {
-            var recipeName = button.parentElement.querySelector('h3').textContent;
-            var recipeDescription = button.parentElement.querySelector('p').textContent;
-            var recipeImage = button.parentElement.querySelector('img').src;
 
-            // Rezeptobjekt erstellen
-            var recipe = {
-                name: recipeName,
-                description: recipeDescription,
-                image: recipeImage
-            };
+    var recipeNameElement = modalContent.querySelector('h3');
+    var recipeDescriptionElement = modalContent.querySelector('p');
+    var recipeImageElement = modalContent.querySelector('img');
 
-            // Rezept zur Liste hinzufügen
-            hinzugefuegteRezepte.push(recipe);
-            localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+    var recipe = {
+        name: recipeModalName,
+        description: recipeModalDescription,
+        image: recipeModalImage,
+        // modalName: recipelName,
+        // modaldescription: recipeDescription,
+        // modalimage: recipeImage
+    };
+    // Rezept zur Liste hinzufügen
+    hinzugefuegteRezepte.push(recipe);
+    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
-            // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
-            alert("Rezept hinzugefügt");
+    // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
+    alert("Rezept hinzugefügt");
 
-            //updateRecipeList();
-            updateCartButton();
-        }
+    //updateRecipeList();
+    updateCartButton();
+}
+// Funktion zum Aktualisieren des Warenkorb-Buttons
+function updateCartButton() {
+    var cartButton = document.getElementById('cartButton');
+    if (cartButton) {
+        cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+    }
+}
 
-        // Funktion zum Aktualisieren des Warenkorb-Buttons
-        function updateCartButton() {
-            var cartButton = document.getElementById('cartButton');
-            if (cartButton) {
-                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
-            }
-        }
 
-        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
-        document.addEventListener('DOMContentLoaded', function () {
-            loadRecipesFromLocalStorage();
-            //updateRecipeList();
-            updateCartButton();
-        });
+// Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+document.addEventListener('DOMContentLoaded', function () {
+    loadRecipesFromLocalStorage();
+    // updateRecipeList();
+    updateCartButton();
+});
 
-        // Funktion zum Navigieren zur Startseite
-        function goToIndex() {
-            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
-        }
+// Funktion zum Einklappen und Erweitern der Rezepttexte
+document.querySelectorAll('.read-more').forEach(function (element) {
+    element.addEventListener('click', function () {
+        var recipeTextContainer = element.previousElementSibling;
+        recipeTextContainer.classList.toggle('expanded');
+        element.textContent = recipeTextContainer.classList.contains('expanded') ? 'Weniger lesen' : 'Mehr lesen';
+    });
+});
+
+// Funktion zum Navigieren zur Startseite
+function goToIndex() {
+    window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+}
         // Funktion zum Anzeigen des Popups mit dem Werbebild
         function showModal(imageUrl) {
             var modalImage = document.querySelector('#autoAdModal img');
