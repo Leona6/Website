@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <style>
-  body {
+    body {
         font-family: Arial, sans-serif;
         line-height: 1.6;
         background-color: #f8f9fa;
@@ -18,7 +19,7 @@
         padding: 2rem;
         background-color: #fff;
         border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
@@ -42,7 +43,7 @@
     }
 
     .card:hover {
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .card-img-top {
@@ -65,14 +66,17 @@
     .card-text {
         font-size: 15px;
         color: #666;
-        max-height: 80px; /* Höhe des sichtbaren Textbereichs */
+        max-height: 80px;
+        /* Höhe des sichtbaren Textbereichs */
         overflow: hidden;
-        transition: max-height 0.5s ease-out; /* Sanfter Übergang für das Erweitern */
+        transition: max-height 0.5s ease-out;
+        /* Sanfter Übergang für das Erweitern */
         margin-bottom: 15px;
     }
 
     .card-text.expanded {
-        max-height: none; /* Keine Begrenzung für den erweiterten Text */
+        max-height: none;
+        /* Keine Begrenzung für den erweiterten Text */
     }
 
     .btn {
@@ -122,9 +126,17 @@
     }
 
     @keyframes glow {
-        0% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 25px #ff0, 0 0 30px #ff0, 0 0 35px #ff0; }
-        50% { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0, 0 0 40px #ff0, 0 0 50px #ff0, 0 0 60px #ff0, 0 0 70px #ff0; }
-        100% { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 25px #ff0, 0 0 30px #ff0, 0 0 35px #ff0; }
+        0% {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 25px #ff0, 0 0 30px #ff0, 0 0 35px #ff0;
+        }
+
+        50% {
+            text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff0, 0 0 40px #ff0, 0 0 50px #ff0, 0 0 60px #ff0, 0 0 70px #ff0;
+        }
+
+        100% {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff0, 0 0 20px #ff0, 0 0 25px #ff0, 0 0 30px #ff0, 0 0 35px #ff0;
+        }
     }
 
     /* Stile für den "Mehr anzeigen"-Button (falls verwendet) */
@@ -142,1126 +154,1266 @@
         color: blue;
         cursor: pointer;
     }
-/* Stile für die Modale */
-.modal-content {
-    display: flex;
-    flex-direction: column;
-    max-height: 80vh; /* Maximale Höhe des Modals */
-    overflow: hidden; /* Verhindert, dass der Inhalt über das Modal hinausgeht */
-}
 
-.modal-body {
-    flex: 1; /* Lässt den Body den verbleibenden Platz im Modal ausfüllen */
-    overflow-y: auto; /* Ermöglicht vertikales Scrollen */
-    padding: 15px;
-}
+    /* Stile für die Modale */
+    .modal-content {
+        display: flex;
+        flex-direction: column;
+        max-height: 80vh;
+        /* Maximale Höhe des Modals */
+        overflow: hidden;
+        /* Verhindert, dass der Inhalt über das Modal hinausgeht */
+    }
 
-.modal-header {
-    background: #f9f9f9;
-    border-bottom: 1px solid #eaeaea;
-    padding: 15px;
-}
+    .modal-body {
+        flex: 1;
+        /* Lässt den Body den verbleibenden Platz im Modal ausfüllen */
+        overflow-y: auto;
+        /* Ermöglicht vertikales Scrollen */
+        padding: 15px;
+    }
 
-.modal-footer {
-    background: #f9f9f9;
-    border-top: 1px solid #eaeaea;
-    padding: 15px;
-}
+    .modal-header {
+        background: #f9f9f9;
+        border-bottom: 1px solid #eaeaea;
+        padding: 15px;
+    }
 
-/* Stil für den Abstand zwischen den Buttons */
-.d-flex {
-    margin-top: 10px;
-}
+    .modal-footer {
+        background: #f9f9f9;
+        border-top: 1px solid #eaeaea;
+        padding: 15px;
+    }
 
-/* Anpassung der Buttons in den Modalen */
-.btn-primary.button, .btn-secondary.button {
-    margin-top: 10px;
-    display: block;
-    width: 100%;
-}
+    /* Stil für den Abstand zwischen den Buttons */
+    .d-flex {
+        margin-top: 10px;
+    }
+
+    /* Anpassung der Buttons in den Modalen */
+    .btn-primary.button,
+    .btn-secondary.button {
+        margin-top: 10px;
+        display: block;
+        width: 100%;
+    }
 </style>
+
 <body>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Menü</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="recipes.html">Startseite</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="vegetarisch.html">Vegetarisch</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="vegan.html">Vegan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="alles.html">Alles Esser</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte (0)</a>
-            </li>
-        </ul>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Menü</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="recipes.html">Startseite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vegetarisch.html">Vegetarisch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vegan.html">Vegan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="alles.html">Alles Esser</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte (0)</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+    <!-- Hauptinhalt -->
+    <div class="container">
+        <h2>Vegetarische Rezepte</h2>
+        <br>
+        <br>
+        <h3>Vorspeisen</h3>
+        <br>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/linsensuppe.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Linsensuppe</h3>
+                        <p class="card-text">Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer Vielzahl von
+                            Gemüsesorten wie Karotten, Sellerie und Tomaten.
+                            <br><br>
+                            1 Dose Pizzatomaten, ca. 400 g <br>
+                            1 Dose Kokosmilch, ca. 400 g <br>
+                            1 Zwiebel(n) <br>
+                            175 g Linsen, rote <br>
+                            3 TL Chilipulver <br>
+                            2 TL Kurkumapulver <br>
+                            600 ml Gemüsebrühe <br>
+                            Sonnenblumenöl zum Braten<br>
+                            Salz <br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
+                        <br>
+                        <br>
+                    </div>
+                    <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/veggie-schaschlik.jpg.webp" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Veggie-Schaschlik</h3>
+
+                        <p class="card-text">Vielfalt an frischem Gemüse und optional Tofu oder Seitan, die in einer
+                            würzigen Marinade eingelegt und anschließend auf Spießen gegrillt werden.
+                            <br><br>
+                            2 kleine Zucchini<br>
+                            10 Champignons<br>
+                            2 Zwiebel(n), rote<br>
+                            1 Paprikaschote(n), rote<br>
+                            1 Paprikaschote(n), gelbe<br>
+                            Für die Marinade:<br>
+
+                            2 EL Sojasauce<br>
+                            2 EL Sesamöl<br>
+                            ½ TL Chiliflocken<br>
+                            1 EL Ingwerwurzel, frisch gerieben<br>
+                            1 Knoblauchzehe(n)<br>
+                            1 EL Zitronensaft<br>
+                            1 EL Zucker<br>
+                            1 EL Tomatenmark<br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept
+                            anzeigen</button>
+                        <br>
+                        <br>
+                    </div>
+                    <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/gefuellte-champignons.jpg.webp" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Gefüllte Champignons</h3>
+
+                        <p class="card-text">Kombination aus saftigen Pilzen und würziger Füllung.
+                            <br><br>
+                            8 große Champignons, frische<br>
+                            1 Becher Schmand, evtl. laktosefrei<br>
+                            1 Zwiebel(n)<br>
+                            80 g Schinken oder Speck, gewürfelt, evtl.<br>
+                            ½ Bund Schnittlauch<br>
+                            80 g Käse, geriebener (z. B. Emmentaler)<br>
+                            Salz und Pfeffer<br>
+                            etwas Butter oder Öl <br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept
+                            anzeigen</button>
+                        <br>
+                        <br>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</nav>
 
 
 
-   <!-- Hauptinhalt -->
-   <div class="container">
-    <h2>Vegetarische Rezepte</h2>
-     <br>
-     <br>
-    <h3>Vorspeisen</h3>
     <br>
-    <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">
-            <img src="images/linsensuppe.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-            <div class="card-body">
-                <h3>Linsensuppe</h3>
-                <p class="card-text">Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer Vielzahl von Gemüsesorten wie Karotten, Sellerie und Tomaten. 1 Dose	Pizzatomaten, ca. 400 g
-                    1 Dose	Kokosmilch, ca. 400 g
-                    1	Zwiebel(n)
-                    175 g	Linsen, rote
-                    3 TL	Chilipulver
-                    2 TL	Kurkumapulver
-                    600 ml	Gemüsebrühe
-                    Sonnenblumenöl zum Braten
-                    Salz</p>
-                <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
-                <br>
-                <br>
-            </div>
-         
-            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card">   
-            <img src="images/veggie-schaschlik.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-            <div class="card-body">
-                <h3>Veggie-Schaschlik</h3>
-        
-                <p class="recipe-description">Vielfalt an frischem Gemüse und optional Tofu oder Seitan, die in einer würzigen Marinade eingelegt und anschließend auf Spießen gegrillt werden. 2 kleine	Zucchini
-                    10	Champignons
-                    2	Zwiebel(n), rote
-                    1	Paprikaschote(n), rote
-                    1	Paprikaschote(n), gelbe
-                    Für die Marinade:
-                    
-                    2 EL	Sojasauce
-                    2 EL	Sesamöl
-                    ½ TL	Chiliflocken
-                    1 EL	Ingwerwurzel, frisch gerieben
-                    1	Knoblauchzehe(n)
-                    1 EL	Zitronensaft
-                    1 EL	Zucker
-                    1 EL	Tomatenmark</p>
-                <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
-                <br>
-                <br>
-            </div>
-         
-            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 mb-4">
-        <div class="card"> 
-            <img src="images/gefuellte-champignons.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-            <div class="card-body">
-                <h3>Gefüllte Champignons</h3>
-           
-                <p class="recipe-description">Kombination aus saftigen Pilzen und würziger Füllung. 8 große	Champignons, frische
-                    1 Becher	Schmand, evtl. laktosefrei
-                    1	Zwiebel(n)
-                    80 g	Schinken oder Speck, gewürfelt, evtl.
-                    ½ Bund	Schnittlauch
-                    80 g	Käse, geriebener (z. B. Emmentaler)
-                    Salz und Pfeffer
-                    etwas	Butter oder Öl</p>
-                <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
-                <br>
-                <br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
-        
-        </div>
-    </div>
+    <div class="container">
 
-  
-    <br>
-    <div class="row">
         <h3>Hauptspeisen</h3>
         <br>
         <br>
         <br>
 
         <div class="row">
-            
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/kartoffelsalat.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
-                    <h3>Kartoffelsalat</h3>
-                
-                    <p class="recipe-description">Ein leckeres Rezept für einen klassischen Kartoffelsalat. 2 kg	Kartoffeln, festkochende
-                        1 m.-große	Zwiebel(n), feinst gewürfelt
-                        250 ml	Gemüsebrühe oder Geflügelbrühe
-                        3 EL	Weißweinessig, milder, z.B. Marc de Champagne
-                        2 EL	Dijonsenf, mit grünem Pfeffer
-                        200 g	Mayonnaise, selbstgemacht oder wirklich gutes Fertigprodukt
-                        6 kleine	Gewürzgurke(n), fein geschnitten
-                        etwas	Gurkenflüssigkeit</p>
-                    <button class="btn btn-primary" onclick="showAd('images/werbung.jpg')">Rezept anzeigen</button>
-                   <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/quinoasalat.jpeg" alt="Gemüsecurry Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+
+            <div class="col-lg-4 col-md-6 mb-4">
                 <div class="card">
-                    <h3>Quinoa-Salat-geröstetem-Gemüse</h3>
-                <p class="recipe-description">Quinoa mit geröstetem Gemüse wie Paprika, Zucchini und Auberginen gemischt und mit einem frischen Dressing serviert. 1	Aubergine(n), mundgerecht gewürfelt
-                    1 große	Zwiebel(n), fein gewürfelt
-                    2 TL	Gewürzmischung (Zahtar)
-                    1	Lorbeerblatt
-                    150 g	Quinoa, gekocht
-                    150 g	Naturreis, gekocht
-                    Olivenöl, kalt gepresst
-                    Meersalz
-                    Pfeffer, frisch gemahlen
-                    Für das Dressing:
-                    
-                    1 EL	Joghurt, n.B. laktosefrei, oder griechischer
-                    1	Zitrone(n), Saft davon
-                    1 Zehe/n	Knoblauch, klein
-                    ½ EL	Sesampaste
-                    3 EL	Olivenöl, kalt gepresst
-                    Meersalz
-                    Pfeffer, frisch gemahlen</p>
-                <button class="btn btn-primary" onclick="showAd1('images/werbung.jpg')">Rezept anzeigen</button>
-             <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    <img src="images/kartoffelsalat.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Kartoffelsalat</h3>
+
+                        <p class="card-text">Ein leckeres Rezept für einen klassischen Kartoffelsalat.
+                            <br><br>
+                            2 kg Kartoffeln, festkochende<br>
+                            1 m.-große Zwiebel(n), feinst gewürfelt<br>
+                            250 ml Gemüsebrühe oder Geflügelbrühe<br>
+                            3 EL Weißweinessig, milder, z.B. Marc de Champagne<br>
+                            2 EL Dijonsenf, mit grünem Pfeffer<br>
+                            200 g Mayonnaise, selbstgemacht oder wirklich gutes Fertigprodukt<br>
+                            6 kleine Gewürzgurke(n), fein geschnitten<br>
+                            etwas Gurkenflüssigkeit <br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd('images/werbung.jpg')">Rezept anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/quinoasalat.jpeg" alt="Gemüsecurry Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Quinoa-Salat</h3>
+                        <p class="card-text">Quinoa mit geröstetem Gemüse wie Paprika, Zucchini und Auberginen gemischt
+                            und mit einem frischen Dressing serviert.
+                            <br><br>
+                            1 Aubergine(n), mundgerecht gewürfelt <br>
+                            1 große Zwiebel(n), fein gewürfelt <br>
+                            2 TL Gewürzmischung (Zahtar) <br>
+                            1 Lorbeerblatt <br>
+                            150 g Quinoa, gekocht <br>
+                            150 g Naturreis, gekocht<br>
+                            Olivenöl, kalt gepresst<br>
+                            Meersalz<br>
+                            Pfeffer, frisch gemahlen<br>
+                            Für das Dressing:<br>
+
+                            1 EL Joghurt, n.B. laktosefrei, oder griechischer<br>
+                            1 Zitrone(n), Saft davon<br>
+                            1 Zehe/n Knoblauch, klein<br>
+                            ½ EL Sesampaste<br>
+                            3 EL Olivenöl, kalt gepresst<br>
+                            Meersalz<br>
+                            Pfeffer, frisch gemahlen <br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd1('images/werbung.jpg')">Rezept anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/spinatquiche.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Spinat-Feta Quiche</h3>
+
+                        <p class="card-text">Eine herzhafte Quiche mit einer Füllung aus frischem Spinat, Feta-Käse und
+                            Eiern in einer knusprigen Teighülle.
+                            <br><br>
+                            275 g Blätterteig, TK<br>
+                            450 g Spinat, TK<br>
+                            1 kleine Zwiebel(n), gehackt<br>
+                            40 g Pinienkerne<br>
+                            10 Cocktailtomaten<br>
+                            etwas Gouda, gerieben<br>
+                            3 Ei(er)<br>
+                            2 Knoblauchzehe(n)<br>
+                            1 Prise(n) Salz und Pfeffer<br>
+                            wenig Muskat, frisch gerieben<br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/gemueserisotto.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Gemüse-Risotto</h3>
+                        <p class="card-text"> Ein cremiges Risotto aus Arborio-Reis, gekocht mit Gemüsebrühe und
+                            gemischt mit einer Vielzahl von saisonalem Gemüse wie Pilzen, Spargel und Erbsen.
+                            <br><br>
+                            125 g Risotto<br>
+                            1 Zwiebel(n), fein geschnitten<br>
+                            1 Zehe/n Knoblauch, fein geschnitten<br>
+                            ½ TL Kurkuma<br>
+                            etwas Pflanzenöl<br>
+                            150 ml Weißwein<br>
+                            etwas Möhre(n), klein gewürfelt<br>
+                            1 Handvoll Bohnen, grüne<br>
+                            1 Handvoll Paprikaschote(n), gewürfelt<br>
+                            1 Handvoll Champignons, in Scheiben geschnitten<br>
+                            1 Handvoll Maiskörner<br>
+                            1 Handvoll Erbsen, TK<br>
+                            1 Handvoll Zucchini, gewürfelt<br>
+                            300 ml Fleischbrühe<br>
+                            Salz und Pfeffer, schwarz, frisch gemahlen<br>
+                            70 g Parmesan, frisch gerieben<br>
+                            etwas Butter<br>
+                            8 Garnele(n), geputzt<br>
+                            etwas Butter<br>
+                            1 Zehe/n Knoblauch, in Scheibchen geschnitten<br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/gemüsepizza.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Vegetarische Pizza</h3>
+                        <p class="card-text">Eine Pizza mit einer Auswahl an Gemüsezutaten wie Paprika, Zwiebeln,
+                            Pilzen, Oliven und Artischockenherzen, belegt mit Käse und Tomatensoße.
+                            <br><br>
+                            300 g Weizenmehl Type 550<br>
+                            1 Pck. Trockenhefe<br>
+                            1 TL Salz<br>
+                            170 ml Wasser<br>
+                            Für den Belag:<br>
+
+                            6 EL Knoblauchöl oder Olivenöl<br>
+                            1 EL Tomatenmark<br>
+                            n. B. Knoblauch, gewürfelt<br>
+                            2 Spitzpaprika oder Gemüsepaprika, rot<br>
+                            250 g Champignons<br>
+                            1 Zwiebel(n)<br>
+                            Salz und Pfeffer<br>
+                            Kräuter, italienische, frisch oder getrocknet Harissa <br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/veggieburger.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Vegetarische Burger</h3>
+
+                        <p class="card-text">Burger-Patties aus pürierten Süßkartoffeln und schwarzen Bohnen, gewürzt
+                            und gebraten, serviert auf einem Burgerbrötchen mit Salat und Sauce nach Wahl.
+                            <br><br>
+                            200 g Kräuterseitling(e)<br>
+                            1 EL Olivenöl<br>
+                            ½ TL Salz<br>
+                            Für die Patties:<br>
+
+                            ¼ Zwiebel(n)<br>
+                            10 g Petersilie, glatte<br>
+                            1 Dose/n Kidneybohnen, 400 g, 250 g Abtropfgewicht<br>
+                            1 Knoblauchzehe(n)<br>
+                            1 TL Salz<br>
+                            1 TL Kreuzkümmelpulver<br>
+                            ½ TL Korianderpulver<br>
+                            ½ TL Pfeffer<br>
+                            1 Eigelb<br>
+                            10 g Semmelbrösel<br>
+                            1 EL Olivenöl zum Bestreichen<br>
+                            n. B. Käse, optional<br>
+                            Außerdem:<br>
+
+                            Burger Buns<br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/veggietacos.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Vegetarische-Tacos</h3>
+
+                        <p class="card-text">Weiche Tortillas gefüllt mit gewürzten Kichererbsen, frischem Gemüse,
+                            Guacamole und Salsa.
+                            <br><br>
+                            6 Tacoschale(n) (Tacoshells)<br>
+                            2 Knoblauchzehe(n)<br>
+                            1 Dose Tomate(n), gehackte<br>
+                            1 Dose Bohnen, schwarze<br>
+                            2 EL Tabasco<br>
+                            ½ TL Kreuzkümmel<br>
+                            Salz<br>
+                            Für die Garnitur:<br>
+
+                            6 Kirschtomate(n)<br>
+                            ½ Avocado(s)<br>
+                            ½ Dose Maiskörner<br>
+                            ½ Bund Koriander<br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd7('images/werbung.jpg')">Rezept anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/gemuesecurry.jpeg" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Gemüse-Curry-Pfanne</h3>
+
+                        <p class="card-text">Ein würziges Curry aus verschiedenen Gemüsesorten wie Kartoffeln, Karotten,
+                            Erbsen und Blumenkohl, gekocht in einer cremigen Kokosmilchsoße.
+                            <br><br>
+                            2 Tasse/n Reis, Sorte nach Belieben<br>
+                            4 Tasse/n Wasser oder Gemüsebrühe<br>
+                            1 große Paprikaschote(n)<br>
+                            5 Champignons<br>
+                            einige Bohnen, z. B. grüne<br>
+                            1 Zwiebel(n)<br>
+                            1 Knoblauchzehe(n)<br>
+                            2 EL Currypulver<br>
+                            1 TL Kurkuma, je nach Geschmack<br>
+                            etwas Salz und Pfeffer<br>
+                            etwas Petersilie<br>
+                            Öl<br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
+                    </div>
+                    <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/spinatquiche.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
+    </div>
+
+    <br>
+    <div class="container">
+
+        <h3>Desserts</h3>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/spaghetti-eis-dessert.jpg.webp" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Spaghetti-Eis Dessert</h3>
+
+                        <p class="card-text">Eisdessert-Kreation, die optisch an einen Teller Spaghetti mit Tomatensauce
+                            und Parmesan erinnert.
+                            <br><br>
+                            500 g Mascarpone<br>
+                            500 g Magerquark<br>
+                            100 g Puderzucker<br>
+                            2 EL Zitronensaft<br>
+                            2 Pck. Vanillezucker<br>
+                            2 Becher Sahne<br>
+                            1 Beutel Erdbeeren (TK, großer Beutel), evtl. frische Beeren<br>
+                            n. B. Puderzucker<br>
+                            etwas Kuvertüre, weiße, geraspelt <br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept
+                            anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/kaiserschmarrn-tiroler-landgasthofrezept.jpg.webp" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Kaiserschmarrn</h3>
+
+                        <p class="card-text"> zerrissenen Pfannkuchen, der typischerweise mit Puderzucker bestreut und
+                            mit Apfelmus oder Zwetschgenröster serviert wird.
+                            <br><br>
+                            100 g Rosinen<br>
+                            5 EL Rum, Cognac oder Wasser<br>
+                            6 Eigelb<br>
+                            1 Pck. Bourbon-Vanillezucker<br>
+                            1 EL, gehäuft Zucker<br>
+                            1 Prise(n) Salz<br>
+                            250 g Mehl<br>
+                            500 ml Milch<br>
+                            50 g Butter, zerlassene<br>
+                            6 Eiweiß<br>
+                            4 TL Puderzucker<br>
+                            n. B. Butter zum Braten, ca. 15 - 25 g je Pfanne <br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept
+                            anzeigen</button>
+                        <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card">
+                    <img src="images/amerikanische-pancakes.jpg.webp" alt="Kartoffelsalat Bild"
+                        style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
+                    <div class="card-body">
+                        <h3 class="card-title">Amerikanische Pancakes</h3>
+
+                        <p class="card-text">fluffige, dicke Pfannkuchen mit Ahornsirup und Beeren.
+                            <br><br>
+                            3 Ei(er)<br>
+                            100 ml Milch<br>
+                            200 ml Naturjoghurt<br>
+                            150 g Mehl<br>
+                            1 Pck. Backpulver<br>
+                            1 Prise(n) Salz<br>
+                            2 EL Zucker<br>
+                            Olivenöl<br>
+                            Ahornsirup<br>
+                        </p>
+                        <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept
+                            anzeigen</button>
+                    </div>
+                    <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <br>
+    <br>
+    <br>
+
+
+    <!-- Automatisches Pop-up mit Werbung -->
+    <div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe()">Rezept
+                        anzeigen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe1()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe2()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe3()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe4()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe5()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe6()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe7()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe8()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe9()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe10()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe11()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe12()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe13()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe14()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Rezepte-->
+    <!-- Automatisches Pop-up mit Rezepten -->
+    <div class="modal fade" id="Rezept1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>Kartoffelsalat</h3>
+                    <p>2 kg Kartoffeln, festkochende
+                        1 m.-große Zwiebel(n), feinst gewürfelt
+                        250 ml Gemüsebrühe oder Geflügelbrühe
+                        3 EL Weißweinessig, milder, z.B. Marc de Champagne
+                        2 EL Dijonsenf, mit grünem Pfeffer
+                        200 g Mayonnaise, selbstgemacht oder wirklich gutes Fertigprodukt
+                        6 kleine Gewürzgurke(n), fein geschnitten
+                        etwas Gurkenflüssigkeit</p>
+                    <div class="modal-body">
+                        <img src="images/kartoffelsalat.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>Quinoa-Salat mit geröstetem Gemüse</h3>
+                    <p>1 Aubergine(n), mundgerecht gewürfelt
+                        1 große Zwiebel(n), fein gewürfelt
+                        2 TL Gewürzmischung (Zahtar)
+                        1 Lorbeerblatt
+                        150 g Quinoa, gekocht
+                        150 g Naturreis, gekocht
+                        Olivenöl, kalt gepresst
+                        Meersalz
+                        Pfeffer, frisch gemahlen
+                        Für das Dressing:
+
+                        1 EL Joghurt, n.B. laktosefrei, oder griechischer
+                        1 Zitrone(n), Saft davon
+                        1 Zehe/n Knoblauch, klein
+                        ½ EL Sesampaste
+                        3 EL Olivenöl, kalt gepresst
+                        Meersalz
+                        Pfeffer, frisch gemahlen</p>
+                    <div class="modal-body">
+                        <img src="images/quinoasalat.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
                     <h3>Spinat-Feta Quiche</h3>
-                
-                <p class="recipe-description">Eine herzhafte Quiche mit einer Füllung aus frischem Spinat, Feta-Käse und Eiern in einer knusprigen Teighülle. 275 g	Blätterteig, TK
-                    450 g	Spinat, TK
-                    1 kleine	Zwiebel(n), gehackt
-                    40 g	Pinienkerne
-                    10	Cocktailtomaten
-                    etwas	Gouda, gerieben
-                    3	Ei(er)
-                    2	Knoblauchzehe(n)
-                    1 Prise(n)	Salz und Pfeffer
-                    wenig	Muskat, frisch gerieben
-                    200 g	</p>
-                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-               <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    <p>275 g Blätterteig, TK
+                        450 g Spinat, TK
+                        1 kleine Zwiebel(n), gehackt
+                        40 g Pinienkerne
+                        10 Cocktailtomaten
+                        etwas Gouda, gerieben
+                        3 Ei(er)
+                        2 Knoblauchzehe(n)
+                        1 Prise(n) Salz und Pfeffer
+                        wenig Muskat, frisch gerieben
+                        200 g </p>
+                    <div class="modal-body">
+                        <img src="images/spinatquiche.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/gemueserisotto.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
-                    <h3>Gemüse-Risotto</h3>
-                    <p class="recipe-description"> Ein cremiges Risotto aus Arborio-Reis, gekocht mit Gemüsebrühe und gemischt mit einer Vielzahl von saisonalem Gemüse wie Pilzen, Spargel und Erbsen. 125 g	Risotto
-                        1	Zwiebel(n), fein geschnitten
-                        1 Zehe/n	Knoblauch, fein geschnitten
-                        ½ TL	Kurkuma
-                        etwas	Pflanzenöl
-                        150 ml	Weißwein
-                        etwas	Möhre(n), klein gewürfelt
-                        1 Handvoll	Bohnen, grüne
-                        1 Handvoll	Paprikaschote(n), gewürfelt
-                        1 Handvoll	Champignons, in Scheiben geschnitten
-                        1 Handvoll	Maiskörner
-                        1 Handvoll	Erbsen, TK
-                        1 Handvoll	Zucchini, gewürfelt
-                        300 ml	Fleischbrühe
-                        Salz und Pfeffer, schwarz, frisch gemahlen
-                        70 g	Parmesan, frisch gerieben
-                        etwas	Butter
-                        8	Garnele(n), geputzt
-                        etwas	Butter
-                        1 Zehe/n	Knoblauch, in Scheibchen geschnitten</p>
-                    <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
-                   <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-              
+    </div>
+
+    <div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>Linsensuppe</h3>
+                    <p>1 Dose Pizzatomaten, ca. 400 g
+                        1 Dose Kokosmilch, ca. 400 g
+                        1 Zwiebel(n)
+                        175 g Linsen, rote
+                        3 TL Chilipulver
+                        2 TL Kurkumapulver
+                        600 ml Gemüsebrühe
+                        Sonnenblumenöl zum Braten
+                        Salz</p>
+                    <div class="modal-body">
+                        <img src="images/linsensuppe.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
                 </div>
-                 </div>
+            </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/gemüsepizza.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
+    </div>
+
+    <div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>Gemüse-Risotto</h3>
+                    <p>125 g Risotto
+                        1 Zwiebel(n), fein geschnitten
+                        1 Zehe/n Knoblauch, fein geschnitten
+                        ½ TL Kurkuma
+                        etwas Pflanzenöl
+                        150 ml Weißwein
+                        etwas Möhre(n), klein gewürfelt
+                        1 Handvoll Bohnen, grüne
+                        1 Handvoll Paprikaschote(n), gewürfelt
+                        1 Handvoll Champignons, in Scheiben geschnitten
+                        1 Handvoll Maiskörner
+                        1 Handvoll Erbsen, TK
+                        1 Handvoll Zucchini, gewürfelt
+                        300 ml Fleischbrühe
+                        Salz und Pfeffer, schwarz, frisch gemahlen
+                        70 g Parmesan, frisch gerieben
+                        etwas Butter
+                        8 Garnele(n), geputzt
+                        etwas Butter
+                        1 Zehe/n Knoblauch, in Scheibchen geschnitten</p>
+                    <div class="modal-body">
+                        <img src="images/gemueserisotto.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
                     <h3>Vegetarische Pizza</h3>
-                    <p class="recipe-description">Eine Pizza mit einer Auswahl an Gemüsezutaten wie Paprika, Zwiebeln, Pilzen, Oliven und Artischockenherzen, belegt mit Käse und Tomatensoße. 300 g	Weizenmehl Type 550
-                        1 Pck.	Trockenhefe
-                        1 TL	Salz
-                        170 ml	Wasser
+                    <p>300 g Weizenmehl Type 550
+                        1 Pck. Trockenhefe
+                        1 TL Salz
+                        170 ml Wasser
                         Für den Belag:
-                        
-                        6 EL	Knoblauchöl oder Olivenöl
-                        1 EL	Tomatenmark
-                        n. B.	Knoblauch, gewürfelt
-                        2	Spitzpaprika oder Gemüsepaprika, rot
-                        250 g	Champignons
-                        1	Zwiebel(n)
+
+                        6 EL Knoblauchöl oder Olivenöl
+                        1 EL Tomatenmark
+                        n. B. Knoblauch, gewürfelt
+                        2 Spitzpaprika oder Gemüsepaprika, rot
+                        250 g Champignons
+                        1 Zwiebel(n)
                         Salz und Pfeffer
                         Kräuter, italienische, frisch oder getrocknet
                         Harissa</p>
-                    <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
-                   <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-               
+                    <div class="modal-body">
+                        <img src="images/gemüsepizza.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
                 </div>
-            
-             </div>
+            </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/veggieburger.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
+    </div>
+    <div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
                     <h3>Vegetarische Burger</h3>
-               
-                    <p class="recipe-description">Burger-Patties aus pürierten Süßkartoffeln und schwarzen Bohnen, gewürzt und gebraten, serviert auf einem Burgerbrötchen mit Salat und Sauce nach Wahl. 200 g	Kräuterseitling(e)
-                        1 EL	Olivenöl
-                        ½ TL	Salz
+                    <p>200 g Kräuterseitling(e)
+                        1 EL Olivenöl
+                        ½ TL Salz
                         Für die Patties:
-                        
-                        ¼	Zwiebel(n)
-                        10 g	Petersilie, glatte
-                        1 Dose/n	Kidneybohnen, 400 g, 250 g Abtropfgewicht
-                        1	Knoblauchzehe(n)
-                        1 TL	Salz
-                        1 TL	Kreuzkümmelpulver
-                        ½ TL	Korianderpulver
-                        ½ TL	Pfeffer
-                        1	Eigelb
-                        10 g	Semmelbrösel
-                        1 EL	Olivenöl zum Bestreichen
-                        n. B.	Käse, optional
+
+                        ¼ Zwiebel(n)
+                        10 g Petersilie, glatte
+                        1 Dose/n Kidneybohnen, 400 g, 250 g Abtropfgewicht
+                        1 Knoblauchzehe(n)
+                        1 TL Salz
+                        1 TL Kreuzkümmelpulver
+                        ½ TL Korianderpulver
+                        ½ TL Pfeffer
+                        1 Eigelb
+                        10 g Semmelbrösel
+                        1 EL Olivenöl zum Bestreichen
+                        n. B. Käse, optional
                         Außerdem:
-                        
+
                         Burger Buns</p>
-                    <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
-                    <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-          
+                    <div class="modal-body">
+                        <img src="images/veggieburger.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
                 </div>
-                     </div>
+            </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/veggietacos.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
+    </div>
+    <div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
                     <h3>Vegetarische-Tacos</h3>
-              
-                    <p class="recipe-description">Weiche Tortillas gefüllt mit gewürzten Kichererbsen, frischem Gemüse, Guacamole und Salsa. 6	Tacoschale(n) (Tacoshells)
-                        2	Knoblauchzehe(n)
-                        1 Dose	Tomate(n), gehackte
-                        1 Dose	Bohnen, schwarze
-                        2 EL	Tabasco
-                        ½ TL	Kreuzkümmel
+                    <p>6 Tacoschale(n) (Tacoshells)
+                        2 Knoblauchzehe(n)
+                        1 Dose Tomate(n), gehackte
+                        1 Dose Bohnen, schwarze
+                        2 EL Tabasco
+                        ½ TL Kreuzkümmel
                         Salz
                         Für die Garnitur:
-                        
-                        6	Kirschtomate(n)
-                        ½	Avocado(s)
-                        ½ Dose	Maiskörner
-                        ½ Bund	Koriander</p>
-                    <button class="btn btn-primary" onclick="showAd7('images/werbung.jpg')">Rezept anzeigen</button>
-                   <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-             
+
+                        6 Kirschtomate(n)
+                        ½ Avocado(s)
+                        ½ Dose Maiskörner
+                        ½ Bund Koriander</p>
+                    <div class="modal-body">
+                        <img src="images/veggietacos.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
                 </div>
-              </div>
-        </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/gemuesecurry.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
-                    <h3>Gemüse-Curry-Pfanne</h3>
-              
-                    <p class="recipe-description">Ein würziges Curry aus verschiedenen Gemüsesorten wie Kartoffeln, Karotten, Erbsen und Blumenkohl, gekocht in einer cremigen Kokosmilchsoße. 2 Tasse/n	Reis, Sorte nach Belieben
-                        4 Tasse/n	Wasser oder Gemüsebrühe
-                        1 große	Paprikaschote(n)
-                        5	Champignons
-                        einige	Bohnen, z. B. grüne
-                        1	Zwiebel(n)
-                        1	Knoblauchzehe(n)
-                        2 EL	Currypulver
-                        1 TL	Kurkuma, je nach Geschmack
-                        etwas	Salz und Pfeffer
-                        etwas	Petersilie
-                        Öl</p>
-                    <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
-                
-                </div>
-               <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+
+            </div>
         </div>
     </div>
-    <div class="row">
-    <h3>Desserts</h3>
+    <div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>Gemüse-Curry-Pfanne</h3>
+                    <p>2 Tasse/n Reis, Sorte nach Belieben
+                        4 Tasse/n Wasser oder Gemüsebrühe
+                        1 große Paprikaschote(n)
+                        5 Champignons
+                        einige Bohnen, z. B. grüne
+                        1 Zwiebel(n)
+                        1 Knoblauchzehe(n)
+                        2 EL Currypulver
+                        1 TL Kurkuma, je nach Geschmack
+                        etwas Salz und Pfeffer
+                        etwas Petersilie
+                        Öl</p>
+                    <div class="modal-body">
+                        <img src="images/gemuesecurry.jpeg" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
 
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/spaghetti-eis-dessert.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
-                    <h3>Spaghetti-Eis Dessert</h3>
-               
-                    <p class="recipe-description">Eisdessert-Kreation, die optisch an einen Teller Spaghetti mit Tomatensauce und Parmesan erinnert. 500 g	Mascarpone
-                        500 g	Magerquark
-                        100 g	Puderzucker
-                        2 EL	Zitronensaft
-                        2 Pck.	Vanillezucker
-                        2 Becher	Sahne
-                        1 Beutel	Erdbeeren (TK, großer Beutel), evtl. frische Beeren
-                        n. B.	Puderzucker
-                        etwas	Kuvertüre, weiße, geraspelt</p>
-                    <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
-                   <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-               
-                </div>
-         </div>
+            </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/kaiserschmarrn-tiroler-landgasthofrezept.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
+    </div>
+    <div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>Veggie-Schaschlik</h3>
+                    <p>2 kleine Zucchini
+                        10 Champignons
+                        2 Zwiebel(n), rote
+                        1 Paprikaschote(n), rote
+                        1 Paprikaschote(n), gelbe
+                        Für die Marinade:
+
+                        2 EL Sojasauce
+                        2 EL Sesamöl
+                        ½ TL Chiliflocken
+                        1 EL Ingwerwurzel, frisch gerieben
+                        1 Knoblauchzehe(n)
+                        1 EL Zitronensaft
+                        1 EL Zucker
+                        1 EL Tomatenmark</p>
+                    <div class="modal-body">
+                        <img src="images/veggie-schaschlik.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Rezept11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>Gefüllte Champignons</h3>
+                    <p>8 große Champignons, frische
+                        1 Becher Schmand, evtl. laktosefrei
+                        1 Zwiebel(n)
+                        80 g Schinken oder Speck, gewürfelt, evtl.
+                        ½ Bund Schnittlauch
+                        80 g Käse, geriebener (z. B. Emmentaler)
+                        Salz und Pfeffer
+                        etwas Butter oder Öl</p>
+                    <div class="modal-body">
+                        <img src="images/gefuellte-champignons.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Rezept12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
+                    <h3>spaghetti-eis-dessert</h3>
+                    <p>500 g Mascarpone
+                        500 g Magerquark
+                        100 g Puderzucker
+                        2 EL Zitronensaft
+                        2 Pck. Vanillezucker
+                        2 Becher Sahne
+                        1 Beutel Erdbeeren (TK, großer Beutel), evtl. frische Beeren
+                        n. B. Puderzucker
+                        etwas Kuvertüre, weiße, geraspelt</p>
+                    <div class="modal-body">
+                        <img src="images/spaghetti-eis-dessert.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Rezept13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
                     <h3>Kaiserschmarrn - Tiroler Landgasthofrezept</h3>
-               
-                <p class="recipe-description"> zerrissenen Pfannkuchen, der typischerweise mit Puderzucker bestreut und mit Apfelmus oder Zwetschgenröster serviert wird. 100 g	Rosinen
-                    5 EL	Rum, Cognac oder Wasser
-                    6	Eigelb
-                    1 Pck.	Bourbon-Vanillezucker
-                    1 EL, gehäuft	Zucker
-                    1 Prise(n)	Salz
-                    250 g	Mehl
-                    500 ml	Milch
-                    50 g	Butter, zerlassene
-                    6	Eiweiß
-                    4 TL	Puderzucker
-                    n. B.	Butter zum Braten, ca. 15 - 25 g je Pfanne</p>
-                <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept anzeigen</button>
-               <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-          
+                    <p>100 g Rosinen
+                        5 EL Rum, Cognac oder Wasser
+                        6 Eigelb
+                        1 Pck. Bourbon-Vanillezucker
+                        1 EL, gehäuft Zucker
+                        1 Prise(n) Salz
+                        250 g Mehl
+                        500 ml Milch
+                        50 g Butter, zerlassene
+                        6 Eiweiß
+                        4 TL Puderzucker
+                        n. B. Butter zum Braten, ca. 15 - 25 g je Pfanne</p>
+                    <div class="modal-body">
+                        <img src="images/kaiserschmarrn-tiroler-landgasthofrezept.jpg.webp" alt="Werbung"
+                            style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
                 </div>
-                  </div>
+
+            </div>
         </div>
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card">
-                <img src="images/amerikanische-pancakes.jpg.webp" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                <div class="card-body">
+    </div>
+    <div class="modal fade" id="Rezept14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="recipe">
                     <h3>Amerikanische Pancakes</h3>
-              
-                    <p class="recipe-description">fluffige, dicke Pfannkuchen mit Ahornsirup und Beeren. 3	Ei(er)
-                        100 ml	Milch
-                        200 ml	Naturjoghurt
-                        150 g	Mehl
-                        1 Pck.	Backpulver
-                        1 Prise(n)	Salz
-                        2 EL	Zucker
+                    <p>3 Ei(er)
+                        100 ml Milch
+                        200 ml Naturjoghurt
+                        150 g Mehl
+                        1 Pck. Backpulver
+                        1 Prise(n) Salz
+                        2 EL Zucker
                         Olivenöl
                         Ahornsirup</p>
-                    <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept anzeigen</button>
-               
+                    <div class="modal-body">
+                        <img src="images/amerikanische-pancakes.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                        <br>
+                        <br>
+                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
+                    </div>
                 </div>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<br>
-<br>
-<br>
 
-
-<!-- Automatisches Pop-up mit Werbung -->
-<div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe()">Rezept anzeigen</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe1()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe2()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe3()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe4()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe5()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe6()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe7()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe8()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe9()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe10()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe11()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe12()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe13()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe14()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-<!-- Rezepte-->
-    <!-- Automatisches Pop-up mit Rezepten -->
-    <div class="modal fade" id="Rezept1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Kartoffelsalat</h3>
-                <p>2 kg	Kartoffeln, festkochende
-                    1 m.-große	Zwiebel(n), feinst gewürfelt
-                    250 ml	Gemüsebrühe oder Geflügelbrühe
-                    3 EL	Weißweinessig, milder, z.B. Marc de Champagne
-                    2 EL	Dijonsenf, mit grünem Pfeffer
-                    200 g	Mayonnaise, selbstgemacht oder wirklich gutes Fertigprodukt
-                    6 kleine	Gewürzgurke(n), fein geschnitten
-                    etwas	Gurkenflüssigkeit</p>
-                        <div class="modal-body">
-                            <img src="images/kartoffelsalat.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Quinoa-Salat mit geröstetem Gemüse</h3>
-                <p>1	Aubergine(n), mundgerecht gewürfelt
-                    1 große	Zwiebel(n), fein gewürfelt
-                    2 TL	Gewürzmischung (Zahtar)
-                    1	Lorbeerblatt
-                    150 g	Quinoa, gekocht
-                    150 g	Naturreis, gekocht
-                    Olivenöl, kalt gepresst
-                    Meersalz
-                    Pfeffer, frisch gemahlen
-                    Für das Dressing:
-                    
-                    1 EL	Joghurt, n.B. laktosefrei, oder griechischer
-                    1	Zitrone(n), Saft davon
-                    1 Zehe/n	Knoblauch, klein
-                    ½ EL	Sesampaste
-                    3 EL	Olivenöl, kalt gepresst
-                    Meersalz
-                    Pfeffer, frisch gemahlen</p>
-                        <div class="modal-body">
-                            <img src="images/quinoasalat.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Spinat-Feta Quiche</h3>
-                <p>275 g	Blätterteig, TK
-                    450 g	Spinat, TK
-                    1 kleine	Zwiebel(n), gehackt
-                    40 g	Pinienkerne
-                    10	Cocktailtomaten
-                    etwas	Gouda, gerieben
-                    3	Ei(er)
-                    2	Knoblauchzehe(n)
-                    1 Prise(n)	Salz und Pfeffer
-                    wenig	Muskat, frisch gerieben
-                    200 g	</p>
-                        <div class="modal-body">
-                            <img src="images/spinatquiche.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Linsensuppe</h3>
-                <p>1 Dose	Pizzatomaten, ca. 400 g
-                    1 Dose	Kokosmilch, ca. 400 g
-                    1	Zwiebel(n)
-                    175 g	Linsen, rote
-                    3 TL	Chilipulver
-                    2 TL	Kurkumapulver
-                    600 ml	Gemüsebrühe
-                    Sonnenblumenöl zum Braten
-                    Salz</p>
-                        <div class="modal-body">
-                            <img src="images/linsensuppe.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Gemüse-Risotto</h3>
-                <p>125 g	Risotto
-                    1	Zwiebel(n), fein geschnitten
-                    1 Zehe/n	Knoblauch, fein geschnitten
-                    ½ TL	Kurkuma
-                    etwas	Pflanzenöl
-                    150 ml	Weißwein
-                    etwas	Möhre(n), klein gewürfelt
-                    1 Handvoll	Bohnen, grüne
-                    1 Handvoll	Paprikaschote(n), gewürfelt
-                    1 Handvoll	Champignons, in Scheiben geschnitten
-                    1 Handvoll	Maiskörner
-                    1 Handvoll	Erbsen, TK
-                    1 Handvoll	Zucchini, gewürfelt
-                    300 ml	Fleischbrühe
-                    Salz und Pfeffer, schwarz, frisch gemahlen
-                    70 g	Parmesan, frisch gerieben
-                    etwas	Butter
-                    8	Garnele(n), geputzt
-                    etwas	Butter
-                    1 Zehe/n	Knoblauch, in Scheibchen geschnitten</p>
-                        <div class="modal-body">
-                            <img src="images/gemueserisotto.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Vegetarische Pizza</h3>
-                <p>300 g	Weizenmehl Type 550
-                    1 Pck.	Trockenhefe
-                    1 TL	Salz
-                    170 ml	Wasser
-                    Für den Belag:
-                    
-                    6 EL	Knoblauchöl oder Olivenöl
-                    1 EL	Tomatenmark
-                    n. B.	Knoblauch, gewürfelt
-                    2	Spitzpaprika oder Gemüsepaprika, rot
-                    250 g	Champignons
-                    1	Zwiebel(n)
-                    Salz und Pfeffer
-                    Kräuter, italienische, frisch oder getrocknet
-                    Harissa</p>
-                        <div class="modal-body">
-                            <img src="images/gemüsepizza.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Vegetarische Burger</h3>
-                <p>200 g	Kräuterseitling(e)
-                    1 EL	Olivenöl
-                    ½ TL	Salz
-                    Für die Patties:
-                    
-                    ¼	Zwiebel(n)
-                    10 g	Petersilie, glatte
-                    1 Dose/n	Kidneybohnen, 400 g, 250 g Abtropfgewicht
-                    1	Knoblauchzehe(n)
-                    1 TL	Salz
-                    1 TL	Kreuzkümmelpulver
-                    ½ TL	Korianderpulver
-                    ½ TL	Pfeffer
-                    1	Eigelb
-                    10 g	Semmelbrösel
-                    1 EL	Olivenöl zum Bestreichen
-                    n. B.	Käse, optional
-                    Außerdem:
-                    
-                    Burger Buns</p>
-                        <div class="modal-body">
-                            <img src="images/veggieburger.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Vegetarische-Tacos</h3>
-                <p>6	Tacoschale(n) (Tacoshells)
-                    2	Knoblauchzehe(n)
-                    1 Dose	Tomate(n), gehackte
-                    1 Dose	Bohnen, schwarze
-                    2 EL	Tabasco
-                    ½ TL	Kreuzkümmel
-                    Salz
-                    Für die Garnitur:
-                    
-                    6	Kirschtomate(n)
-                    ½	Avocado(s)
-                    ½ Dose	Maiskörner
-                    ½ Bund	Koriander</p>
-                        <div class="modal-body">
-                            <img src="images/veggietacos.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Gemüse-Curry-Pfanne</h3>
-                <p>2 Tasse/n	Reis, Sorte nach Belieben
-                    4 Tasse/n	Wasser oder Gemüsebrühe
-                    1 große	Paprikaschote(n)
-                    5	Champignons
-                    einige	Bohnen, z. B. grüne
-                    1	Zwiebel(n)
-                    1	Knoblauchzehe(n)
-                    2 EL	Currypulver
-                    1 TL	Kurkuma, je nach Geschmack
-                    etwas	Salz und Pfeffer
-                    etwas	Petersilie
-                    Öl</p>
-                        <div class="modal-body">
-                            <img src="images/gemuesecurry.jpeg" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Veggie-Schaschlik</h3>
-                <p>2 kleine	Zucchini
-                    10	Champignons
-                    2	Zwiebel(n), rote
-                    1	Paprikaschote(n), rote
-                    1	Paprikaschote(n), gelbe
-                    Für die Marinade:
-                    
-                    2 EL	Sojasauce
-                    2 EL	Sesamöl
-                    ½ TL	Chiliflocken
-                    1 EL	Ingwerwurzel, frisch gerieben
-                    1	Knoblauchzehe(n)
-                    1 EL	Zitronensaft
-                    1 EL	Zucker
-                    1 EL	Tomatenmark</p>
-                        <div class="modal-body">
-                            <img src="images/veggie-schaschlik.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Gefüllte Champignons</h3>
-                <p>8 große	Champignons, frische
-                    1 Becher	Schmand, evtl. laktosefrei
-                    1	Zwiebel(n)
-                    80 g	Schinken oder Speck, gewürfelt, evtl.
-                    ½ Bund	Schnittlauch
-                    80 g	Käse, geriebener (z. B. Emmentaler)
-                    Salz und Pfeffer
-                    etwas	Butter oder Öl</p>
-                        <div class="modal-body">
-                            <img src="images/gefuellte-champignons.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>spaghetti-eis-dessert</h3>
-                <p>500 g	Mascarpone
-                    500 g	Magerquark
-                    100 g	Puderzucker
-                    2 EL	Zitronensaft
-                    2 Pck.	Vanillezucker
-                    2 Becher	Sahne
-                    1 Beutel	Erdbeeren (TK, großer Beutel), evtl. frische Beeren
-                    n. B.	Puderzucker
-                    etwas	Kuvertüre, weiße, geraspelt</p>
-                        <div class="modal-body">
-                            <img src="images/spaghetti-eis-dessert.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Kaiserschmarrn - Tiroler Landgasthofrezept</h3>
-                <p>100 g	Rosinen
-                    5 EL	Rum, Cognac oder Wasser
-                    6	Eigelb
-                    1 Pck.	Bourbon-Vanillezucker
-                    1 EL, gehäuft	Zucker
-                    1 Prise(n)	Salz
-                    250 g	Mehl
-                    500 ml	Milch
-                    50 g	Butter, zerlassene
-                    6	Eiweiß
-                    4 TL	Puderzucker
-                    n. B.	Butter zum Braten, ca. 15 - 25 g je Pfanne</p>
-                        <div class="modal-body">
-                            <img src="images/kaiserschmarrn-tiroler-landgasthofrezept.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="recipe">
-                <h3>Amerikanische Pancakes</h3>
-                <p>3	Ei(er)
-                    100 ml	Milch
-                    200 ml	Naturjoghurt
-                    150 g	Mehl
-                    1 Pck.	Backpulver
-                    1 Prise(n)	Salz
-                    2 EL	Zucker
-                    Olivenöl
-                    Ahornsirup</p>
-                        <div class="modal-body">
-                            <img src="images/amerikanische-pancakes.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                            <br>
-                            <br>
-                            <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                        </div>
-            </div>
-       
             </div>
         </div>
     </div>
@@ -1271,25 +1423,25 @@
 
 
 
-<!-- Bootstrap JS und jQuery einbinden -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="recipes.html"></script>
-<script>
-    // Funktion zum Anzeigen von Werbung
-    function showAd(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal').modal('show');
-    }
-</script>
-<script>
+    <!-- Bootstrap JS und jQuery einbinden -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="recipes.html"></script>
+    <script>
+        // Funktion zum Anzeigen von Werbung
+        function showAd(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal').modal('show');
+        }
+    </script>
+    <script>
 
         // Funktion zum Anzeigen der Werbung
-        $(document).ready(function() {
-           // $('#autoAdModal').modal('show');
+        $(document).ready(function () {
+            // $('#autoAdModal').modal('show');
         });
 
         // Funktion zum Anzeigen von Werbung mit einem bestimmten Bild
@@ -1297,205 +1449,206 @@
             $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
             $('#autoAdModal').modal('show');
         }
-</script>
-<script>
-  // Globale Variable für die hinzugefügten Rezepte
-  var hinzugefuegteRezepte = [];
+    </script>
+    <script>
+        // Globale Variable für die hinzugefügten Rezepte
+        var hinzugefuegteRezepte = [];
 
-// Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
-function loadRecipesFromLocalStorage() {
-    var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
-    if (storedRecipes) {
-        hinzugefuegteRezepte = JSON.parse(storedRecipes);
-        //updateRecipeList(); // Rezeptliste aktualisieren
+        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+        function loadRecipesFromLocalStorage() {
+            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+            if (storedRecipes) {
+                hinzugefuegteRezepte = JSON.parse(storedRecipes);
+                //updateRecipeList(); // Rezeptliste aktualisieren
 
-    }
-}
-
-
-// Funktion zum Hinzufügen eines Rezepts
-function rezeptHinzufuegen(button) {
-    var recipeName = button.parentElement.querySelector('h3').textContent;
-    var recipeDescription = button.parentElement.querySelector('p').textContent;
-    var recipeImage= button.parentElement.querySelector('img').src;
-
-    // Rezeptobjekt erstellen
-    var recipe = {
-        name: recipeName,
-        description: recipeDescription,
-        image: recipeImage
-    };
-
-    // Rezept zur Liste hinzufügen
-    hinzugefuegteRezepte.push(recipe);
-    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
-
-    // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
-    alert("Rezept hinzugefügt");
-
-    //updateRecipeList();
-    updateCartButton();
-}
-
-// Funktion zum Aktualisieren des Warenkorb-Buttons
-function updateCartButton() {
-    var cartButton = document.getElementById('cartButton');
-    if (cartButton) {
-        cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
-    }
-}
-
-// Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
-document.addEventListener('DOMContentLoaded', function() {
-    loadRecipesFromLocalStorage();
-    //updateRecipeList();
-    updateCartButton();
-});
-
-// Funktion zum Navigieren zur Startseite
-function goToIndex() {
-    window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
-}
-    // Funktion zum Anzeigen des Popups mit dem Werbebild
-    function showModal(imageUrl) {
-        var modalImage = document.querySelector('#autoAdModal img');
-        modalImage.src = imageUrl;
-        $('#autoAdModal').modal('show');
-    }
-
-    function showRecipe(){
-        $('#Rezept1').modal('show');
-    }
-    function showRecipe1(){
-        $('#Rezept2').modal('show');
-    }
-    function showRecipe2(){
-        $('#Rezept3').modal('show');
-    }
-    function showRecipe3(){
-        $('#Rezept4').modal('show');
-    }
-    function showRecipe4(){
-        $('#Rezept5').modal('show');
-    }
-    function showRecipe5(){
-        $('#Rezept6').modal('show');
-    }
-    function showRecipe6(){
-        $('#Rezept7').modal('show');
-    }
-    function showRecipe7(){
-        $('#Rezept8').modal('show');
-    }
-    function showRecipe8(){
-        $('#Rezept9').modal('show');
-    }
-    function showRecipe9(){
-        $('#Rezept9').modal('show');
-    }
-    function showRecipe10(){
-        $('#Rezept10').modal('show');
-    }
-    function showRecipe11(){
-        $('#Rezept11').modal('show');
-    }
-    function showRecipe12(){
-        $('#Rezept12').modal('show');
-    }
-    function showRecipe13(){
-        $('#Rezept13').modal('show');
-    }
-    function showRecipe14(){
-        $('#Rezept14').modal('show');
-    }
-    
-    function showAd1(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal1').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal1').modal('show');
-    }
-    function showAd2(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal2').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal2').modal('show');
-    }
-    function showAd3(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal3').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal3').modal('show');
-    }
-    function showAd4(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal4').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal4').modal('show');
-    }
-    function showAd5(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal5').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal5').modal('show');
-    }
-    function showAd6(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal6').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal6').modal('show');
-    }
-    function showAd7(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal7').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal7').modal('show');
-    }
-    function showAd8(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal8').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal8').modal('show');
-    }
-    function showAd9(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal9').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal9').modal('show');
-    }
-    function showAd10(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal10').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal10').modal('show');
-    }
-    function showAd11(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal11').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal11').modal('show');
-    }
-    function showAd12(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal12').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal12').modal('show');
-    }
-    function showAd13(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal13').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal13').modal('show');
-    }
-    function showAd14(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal14').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal14').modal('show');
-    }
+            }
+        }
 
 
-</script>
+        // Funktion zum Hinzufügen eines Rezepts
+        function rezeptHinzufuegen(button) {
+            var recipeName = button.parentElement.querySelector('h3').textContent;
+            var recipeDescription = button.parentElement.querySelector('p').textContent;
+            var recipeImage = button.parentElement.querySelector('img').src;
+
+            // Rezeptobjekt erstellen
+            var recipe = {
+                name: recipeName,
+                description: recipeDescription,
+                image: recipeImage
+            };
+
+            // Rezept zur Liste hinzufügen
+            hinzugefuegteRezepte.push(recipe);
+            localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+
+            // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
+            alert("Rezept hinzugefügt");
+
+            //updateRecipeList();
+            updateCartButton();
+        }
+
+        // Funktion zum Aktualisieren des Warenkorb-Buttons
+        function updateCartButton() {
+            var cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+            }
+        }
+
+        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+        document.addEventListener('DOMContentLoaded', function () {
+            loadRecipesFromLocalStorage();
+            //updateRecipeList();
+            updateCartButton();
+        });
+
+        // Funktion zum Navigieren zur Startseite
+        function goToIndex() {
+            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+        }
+        // Funktion zum Anzeigen des Popups mit dem Werbebild
+        function showModal(imageUrl) {
+            var modalImage = document.querySelector('#autoAdModal img');
+            modalImage.src = imageUrl;
+            $('#autoAdModal').modal('show');
+        }
+
+        function showRecipe() {
+            $('#Rezept1').modal('show');
+        }
+        function showRecipe1() {
+            $('#Rezept2').modal('show');
+        }
+        function showRecipe2() {
+            $('#Rezept3').modal('show');
+        }
+        function showRecipe3() {
+            $('#Rezept4').modal('show');
+        }
+        function showRecipe4() {
+            $('#Rezept5').modal('show');
+        }
+        function showRecipe5() {
+            $('#Rezept6').modal('show');
+        }
+        function showRecipe6() {
+            $('#Rezept7').modal('show');
+        }
+        function showRecipe7() {
+            $('#Rezept8').modal('show');
+        }
+        function showRecipe8() {
+            $('#Rezept9').modal('show');
+        }
+        function showRecipe9() {
+            $('#Rezept9').modal('show');
+        }
+        function showRecipe10() {
+            $('#Rezept10').modal('show');
+        }
+        function showRecipe11() {
+            $('#Rezept11').modal('show');
+        }
+        function showRecipe12() {
+            $('#Rezept12').modal('show');
+        }
+        function showRecipe13() {
+            $('#Rezept13').modal('show');
+        }
+        function showRecipe14() {
+            $('#Rezept14').modal('show');
+        }
+
+        function showAd1(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal1').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal1').modal('show');
+        }
+        function showAd2(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal2').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal2').modal('show');
+        }
+        function showAd3(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal3').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal3').modal('show');
+        }
+        function showAd4(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal4').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal4').modal('show');
+        }
+        function showAd5(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal5').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal5').modal('show');
+        }
+        function showAd6(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal6').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal6').modal('show');
+        }
+        function showAd7(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal7').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal7').modal('show');
+        }
+        function showAd8(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal8').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal8').modal('show');
+        }
+        function showAd9(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal9').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal9').modal('show');
+        }
+        function showAd10(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal10').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal10').modal('show');
+        }
+        function showAd11(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal11').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal11').modal('show');
+        }
+        function showAd12(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal12').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal12').modal('show');
+        }
+        function showAd13(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal13').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal13').modal('show');
+        }
+        function showAd14(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal14').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal14').modal('show');
+        }
+
+
+    </script>
 
 </body>
+
 </html>
