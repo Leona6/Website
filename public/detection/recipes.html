@@ -1,580 +1,496 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rezeptseite</title>
     <!-- Bootstrap CSS einbinden -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        /* Stile für die Rezepte */
-        .recipe {
-            margin-bottom: 40px;
-        }
+    <link href="style.css" rel="stylesheet">
 
-        .recipe h3 {
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
-        .recipe p {
-            margin-bottom: 20px;
-        }
-
-        /* Stile für die Schieberegler */
-        .slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 25px;
-            border-radius: 5px;
-            background: #d3d3d3;
-            outline: none;
-            opacity: 0.7;
-            -webkit-transition: .2s;
-            transition: opacity .2s;
-            margin: 10px 0;
-        }
-
-        .slider:hover {
-            opacity: 1;
-        }
-
-        .slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #4CAF50;
-            cursor: pointer;
-        }
-
-        .slider::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: #4CAF50;
-            cursor: pointer;
-        }
-
-        /* Stil für die großen und kleinen Buttons */
-        .large-button {
-            font-size: 20px;
-            padding: 15px 30px;
-        }
-
-        .small-button {
-            font-size: 12px;
-            padding: 5px 10px;
-        }
-
-        .confirm-button {
-            font-size: 12px;
-            color: grey;
-        }
-
-        .deny-button {
-            font-size: 20px;
-            color: white;
-            background-color: red;
-            border: none;
-            padding: 10px 20px;
-        }
-    </style>
 </head>
+
 <body>
-
-    <!-- Warnmodal für Dark Patterns -->
-<div class="modal fade" id="darkPatternModal" tabindex="-1" role="dialog" aria-labelledby="darkPatternModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="darkPatternModalLabel">Warnung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Dark Pattern entdeckt!</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Schließen</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Bootstrap Alert als Modal -->
-<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="alertModalLabel">Warnung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <strong id="alertMessage"></strong>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="alertClose">Schließen</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Automatisches Pop-up mit Werbung -->
-<div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button id="offerButton" class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <div style="margin-top: 10px;">
-                    <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
-                    <button class="btn btn-secondary small-button" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
+    <!-- Bootstrap Alert als Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel">Warnung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div id="timerDisplay" class="text-danger mt-2"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Automatisches Pop-up mit Werbung -->
-<div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button id="offerButton" class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <div style="margin-top: 10px;">
-                    <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur Seite</button>
-                 
+                <div class="modal-body">
+                    <strong id="alertMessage"></strong>
                 </div>
-                <div id="timerDisplay" class="text-danger mt-2"></div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe2()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe3()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe4()">Zum Rezept</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="recipe">
-            <h3>Kartoffelsalat</h3>
-            <p>2 kg	Kartoffeln, festkochende
-                1 m.-große	Zwiebel(n), feinst gewürfelte
-                250 ml	Gemüsebrühe oder Geflügelbrühe
-                3 EL	Weißweinessig, milder, z. B. Marc de Champagne
-                2 EL	Dijonsenf mit grünem Pfeffer
-                200 g	Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt
-                6 kleine	Gewürzgurke(n), fein geschnittene
-                etwas	Gurkenflüssigkeit</p>
-                    <div class="modal-body">
-                        <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                    </div>
-        </div>
-   
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="recipe">
-            <h3>Avocadosalat</h3>
-            <p>1	Avocado(s)
-                6	Kirschtomate(n)
-                ½	Zwiebel(n)
-                1 kleine	Gurke(n)
-                1	Paprikaschote(n), gelbe
-                60 g	Feta-Käse
-                1 EL, gehäuft	Pinienkerne
-                Pfeffer, grober
-                Meersalz
-                etwas	Zitronensaft
-                etwas	Schnittlauch
-                Balsamicocreme
-                1 Prise(n)	Zucker</p>
-                    <div class="modal-body">
-                        <img src="images/Vegan.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                    </div>
-        </div>
-   
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-        <div class="recipe">
-            <h3>Hähnchenbrust-Gemüse            </h3>
-            <p>2 Stück(e)	Hühnerbrust, frische
-                1 große	Paprikaschote(n), (wahlweise gelb oder rot)
-                1 m.-große	Zucchini
-                4	Frühlingszwiebel(n)
-                2 Zehe/n	Knoblauch
-                350 ml	Tomate(n), passierte
-                2 EL	Tomatenmark
-                1 TL, gehäuft	Zucker
-                1 TL, gehäuft	Oregano
-                1 TL, gehäuft	Thymian
-                ½ TL	Harissa
-                ½ TL	Paprikapulver, (Pimentón de la Vera, picante)
-                etwas	Salz
-                etwas	Pfeffer, frisch gemahlener schwarzer
-                125 g	Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)</p>
-                    <div class="modal-body">
-                        <img src="images/haenchen.jpg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <button class="btn btn-secondary small-button" data-dismiss="modal">Zurück</button>
-                    </div>
-        </div>
-   
-        </div>
-    </div>
-</div>
-<!-- Cookie-Akzeptanz-Popup -->
-<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cookieModalLabel">Cookie-Hinweis</h5>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer Website zu bieten. Durch die Nutzung unserer Website stimmen Sie der Verwendung von Cookies zu.</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <hr>
-                            <p><strong>Werbung lesen:</strong> Durch das Klicken des Buttons „Zustimmen und weiter“ stimmen Sie der Verarbeitung der auf Ihrem Gerät bzw. Ihrer Endeinrichtung gespeicherten Daten wie z.B. persönlichen Identifikatoren oder IP-Adressen für diese Verarbeitungszwecke gem. § 25 Abs. 1 TDDDG sowie Art. 6 Abs. 1 lit. a DSGVO zu.</p>
-                            <button type="button" class="btn btn-primary btn-block" onclick="showAd('images/werbung.jpg')" data-dismiss="modal">Mit Werbung fortfahren</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <hr>
-                            <p><strong>Werbefrei lesen:</strong> Oder nutzen Sie die Seite ohne Werbetracking und nahezu ohne Werbung, indem Sie ein Abo abonnieren oder sich hier mit Ihrem bestehenden Pur-Abo einloggen. Informationen zur Datenverarbeitung im Pur-Abo finden Sie in unserer Datenschutzerklärung und in den FAQ.</p>
-                            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Werbefrei fortfahren</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <hr>
-                            <p><strong>Einstellungen:</strong> Einzelnen Zwecken der Datenverarbeitung können Sie über den Button „Einstellungen“ oder den Menüpunkt Cookies & Tracking am Ende jeder Seite zustimmen oder sie teilweise ablehnen. Ihre Zustimmung insgesamt können Sie jederzeit über den Link Privacy Einstellungen am Ende jeder Seite entziehen.</p>
-                            <button type="button" class="btn btn-outline-secondary btn-block" data-dismiss="modal" data-toggle="modal" data-target="#settingsModal">Einstellungen</button>
-                        </div>
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        id="alertClose">Schließen</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script>
-
-    document.addEventListener('DOMContentLoaded', (event) => {
-        
-        const functionalSwitch = document.getElementById('functionalSwitch');
-        const marketingSwitch = document.getElementById('marketingSwitch');
-        const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
-        const saveButton = document.getElementById('saveButton');
-        const resetButton = document.getElementById('resetButton');
-
-        // Function to check all switches and enable save button if all are checked
-        const checkSwitches = () => {
-            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                saveButton.disabled = false;
-            } else {
-                saveButton.disabled = true;
-            }
-        };
-
-        // Event listeners for switch changes
-        functionalSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        marketingSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        personalizedAdsSwitch.addEventListener('change', () => {
-            checkSwitches();
-        });
-
-        // Save settings function
-        const saveSettings = () => {
-            console.log('Settings saved');
-            localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
-            $('#settingsModal').modal('hide'); // Close settings modal after saving
-            $('#cookieModal').modal('hide'); // Hide cookie modal after saving
-        };
-
-        // Event listener for save button click
-        saveButton.addEventListener('click', () => {
-            if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                saveSettings();
-                saveButton.disabled = true; // Disable save button after saving
-            }
-        });
-
-        // Event listener for the "Zustimmung zurücksetzen" Button
-        resetButton.addEventListener('click', () => {
-            localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
-            saveButton.disabled = true; // Disable save button
-            functionalSwitch.checked = false; // Reset switches
-            marketingSwitch.checked = false;
-            personalizedAdsSwitch.checked = false;
-           // $('#cookieModal').modal('show'); // Show cookie modal after resetting
-        });
-
-        // Check if user has already accepted cookies
-        const cookiesAccepted = localStorage.getItem('cookiesAccepted');
-        if (cookiesAccepted === 'true') {
-           $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
-        } else {
-           //$('#cookieModal').modal('show'); // Show cookie modal if not accepted
-         //checkModalColors('cookieModal')
-        }
-    });
-    
-
-</script>
 
 
-<!-- Einstellungs-Modal -->
-<div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="settingsModalLabel">Cookie-Einstellungen</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="functionalSwitch">
-                                <label class="custom-control-label" for="functionalSwitch">Funktionale Zwecke</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="marketingSwitch">
-                                <label class="custom-control-label" for="marketingSwitch">Marketingzwecke</label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="personalizedAdsSwitch">
-                                <label class="custom-control-label" for="personalizedAdsSwitch">Personalisierte Werbung</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="saveButton" disabled>Speichern</button>
-                <button type="button" class="btn btn-outline-danger" id="resetButton">Zustimmung zurücksetzen</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-<!-- Rezepte-->
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a class="navbar-brand" href="recipes.html" onclick="openStart()">Startseite</a>
-
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="#vegetarisch" onclick="showModal('images/werbung.jpg')">Vegetarisch</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#vegan" onclick="showModal1('images/werbung.jpg')">Vegan</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#allesesser" onclick="showModal2('images/werbung.jpg')">Alles Esser</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte</a>
-        </li>
-    </ul>
-</nav>
-
-
-<!-- Hauptinhalt -->
-<div class="container">
-<br>
-<br>
-<br>
-<!-- Suchleiste -->
-<form class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" type="search" placeholder="Suchen" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Suchen</button>
-</form>
-<br>
-<br>
-<br>
-<!-- Inhalt -->
-<div class="container mt-4">
-    <div class="row">
-        <!-- Kategorie Vegetarisch -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div id="vegetarisch">
-                <h2>Vegetarische Rezepte</h2>
-                <br><br>
-                <div class="recipe">
-                    <h3>Kartoffelsalat</h3>
-                    <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                    <p>Ein leckeres Rezept für einen klassischen Kartoffelsalat.</p>
-                    <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
-                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Kategorie Vegan -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div id="vegan">
-                <h2>Vegane Rezepte</h2>
-                <br><br>
-                <div class="recipe">
-                    <h3>Avocado-Salat</h3>
-                    <img src="images/Vegan.webp" alt="Avocado-Salat Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                    <p>Ein erfrischendes Rezept für einen köstlichen Avocado-Salat.</p>
-                    <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
-                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Kategorie Allesesser -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div id="allesesser">
-                <h2>Rezepte für Allesesser</h2>
-                <br><br>
-                <div class="recipe">
-                    <h3>Hähnchenbrust-Gemüse</h3>
-                    <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" style="max-width: 100%; max-height: 200px;" class="img-fluid mb-3">
-                    <p>Ein herzhaftes Rezept für Hähnchenbrust mit frischem Gemüse.</p>
-                    <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
-                    <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Automatisches Pop-up mit Werbung -->
-<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary button" onclick="openVegetarianRecipes()">Zu den Rezepten</button>
-            </div>
-        </div>
-    </div>
-</div>
     <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button id="offerButton" class="btn btn-success large-button"
+                        onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <div style="margin-top: 10px;">
+                        <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur
+                            Seite</button>
+                        <button class="btn btn-secondary small-button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                    </div>
+                    <div id="timerDisplay" class="text-danger mt-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Automatisches Pop-up mit Werbung -->
+    <div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button id="offerButton" class="btn btn-success large-button"
+                        onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <div style="margin-top: 10px;">
+                        <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur
+                            Seite</button>
+
+                    </div>
+                    <div id="timerDisplay" class="text-danger mt-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cookie-Akzeptanz-Popup -->
+    <div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cookieModalLabel">Cookie-Hinweis</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <p>Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer
+                                    Website zu bieten. Durch die Nutzung unserer Website stimmen Sie der Verwendung von
+                                    Cookies zu.</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <hr>
+                                <p><strong>Werbung lesen:</strong> Durch das Klicken des Buttons „Zustimmen und weiter“
+                                    stimmen Sie der Verarbeitung der auf Ihrem Gerät bzw. Ihrer Endeinrichtung
+                                    gespeicherten Daten wie z.B. persönlichen Identifikatoren oder IP-Adressen für diese
+                                    Verarbeitungszwecke gem. § 25 Abs. 1 TDDDG sowie Art. 6 Abs. 1 lit. a DSGVO zu.</p>
+                                <button type="button" class="btn btn-primary btn-block"
+                                    onclick="showAd('images/werbung.jpg')" data-dismiss="modal">Mit Werbung
+                                    fortfahren</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <hr>
+                                <p><strong>Werbefrei lesen:</strong> Oder nutzen Sie die Seite ohne Werbetracking und
+                                    nahezu ohne Werbung, indem Sie ein Abo abonnieren oder sich hier mit Ihrem
+                                    bestehenden Pur-Abo einloggen. Informationen zur Datenverarbeitung im Pur-Abo finden
+                                    Sie in unserer Datenschutzerklärung und in den FAQ.</p>
+                                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Werbefrei
+                                    fortfahren</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <hr>
+                                <p><strong>Einstellungen:</strong> Einzelnen Zwecken der Datenverarbeitung können Sie
+                                    über den Button „Einstellungen“ oder den Menüpunkt Cookies & Tracking am Ende jeder
+                                    Seite zustimmen oder sie teilweise ablehnen. Ihre Zustimmung insgesamt können Sie
+                                    jederzeit über den Link Privacy Einstellungen am Ende jeder Seite entziehen.</p>
+                                <button type="button" class="btn btn-outline-secondary btn-block" data-dismiss="modal"
+                                    data-toggle="modal" data-target="#settingsModal">Einstellungen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Einstellungs-Modal -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">Cookie-Einstellungen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="functionalSwitch">
+                                    <label class="custom-control-label" for="functionalSwitch">Funktionale
+                                        Zwecke</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="marketingSwitch">
+                                    <label class="custom-control-label" for="marketingSwitch">Marketingzwecke</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="personalizedAdsSwitch">
+                                    <label class="custom-control-label" for="personalizedAdsSwitch">Personalisierte
+                                        Werbung</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveButton" disabled>Speichern</button>
+                    <button type="button" class="btn btn-outline-danger" id="resetButton">Zustimmung
+                        zurücksetzen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+        <a class="navbar-brand" href="recipes.html" onclick="openStart()">Startseite</a>
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#vegetarisch" onclick="showModal('images/werbung.jpg')">Vegetarisch</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#vegan" onclick="showModal1('images/werbung.jpg')">Vegan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#allesesser" onclick="showModal2('images/werbung.jpg')">Alles Esser</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte (0)</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Kategorie Vegetarisch -->
+            <div class="col-12">
+                <div id="vegetarisch">
+                    <h2>Vegetarische Rezepte</h2>
+                    <div class="recipe-container">
+                        <div class="recipe">
+                            <h4>Kartoffelsalat</h4>
+                            <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat Bild" class="img-fluid">
+                            <p class="recipe-text-container">Ein leckeres Rezept für einen klassischen Kartoffelsalat.
+                                <br><br>
+                                2 kg Kartoffeln, festkochende<br>
+                                1 m.-große Zwiebel(n), feinst gewürfelte<br>
+                                250 ml Gemüsebrühe oder Geflügelbrühe<br>
+                                3 EL Weißweinessig, milder, z. B. Marc de Champagne<br>
+                                2 EL Dijonsenf mit grünem Pfeffer<br>
+                                200 g Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt<br>
+                                6 kleine Gewürzgurke(n), fein geschnittene<br>
+                                etwas Gurkenflüssigkeit
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <div class="recipe">
+                            <h4>Linsensuppe</h4>
+                            <img src="images/linsensuppe.jpeg" alt="Linsensuppe Bild" class="img-fluid">
+                            <p class="recipe-text-container">Eine herzhafte Suppe aus Gemüsebrühe, Linsen und einer
+                                Vielzahl von Gemüsesorten wie Karotten, Sellerie und Tomaten.
+                                <br><br>
+                                1 Dose Pizzatomaten, ca. 400 g<br>
+                                1 Dose Kokosmilch, ca. 400 g<br>
+                                1 Zwiebel(n)<br>
+                                175 g Linsen, rote<br>
+                                3 TL Chilipulver<br>
+                                2 TL Kurkumapulver<br>
+                                600 ml Gemüsebrühe<br>
+                                Sonnenblumenöl zum Braten<br>
+                                Salz
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <div class="recipe">
+                            <h4>Veggie-Schaschlik</h4>
+                            <img src="images/veggie-schaschlik.jpg.webp" alt="Veggie-Schaschlik Bild" class="img-fluid">
+                            <p class="recipe-text-container">Vielfalt an frischem Gemüse und optional Tofu.
+                                <br><br>
+                                2 kleine Zucchini<br>
+                                10 Champignons<br>
+                                2 Zwiebel(n), rote<br>
+                                1 Paprikaschote(n), rote<br>
+                                1 Paprikaschote(n), gelbe<br>
+                                Für die Marinade: <br>
+
+                                2 EL Sojasauce<br>
+                                2 EL Sesamöl<br>
+                                ½ TL Chiliflocken<br>
+                                1 EL Ingwerwurzel, frisch gerieben<br>
+                                1 Knoblauchzehe(n)<br>
+                                1 EL Zitronensaft<br>
+                                1 EL Zucker<br>
+                                1 EL Tomatenmark
+                            </p>
+
+                            <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+                        <div>
+                            <a href="vegetarisch.html" class="show-more-button"><span>Mehr anzeigen</span></a>
+                        </div>
+                        <!-- Button zum Anzeigen der versteckten Rezepte -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Kategorie Vegan -->
+            <div class="col-12">
+                <div id="vegan">
+                    <h2>Vegane Rezepte</h2>
+                    <div class="recipe-container">
+                        <div class="recipe">
+                            <h4>Avocado-Salat</h4>
+                            <img src="images/Vegan.webp" alt="Avocado-Salat Bild" class="img-fluid">
+                            <p class="recipe-text-container">Ein erfrischendes Rezept für einen köstlichen
+                                Avocado-Salat.
+                                <br><br>
+                                1 Avocado(s)<br>
+                                6 Kirschtomate(n)<br>
+                                ½ Zwiebel(n)<br>
+                                1 kleine Gurke(n)<br>
+                                1 Paprikaschote(n), gelbe<br>
+                                60 g Feta-Käse<br>
+                                1 EL, gehäuft Pinienkerne<br>
+                                Pfeffer, grober<br>
+                                Meersalz<br>
+                                etwas Zitronensaft<br>
+                                etwas Schnittlauch<br>
+                                Balsamicocreme<br>
+                                1 Prise(n) Zucker
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <div class="recipe">
+                            <h4>Vegane Bruschetta</h4>
+                            <img src="images/bruschetta-di-modena.jpg.webp" alt="Bruschetta di Modena Bild"
+                                class="img-fluid">
+                            <p class="recipe-text-container">Eine würzige Mischung aus Kidneybohnen, schwarzen Bohnen,
+                                Mais, Tomaten und Gewürzen wie Kreuzkümmel, Paprika und Chili.
+                                <br><br>
+                                2 Ciabatta<br>
+                                8 Tomate(n), (Strauchtomaten)<br>
+                                1 Zwiebel(n)<br>
+                                4 Knoblauchzehe(n)<br>
+                                1 Bund Basilikum<br>
+                                1 EL Aceto balsamico, weiß<br>
+                                1 Spritzer Limettensaft<br>
+                                Salz<br>
+                                Pfeffer, schwarzer, frisch gemahlen<br>
+                                1 Prise(n) Zucker<br>
+                                n. B. Olivenöl
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd7('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <div class="recipe">
+                            <h4>Hummus</h4>
+                            <img src="images/hummus-bi-tahina.jpg.webp" alt="Hummus Bild" class="img-fluid">
+                            <p class="recipe-text-container">Ein cremiger, würziger Hummus aus Kichererbsen, Tahini,
+                                Zitronensaft und Knoblauch. Ideal als Dip oder als Brotaufstrich.
+                                <br><br>
+                                1 Dose Kichererbsen, ca. 400 - 500 g<br>
+                                2 EL Tahin<br>
+                                3 Zitrone(n), Saft davon<br>
+                                4 Knoblauchzehe(n), durchgepresste<br>
+                                n. B. Öl, neutrales, nichts Bitteres<br>
+                                2 EL Kreuzkümmelpulver, evtl. mehr<br>
+                                1 Chilischote(n), getrocknete, scharfe, fein gehackte<br>
+                                1 EL Currypulver<br>
+                                n. B. Salz und Pfeffer, weißer<br>
+                                evtl. Paprikapulver, rosenscharfes<br>
+                                1 Bund Petersilie zur Dekoration
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <!-- Button zum Anzeigen der versteckten Rezepte -->
+                        <a href="vegan.html" class="show-more-button"><span>Mehr anzeigen</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <!-- Kategorie Allesesser -->
+            <div class="col-12">
+                <div id="allesesser">
+                    <h2>Rezepte für Allesesser</h2>
+                    <div class="recipe-container">
+                        <div class="recipe">
+                            <h4>Hähnchenbrust</h4>
+                            <img src="images/haenchen.jpg" alt="Hähnchenbrust mit Gemüse Bild" class="img-fluid">
+                            <p class="recipe-text-container">Ein herzhaftes Rezept für Hähnchenbrust mit frischem
+                                Gemüse.
+                                <br><br>
+                                2 Stück(e) Hühnerbrust, frische<br>
+                                1 große Paprikaschote(n), (wahlweise gelb oder rot)<br>
+                                1 m.-große Zucchini<br>
+                                4 Frühlingszwiebel(n)<br>
+                                2 Zehe/n Knoblauch<br>
+                                350 ml Tomate(n), passierte<br>
+                                2 EL Tomatenmark<br>
+                                1 TL, gehäuft Zucker<br>
+                                1 TL, gehäuft Oregano<br>
+                                1 TL, gehäuft Thymian<br>
+                                ½ TL Harissa<br>
+                                ½ TL Paprikapulver, (Pimentón de la Vera, picante)<br>
+                                etwas Salz<br>
+                                etwas Pfeffer, frisch gemahlener schwarzer<br>
+                                125 g Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <div class="recipe">
+                            <h4>Bruschetta</h4>
+                            <img src="images/bruschetta.webp" alt="Bruschetta Bild" class="img-fluid">
+                            <p class="recipe-text-container">Geröstetes Brot mit frischen Tomaten, Basilikum und
+                                Knoblauch.
+                                <br><br>
+
+                                1 kg Strauchtomate(n)<br>
+                                3 Zwiebel(n)<br>
+                                4 Zehe/n Knoblauch<br>
+                                Meersalz und Pfeffer aus der Mühle<br>
+                                Olivenöl<br>
+                                1 Ciabatta
+                                1 Bund Basilikum<br>
+                                n. B. Parmesan oder Mozzarella
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd9('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <div class="recipe">
+                            <h4>Börek mit Joghurt Dip</h4>
+                            <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Börek mit Joghurt Dip Bild"
+                                class="img-fluid">
+                            <p class="recipe-text-container">Hauchdünne Filoteig-Blätter umhüllen eine Creme aus Feta,
+                                Joghurt und Kräutern.
+                                <br><br>
+
+                                200 g Feta-Käse, türkischer (Ziege oder Schaf)<br>
+                                200 g Käse, geriebener, milder<br>
+                                2 m.-große Kartoffel(n)<br>
+                                3 Ei(er)<br>
+                                200 ml Milch<br>
+                                125 g Butter<br>
+                                1 Handvoll Petersilie, glatte, gehackt<br>
+                                1 Handvoll Dill, frischer, gehackt<br>
+                                Pfeffer<br>
+                                Pul Biber (türkische Chilimischung)<br>
+                                Schwarzkümmel<br>
+                                1 Eigelb
+
+                            </p>
+                            <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept
+                                anzeigen</button>
+                            <br><br>
+                            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                        </div>
+
+                        <!-- Button zum Anzeigen der versteckten Rezepte -->
+                        <a href="alles.html" class="show-more-button"><span>Mehr anzeigen</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Automatisches Pop-up mit Werbung -->
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -586,405 +502,1154 @@
                 <div class="modal-body">
                     <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
                     <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                    <button class="btn btn-secondary large-button" onclick="openVegan()">Zu den Rezepten</button>
+                    <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary large-button" onclick="openVegetarianRecipes()">Zu den
+                        Rezepten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Automatisches Pop-up mit Werbung -->
+    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/werbung.jpg" alt="Werbung">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" onclick="openVegan()">Zu den Rezepten</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe2()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe3()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe4()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe5()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe6()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe7()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe8()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe9()">Zum
+                        Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe10()">Zum
+                        Rezept</button>
                 </div>
             </div>
         </div>
     </div>
 
-<!-- Automatisches Pop-up mit Werbung -->
-<div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                <p>Kaufen Sie jetzt das beste Produkt!</p>
-                <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                <button class="btn btn-secondary button" onclick="openAll()">Zu den Rezepten</button>
+
+
+
+    <!-- Automatisches Pop-up mit Werbung -->
+    <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum
+                        Angebot</button>
+                    <button class="btn btn-secondary large-button" onclick="openAll()">Zu den Rezepten</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Modal für Kartoffelsalat -->
+    <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Kartoffelsalat</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="recipe">
+                        <p id="ingredients">2 kg Kartoffeln, festkochende<br>
+                            1 m.-große Zwiebel(n), feinst gewürfelte<br>
+                            250 ml Gemüsebrühe oder Geflügelbrühe<br>
+                            3 EL Weißweinessig, milder, z. B. Marc de Champagne<br>
+                            2 EL Dijonsenf mit grünem Pfeffer<br>
+                            200 g Mayonnaise, selbstgemachte oder wirklich gutes Fertigprodukt<br>
+                            6 kleine Gewürzgurke(n), fein geschnittene<br>
+                            etwas Gurkenflüssigkeit</p>
+                        <img src="images/vegetarisch.jpeg" alt="Kartoffelsalat" class="img-fluid mb-3">
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<!-- Footer -->
-<footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2024 Rezeptseite. Alle Rechte vorbehalten.</p>
-</footer>
-<!-- Bootstrap JS und jQuery einbinden -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Modal für Avocadosalat -->
+    <div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Avocadosalat</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="recipe">
+                        <p id="ingredients-1">1 Avocado(s)<br>
+                            6 Kirschtomate(n)<br>
+                            ½ Zwiebel(n)<br>
+                            1 kleine Gurke(n)<br>
+                            1 Paprikaschote(n), gelbe<br>
+                            60 g Feta-Käse<br>
+                            1 EL, gehäuft Pinienkerne<br>
+                            Pfeffer, grober<br>
+                            Meersalz<br>
+                            etwas Zitronensaft<br>
+                            etwas Schnittlauch<br>
+                            Balsamicocreme<br>
+                            1 Prise(n) Zucker</p>
+                        <img src="images/Vegan.webp" alt="Avocadosalat" class="img-fluid mb-3">
+                    </div>
+                    <div class="d-flex">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script>
- 
- $(document).ready(function() {
-    // Timeout zum Öffnen des Cookie-Modals nach 3 Sekunden
-    setTimeout(function() {
-        $('#cookieModal').modal('show');
-    }, 3000);
+    <!-- Modal für Hähnchenbrust-Gemüse -->
+    <div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Hähnchenbrust-Gemüse</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/haenchen.jpg" alt="Hähnchenbrust-Gemüse"
+                                class="img-fluid mb-3 card-img-top">
+                            <p class="card-text" id="ingredients-2">
+                                2 Stück(e) Hühnerbrust, frische<br>
+                                1 große Paprikaschote(n), (wahlweise gelb oder rot)<br>
+                                1 m.-große Zucchini<br>
+                                4 Frühlingszwiebel(n)<br>
+                                2 Zehe/n Knoblauch<br>
+                                350 ml Tomate(n), passierte<br>
+                                2 EL Tomatenmark<br>
+                                1 TL, gehäuft Zucker<br>
+                                1 TL, gehäuft Oregano<br>
+                                1 TL, gehäuft Thymian<br>
+                                ½ TL Harissa<br>
+                                ½ TL Paprikapulver, (Pimentón de la Vera, picante)<br>
+                                etwas Salz<br>
+                                etwas Pfeffer, frisch gemahlener schwarzer<br>
+                                125 g Käse, geriebener, nach Wunsch (junger Grana Trentino, Büffelmorzarella)
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal für Linsensuppe -->
+    <div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Linsensuppe</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/linsensuppe.jpeg" alt="Linsensuppe" class="img-fluid mb-3 card-img-top">
+                            <p class="card-text" id="ingredients-2">
+                                1 Dose Pizzatomaten, ca. 400 g<br>
+                                1 Dose Kokosmilch, ca. 400 g<br>
+                                1 Zwiebel(n)<br>
+                                175 g Linsen, rote<br>
+                                3 TL Chilipulver<br>
+                                2 TL Kurkumapulver<br>
+                                600 ml Gemüsebrühe<br>
+                                Sonnenblumenöl zum Braten<br>
+                                Salz
+                            </p>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal für Veggie-Schaschlik -->
+    <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class=" card recipe-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Veggie-Schaschlik</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/veggie-schaschlik.jpg.webp" alt="Veggie-Schaschlik"
+                                class="img-fluid mb-3 recipe-image">
+                            <p id="ingredients-2">
+                                2 kleine Zucchini<br>
+                                10 Champignons<br>
+                                2 Zwiebel(n), rote<br>
+                                1 Paprikaschote(n), rote<br>
+                                1 Paprikaschote(n), gelbe<br>
+                                Für die Marinade: <br>
+                                2 EL Sojasauce<br>
+                                2 EL Sesamöl<br>
+                                ½ TL Chiliflocken<br>
+                                1 EL Ingwerwurzel, frisch gerieben<br>
+                                1 Knoblauchzehe(n)<br>
+                                1 EL Zitronensaft<br>
+                                1 EL Zucker<br>
+                                1 EL Tomatenmark
+                            </p>
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Modal für Vegane Bruschetta -->
+    <div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Vegane Bruschetta</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/bruschetta-di-modena.jpg.webp" alt="Vegane Bruschetta"
+                                class="img-fluid mb-3 recipe-image">
+                            <p id="ingredients-2">
+                                2 Ciabatta<br>
+                                8 Tomate(n), (Strauchtomaten)<br>
+                                1 Zwiebel(n)<br>
+                                4 Knoblauchzehe(n)<br>
+                                1 Bund Basilikum<br>
+                                1 EL Aceto balsamico, weiß<br>
+                                1 Spritzer Limettensaft<br>
+                                Salz<br>
+                                Pfeffer, schwarzer, frisch gemahlen<br>
+                                1 Prise(n) Zucker<br>
+                                n. B. Olivenöl
+                            </p>
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal für Hummus -->
+    <div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Hummus</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/hummus-bi-tahina.jpg.webp" alt="Hummus"
+                                class="img-fluid mb-3 recipe-image">
+                            <p id="ingredients-2">
+                                1 Dose Kichererbsen, ca. 400 - 500 g<br>
+                                2 EL Tahin<br>
+                                3 Zitrone(n), Saft davon<br>
+                                4 Knoblauchzehe(n), durchgepresste<br>
+                                n. B. Öl, neutrales, nichts Bitteres<br>
+                                2 EL Kreuzkümmelpulver, evtl. mehr<br>
+                                1 Chilischote(n), getrocknete, scharfe, fein gehackte<br>
+                                1 EL Currypulver<br>
+                                n. B. Salz und Pfeffer, weißer<br>
+                                evtl. Paprikapulver, rosenscharfes<br>
+                                1 Bund Petersilie zur Dekoration
+                            </p>
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal für Bruschetta -->
+    <div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Bruschetta</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/bruschetta.webp" alt="Bruschetta" class="img-fluid mb-3 recipe-image">
+                            <p id="ingredients-2">
+                                1 kg Strauchtomate(n)<br>
+                                3 Zwiebel(n)<br>
+                                4 Zehe/n Knoblauch<br>
+                                Meersalz und Pfeffer aus der Mühle<br>
+                                Olivenöl<br>
+                                1 Ciabatta<br>
+                                1 Bund Basilikum<br>
+                                n. B. Parmesan oder Mozzarella
+                            </p>
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal für Börek mit Joghurt Dip -->
+    <div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="card recipe-card">
+                        <div class="card-header">
+                            <h4 class="card-title">Börek mit Joghurt Dip</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Börek mit Joghurt Dip"
+                                class="img-fluid mb-3 recipe-image">
+                            <p id="ingredients-2">
+                                200 g Feta-Käse, türkischer (Ziege oder Schaf)<br>
+                                200 g Käse, geriebener, milder<br>
+                                2 m.-große Kartoffel(n)<br>
+                                3 Ei(er)<br>
+                                200 ml Milch<br>
+                                125 g Butter<br>
+                                1 Handvoll Petersilie, glatte, gehackt<br>
+                                1 Handvoll Dill, frischer, gehackt<br>
+                                Pfeffer<br>
+                                Pul Biber (türkische Chilimischung)<br>
+                                Schwarzkümmel<br>
+                                1 Eigelb
+                            </p>
+                            <br>
+                            <br>
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                                    hinzufügen</button>
+                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Rezeptseite. Alle Rechte vorbehalten.</p>
+    </footer>
+
+    <!-- Bootstrap JS und jQuery einbinden -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Automatisches Pop-up nach 3 Sekunden anzeigen
+            // Cookie-Akzeptanz-Popup anzeigen
+
+            // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
+
+            setTimeout(function () {
+                checkModalColors();
+                $('#cookieModal').modal('show');
+                $('#autoAdModal1').modal('show');
+            }, 3000);
 
 
 
-        
-});
 
-    /*// Event Listener für das Schließen des Alert-Modals
-    $('#alertClose').click(function() {
-        $('#alertModal').modal('hide'); // Alert-Modal schließen
-        $('#cookieModal').modal('show'); // Cookie-Modal öffnen
-    });*/
+        });
+        // Initial Aufruf der Funktion zum Prüfen der Farben im Cookie-Modal
 
-    // Initial Aufruf der Funktion zum Prüfen der Farben im Cookie-Modal
-    checkModalColors('cookieModal');
-    function showModal1(imageUrl) {
-        checkModalColors('Modal1')
-        $('#Modal1').modal('hide');
-            $('#Modal1').find('.modal-body img').attr('src', imageUrl);
-            $('#Modal1').modal('show');
-        };
-    
-
-
-
-/*
-    // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-    setInterval(function() {
-        $('#Modal2').modal('show');
-    }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
-*/
- 
-        function showModal(imageUrl) {
-        // Bild setzen
-        checkModalColors('Modal')
-        $('#Modal').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#Modal').modal('show');
-       
-    }
-    // Anzeigen der Werbung nur wenn keine verdächtigen Farben gefunden wurden
-    function showAd(imageUrl) {
-        checkModalColors('autoAdModal')
-            $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
-            $('#autoAdModal').modal('show');
-        };
-    
-
-    function showModal2(imageUrl) {
-        checkModalColors('Modal2')
-            $('#Modal2').find('.modal-body img').attr('src', imageUrl);
-            $('#Modal2').modal('show');
-        };
-    // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-    setInterval(function() {
-        $('#Modal1').modal('show');
-    }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
-
-
-
-
-    // Rezeptdetails anzeigen
-    function showRecipeDetails(rezeptName) {
-        alert('Details zu ' + rezeptName);
-    }
-
-    // Cookie-Einstellungen anzeigen
-    $('#Einstellungen').click(function(){
-        $('#settingsModal').modal('show');
-    });
-
-
-   // Zurücksetzen der Cookies
-   $('#cookiesAccepted').click(function () {
-        // Hier werden die Cookies zurückgesetzt (z.B. durch Löschung der gespeicherten Zustimmungen)
-        alert('Cookies wurden zurückgesetzt.');
-    });
-    function deleteAllCookies() {
-    // Löschen aller Cookies
-    $.each($.cookie(), function (key, value) {
-        $.removeCookie(key);
-    });
-    
-    // Zurücksetzen des LocalStorage-Eintrags für Cookies-Akzeptanz
-    localStorage.removeItem('cookiesAccepted');
-    
-    // Feedback für den Benutzer
-    alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
-}
-
-    // Einstellungsmodal anzeigen, wenn auf den Einstellungsbutton geklickt wird
-    document.getElementById('Einstellungen').addEventListener('click', function() {
-       
-        $('#settingsModal').modal('show');
-        
-    });
-
-    function openVegetarianRecipes() {
-        window.location.href = "vegetarisch.html";
-    }
-
-    function openStart() {
-        window.location.href = "recipes.html";
-    }
-
-    function openVegan() {
-        window.location.href = "vegan.html";
-    }
-
-    function openAll() {
-        window.location.href = "alles.html";
-    }
-
-    function showModal(imageUrl) {
-        // Bild setzen
-        checkModalColors('Modal')
-        $('#Modal').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#Modal').modal('show');
-       
-    }
-    // Anzeigen der Werbung nur wenn keine verdächtigen Farben gefunden wurden
-    function showAd(imageUrl) {
-        checkModalColors('autoAdModal')
-            $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
-            $('#autoAdModal').modal('show');
-        };
-    
-
-    function showModal2(imageUrl) {
-        checkModalColors('Modal2')
-            $('#Modal2').find('.modal-body img').attr('src', imageUrl);
-            $('#Modal2').modal('show');
-        };
-    
-
-    // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-    setInterval(function() {
-        $('#Modal2').modal('show');
-    }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
-
-    // Funktion zum Anzeigen von Werbung
-    function showModal1(imageUrl) {
-        checkModalColors('Modal1')
-        $('#Modal1').modal('hide');
-            $('#Modal1').find('.modal-body img').attr('src', imageUrl);
-            $('#Modal1').modal('show');
-        };
-    
-
-    // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-    setInterval(function() {
-        $('#Modal1').modal('show');
-    }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
-
-    // Funktion zum Prüfen der Farben in einem Modal
-    function checkModalColors(modalId) {
-        var modal = $('#' + modalId);
-        var buttons = modal.find('button');
-        var colors = [];
-
-        // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
-        function extractRgbValues(colorString) {
-            var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-            if (match) {
-                return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
-            } else {
-                // Standard-RGB zurückgeben, falls keine Übereinstimmung gefunden wurde
-                return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
+        document.addEventListener('DOMContentLoaded', function () {
+            // Hier ist Platz für Ihren spezifischen Code, der auf das DOM zugreift
+            var buttonElement = document.getElementById('acceptCookiesButton');
+            if (buttonElement) {
+                buttonElement.addEventListener('click', function () {
+                    // Ihre Funktionalität hier
+                    localStorage.setItem('cookiesAccepted', 'true');
+                });
             }
-        }
-
-        // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
-        function compareColors(rgb, colorName) {
-            switch (colorName.toLowerCase()) {
-                case 'rot':
-                    return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
-                case 'gelb':
-                    return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
-                case 'grün':
-                    return rgb[0] < 100 && rgb[1] > 100 && rgb[2] < 120;
-                case 'blau':
-                    return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
-                case 'schwarz':
-                    return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
-                case 'grau':
-                    return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
-                default:
-                    return false;
-            }
-        }
-
-        // Durchlaufen aller Buttons im Modal
-        buttons.each(function(index, button) {
-            // Hintergrundfarbe des Buttons extrahieren
-            var computedStyle = window.getComputedStyle(button);
-            var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
-            var colorName = getColorName(backgroundColor);
-
-            // Konsolenausgabe zur Überprüfung
-            console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
-
-            // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
-            colors.push({ text: button.textContent.trim(), color: backgroundColor });
         });
 
-        // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
-        function getColorName(rgb) {
-            // Schwellenwerte für Farben
-            var thresholds = {
-                rot: [150, 0, 0],        // Anpassung der Schwellenwerte für Rot
-                gelb: [255, 255, 0],     // Anpassung der Schwellenwerte für Gelb
-                grün: [0, 100, 0],       // Anpassung der Schwellenwerte für Grün
-                blau: [0, 0, 150],       // Anpassung der Schwellenwerte für Blau
-                schwarz: [30, 30, 30],   // Anpassung der Schwellenwerte für Schwarz
-                grau: [150, 150, 150]    // Anpassung der Schwellenwerte für Grau
+        // Rezeptdetails anzeigen
+        function showRecipeDetails(rezeptName) {
+            alert('Details zu ' + rezeptName);
+        }
+
+        // Cookie-Einstellungen anzeigen
+        $('#Einstellungen').click(function () {
+            $('#settingsModal').modal('show');
+        });
+
+
+        // Zurücksetzen der Cookies
+        $('#cookiesAccepted').click(function () {
+            // Hier werden die Cookies zurückgesetzt (z.B. durch Löschung der gespeicherten Zustimmungen)
+            alert('Cookies wurden zurückgesetzt.');
+        });
+        function deleteAllCookies() {
+            // Löschen aller Cookies
+            $.each($.cookie(), function (key, value) {
+                $.removeCookie(key);
+            });
+
+            // Zurücksetzen des LocalStorage-Eintrags für Cookies-Akzeptanz
+            localStorage.removeItem('cookiesAccepted');
+
+            // Feedback für den Benutzer
+            alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
+        }
+
+    </script>
+
+
+
+
+    <script>
+        // Einstellungsmodal anzeigen, wenn auf den Einstellungsbutton geklickt wird
+        document.getElementById('Einstellungen').addEventListener('click', function () {
+
+            $('#settingsModal').modal('show');
+
+            const functionalSwitch = document.getElementById('functionalSwitch');
+            const marketingSwitch = document.getElementById('marketingSwitch');
+            const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
+            const saveButton = document.getElementById('saveButton');
+
+            // Function to save settings
+            const saveSettings = () => {
+                const settings = {
+                    functional: functionalSwitch.checked,
+                    marketing: marketingSwitch.checked,
+                    personalizedAds: personalizedAdsSwitch.checked
+                };
+                console.log('Saved settings:', settings);
+                // Hier kannst du den Code zum Speichern der Einstellungen auf der Serverseite oder im Browser hinzufügen
+                // Beispiel: localStorage.setItem('cookieSettings', JSON.stringify(settings));
+                // Hier sollte die Logik stehen, um die Einstellungen zu speichern
             };
 
-            // Überprüfen der Schwellenwerte für jede Farbe
-            for (var color in thresholds) {
-                if (areRgbValuesEqual(rgb, thresholds[color])) {
-                    return color;
+            const checkSwitches = () => {
+                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                    saveButton.disabled = false;
+                } else {
+                    saveButton.disabled = true;
                 }
             }
 
-            // Falls keine Übereinstimmung gefunden wurde, 'Unbekannt' zurückgeben
-            return 'Unbekannt';
-        }
-
-        // Funktion zum Vergleichen von RGB-Werten
-        function areRgbValuesEqual(rgb1, rgb2) {
-            return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
-        }
-
-        // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
-        if (colors.length > 1 && !colors.every(function(color) {
-            return color.color === colors[0].color;
-        })) {
-            // Nachricht für das Alert-Modal
-            var message = 'Die Farben der Buttons im Fenster sind unterschiedlich.';
-            $('#alertMessage').html(message);
-            $('#alertModal').modal({
-                backdrop: 'static', // Hintergrundklicks deaktivieren
-                keyboard: false     // Schließen per Tastatur deaktivieren
+            functionalSwitch.addEventListener('change', () => {
+                checkSwitches();
+                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                    saveSettings();
+                }
             });
-        } else {
-            // Wenn keine Warnung angezeigt wird, öffne das Cookie-Modal
-           // $('#cookieModal').modal('show');
+
+            marketingSwitch.addEventListener('change', () => {
+                checkSwitches();
+                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                    saveSettings();
+                }
+            });
+
+            personalizedAdsSwitch.addEventListener('change', () => {
+                checkSwitches();
+                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                    saveSettings();
+                }
+            });
+
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const functionalSwitch = document.getElementById('functionalSwitch');
+            const marketingSwitch = document.getElementById('marketingSwitch');
+            const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
+            const saveButton = document.getElementById('saveButton');
+            const resetButton = document.getElementById('resetButton');
+
+            // Function to check all switches and enable save button if all are checked
+            const checkSwitches = () => {
+                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                    saveButton.disabled = false;
+                } else {
+                    saveButton.disabled = true;
+                }
+            };
+
+            // Event listeners for switch changes
+            functionalSwitch.addEventListener('change', () => {
+                checkSwitches();
+            });
+
+            marketingSwitch.addEventListener('change', () => {
+                checkSwitches();
+            });
+
+            personalizedAdsSwitch.addEventListener('change', () => {
+                checkSwitches();
+            });
+
+            // Save settings function
+            const saveSettings = () => {
+                console.log('Settings saved');
+                localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
+                $('#settingsModal').modal('hide'); // Close settings modal after saving
+                $('#cookieModal').modal('hide'); // Hide cookie modal after saving
+            };
+
+            // Event listener for save button click
+            saveButton.addEventListener('click', () => {
+                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+                    saveSettings();
+                    saveButton.disabled = true; // Disable save button after saving
+                }
+            });
+
+            // Event listener for the "Zustimmung zurücksetzen" Button
+            resetButton.addEventListener('click', () => {
+                localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
+                saveButton.disabled = true; // Disable save button
+                functionalSwitch.checked = false; // Reset switches
+                marketingSwitch.checked = false;
+                personalizedAdsSwitch.checked = false;
+                $('#cookieModal').modal('show'); // Show cookie modal after resetting
+            });
+
+            // Check if user has already accepted cookies
+            const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+            if (cookiesAccepted === 'true') {
+                $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
+            } else {
+                $('#cookieModal').modal('show'); // Show cookie modal if not accepted
+            }
+        });
+    </script>
+    <script>
+        function openVegetarianRecipes() {
+            window.location.href = "vegetarisch.html";
         }
-    }
- // Globale Variable für die hinzugefügten Rezepte
- var hinzugefuegteRezepte = [];
+    </script>
+    <script>
+        function openStart() {
+            window.location.href = "recipes.html";
+        }
+    </script>
+    <script>
+        function openVegan() {
+            window.location.href = "vegan.html";
+        }
+    </script>
+    <script>
+        function openAll() {
+            window.location.href = "alles.html";
+        }
+    </script>
+    <script>
+        function showModal(imageUrl) {
+            // Bild setzen
+            $('#Modal').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#Modal').modal('show');
 
-// Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
-function loadRecipesFromLocalStorage() {
-    var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
-    if (storedRecipes) {
-        hinzugefuegteRezepte = JSON.parse(storedRecipes);
-    }
-}
+        }
+        /*  function showAd(imageUrl) {
+              // Bild setzen
+              $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
+              // Modal anzeigen
+              $('#autoAdModal').modal('show');
+             
+          }*/
+        // Funktion zum Anzeigen von Werbung
+        function showModal2(imageUrl) {
+            // Bild setzen
+            $('#Modal2').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#Modal2').modal('show');
+
+        }
+
+        // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
+        setInterval(function () {
+            $('#Modal2').modal('show');
+        }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
+    </script>
+    <script>
+        // Funktion zum Anzeigen von Werbung
+        function showModal1(imageUrl) {
+            // Bild setzen
+            $('#Modal1').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#Modal1').modal('show');
+
+        }
+
+        // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
+        setInterval(function () {
+            $('#Modal1').modal('show');
+        }, 30000); // 60000 Millisekunden entsprechen 60 Sekunden
+    </script>
+    <script>
+
+        // Globale Variable für die hinzugefügten Rezepte
+        var hinzugefuegteRezepte = [];
+
+        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+        function loadRecipesFromLocalStorage() {
+            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+            if (storedRecipes) {
+                hinzugefuegteRezepte = JSON.parse(storedRecipes);
+                // updateRecipeList(); // Rezeptliste aktualisieren
+            }
+        }
+
+        // Funktion zum Hinzufügen eines Rezepts
+        function rezeptHinzufuegen(button) {
+            var modalContent = button.closest('.modal-content');
+            var recipeDiv = button.parentElement;
+            // var recipeName = button.parentElement.querySelector('h4').textContent;
+            // var recipeDescription = button.parentElement.querySelector('p').textContent;
+            //var recipeImage= button.parentElement.querySelector('img').src;
+            var recipeModalName = modalContent.querySelector('h4').textContent;
+            var recipeModalDescription = modalContent.querySelector('p').innerHTML;
+            var recipeModalImage = modalContent.querySelector('img').src;
+            if (!modalContent) {
+                console.error('Modal content not found.');
+                return;
+            }
+            // Zutaten aus dem nächsten <p>-Tag extrahieren
+            var paragraphs = recipeDiv.querySelectorAll('p');
+            paragraphs.forEach((p, index) => console.log(`P-Tag ${index}: ${p.textContent}`));
+
+            console.log("Rezeptname:", recipeModalName);
+            console.log("Beschreibung:", recipeModalDescription);
+            console.log("Bild-URL:", recipeModalImage);
 
 
-// Funktion zum Hinzufügen eines Rezepts
-function rezeptHinzufuegen(button) {
-    var recipeName = button.parentElement.querySelector('h3').textContent;
-    var recipeDescription = button.parentElement.querySelector('p').textContent;
 
-    // Rezeptobjekt erstellen
-    var recipe = {
-        name: recipeName,
-        description: recipeDescription
-    };
+            var recipeNameElement = modalContent.querySelector('h4');
+            var recipeDescriptionElement = modalContent.querySelector('p');
+            var recipeImageElement = modalContent.querySelector('img');
 
-    // Rezept zur Liste hinzufügen
-    hinzugefuegteRezepte.push(recipe);
-    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+            var recipe = {
+                name: recipeModalName,
+                description: recipeModalDescription,
+                image: recipeModalImage,
+                // modalName: recipelName,
+                // modaldescription: recipeDescription,
+                // modalimage: recipeImage
+            };
+            // Rezept zur Liste hinzufügen
+            hinzugefuegteRezepte.push(recipe);
+            localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
-    // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
-    alert("Rezept hinzugefügt");
-    updateCartButton();
-}
+            // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
+            alert("Rezept hinzugefügt");
 
-// Funktion zum Aktualisieren des Warenkorb-Buttons
-function updateCartButton() {
-    var cartButton = document.getElementById('cartButton');
-    if (cartButton) {
-        cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
-    }
-}
+            //updateRecipeList();
+            updateCartButton();
+        }
+        // Funktion zum Aktualisieren des Warenkorb-Buttons
+        function updateCartButton() {
+            var cartButton = document.getElementById('cartButton');
+            if (cartButton) {
+                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
+            }
+        }
 
-// Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
-document.addEventListener('DOMContentLoaded', function() {
-    loadRecipesFromLocalStorage();
-    updateCartButton();
-    checkModalColors();
-    
-});
 
-// Funktion zum Navigieren zur Startseite
-function goToIndex() {
-    window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
-}
-// Timer für automatisches Schließen des Modals nach einer gewissen Zeit
-var modal = $('#autoAdModal');
-var offerButton = $('#offerButton');
-var timerDisplay = $('#timerDisplay');
+        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+        document.addEventListener('DOMContentLoaded', function () {
+            loadRecipesFromLocalStorage();
+            // updateRecipeList();
+            updateCartButton();
+        });
 
-function closeModalAfterTime() {
-var seconds = 30; // Zeit in Sekunden, nach der das Modal geschlossen wird
-var countdownInterval = setInterval(function() {
-    seconds--;
-    timerDisplay.text('Schließe in ' + seconds + ' Sekunden');
-    if (seconds <= 0) {
-        clearInterval(countdownInterval);
-        modal.modal('hide'); // Modal automatisch schließen
-    }
-}, 1000);
-}
+        // Funktion zum Einklappen und Erweitern der Rezepttexte
+        document.querySelectorAll('.read-more').forEach(function (element) {
+            element.addEventListener('click', function () {
+                var recipeTextContainer = element.previousElementSibling;
+                recipeTextContainer.classList.toggle('expanded');
+                element.textContent = recipeTextContainer.classList.contains('expanded') ? 'Weniger lesen' : 'Mehr lesen';
+            });
+        });
 
-// Event-Listener für das Öffnen des Modals
-modal.on('shown.bs.modal', function () {
-closeModalAfterTime(); // Starte den Timer, wenn das Modal geöffnet wird
-});
+        // Funktion zum Navigieren zur Startseite
+        function goToIndex() {
+            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+        }
 
-// Event-Listener für das Schließen des Modals
-modal.on('hidden.bs.modal', function () {
-// Zurücksetzen des Timers und anderer Zustände bei Bedarf
-});
-function showAd2(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal2').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal2').modal('show');
-    }
-    function showRecipe2(){
-        $('#Rezept2').modal('show');
-    }
-    function showAd3(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal3').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal3').modal('show');
-    }
-    function showRecipe3(){
-        $('#Rezept3').modal('show');
-    }
-    function showAd4(imageUrl) {
-        // Bild setzen
-        $('#autoAdModal4').find('.modal-body img').attr('src', imageUrl);
-        // Modal anzeigen
-        $('#autoAdModal4').modal('show');
-    }
-    function showRecipe4(){
-        $('#Rezept4').modal('show');
-    }
-    
 
-</script>
+        // Timer für automatisches Schließen des Modals nach einer gewissen Zeit
+        var modal = $('#autoAdModal');
+        var offerButton = $('#offerButton');
+        var timerDisplay = $('#timerDisplay');
+
+        function closeModalAfterTime() {
+            var seconds = 30; // Zeit in Sekunden, nach der das Modal geschlossen wird
+            var countdownInterval = setInterval(function () {
+                seconds--;
+                timerDisplay.text('Schließe in ' + seconds + ' Sekunden');
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    modal.modal('hide'); // Modal automatisch schließen
+                }
+            }, 1000);
+        }
+
+        // Event-Listener für das Öffnen des Modals
+        modal.on('shown.bs.modal', function () {
+            closeModalAfterTime(); // Starte den Timer, wenn das Modal geöffnet wird
+        });
+
+        // Event-Listener für das Schließen des Modals
+        modal.on('hidden.bs.modal', function () {
+            // Zurücksetzen des Timers und anderer Zustände bei Bedarf
+        });
+
+        function showAd2(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal2').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal2').modal('show');
+        }
+        function showRecipe2() {
+            $('#Rezept2').modal('show');
+        }
+        function showAd3(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal3').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal3').modal('show');
+        }
+        function showRecipe3() {
+            $('#Rezept3').modal('show');
+        }
+        function showAd4(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal4').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal4').modal('show');
+        }
+        function showRecipe4() {
+            $('#Rezept4').modal('show');
+        }
+        function showAd5(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal5').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal5').modal('show');
+        }
+        function showRecipe5() {
+            $('#Rezept5').modal('show');
+        }
+        function showAd6(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal6').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal6').modal('show');
+        }
+        function showRecipe6() {
+            $('#Rezept6').modal('show');
+        }
+        function showAd7(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal7').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal7').modal('show');
+        }
+        function showRecipe7() {
+            $('#Rezept7').modal('show');
+        }
+        function showAd8(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal8').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal8').modal('show');
+        }
+        function showRecipe8() {
+            $('#Rezept8').modal('show');
+        }
+        function showAd9(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal9').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal9').modal('show');
+        }
+        function showRecipe9() {
+            $('#Rezept9').modal('show');
+        }
+        function showAd10(imageUrl) {
+            // Bild setzen
+            $('#autoAdModal10').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal10').modal('show');
+        }
+        function showRecipe10() {
+            $('#Rezept10').modal('show');
+        }
+        // Funktion zum Prüfen der Farben in einem Modal
+        function checkModalColors(modalId) {
+            var modal = $('#' + modalId);
+            var buttons = modal.find('button');
+            var colors = [];
+
+            // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
+            function extractRgbValues(colorString) {
+                var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                if (match) {
+                    return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+                } else {
+                    // Standard-RGB zurückgeben, falls keine Übereinstimmung gefunden wurde
+                    return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
+                }
+            }
+
+            // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
+            function compareColors(rgb, colorName) {
+                switch (colorName.toLowerCase()) {
+                    case 'rot':
+                        return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
+                    case 'gelb':
+                        return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
+                    case 'grün':
+                        return rgb[0] < 100 && rgb[1] > 100 && rgb[2] < 120;
+                    case 'blau':
+                        return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
+                    case 'schwarz':
+                        return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
+                    case 'grau':
+                        return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
+                    default:
+                        return false;
+                }
+            }
+
+            // Durchlaufen aller Buttons im Modal
+            buttons.each(function (index, button) {
+                // Hintergrundfarbe des Buttons extrahieren
+                var computedStyle = window.getComputedStyle(button);
+                var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
+                var colorName = getColorName(backgroundColor);
+
+                // Konsolenausgabe zur Überprüfung
+                console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
+
+                // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
+                colors.push({ text: button.textContent.trim(), color: backgroundColor });
+            });
+
+            // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
+            function getColorName(rgb) {
+                // Schwellenwerte für Farben
+                var thresholds = {
+                    rot: [150, 0, 0],        // Anpassung der Schwellenwerte für Rot
+                    gelb: [255, 255, 0],     // Anpassung der Schwellenwerte für Gelb
+                    grün: [0, 100, 0],       // Anpassung der Schwellenwerte für Grün
+                    blau: [0, 0, 150],       // Anpassung der Schwellenwerte für Blau
+                    schwarz: [30, 30, 30],   // Anpassung der Schwellenwerte für Schwarz
+                    grau: [150, 150, 150]    // Anpassung der Schwellenwerte für Grau
+                };
+
+                // Überprüfen der Schwellenwerte für jede Farbe
+                for (var color in thresholds) {
+                    if (areRgbValuesEqual(rgb, thresholds[color])) {
+                        return color;
+                    }
+                }
+
+                // Falls keine Übereinstimmung gefunden wurde, 'Unbekannt' zurückgeben
+                return 'Unbekannt';
+            }
+
+            // Funktion zum Vergleichen von RGB-Werten
+            function areRgbValuesEqual(rgb1, rgb2) {
+                return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
+            }
+
+            // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
+            if (colors.length > 1 && !colors.every(function (color) {
+                return color.color === colors[0].color;
+            })) {
+                // Nachricht für das Alert-Modal
+                console.log('Hallo')
+                var message = 'Die Farben der Buttons im Fenster sind unterschiedlich.';
+                $('#alertMessage').html(message);
+                $('#alertModal').modal({
+                    backdrop: 'static', // Hintergrundklicks deaktivieren
+                    keyboard: false     // Schließen per Tastatur deaktivieren
+                });
+            } else {
+                // Wenn keine Warnung angezeigt wird, öffne das Cookie-Modal
+                // $('#cookieModal').modal('show');
+            }
+        }
+        checkModalColors('cookieModal');
+    </script>
+
+    <script>
+
+    </script>
 </body>
+
 </html>

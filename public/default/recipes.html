@@ -1519,7 +1519,103 @@
         }
     </script>
     <script>
+                    // Funktion zum Prüfen der Farben in einem Modal
+     function checkModalColors(modalId) {
+        var modal = $('#' + modalId);
+        var buttons = modal.find('button');
+        var colors = [];
 
+        // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
+        function extractRgbValues(colorString) {
+            var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            if (match) {
+                return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+            } else {
+                // Standard-RGB zurückgeben, falls keine Übereinstimmung gefunden wurde
+                return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
+            }
+        }
+
+        // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
+        function compareColors(rgb, colorName) {
+            switch (colorName.toLowerCase()) {
+                case 'rot':
+                    return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
+                case 'gelb':
+                    return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
+                case 'grün':
+                    return rgb[0] < 100 && rgb[1] > 100 && rgb[2] < 120;
+                case 'blau':
+                    return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
+                case 'schwarz':
+                    return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
+                case 'grau':
+                    return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
+                default:
+                    return false;
+            }
+        }
+
+        // Durchlaufen aller Buttons im Modal
+        buttons.each(function(index, button) {
+            // Hintergrundfarbe des Buttons extrahieren
+            var computedStyle = window.getComputedStyle(button);
+            var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
+            var colorName = getColorName(backgroundColor);
+
+            // Konsolenausgabe zur Überprüfung
+            console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
+
+            // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
+            colors.push({ text: button.textContent.trim(), color: backgroundColor });
+        });
+
+        // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
+        function getColorName(rgb) {
+            // Schwellenwerte für Farben
+            var thresholds = {
+                rot: [150, 0, 0],        // Anpassung der Schwellenwerte für Rot
+                gelb: [255, 255, 0],     // Anpassung der Schwellenwerte für Gelb
+                grün: [0, 100, 0],       // Anpassung der Schwellenwerte für Grün
+                blau: [0, 0, 150],       // Anpassung der Schwellenwerte für Blau
+                schwarz: [30, 30, 30],   // Anpassung der Schwellenwerte für Schwarz
+                grau: [150, 150, 150]    // Anpassung der Schwellenwerte für Grau
+            };
+
+            // Überprüfen der Schwellenwerte für jede Farbe
+            for (var color in thresholds) {
+                if (areRgbValuesEqual(rgb, thresholds[color])) {
+                    return color;
+                }
+            }
+
+            // Falls keine Übereinstimmung gefunden wurde, 'Unbekannt' zurückgeben
+            return 'Unbekannt';
+        }
+
+        // Funktion zum Vergleichen von RGB-Werten
+        function areRgbValuesEqual(rgb1, rgb2) {
+            return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
+        }
+
+        // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
+        if (colors.length > 1 && !colors.every(function(color) {
+            return color.color === colors[0].color;
+        })) {
+            // Nachricht für das Alert-Modal
+            console.log('Hallo')
+            var message = 'Die Farben der Buttons im Fenster sind unterschiedlich.';
+            $('#alertMessage').html(message);
+            $('#alertModal').modal({
+                backdrop: 'static', // Hintergrundklicks deaktivieren
+                keyboard: false     // Schließen per Tastatur deaktivieren
+            });
+        } else {
+            // Wenn keine Warnung angezeigt wird, öffne das Cookie-Modal
+           // $('#cookieModal').modal('show');
+        }
+    }
+    checkModalColors('cookieModal');
 
     </script>
 </body>

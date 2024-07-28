@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,37 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .recipe {
+        .recipe-card {
             border: 1px solid #ccc;
-            padding: 10px;
-            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            height: 800px;
+            /* Feste Höhe für die Karten */
+            max-height: 800px;
+            /* Maximale Höhe für die Karten */
+            /* Optional: Hinzufügen eines Scroll-Verhaltens */
+            position: relative;
         }
+
+        .recipe-card img {
+            width: 100%;
+            height: 200px;
+            /* Höhe der Bilder festlegen */
+            object-fit: cover;
+            /* Bild zuschneiden, um das Container-Verhältnis zu füllen */
+        }
+
+        .card-body {
+            flex: 1;
+            overflow-y: auto;
+            /* Scrollbar hinzufügen, wenn der Inhalt länger ist */
+            display: flex;
+            flex-direction: column;
+        }
+
         .delete-button {
             background-color: #ff6347;
             color: white;
@@ -20,26 +47,35 @@
             cursor: pointer;
             float: right;
         }
+
         .delete-button:hover {
             background-color: #cc4c37;
         }
+
+        .modal-body img {
+            height: auto;
+        }
     </style>
 </head>
+
 <body>
     <div class="container mt-4">
         <!-- Bereich für die hinzugefügten Rezepte -->
         <div id="hinzugefuegteRezepte" class="recipe-list">
             <h3 class="mb-3">Meine Rezepte</h3>
-            <div id="recipeContainer"></div>
+            <div id="recipeContainer" class="row"></div>
         </div>
 
         <!-- Hauptinhalt -->
         <div class="mt-4">
+            <button id="cartButton" class="btn btn-primary">Meine Rezepte (0)</button>
             <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Startseite</button>
         </div>
     </div>
 
-    <!-- JavaScript -->
+    <!-- Modals Container -->
+    <div id="modalsContainer"></div>
+
     <script>
         // Globale Variable für die hinzugefügten Rezepte
         var hinzugefuegteRezepte = [];
@@ -49,41 +85,77 @@
             var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
             if (storedRecipes) {
                 hinzugefuegteRezepte = JSON.parse(storedRecipes);
+                console.log('Gespeicherte Rezepte:', hinzugefuegteRezepte); // Konsolenausgabe hinzufügen
                 updateRecipeList(); // Rezeptliste aktualisieren
+            } else {
+                console.log('Keine Rezepte im Local Storage gefunden.');
             }
         }
 
         // Funktion zum Anzeigen der hinzugefügten Rezepte
         function updateRecipeList() {
             var recipeContainer = document.getElementById('recipeContainer');
+            var modalsContainer = document.getElementById('modalsContainer');
             recipeContainer.innerHTML = ''; // Liste leeren
+            modalsContainer.innerHTML = ''; // Modals leeren
 
-            hinzugefuegteRezepte.forEach(function(recipe, index) {
-                var recipeDiv = document.createElement('div');
-                recipeDiv.className = 'recipe card p-3';
+            hinzugefuegteRezepte.forEach(function (recipe, index) {
+                var recipeCard = document.createElement('div');
+                recipeCard.className = 'col-md-4'; // Bootstrap Grid-Klasse für drei Spalten
+
+                var cardDiv = document.createElement('div');
+                cardDiv.className = 'recipe-card card';
+
+                var cardBodyDiv = document.createElement('div');
+                cardBodyDiv.className = 'card-body';
+
+                // Bild hinzufügen, falls vorhanden
+                if (recipe.image) {
+                    var recipeImage = document.createElement('img');
+                    recipeImage.src = recipe.image;
+                    recipeImage.alt = recipe.name;
+                    recipeImage.className = 'card-img-top';
+                    cardDiv.appendChild(recipeImage);
+                }
 
                 var recipeName = document.createElement('h4');
                 recipeName.className = 'card-title';
                 recipeName.textContent = recipe.name;
-                recipeDiv.appendChild(recipeName);
+                cardBodyDiv.appendChild(recipeName);
 
                 var recipeDescription = document.createElement('p');
                 recipeDescription.className = 'card-text';
-                recipeDescription.textContent = recipe.description;
-                recipeDiv.appendChild(recipeDescription);
+                recipeDescription.innerHTML = recipe.description ? recipe.description.replace(/\n/g, '<br>') : 'Keine Beschreibung verfügbar';
+                cardBodyDiv.appendChild(recipeDescription);
+
+                var recipeIngredients = document.createElement('p');
+                recipeIngredients.className = 'card-text';
+                recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : 'Zutaten nicht verfügbar';
+                cardBodyDiv.appendChild(recipeIngredients);
+
+                /*var showButton = document.createElement('button');
+                showButton.textContent = 'Rezept anzeigen';
+                showButton.className = 'btn btn-info show-button';
+                showButton.onclick = function() {
+                    showModal(recipe.name, recipe.image, recipe.description, recipe.ingredients);
+                };
+                cardBodyDiv.appendChild(showButton);*/
 
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Löschen';
                 deleteButton.className = 'btn btn-danger delete-button';
                 deleteButton.onclick = function () {
-                    // Rezept aus Liste entfernen
                     hinzugefuegteRezepte.splice(index, 1);
-                    updateRecipeList(); // Liste aktualisieren nach Entfernung
                     localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+                    updateRecipeList(); // Liste aktualisieren nach Entfernung
+                    updateCartButton(); // Warenkorb-Button aktualisieren
                 };
-                recipeDiv.appendChild(deleteButton);
+                cardBodyDiv.appendChild(deleteButton);
 
-                recipeContainer.appendChild(recipeDiv);
+                cardDiv.appendChild(cardBodyDiv);
+                recipeCard.appendChild(cardDiv);
+
+                recipeContainer.appendChild(recipeCard);
             });
 
             updateCartButton(); // Warenkorb-Button aktualisieren
@@ -97,8 +169,8 @@
             }
         }
 
-        // Beim Laden der Seite die gespeicherten Rezepte laden
-        document.addEventListener('DOMContentLoaded', function() {
+        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+        document.addEventListener('DOMContentLoaded', function () {
             loadRecipesFromLocalStorage();
             updateCartButton();
         });
@@ -107,6 +179,54 @@
         function goToIndex() {
             window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
         }
+
+        // Funktion zum Anzeigen eines Rezeptmodals
+        function showModal(name, imageUrl, description, ingredients) {
+            console.log('Modal-Daten:', {
+                name: name,
+                imageUrl: imageUrl,
+                description: description,
+                ingredients: ingredients
+            });
+
+            var modalId = 'Rezept' + Date.now(); // Eindeutige ID für jedes Modal
+
+            var modalHtml = `
+                <div class="modal fade" id="${modalId}" tabindex="-1" role="dialog" aria-labelledby="${modalId}Label" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="${modalId}Label">${name}</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img src="${imageUrl}" class="img-fluid mb-3" alt="${name}">
+                                <p>${description || 'Keine Beschreibung verfügbar'}</p>
+                                <h5>Zutaten:</h5>
+                                <p>${ingredients || 'Zutaten nicht verfügbar'}</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Modal zur Modalsammlung hinzufügen
+            var modalsContainer = document.getElementById('modalsContainer');
+            modalsContainer.insertAdjacentHTML('beforeend', modalHtml);
+
+            // Modal öffnen
+            $('#' + modalId).modal('show');
+
+            // Modal entfernen, wenn es geschlossen wird
+            $('#' + modalId).on('hidden.bs.modal', function () {
+                $(this).remove();
+            });
+        }
     </script>
 
     <!-- Bootstrap JS und jQuery -->
@@ -114,4 +234,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
