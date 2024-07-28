@@ -80,19 +80,7 @@
         /* Keine Begrenzung für den erweiterten Text */
     }
 
-    .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        font-size: 16px;
-        transition: background-color 0.3s ease;
-    }
+
 
     .btn:hover {
         background-color: #0056b3;
@@ -1672,8 +1660,10 @@ function goToIndex() {
 }
         // Funktion zum Anzeigen des Popups mit dem Werbebild
         function showModal(imageUrl) {
+      
             var modalImage = document.querySelector('#autoAdModal img');
             modalImage.src = imageUrl;
+            checkModalColors('autoAdModal');
             $('#autoAdModal').modal('show');
         }
 
@@ -1724,182 +1714,201 @@ function goToIndex() {
         }
 
         function showAd1(imageUrl) {
+            checkModalColors('autoAdModal1');
             // Bild setzen
             $('#autoAdModal1').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal1').modal('show');
         }
+        function Ad1(imageUrl) {
+            checkModalColors('autoAdModal');
+            // Bild setzen
+            $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#autoAdModal').modal('show');
+        }
         function showAd2(imageUrl) {
+            checkModalColors('autoAdModal2');
             // Bild setzen
             $('#autoAdModal2').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal2').modal('show');
         }
         function showAd3(imageUrl) {
+            checkModalColors('autoAdModal3');
             // Bild setzen
             $('#autoAdModal3').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal3').modal('show');
         }
         function showAd4(imageUrl) {
+            checkModalColors('autoAdModal4');
             // Bild setzen
             $('#autoAdModal4').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal4').modal('show');
         }
         function showAd5(imageUrl) {
+            checkModalColors('autoAdModal5');
             // Bild setzen
             $('#autoAdModal5').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal5').modal('show');
         }
         function showAd6(imageUrl) {
+            checkModalColors('autoAdModal6');
             // Bild setzen
             $('#autoAdModal6').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal6').modal('show');
         }
         function showAd7(imageUrl) {
+            checkModalColors('autoAdModal7');
             // Bild setzen
             $('#autoAdModal7').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal7').modal('show');
         }
         function showAd8(imageUrl) {
+            checkModalColors('autoAdModal8');
             // Bild setzen
             $('#autoAdModal8').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal8').modal('show');
         }
         function showAd9(imageUrl) {
+            checkModalColors('autoAdModal9');
             // Bild setzen
             $('#autoAdModal9').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal9').modal('show');
         }
         function showAd10(imageUrl) {
+            checkModalColors('autoAdModal10');
             // Bild setzen
             $('#autoAdModal10').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal10').modal('show');
         }
         function showAd11(imageUrl) {
+            checkModalColors('autoAdModal11');
             // Bild setzen
             $('#autoAdModal11').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal11').modal('show');
         }
         function showAd12(imageUrl) {
+            checkModalColors('autoAdModal12');
             // Bild setzen
             $('#autoAdModal12').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal12').modal('show');
         }
         function showAd13(imageUrl) {
+            checkModalColors('autoAdModal13');
             // Bild setzen
             $('#autoAdModal13').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal13').modal('show');
         }
         function showAd14(imageUrl) {
+            checkModalColors('autoAdModal14');
             // Bild setzen
             $('#autoAdModal14').find('.modal-body img').attr('src', imageUrl);
             // Modal anzeigen
             $('#autoAdModal14').modal('show');
         }
 
-
-    </script>
-<script>
-    // Funktion zum Prüfen der Farben in einem Modal
+// Funktion zum Prüfen der Farben in einem Modal
 function checkModalColors(modalId) {
-    var modal = $('#' + modalId);
-    var buttons = modal.find('button');
-    var colors = [];
+            var modal = $('#' + modalId);
+            var buttons = modal.find('button');
+            var colors = [];
 
-    // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
-    function extractRgbValues(colorString) {
-        var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-        if (match) {
-            return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
-        } else {
-            // Gib ein Standard-RGB zurück, wenn keine Übereinstimmung gefunden wurde
-            return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
-        }
-    }
+            // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
+            function extractRgbValues(colorString) {
+                var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+                if (match) {
+                    return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
+                } else {
+                    // Gib ein Standard-RGB zurück, wenn keine Übereinstimmung gefunden wurde
+                    return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
+                }
+            }
 
-    // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
-    function compareColors(rgb, colorName) {
-        switch (colorName.toLowerCase()) {
-            case 'rot':
-                return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
-            case 'gelb':
-                return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
-            case 'grün':
-                return rgb[0] < 100 && rgb[1] > 150 && rgb[2] < 120;
-            case 'blau':
-                return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
-            case 'schwarz':
-                return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
-            case 'grau':
-                return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
-            default:
-                return false;
-        }
-    }
+            // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
+            function compareColors(rgb, colorName) {
+                switch (colorName.toLowerCase()) {
+                    case 'rot':
+                        return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
+                    case 'gelb':
+                        return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
+                    case 'grün':
+                        return rgb[0] < 100 && rgb[1] > 150 && rgb[2] < 120;
+                    case 'blau':
+                        return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
+                    case 'schwarz':
+                        return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
+                    case 'grau':
+                        return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
+                    default:
+                        return false;
+                }
+            }
 
-    // Durchlaufen aller Buttons im Modal
-    buttons.each(function(index, button) {
-        // Hintergrundfarbe des Buttons extrahieren
-        var computedStyle = window.getComputedStyle(button);
-        var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
-        var colorName = getColorName(backgroundColor);
+            // Durchlaufen aller Buttons im Modal
+            buttons.each(function (index, button) {
+                // Hintergrundfarbe des Buttons extrahieren
+                var computedStyle = window.getComputedStyle(button);
+                var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
+                var colorName = getColorName(backgroundColor);
 
-        // Konsolenausgabe zur Überprüfung
-        console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
+                // Konsolenausgabe zur Überprüfung
+                console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
 
-        // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
-        colors.push({ text: button.textContent.trim(), color: backgroundColor });
-    });
+                // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
+                colors.push({ text: button.textContent.trim(), color: backgroundColor });
+            });
 
-    // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
-    function getColorName(rgb) {
-        // Schwellenwerte für Farben
-        var thresholds = {
-            rot: [200, 100, 100],
-            gelb: [200, 200, 100],
-            grün: [100, 150, 100],
-            blau: [100, 100, 200],
-            schwarz: [50, 50, 50],
-            grau: [120, 120, 120]  // Schwellenwerte für Grau angepasst
-        };
+            // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
+            function getColorName(rgb) {
+                // Schwellenwerte für Farben
+                var thresholds = {
+                    rot: [200, 100, 100],
+                    gelb: [200, 200, 100],
+                    grün: [100, 150, 100],
+                    blau: [100, 100, 200],
+                    schwarz: [50, 50, 50],
+                    grau: [120, 120, 120]  // Schwellenwerte für Grau angepasst
+                };
 
-        // Überprüfe die Schwellenwerte für jede Farbe
-        for (var color in thresholds) {
-            if (areRgbValuesEqual(rgb, thresholds[color])) {
-                return color;
+                // Überprüfe die Schwellenwerte für jede Farbe
+                for (var color in thresholds) {
+                    if (areRgbValuesEqual(rgb, thresholds[color])) {
+                        return color;
+                    }
+                }
+
+                // Falls keine Übereinstimmung gefunden wurde, gib "Unbekannt" zurück
+                return 'Unbekannt';
+            }
+
+            // Funktion zum Vergleichen von RGB-Werten
+            function areRgbValuesEqual(rgb1, rgb2) {
+                return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
+            }
+
+            // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
+            if (colors.length > 1 && !colors.every(function (color) {
+                return color.color === colors[0].color;
+            })) {
+                // Alert anzeigen, wenn Bedingung erfüllt ist
+                alert('Vorsicht! Die Farben der Buttons im Modal sind unterschiedlich. Dies könnte den Ziel haben Sie von der eigentlichen Aktion abzulenken oder auch Daten zu sammeln.');
             }
         }
 
-        // Falls keine Übereinstimmung gefunden wurde, gib "Unbekannt" zurück
-        return 'Unbekannt';
-    }
+    </script>
 
-    // Funktion zum Vergleichen von RGB-Werten
-    function areRgbValuesEqual(rgb1, rgb2) {
-        return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
-    }
-
-    // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
-    if (colors.length > 1 && !colors.every(function(color) {
-        return color.color === colors[0].color;
-    })) {
- // Alert anzeigen, wenn Bedingung erfüllt ist
- alert('Vorsicht! Die Farben der Buttons im Modal sind unterschiedlich. Dies könnte den Ziel haben Sie von der eigentlichen Aktion abzulenken oder auch Daten zu sammeln.');
-    }
-}
-
-</script>
 
 </body>
 </html>
