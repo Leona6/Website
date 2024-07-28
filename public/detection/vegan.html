@@ -80,7 +80,7 @@
         /* Keine Begrenzung für den erweiterten Text */
     }
 
-   /* .btn {
+    /* .btn {
         display: inline-block;
         padding: 10px 20px;
         background-color: #007bff;
@@ -196,7 +196,8 @@
         display: block;
         width: 100%;
     }
-    .btn.btn-success large-button{
+
+    .btn.btn-success large-button {
         background-color: #c324a3;
         margin-top: 10px;
         display: block;
@@ -1825,15 +1826,15 @@
             $('#Rezept1').modal('show');
         }
         function showAd0(imageUrl) {
-    // Funktion zum Überprüfen der Farben der Buttons im Modal
-    checkModalColors('autoAdModal0'); // Die Modal-ID wird an die Funktion übergeben
-    
-    // Bild setzen und Modal anzeigen
-    $('#autoAdModal0').find('.modal-body img').attr('src', imageUrl);
-    $('#autoAdModal0').modal('show');
-}
+            // Funktion zum Überprüfen der Farben der Buttons im Modal
+            checkModalColors('autoAdModal0'); // Die Modal-ID wird an die Funktion übergeben
 
-// B
+            // Bild setzen und Modal anzeigen
+            $('#autoAdModal0').find('.modal-body img').attr('src', imageUrl);
+            $('#autoAdModal0').modal('show');
+        }
+
+        // B
         function showAd1(imageUrl) {
             checkModalColors('autoAdModal1');
             // Bild setzen
@@ -1950,8 +1951,8 @@
             $('#autoAdModal16').modal('show');
         }
 
-// Funktion zum Prüfen der Farben in einem Modal
-function checkModalColors(modalId) {
+        // Funktion zum Prüfen der Farben in einem Modal
+        function checkModalColors(modalId) {
             var modal = $('#' + modalId);
             var buttons = modal.find('button');
             var colors = [];

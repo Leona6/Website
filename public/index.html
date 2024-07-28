@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,29 +9,33 @@
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        text-align: center;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
     }
+
     .button-container {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
+
 <body>
 
   <div class="container mt-5">
     <div class="button-container">
-      <button onclick="window.location.href='https://website-9pi4.onrender.com/default/recipes'" class="btn btn-primary">Phase 1</button>
-      <button onclick="window.location.href='https://website-9pi4.onrender.com/detection/recipes'" class="btn btn-primary">Phase 2</button>
+      <button onclick="window.location.href='https://website-9pi4.onrender.com/default/recipes'"
+        class="btn btn-primary">Phase 1</button>
+      <button onclick="window.location.href='https://website-9pi4.onrender.com/detection/recipes'"
+        class="btn btn-primary">Phase 2</button>
     </div>
 
     <h1 class="text-center">Recipe Links</h1>
@@ -49,8 +54,10 @@
       <li><a href="https://website-9pi4.onrender.com/detection/recipes" class="btn btn-link">Detection Recipes</a></li>
       <li><a href="https://website-9pi4.onrender.com/detection/alles" class="btn btn-link">Detection Alles</a></li>
       <li><a href="https://website-9pi4.onrender.com/detection/vegan" class="btn btn-link">Detection Vegan</a></li>
-      <li><a href="https://website-9pi4.onrender.com/detection/vegetarisch" class="btn btn-link">Detection Vegetarisch</a></li>
-      <li><a href="https://website-9pi4.onrender.com/detection/myrecipes" class="btn btn-link">Detection My Recipes</a></li>
+      <li><a href="https://website-9pi4.onrender.com/detection/vegetarisch" class="btn btn-link">Detection
+          Vegetarisch</a></li>
+      <li><a href="https://website-9pi4.onrender.com/detection/myrecipes" class="btn btn-link">Detection My Recipes</a>
+      </li>
     </ul>
   </div>
 
@@ -62,7 +69,8 @@
   </div>
 -->
   <!-- Bootstrap Modal für Begrüßung -->
-  <div class="modal fade" id="greetingModal" tabindex="-1" role="dialog" aria-labelledby="greetingModalLabel" aria-hidden="true">
+  <div class="modal fade" id="greetingModal" tabindex="-1" role="dialog" aria-labelledby="greetingModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -73,8 +81,10 @@
         </div>
         <div class="modal-body">
           <p>Herzlich Willkommen zur Evaluation meiner Masterarbeit!</p>
-          <p>Die Evaluation beinhaltet 2 Phasen. In der ersten Phase werden Sie eine Aufgabe bekommen bezüglich des Prototypen. Wird die Aufgabe erfüllt, folgt anschließend ein Fragebogen.</p>
-          <p>Die zweite Phase beinhaltet die selbe Aufgabe und anschließend muss erneut ein Fragebogen ausgefüllt werden, basierend auf dem zweiten Prototypen.</p>
+          <p>Die Evaluation beinhaltet 2 Phasen. In der ersten Phase werden Sie eine Aufgabe bekommen bezüglich des
+            Prototypen. Wird die Aufgabe erfüllt, folgt anschließend ein Fragebogen.</p>
+          <p>Die zweite Phase beinhaltet die selbe Aufgabe und anschließend muss erneut ein Fragebogen ausgefüllt
+            werden, basierend auf dem zweiten Prototypen.</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
@@ -90,18 +100,18 @@
 
   <!-- Custom Script, um das Modal beim Laden der Seite zu zeigen -->
   <script>
-    $(document).ready(function(){
+    $(document).ready(function () {
       // Modal für die Begrüßung anzeigen
       $('#greetingModal').modal('show');
-  
+
       // Event-Handler für den Button "Hallo"
-      $('#helloButton').click(function() {
+      $('#helloButton').click(function () {
         // Bootstrap Alert anzeigen
         $('#helloAlert').addClass('show');
         $('#helloAlert').css('display', 'block'); // Zeige den Alert an
-  
+
         // Nach einer Verzögerung den Alert ausblenden
-        setTimeout(function(){
+        setTimeout(function () {
           $('#helloAlert').removeClass('show');
           $('#helloAlert').css('display', 'none'); // Verstecke den Alert
         }, 2000); // Nach 2 Sekunden ausblenden (Anpassbar nach Bedarf)
@@ -109,4 +119,5 @@
     });
   </script>
 </body>
+
 </html>
