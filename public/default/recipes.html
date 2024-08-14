@@ -21,7 +21,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true" onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -48,7 +48,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -466,49 +466,58 @@
         </div>
     </div>
 
-    <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary large-button" onclick="openVegetarianRecipes()">Zu den
-                        Rezepten</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/werbung.jpg" alt="Werbung">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
+
+       <!-- Automatisches Pop-up mit Werbung -->
+       <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+       aria-hidden="true">
+       <div class="modal-dialog modal-lg" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                   <p>Kaufen Sie jetzt das beste Produkt!</p>
+                   <button id="offerButton" class="btn btn-success button"
+                       onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                   <div style="margin-top: 10px;">
+                    <button class="btn btn-secondary button" onclick="openVegetarianRecipes()">Zu den Rezepten</button>
+
+                   </div>
+                   <div id="timerDisplay" class="text-danger mt-2"></div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+       <!-- Automatisches Pop-up mit Werbung -->
+       <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+       aria-hidden="true">
+       <div class="modal-dialog modal-lg" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                   <p>Kaufen Sie jetzt das beste Produkt!</p>
+                   <button id="offerButton" class="btn btn-success button"
+                       onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                   <div style="margin-top: 10px;">
                     <button class="btn btn-secondary button" onclick="openVegan()">Zu den Rezepten</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+                   </div>
+                   <div id="timerDisplay" class="text-danger mt-2"></div>
+               </div>
+           </div>
+       </div>
+   </div>
     <div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -516,7 +525,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -537,7 +546,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -558,7 +567,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -579,7 +588,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -600,7 +609,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -621,7 +630,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -642,7 +651,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -663,7 +672,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -684,7 +693,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -699,13 +708,10 @@
         </div>
     </div>
 
-
-
-
     <!-- Automatisches Pop-up mit Werbung -->
     <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
@@ -714,11 +720,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                    <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
                     <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary large-button" onclick="openAll()">Zu den Rezepten</button>
+                    <button id="offerButton" class="btn btn-success button"
+                        onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <div style="margin-top: 10px;">
+                        <button class="btn btn-secondary button" onclick="openAll()">Zu den Rezepten</button>
+
+                    </div>
+                    <div id="timerDisplay" class="text-danger mt-2"></div>
                 </div>
             </div>
         </div>
@@ -731,7 +741,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Kartoffelsalat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -764,7 +774,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Avocadosalat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -1297,11 +1307,6 @@
             $('#Modal2').modal('show');
 
         }
-
-        // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-        setInterval(function () {
-            $('#Modal2').modal('show');
-        }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
     </script>
     <script>
         // Funktion zum Anzeigen von Werbung
@@ -1313,10 +1318,6 @@
 
         }
 
-        // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-        setInterval(function () {
-            $('#Modal1').modal('show');
-        }, 30000); // 60000 Millisekunden entsprechen 60 Sekunden
     </script>
     <script>
 
