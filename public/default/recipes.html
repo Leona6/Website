@@ -1097,6 +1097,7 @@
             // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
 
             $('#autoAdModal1').modal('show');
+            $('#cookieModal').modal('show');
 
         });
         document.addEventListener('DOMContentLoaded', function () {
@@ -1145,124 +1146,73 @@
 
 
     <script>
-        // Einstellungsmodal anzeigen, wenn auf den Einstellungsbutton geklickt wird
-        document.getElementById('Einstellungen').addEventListener('click', function () {
+   // Funktion zur Initialisierung der Schalter und Event-Listener
+function initializeSwitches() {
+    const functionalSwitch = document.getElementById('functionalSwitch');
+    const marketingSwitch = document.getElementById('marketingSwitch');
+    const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
+    const saveButton = document.getElementById('saveButton');
+    const resetButton = document.getElementById('resetButton');
 
-            $('#settingsModal').modal('show');
+    // Funktion, um alle Schalter zu aktivieren
+    const activateAllSwitches = () => {
+        functionalSwitch.checked = true;
+        marketingSwitch.checked = true;
+        personalizedAdsSwitch.checked = true;
+        saveButton.disabled = false; // Speichern-Button aktivieren
+    };
 
-            const functionalSwitch = document.getElementById('functionalSwitch');
-            const marketingSwitch = document.getElementById('marketingSwitch');
-            const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
-            const saveButton = document.getElementById('saveButton');
+    // Event Listener für jeden Schalter, um alle zu aktivieren, wenn einer betätigt wird
+    functionalSwitch.addEventListener('change', activateAllSwitches);
+    marketingSwitch.addEventListener('change', activateAllSwitches);
+    personalizedAdsSwitch.addEventListener('change', activateAllSwitches);
 
-            // Function to save settings
-            const saveSettings = () => {
-                const settings = {
-                    functional: functionalSwitch.checked,
-                    marketing: marketingSwitch.checked,
-                    personalizedAds: personalizedAdsSwitch.checked
-                };
-                console.log('Saved settings:', settings);
-                // Hier kannst du den Code zum Speichern der Einstellungen auf der Serverseite oder im Browser hinzufügen
-                // Beispiel: localStorage.setItem('cookieSettings', JSON.stringify(settings));
-                // Hier sollte die Logik stehen, um die Einstellungen zu speichern
-            };
+    // Funktion zum Speichern der Einstellungen
+    const saveSettings = () => {
+        console.log('Settings saved');
+        localStorage.setItem('cookiesAccepted', 'true'); // Speichern in localStorage
+        $('#settingsModal').modal('hide'); // Schließen des Einstellungsmodals
+        $('#cookieModal').modal('hide'); // Schließen des Cookie-Modals
+    };
 
-            const checkSwitches = () => {
-                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                    saveButton.disabled = false;
-                } else {
-                    saveButton.disabled = true;
-                }
-            }
+    // Event Listener für den Speichern-Button
+    saveButton.addEventListener('click', () => {
+        if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
+            saveSettings();
+            saveButton.disabled = true; // Speichern-Button nach dem Speichern deaktivieren
+        }
+    });
 
-            functionalSwitch.addEventListener('change', () => {
-                checkSwitches();
-                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                    saveSettings();
-                }
-            });
+    // Event Listener für den "Zustimmung zurücksetzen"-Button
+    resetButton.addEventListener('click', () => {
+        localStorage.removeItem('cookiesAccepted'); // Eintrag aus localStorage entfernen
+        saveButton.disabled = true; // Speichern-Button deaktivieren
+        functionalSwitch.checked = false; // Schalter zurücksetzen
+        marketingSwitch.checked = false;
+        personalizedAdsSwitch.checked = false;
+        $('#cookieModal').modal('show'); // Cookie-Modal anzeigen
+    });
 
-            marketingSwitch.addEventListener('change', () => {
-                checkSwitches();
-                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                    saveSettings();
-                }
-            });
+    // Überprüfen, ob Cookies bereits akzeptiert wurden
+    const cookiesAccepted = localStorage.getItem('cookiesAccepted');
+    if (cookiesAccepted === 'true') {
+        $('#cookieModal').modal('hide'); // Cookie-Modal ausblenden
+    } else {
+        $('#cookieModal').modal('show'); // Cookie-Modal anzeigen
+    }
+}
 
-            personalizedAdsSwitch.addEventListener('change', () => {
-                checkSwitches();
-                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                    saveSettings();
-                }
-            });
+// Initialisierung beim Laden der Seite
+document.addEventListener('DOMContentLoaded', (event) => {
+    initializeSwitches();
+});
 
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const functionalSwitch = document.getElementById('functionalSwitch');
-            const marketingSwitch = document.getElementById('marketingSwitch');
-            const personalizedAdsSwitch = document.getElementById('personalizedAdsSwitch');
-            const saveButton = document.getElementById('saveButton');
-            const resetButton = document.getElementById('resetButton');
+// Initialisierung bei Klick auf den "Einstellungen"-Button
+document.getElementById('Einstellungen').addEventListener('click', function () {
+    $('#settingsModal').modal('show');
+    initializeSwitches();
+});
 
-            // Function to check all switches and enable save button if all are checked
-            const checkSwitches = () => {
-                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                    saveButton.disabled = false;
-                } else {
-                    saveButton.disabled = true;
-                }
-            };
-
-            // Event listeners for switch changes
-            functionalSwitch.addEventListener('change', () => {
-                checkSwitches();
-            });
-
-            marketingSwitch.addEventListener('change', () => {
-                checkSwitches();
-            });
-
-            personalizedAdsSwitch.addEventListener('change', () => {
-                checkSwitches();
-            });
-
-            // Save settings function
-            const saveSettings = () => {
-                console.log('Settings saved');
-                localStorage.setItem('cookiesAccepted', 'true'); // Store cookies accepted in localStorage
-                $('#settingsModal').modal('hide'); // Close settings modal after saving
-                $('#cookieModal').modal('hide'); // Hide cookie modal after saving
-            };
-
-            // Event listener for save button click
-            saveButton.addEventListener('click', () => {
-                if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
-                    saveSettings();
-                    saveButton.disabled = true; // Disable save button after saving
-                }
-            });
-
-            // Event listener for the "Zustimmung zurücksetzen" Button
-            resetButton.addEventListener('click', () => {
-                localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
-                saveButton.disabled = true; // Disable save button
-                functionalSwitch.checked = false; // Reset switches
-                marketingSwitch.checked = false;
-                personalizedAdsSwitch.checked = false;
-                $('#cookieModal').modal('show'); // Show cookie modal after resetting
-            });
-
-            // Check if user has already accepted cookies
-            const cookiesAccepted = localStorage.getItem('cookiesAccepted');
-            if (cookiesAccepted === 'true') {
-                $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
-            } else {
-                $('#cookieModal').modal('show'); // Show cookie modal if not accepted
-            }
-        });
     </script>
     <script>
         function openVegetarianRecipes() {
