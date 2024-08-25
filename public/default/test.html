@@ -1,40 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, 
-                   initial-scale=1.0">
-    <title>Read more read less button</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Modal</title>
+    <link rel="stylesheet" href="css.css">
 </head>
-
 <body>
-    <h1>GeeksforGeeks</h1>
-    <h3>A "read more - read less"
-        button using JavaScript.
-    </h3>
-    <div class="mybox">
-        <div>
-            A data structure is not only used
-            for organizing the data. It is also
-            used for processing, retrieving, and
-            storing data.<span id="span1">...</span>
-            <span class="mybox1" id="mybox1id">
-                There are different basic and advanced
-                types of data structures that are used
-                in almost every program or software
-                system that has been developed.
-                So we must have good knowledge about
-                data structures.
-            </span>
-        </div>
-        <button id="mybuttonid" onclick="changeReadMore()">
-            Read More
-        </button>
+<div id="cookieModal" class="modal">
+    <div class="modal-content">
+        <p>Diese Webseite verwendet Cookies, um Ihnen das beste Erlebnis zu bieten.</p>
+        <button id="acceptBtn">Akzeptieren</button>
     </div>
+</div>
 
-    <script src="script.js"></script>
+<button id="resetBtn">Cookie-Einstellung zurücksetzen</button>
+
+
+<script src="config.js"></script>
 </body>
-
 </html>

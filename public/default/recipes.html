@@ -91,7 +91,7 @@
                                     gespeicherten Daten wie z.B. persönlichen Identifikatoren oder IP-Adressen für diese
                                     Verarbeitungszwecke gem. § 25 Abs. 1 TDDDG sowie Art. 6 Abs. 1 lit. a DSGVO zu.</p>
                                 <button type="button" class="btn btn-primary btn-block"
-                                    onclick="showAd('images/werbung.jpg')" data-dismiss="modal">Mit Werbung
+                                  id="acceptBtn" data-dismiss="modal">Mit Werbung
                                     fortfahren</button>
                             </div>
                         </div>
@@ -102,7 +102,7 @@
                                     nahezu ohne Werbung, indem Sie ein Abo abonnieren oder sich hier mit Ihrem
                                     bestehenden Pur-Abo einloggen. Informationen zur Datenverarbeitung im Pur-Abo finden
                                     Sie in unserer Datenschutzerklärung und in den FAQ.</p>
-                                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Werbefrei
+                                <button id="adfree" type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Werbefrei
                                     fortfahren</button>
                             </div>
                         </div>
@@ -115,6 +115,9 @@
                                     jederzeit über den Link Privacy Einstellungen am Ende jeder Seite entziehen.</p>
                                 <button type="button" class="btn btn-outline-secondary btn-block" data-dismiss="modal"
                                     data-toggle="modal" data-target="#settingsModal">Einstellungen</button>
+                                <!--<button id="resetBtn">Cookie-Einstellung zurücksetzen</button>-->
+
+
                             </div>
                         </div>
                     </div>
@@ -172,6 +175,50 @@
             </div>
         </div>
     </div>
+
+    <!-- Werbefrei-Modal -->
+    <div class="modal fade" id="werbefreiModal" tabindex="-1" role="dialog" aria-labelledby="werbefreiModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="werbefreiModalLabel">Werbefrei Lesen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Bannerwerbung und Werbung in Videos werden ausgeblendet. Ausgenommen sind bspw. Advertorials und Hinweise auf ZEIT-Produkte.</p>
+                    <p>Kein Werbetracking (es bleiben nur ZEIT-interne/allgemeine Nutzungsanalysen). Weitere Infos finden Sie in unseren FAQ.</p>
+                    <p><strong>Nur 1,20 €/Woche</strong></p>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="emailInput" placeholder="Ihre E-Mail-Adresse">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="sendEmailButton">Senden</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('adfree').addEventListener('click', function() {
+            // Öffne das Werbefrei-Modal
+            $('#werbefreiModal').modal('show');
+        });
+
+        document.getElementById('sendEmailButton').addEventListener('click', function() {
+            var email = document.getElementById('emailInput').value;
+            if (email) {
+                $('#werbefreiModal').modal('hide');
+                alert('Erfolgreich! Ihre E-Mail-Adresse wurde gesendet.');
+            } else {
+                alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+            }
+        });
+    </script>
+
+
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
@@ -1095,11 +1142,41 @@
             // Cookie-Akzeptanz-Popup anzeigen
 
             // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
+            // Überprüfen, ob der Eintrag "cookiesAccepted" im localStorage vorhanden ist
+           // localStorage.removeItem("cookiesAccepted");
+
+            var cookiesAccepted = localStorage.getItem("cookiesAccepted");
+
+            if (cookiesAccepted) {
+                console.log("Cookies wurden bereits akzeptiert.");
+            } else {
+                console.log("Cookies wurden noch nicht akzeptiert.");
+            }
+
 
             $('#autoAdModal1').modal('show');
-            $('#cookieModal').modal('show');
+            //$('#cookieModal').modal('show');
+            // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
+            if (!localStorage.getItem("cookiesAccepted")) {
+                $('#cookieModal').modal('show');
+            }
 
+            // Klick-Handler für den Akzeptieren-Button
+            $('#acceptBtn').on('click', function () {
+                localStorage.setItem("cookiesAccepted", "true");
+                $('#cookieModal').modal('hide');
+                console.log("Accepted");
+            });
+
+            // Klick-Handler für den Zurücksetzen-Button
+            $('#resetBtn').on('click', function () {
+                localStorage.removeItem("cookiesAccepted");
+                alert("Die Cookie-Einstellung wurde zurückgesetzt.");
+                window.location.reload();
+            });
         });
+
+        /*
         document.addEventListener('DOMContentLoaded', function () {
             // Hier ist Platz für Ihren spezifischen Code, der auf das DOM zugreift
             var buttonElement = document.getElementById('acceptCookiesButton');
@@ -1139,6 +1216,7 @@
             // Feedback für den Benutzer
             alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
         }
+*/
 
     </script>
 
@@ -1212,6 +1290,7 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
     $('#settingsModal').modal('show');
     initializeSwitches();
 });
+
 
     </script>
     <script>
@@ -1468,106 +1547,6 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
         function showRecipe10() {
             $('#Rezept10').modal('show');
         }
-    </script>
-    <script>
-        // Funktion zum Prüfen der Farben in einem Modal
-        function checkModalColors(modalId) {
-            var modal = $('#' + modalId);
-            var buttons = modal.find('button');
-            var colors = [];
-
-            // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
-            function extractRgbValues(colorString) {
-                var match = colorString.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-                if (match) {
-                    return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3])];
-                } else {
-                    // Standard-RGB zurückgeben, falls keine Übereinstimmung gefunden wurde
-                    return [0, 0, 0]; // Beispiel: Schwarz als Standardfarbe
-                }
-            }
-
-            // Funktion zum Vergleichen von RGB-Werten mit Farbnamen
-            function compareColors(rgb, colorName) {
-                switch (colorName.toLowerCase()) {
-                    case 'rot':
-                        return rgb[0] > 200 && rgb[1] < 100 && rgb[2] < 100;
-                    case 'gelb':
-                        return rgb[0] > 200 && rgb[1] > 200 && rgb[2] < 100;
-                    case 'grün':
-                        return rgb[0] < 100 && rgb[1] > 100 && rgb[2] < 120;
-                    case 'blau':
-                        return rgb[0] < 100 && rgb[1] < 100 && rgb[2] > 200;
-                    case 'schwarz':
-                        return rgb[0] < 50 && rgb[1] < 50 && rgb[2] < 50;
-                    case 'grau':
-                        return rgb[0] >= 120 && rgb[1] >= 120 && rgb[2] >= 120; // Anpassen der Schwellenwerte für Grau
-                    default:
-                        return false;
-                }
-            }
-
-            // Durchlaufen aller Buttons im Modal
-            buttons.each(function (index, button) {
-                // Hintergrundfarbe des Buttons extrahieren
-                var computedStyle = window.getComputedStyle(button);
-                var backgroundColor = extractRgbValues(computedStyle.getPropertyValue('background-color'));
-                var colorName = getColorName(backgroundColor);
-
-                // Konsolenausgabe zur Überprüfung
-                console.log(`Modal (${modalId}) - Button Text: "${button.textContent.trim()}", Farbe: rgb(${backgroundColor.join(', ')})`);
-
-                // Hinzufügen der Farbe zur Liste, wenn sie erkannt wird
-                colors.push({ text: button.textContent.trim(), color: backgroundColor });
-            });
-
-            // Funktion zum Ermitteln des Farbnamens anhand der RGB-Werte
-            function getColorName(rgb) {
-                // Schwellenwerte für Farben
-                var thresholds = {
-                    rot: [150, 0, 0],        // Anpassung der Schwellenwerte für Rot
-                    gelb: [255, 255, 0],     // Anpassung der Schwellenwerte für Gelb
-                    grün: [0, 100, 0],       // Anpassung der Schwellenwerte für Grün
-                    blau: [0, 0, 150],       // Anpassung der Schwellenwerte für Blau
-                    schwarz: [30, 30, 30],   // Anpassung der Schwellenwerte für Schwarz
-                    grau: [150, 150, 150]    // Anpassung der Schwellenwerte für Grau
-                };
-
-                // Überprüfen der Schwellenwerte für jede Farbe
-                for (var color in thresholds) {
-                    if (areRgbValuesEqual(rgb, thresholds[color])) {
-                        return color;
-                    }
-                }
-
-                // Falls keine Übereinstimmung gefunden wurde, 'Unbekannt' zurückgeben
-                return 'Unbekannt';
-            }
-
-            // Funktion zum Vergleichen von RGB-Werten
-            function areRgbValuesEqual(rgb1, rgb2) {
-                return rgb1.length === rgb2.length && rgb1.every((value, index) => value === rgb2[index]);
-            }
-
-            // Überprüfen, ob mehr als eine Farbe gefunden wurde und diese unterschiedlich sind
-            if (colors.length > 1 && !colors.every(function (color) {
-                return color.color === colors[0].color;
-            })) {
-                // Nachricht für das Alert-Modal
-                console.log('Hallo')
-                var message = 'Die Farben der Buttons im Fenster sind unterschiedlich.';
-                $('#alertMessage').html(message);
-                $('#alertModal').modal({
-                    backdrop: 'static', // Hintergrundklicks deaktivieren
-                    keyboard: false     // Schließen per Tastatur deaktivieren
-                });
-            } else {
-                // Wenn keine Warnung angezeigt wird, öffne das Cookie-Modal
-                // $('#cookieModal').modal('show');
-            }
-        }
-        checkModalColors('cookieModal');
-
     </script>
 </body>
 
