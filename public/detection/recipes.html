@@ -1103,62 +1103,78 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
-            // Automatisches Pop-up nach 3 Sekunden anzeigen
-            // Cookie-Akzeptanz-Popup anzeigen
+// Zeige das erste Modal an
+            $('#alertModal').modal('show');
 
-            // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
-
-            setTimeout(function () {
-                checkModalColors();
-                $('#cookieModal').modal('show');
+// Verzögere das Anzeigen des zweiten Modals, um sicherzustellen, dass das erste Modal vollständig angezeigt ist
+            setTimeout(function() {
                 $('#autoAdModal1').modal('show');
-            }, 3000);
+                checkModalColors('#cookieModal');
+                checkModalColors('#autoAdModal1');
+            }, 1000); // Verzögerung in Millisekunden (hier 300ms)
 
 
 
+                var cookiesAccepted = localStorage.getItem("cookiesAccepted");
 
-        });
-        // Initial Aufruf der Funktion zum Prüfen der Farben im Cookie-Modal
+                if (cookiesAccepted) {
+                    console.log("Cookies wurden bereits akzeptiert.");
+                } else {
+                    console.log("Cookies wurden noch nicht akzeptiert.");
+                }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            // Hier ist Platz für Ihren spezifischen Code, der auf das DOM zugreift
-            var buttonElement = document.getElementById('acceptCookiesButton');
-            if (buttonElement) {
-                buttonElement.addEventListener('click', function () {
-                    // Ihre Funktionalität hier
-                    localStorage.setItem('cookiesAccepted', 'true');
+
+              //  $('#autoAdModal1').modal('show');
+                //$('#cookieModal').modal('show');
+                // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
+                if (!localStorage.getItem("cookiesAccepted")) {
+                    $('#cookieModal').modal('show');
+                }
+
+                // Klick-Handler für den Akzeptieren-Button
+                $('#acceptBtn').on('click', function () {
+                    localStorage.setItem("cookiesAccepted", "true");
+                    $('#cookieModal').modal('hide');
+                    console.log("Accepted");
                 });
-            }
-        });
 
-        // Rezeptdetails anzeigen
-        function showRecipeDetails(rezeptName) {
-            alert('Details zu ' + rezeptName);
-        }
-
-        // Cookie-Einstellungen anzeigen
-        $('#Einstellungen').click(function () {
-            $('#settingsModal').modal('show');
-        });
-
-
-        // Zurücksetzen der Cookies
-        $('#cookiesAccepted').click(function () {
-            // Hier werden die Cookies zurückgesetzt (z.B. durch Löschung der gespeicherten Zustimmungen)
-            alert('Cookies wurden zurückgesetzt.');
-        });
-        function deleteAllCookies() {
-            // Löschen aller Cookies
-            $.each($.cookie(), function (key, value) {
-                $.removeCookie(key);
+                // Klick-Handler für den Zurücksetzen-Button
+                $('#resetBtn').on('click', function () {
+                    localStorage.removeItem("cookiesAccepted");
+                    alert("Die Cookie-Einstellung wurde zurückgesetzt.");
+                    window.location.reload();
+                });
             });
 
-            // Zurücksetzen des LocalStorage-Eintrags für Cookies-Akzeptanz
-            localStorage.removeItem('cookiesAccepted');
+            // Rezeptdetails anzeigen
+            function showRecipeDetails(rezeptName) {
+                alert('Details zu ' + rezeptName);
+            }
 
-            // Feedback für den Benutzer
-            alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
-        }
+            // Cookie-Einstellungen anzeigen
+            $('#Einstellungen').click(function () {
+                $('#settingsModal').modal('show');
+            });
+
+
+            // Zurücksetzen der Cookies
+            $('#cookiesAccepted').click(function () {
+                // Hier werden die Cookies zurückgesetzt (z.B. durch Löschung der gespeicherten Zustimmungen)
+                alert('Cookies wurden zurückgesetzt.');
+            });
+
+            function deleteAllCookies() {
+                // Löschen aller Cookies
+                $.each($.cookie(), function (key, value) {
+                    $.removeCookie(key);
+                });
+
+                // Zurücksetzen des LocalStorage-Eintrags für Cookies-Akzeptanz
+                localStorage.removeItem('cookiesAccepted');
+
+                // Feedback für den Benutzer
+                alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
+            }
 
     </script>
 
@@ -1345,9 +1361,9 @@
         }
 
         // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-        setInterval(function () {
-            $('#Modal1').modal('show');
-        }, 30000); // 60000 Millisekunden entsprechen 60 Sekunden
+
+           // $('#Modal1').modal('show');
+
     </script>
     <script>
 
