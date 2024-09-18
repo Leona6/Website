@@ -178,3 +178,61 @@
     display: block;
     width: 100%;
 }
+.modal {
+    z-index: 1050; /* Basis-Z-Index für alle Modals */
+}
+
+/* Spezifische Z-Index-Werte für deine Modals */
+
+#alertModal {
+    z-index: 3060; /* Höherer Z-Index für das Alert-Modal */
+}
+
+#autoAdModal1 {
+    z-index: 1050; /* Niedrigerer Z-Index für das Ad-Modal */
+}
+/* Stile für das Warnmodal */
+#alertModal .modal-content {
+    border: 2px solid red; /* Roter Rand für zusätzliche Hervorhebung */
+    background-color: #f8d7da; /* Hintergrundfarbe für Warnungen */
+    color: #721c24; /* Textfarbe für Warnungen */
+}
+
+/* Header-Stil für das Warnmodal */
+#alertModal .modal-header {
+    background-color: #f5c6cb; /* Hintergrundfarbe des Headers */
+    color: #721c24; /* Textfarbe des Headers */
+    border-bottom: 1px solid #f5c6cb; /* Abgrenzung unten */
+}
+
+/* Body-Stil für das Warnmodal */
+#alertModal .modal-body {
+    color: #721c24; /* Textfarbe im Body */
+}
+
+/* Footer-Stil für das Warnmodal */
+#alertModal .modal-footer {
+    background-color: #f5c6cb; /* Hintergrundfarbe des Footers */
+    border-top: 1px solid #f5c6cb; /* Abgrenzung oben */
+}
+
+/* Buttons im Warnmodal */
+#alertModal .btn-primary {
+    background-color: #721c24; /* Hintergrundfarbe der Buttons */
+    border-color: #721c24; /* Randfarbe der Buttons */
+}
+
+#alertModal .btn-primary:hover {
+    background-color: #a71d2a; /* Dunklerer Rotton beim Hover-Effekt */
+    border-color: #a71d2a; /* Dunklerer Rand beim Hover-Effekt */
+}
+
+#alertModal .btn-secondary {
+    background-color: #f5c6cb; /* Hintergrundfarbe der sekundären Buttons */
+    border-color: #f5c6cb; /* Randfarbe der sekundären Buttons */
+}
+
+#alertModal .btn-secondary:hover {
+    background-color: #e2a3a7; /* Dunklerer Rotton beim Hover-Effekt */
+    border-color: #e2a3a7; /* Dunklerer Rand beim Hover-Effekt */
+}

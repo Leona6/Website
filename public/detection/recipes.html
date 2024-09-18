@@ -13,26 +13,30 @@
 
 <body>
     <!-- Bootstrap Alert als Modal -->
-    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel"
-        aria-hidden="true">
+    <!-- Alert Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="alertModalLabel">Warnung</h5>
+                    <h5 class="modal-title" id="alertModalLabel">Warnung!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <strong id="alertMessage"></strong>
+                    Hier ist eine wichtige Warnung! Bitte lesen Sie die folgenden Informationen sorgfältig:
+                    <br>
+                    <br>
+                    Die Farben der Buttons im Fenster sind unterschiedlich.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
-                        id="alertClose">Schließen</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Verstanden</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
                 </div>
             </div>
         </div>
     </div>
+
 
 
     <!-- Automatisches Pop-up mit Werbung -->
@@ -1107,11 +1111,11 @@
             $('#alertModal').modal('show');
 
 // Verzögere das Anzeigen des zweiten Modals, um sicherzustellen, dass das erste Modal vollständig angezeigt ist
-            setTimeout(function() {
+    {
                 $('#autoAdModal1').modal('show');
                 checkModalColors('#cookieModal');
                 checkModalColors('#autoAdModal1');
-            }, 1000); // Verzögerung in Millisekunden (hier 300ms)
+          // Verzögerung in Millisekunden (hier 300ms)
 
 
 
@@ -1144,7 +1148,7 @@
                     alert("Die Cookie-Einstellung wurde zurückgesetzt.");
                     window.location.reload();
                 });
-            });
+            };
 
             // Rezeptdetails anzeigen
             function showRecipeDetails(rezeptName) {
@@ -1175,7 +1179,7 @@
                 // Feedback für den Benutzer
                 alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
             }
-
+        })
     </script>
 
 
@@ -1321,50 +1325,7 @@
             window.location.href = "alles.html";
         }
     </script>
-    <script>
-        function showModal(imageUrl) {
-            // Bild setzen
-            $('#Modal').find('.modal-body img').attr('src', imageUrl);
-            // Modal anzeigen
-            $('#Modal').modal('show');
 
-        }
-        /*  function showAd(imageUrl) {
-              // Bild setzen
-              $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
-              // Modal anzeigen
-              $('#autoAdModal').modal('show');
-             
-          }*/
-        // Funktion zum Anzeigen von Werbung
-        function showModal2(imageUrl) {
-            // Bild setzen
-            $('#Modal2').find('.modal-body img').attr('src', imageUrl);
-            // Modal anzeigen
-            $('#Modal2').modal('show');
-
-        }
-
-        // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-        setInterval(function () {
-            $('#Modal2').modal('show');
-        }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
-    </script>
-    <script>
-        // Funktion zum Anzeigen von Werbung
-        function showModal1(imageUrl) {
-            // Bild setzen
-            $('#Modal1').find('.modal-body img').attr('src', imageUrl);
-            // Modal anzeigen
-            $('#Modal1').modal('show');
-
-        }
-
-        // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
-
-           // $('#Modal1').modal('show');
-
-    </script>
     <script>
 
         // Globale Variable für die hinzugefügten Rezepte
@@ -1573,6 +1534,35 @@
         function showRecipe10() {
             $('#Rezept10').modal('show');
         }
+        function showModal(imageUrl) {
+            checkModalColors('Modal');
+
+
+            $('#Modal').find('.modal-body img').attr('src', imageUrl);
+
+
+            $('#Modal').modal('show');
+        }
+
+        // Funktion zum Anzeigen von Werbung
+        function showModal2(imageUrl) {
+            checkModalColors('Modal2');
+            // Bild setzen
+            $('#Modal2').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#Modal2').modal('show');
+
+        }
+        function showModal1(imageUrl) {
+            checkModalColors('Modal1'); // Überprüfe die Farben des Modals
+
+            // Bild setzen
+            $('#Modal1').find('.modal-body img').attr('src', imageUrl);
+
+            // Modal anzeigen
+            $('#Modal1').modal('show');
+        }
+
         // Funktion zum Prüfen der Farben in einem Modal
         function checkModalColors(modalId) {
             var modal = $('#' + modalId);
@@ -1670,11 +1660,46 @@
             }
         }
         checkModalColors('cookieModal');
+        checkModalColors('#Modal');
+        checkModalColors('#Modal2');
+        checkModalColors('#Modal1');
+
     </script>
 
     <script>
+      /*  function showModal(imageUrl) {
+            checkModalColors('#Modal'); // Überprüfe die Farben des Modals
 
+            // Bild setzen
+            $('#Modal').find('.modal-body img').attr('src', imageUrl);
+
+            // Modal anzeigen
+            $('#Modal').modal('show');
+        }
+        /*  function showAd(imageUrl) {
+              // Bild setzen
+              $('#autoAdModal').find('.modal-body img').attr('src', imageUrl);
+              // Modal anzeigen
+              $('#autoAdModal').modal('show');
+
+          }
+        // Funktion zum Anzeigen von Werbung
+        function showModal2(imageUrl) {
+            checkModalColors('#Modal2');
+            // Bild setzen
+            $('#Modal2').find('.modal-body img').attr('src', imageUrl);
+            // Modal anzeigen
+            $('#Modal2').modal('show');
+
+        }
+
+        // Automatisches Pop-up mit Werbung alle 60 Sekunden anzeigen
+        setInterval(function () {
+            $('#Modal2').modal('show');
+        }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
+      */
     </script>
+
 </body>
 
 </html>
