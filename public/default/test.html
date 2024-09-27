@@ -1,22 +1,64 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cookie Modal</title>
-    <link rel="stylesheet" href="css.css">
+    <title>Bait and Switch Example</title>
+    <style>
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        .offer-banner {
+            padding: 20px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-<div id="cookieModal" class="modal">
-    <div class="modal-content">
-        <p>Diese Webseite verwendet Cookies, um Ihnen das beste Erlebnis zu bieten.</p>
-        <button id="acceptBtn">Akzeptieren</button>
-    </div>
+<!-- Fake Offer Page -->
+<div class="offer-banner">
+    <h1>Verlockendes Angebot!</h1>
+    <p>Top Smartphone zum Sonderpreis von nur 199 €! Nur noch heute!</p>
+    <button id="buyNowButton" class="button">Jetzt kaufen</button>
 </div>
 
-<button id="resetBtn">Cookie-Einstellung zurücksetzen</button>
+<!-- Alternate Product Page -->
+<div id="alternatePage" class="hidden">
+    <h1>Sorry, dieses Angebot ist nicht mehr verfügbar</h1>
+    <p>Wir haben jetzt ein neues Angebot für ein Premium-Smartphone zum Preis von 399 €.</p>
+    <button class="button">Jetzt kaufen</button>
+</div>
 
+<!-- Script to handle bait and switch -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buyNowButton = document.getElementById('buyNowButton');
+        const alternatePage = document.getElementById('alternatePage');
 
-<script src="config.js"></script>
+        buyNowButton.addEventListener('click', function() {
+            // Simuliere die Weiterleitung zu einer anderen Seite
+            // In einer echten Umgebung könnte dies eine andere URL sein
+            document.querySelector('.offer-banner').classList.add('hidden');
+            alternatePage.classList.remove('hidden');
+        });
+    });
+</script>
 </body>
 </html>

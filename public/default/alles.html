@@ -142,1150 +142,1179 @@
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Menü</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Menü</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="recipes.html">Startseite</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="vegetarisch.html">Vegetarisch</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="vegan.html">Vegan</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="alles.html">Alles Esser</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte (0)</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="recipes.html">Startseite</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vegetarisch.html">Vegetarisch</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vegan.html">Vegan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="alles.html">Alles Esser</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="cartButton" href="myrecipes.html">Meine Rezepte (0)</a>
+            </li>
+        </ul>
+    </div>
+</nav>
 
+<!-- Alert Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="alertModalLabel">Warnung!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
 
-    <div class="container">
-        <h2 class="category-title">Rezepte</h2>
-
-        <!-- Vorspeisen -->
-        <h3 class="category-title">Vorspeisen</h3>
-        <div class="recipe-container">
-            <!-- Bruschetta -->
-            <div class="recipe">
-                <h4>Bruschetta</h4>
-                <img src="images/bruschetta.webp" alt="Bruschetta Bild" class="img-fluid">
-                <p class="recipe-text-container">
-                    Geröstetes Brot mit frischen Tomaten, Basilikum und Knoblauch.
-                    <br><br>
-                    1 kg Strauchtomaten<br>
-                    3 Zwiebeln<br>
-                    4 Zehen Knoblauch<br>
-                    Meersalz und Pfeffer aus der Mühle<br>
-                    Olivenöl<br>
-                    1 Ciabatta<br>
-                    1 Bund Basilikum<br>
-                    n. B. Parmesan oder Mozzarella
-                </p>
-                <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                </button>
             </div>
-            <!-- Börek mit Joghurt Dip -->
-            <div class="recipe">
-                <h4>Börek mit Joghurt Dip</h4>
-                <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Börek mit Joghurt Dip Bild" class="img-fluid">
-                <p class="recipe-text-container">
-                    Hauchdünne Filoteig-Blätter umhüllen eine Creme aus Feta, Joghurt und Kräutern.
-                    <br><br>
-                    Yufka-Teigblätter<br>
-                    200 g Feta-Käse<br>
-                    200 g milder Käse<br>
-                    2 Kartoffeln<br>
-                    3 Eier<br>
-                    200 ml Milch<br>
-                    125 g Butter<br>
-                    1 Handvoll Petersilie<br>
-                    1 Handvoll Dill<br>
-                    Pfeffer<br>
-                    Pul Biber<br>
-                    Schwarzkümmel<br>
-                    1 Eigelb
-                </p>
-                <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+            <div class="modal-body">
+                Achtung: Unterschiedlich gestaltete Buttons können deine Aufmerksamkeit unbewusst auf eine bestimmte Option lenken.
+                <br>
+                <br>
+                Dies könnte dazu führen, dass du eine Entscheidung triffst, die nicht in deinem besten Interesse ist.
+                <br>
+                <br>
+                Überlege genau, bevor du auswählst, da dies Auswirkungen wie unerwartete Kosten oder unerwünschte Einstellungen haben könnte.
             </div>
-            <!-- Blätterteig-Lachs-Schnecken -->
-            <div class="recipe">
-                <h4>Blätterteig-Schnecken</h4>
-                <img src="images/blaetterteig-lachs-schnecken.jpg.webp" alt="Blätterteig-Lachs-Schnecken Bild"
-                    class="img-fluid">
-                <p class="recipe-text-container">
-                    Hauchdünne Teig-Blätter umhüllen Lachscreme aus Frischkäse und Räucherlachs.
-                    <br><br>
-                    1 Rolle Blätterteig<br>
-                    100 g Frischkäse<br>
-                    200 g Räucherlachs<br>
-                    Etwas Dill<br>
-                    1 Ei
-                </p>
-                <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+            <div class="modal-footer">
             </div>
         </div>
+    </div>
+</div>
+
+<div class="container">
+    <h2 class="category-title">Rezepte</h2>
+
+    <!-- Vorspeisen -->
+    <h3 class="category-title">Vorspeisen</h3>
+    <div class="recipe-container">
+        <!-- Bruschetta -->
+        <div class="recipe">
+            <h4>Bruschetta</h4>
+            <img src="images/bruschetta.webp" alt="Bruschetta Bild" class="img-fluid">
+            <p class="recipe-text-container">
+                Geröstetes Brot mit frischen Tomaten, Basilikum und Knoblauch.
+                <br><br>
+                1 kg Strauchtomaten<br>
+                3 Zwiebeln<br>
+                4 Zehen Knoblauch<br>
+                Meersalz und Pfeffer aus der Mühle<br>
+                Olivenöl<br>
+                1 Ciabatta<br>
+                1 Bund Basilikum<br>
+                n. B. Parmesan oder Mozzarella
+            </p>
+            <button class="btn btn-primary" onclick="showAd12('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+        <!-- Börek mit Joghurt Dip -->
+        <div class="recipe">
+            <h4>Börek mit Joghurt Dip</h4>
+            <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Börek mit Joghurt Dip Bild" class="img-fluid">
+            <p class="recipe-text-container">
+                Hauchdünne Filoteig-Blätter umhüllen eine Creme aus Feta, Joghurt und Kräutern.
+                <br><br>
+                Yufka-Teigblätter<br>
+                200 g Feta-Käse<br>
+                200 g milder Käse<br>
+                2 Kartoffeln<br>
+                3 Eier<br>
+                200 ml Milch<br>
+                125 g Butter<br>
+                1 Handvoll Petersilie<br>
+                1 Handvoll Dill<br>
+                Pfeffer<br>
+                Pul Biber<br>
+                Schwarzkümmel<br>
+                1 Eigelb
+            </p>
+            <button class="btn btn-primary" onclick="showAd13('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+        <!-- Blätterteig-Lachs-Schnecken -->
+        <div class="recipe">
+            <h4>Blätterteig-Schnecken</h4>
+            <img src="images/blaetterteig-lachs-schnecken.jpg.webp" alt="Blätterteig-Lachs-Schnecken Bild"
+                 class="img-fluid">
+            <p class="recipe-text-container">
+                Hauchdünne Teig-Blätter umhüllen Lachscreme aus Frischkäse und Räucherlachs.
+                <br><br>
+                1 Rolle Blätterteig<br>
+                100 g Frischkäse<br>
+                200 g Räucherlachs<br>
+                Etwas Dill<br>
+                1 Ei
+            </p>
+            <button class="btn btn-primary" onclick="showAd14('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+    </div>
 
 
-        <!-- Hauptspeisen -->
-        <h3 class="category-title">Hauptspeisen</h3>
-        <div class="recipe-container">
-            <!-- Spaghetti Bolognese -->
-            <div class="recipe">
-                <h4>Spaghetti Bolognese</h4>
-                <img src="images/spaghetti-bolognese.jpg.webp" alt="Spaghetti Bolognese Bild" class="img-fluid">
-                <p class="recipe-text-container">
-                    Eine klassische Pasta mit einer würzigen Hackfleischsoße.
-                    <br><br>
-                    250 g Spaghetti<br>
-                    2 Eier<br>
-                    1 Eigelb<br>
-                    2 Scheiben Speck<br>
-                    30 g Parmesan oder Pecorino<br>
-                    Salz und Pfeffer
-                </p>
-                <button class="btn btn-primary" onclick="showAd('images/werbung.jpg')">Rezept anzeigen</button>
+    <!-- Hauptspeisen -->
+    <h3 class="category-title">Hauptspeisen</h3>
+    <div class="recipe-container">
+        <!-- Spaghetti Bolognese -->
+        <div class="recipe">
+            <h4>Spaghetti Bolognese</h4>
+            <img src="images/spaghetti-bolognese.jpg.webp" alt="Spaghetti Bolognese Bild" class="img-fluid">
+            <p class="recipe-text-container">
+                Eine klassische Pasta mit einer würzigen Hackfleischsoße.
                 <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
-            <!-- Hähnchen-Curry -->
-            <div class="recipe">
-                <h4>Hähnchen-Curry</h4>
-                <img src="images/haehnchen-curry.jpg.webp" alt="Hähnchen-Curry Bild" class="img-fluid">
-                <p class="recipe-text-container">
-                    Zartes Hähnchenfleisch in einer aromatischen Currysoße mit Gemüse und Kokosmilch.
-                    <br><br>
-                    300 g Hähnchenbrustfilet<br>
-                    50 g Schalotten<br>
-                    100 g Ananas<br>
-                    100 g Pfirsich<br>
-                    100 g Sahne<br>
-                    1 EL Öl<br>
-                    1 EL Saucenbinder<br>
-                    1 EL Currypulver<br>
-                    Salz und Pfeffer<br>
-                    100 ml Geflügelbrühe
-                </p>
-                <button class="btn btn-primary" onclick="showAd1('images/werbung.jpg')">Rezept anzeigen</button>
+                250 g Spaghetti<br>
+                2 Eier<br>
+                1 Eigelb<br>
+                2 Scheiben Speck<br>
+                30 g Parmesan oder Pecorino<br>
+                Salz und Pfeffer
+            </p>
+            <button class="btn btn-primary" onclick="showAd('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+        <!-- Hähnchen-Curry -->
+        <div class="recipe">
+            <h4>Hähnchen-Curry</h4>
+            <img src="images/haehnchen-curry.jpg.webp" alt="Hähnchen-Curry Bild" class="img-fluid">
+            <p class="recipe-text-container">
+                Zartes Hähnchenfleisch in einer aromatischen Currysoße mit Gemüse und Kokosmilch.
                 <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
-            <!-- Gemüsepfanne mit Reis -->
-            <div class="recipe">
-                <h4>Gemüsepfanne</h4>
-                <img src="images/gemuesecurry.jpeg" alt="Gemüsepfanne mit Reis Bild" class="img-fluid">
-                <p class="recipe-text-container">
-                    Eine bunte Mischung aus frischem Gemüse, gebraten und serviert über duftendem Reis.
-                    <br><br>
-                    1 Zucchini<br>
-                    5 Tomaten<br>
-                    3 Paprika<br>
-                    400 g Champignons<br>
-                    Olivenöl<br>
-                    Knoblauch<br>
-                    Salz und Pfeffer<br>
-                    2 Beutel Reis<br>
-                    125 g Crème fraîche
-                </p>
-                <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+                300 g Hähnchenbrustfilet<br>
+                50 g Schalotten<br>
+                100 g Ananas<br>
+                100 g Pfirsich<br>
+                100 g Sahne<br>
+                1 EL Öl<br>
+                1 EL Saucenbinder<br>
+                1 EL Currypulver<br>
+                Salz und Pfeffer<br>
+                100 ml Geflügelbrühe
+            </p>
+            <button class="btn btn-primary" onclick="showAd1('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+        <!-- Gemüsepfanne mit Reis -->
+        <div class="recipe">
+            <h4>Gemüsepfanne</h4>
+            <img src="images/gemuesecurry.jpeg" alt="Gemüsepfanne mit Reis Bild" class="img-fluid">
+            <p class="recipe-text-container">
+                Eine bunte Mischung aus frischem Gemüse, gebraten und serviert über duftendem Reis.
                 <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
-            <!-- Gegrillter Lachs mit Kartoffeln und Salat -->
-            <div class="recipe">
-                <h4>Gegrillter Lachs</h4>
-                <img src="images/lachs-kartoffel-pfanne.jpg.webp" alt="Gegrillter Lachs Bild" class="img-fluid">
-                <p class="recipe-text-container">
-                    Frisches Lachsfilet vom Grill mit einer Beilage aus Kartoffeln und einem frischen Salat.
-                    <br><br>
-                    1 kg Kartoffeln, mehlig kochend<br>
-                    500 ml Sahne<br>
-                    Meersalz und frisch gemahlener schwarzer Pfeffer<br>
-                    Muskat, frisch gerieben<br>
-                    1 Bund Schnittlauch<br>
-                    2 Zwiebeln<br>
-                    Butter<br>
-                    1 Lachsfilet für 4 Personen<br>
-                    1 Limette<br>
-                    Salz (australisches Murray River Salt)
-                </p>
-                <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
+                1 Zucchini<br>
+                5 Tomaten<br>
+                3 Paprika<br>
+                400 g Champignons<br>
+                Olivenöl<br>
+                Knoblauch<br>
+                Salz und Pfeffer<br>
+                2 Beutel Reis<br>
+                125 g Crème fraîche
+            </p>
+            <button class="btn btn-primary" onclick="showAd2('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+        <!-- Gegrillter Lachs mit Kartoffeln und Salat -->
+        <div class="recipe">
+            <h4>Gegrillter Lachs</h4>
+            <img src="images/lachs-kartoffel-pfanne.jpg.webp" alt="Gegrillter Lachs Bild" class="img-fluid">
+            <p class="recipe-text-container">
+                Frisches Lachsfilet vom Grill mit einer Beilage aus Kartoffeln und einem frischen Salat.
                 <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                1 kg Kartoffeln, mehlig kochend<br>
+                500 ml Sahne<br>
+                Meersalz und frisch gemahlener schwarzer Pfeffer<br>
+                Muskat, frisch gerieben<br>
+                1 Bund Schnittlauch<br>
+                2 Zwiebeln<br>
+                Butter<br>
+                1 Lachsfilet für 4 Personen<br>
+                1 Limette<br>
+                Salz (australisches Murray River Salt)
+            </p>
+            <button class="btn btn-primary" onclick="showAd3('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+        <!-- Rinderfilet mit Kartoffelgratin -->
+        <div class="recipe">
+            <h4>Rinderfilet</h4>
+            <img src="images/rinderfilet-aus-dem-ofen.jpg.webp" alt="Rinderfilet Bild" class="img-fluid">
+            <p class="recipe-text-container">
+                Zartes Rinderfilet, perfekt gebraten, serviert mit einem cremigen Kartoffelgratin.
+                <br><br>
+                400 g festkochende Kartoffeln<br>
+                n. B. Salz und Pfeffer<br>
+                2 Prisen Muskatnuss, frisch gerieben<br>
+                150 g Sahne<br>
+                50 g Gouda, gerieben<br>
+                Fett für die Form<br>
+                50 g Cranberrys<br>
+                400 g grüne Bohnen<br>
+                3 Stängel Petersilie<br>
+                1 Zwiebel<br>
+                2 Rinderfiletsteaks à ca. 200 g<br>
+                Olivenöl
+            </p>
+            <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+
+        <!-- Ratatouille -->
+        <div class="recipe">
+            <h4>Ratatouille</h4>
+            <img src="images/ratatouille.jpg.webp" alt="Ratatouille Bild" class="img-fluid mb-3">
+            <p class="recipe-text-container">
+                Ein mediterranes Gemüsegericht aus Tomaten, Zucchini, Auberginen und Paprika, geschmort in einer
+                würzigen Soße.
+                <br><br>
+                1 m.-große Aubergine(n)<br>
+                2 m.-große Zucchini<br>
+                2 große Paprikaschote(n), rote<br>
+                2 große Paprikaschote(n), gelbe<br>
+                1 gr. Dose(n) Tomaten, geschälte<br>
+                1 große Gemüsezwiebel(n)<br>
+                4 Knoblauchzehe(n)<br>
+                1 TL Rosmarin, frischer, gehackter<br>
+                1 EL Thymian, frischer, gehackter<br>
+                1 EL Salbei, frischer, gehackter<br>
+                ½ TL Lavendelblüten, getrocknete und zerriebene<br>
+                1 TL, gehäuft Zucker<br>
+                100 ml Olivenöl<br>
+                Etwas Meersalz und Pfeffer, schwarzer, aus der Mühle<br>
+                ½ Tube(n) Tomatenmark
+            </p>
+            <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!-- <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+        <!-- Gefüllte Paprika mit Hackfleisch -->
+        <div class="recipe">
+            <h4>Gefüllte Paprika</h4>
+            <img src="images/gefuellte-paprika-nach-uroma-susanne.jpg.webp" alt="Gefüllte Paprika Bild"
+                 class="img-fluid mb-3">
+            <p class="recipe-text-container">
+                Paprikaschoten gefüllt mit einer Mischung aus Hackfleisch, Reis und Gewürzen, im Ofen gebacken.
+                <br><br>
+                1.000 g Hackfleisch, halb und halb<br>
+                2 große Zwiebel(n), klein gehackt<br>
+                3 EL Paniermehl<br>
+                1 großes Ei(er)<br>
+                2 TL Senf, mittelscharf<br>
+                2 TL Mehl<br>
+                2 TL Schnittlauch, klein gehackt<br>
+                1 Zehe(n) Knoblauch, gepresst<br>
+                1 TL Salz<br>
+                1 TL, gehäuft Paprikapulver<br>
+                1 TL Pfeffer<br>
+                6 große Paprikaschote(n)<br>
+                5 EL Ketchup<br>
+                6 EL Tomatenmark<br>
+                300 g Sahne<br>
+                100 g Schmand<br>
+                3 TL Kräuterfrischkäse<br>
+                1 Zehe(n) Knoblauch, gepresst<br>
+                2 EL Schnittlauch, klein gehackt<br>
+                1 Msp. Rosmarin<br>
+                1 Msp. Thymian<br>
+                1 EL Zucker<br>
+                1 TL Brühe, klare<br>
+                1.000 ml Wasser<br>
+                1 kleine Gemüsezwiebel(n)<br>
+                300 g Reis, evtl. Basmati-Reis
+            </p>
+            <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--  <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+    </div>
+
+
+    <!-- Desserts -->
+    <h3 class="category-title">Desserts</h3>
+    <div class="recipe-container">
+        <!-- Schokoladenkuchen -->
+        <div class="recipe">
+            <h4>Schokoladenkuchen</h4>
+            <img src="images/saftiger-schokokuchen.jpg.webp" alt="Schokoladenkuchen Bild" class="img-fluid mb-3">
+
+            <p class="recipe-text-container">
+                Ein klassischer Schokoladenkuchen, saftig und schokoladig, perfekt für Naschkatzen.
+                <br><br>
+                200 g Margarine<br>
+                200 g Zucker<br>
+                180 g Mehl<br>
+                3 Ei(er)<br>
+                2 TL Backpulver<br>
+                200 ml Milch<br>
+                45 g Kakaopulver<br>
+                45 g Kokosraspel<br>
+                50 g Schokostreusel<br>
+                Evtl. Schokoglasur<br>
+                Fett für die Form
+            </p>
+            <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+
+        </div>
+        <!-- Tiramisu -->
+        <div class="recipe">
+            <h4>Tiramisu</h4>
+            <img src="images/tiramisu.jpg.webp" alt="Tiramisu Bild" class="img-fluid mb-3">
+
+            <p class="recipe-text-container">
+                Ein klassisches italienisches Dessert mit Schichten von Löffelbiskuits und Mascarpone-Creme.
+                <br><br>
+                500 g Mascarpone<br>
+                100 g Puderzucker<br>
+                200 g Löffelbiskuits<br>
+                4 Eigelb<br>
+                2 Eiweiß<br>
+                3 Tasse(n) Kaffee, gekochter, abgekühlt<br>
+                2 EL Amaretto, evtl. auch 3<br>
+                Kakaopulver, ungesüßtes, zum Bestreuen
+            </p>
+            <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+
+        <!-- Creme Brulee -->
+        <div class="recipe">
+            <h4>Creme Brulee</h4>
+            <img src="images/creme-brulee.jpg.webp" alt="Creme Brulee Bild" class="img-fluid mb-3">
+
+            <p class="recipe-text-container">
+                Ein elegantes französisches Dessert mit einer knusprigen Karamellschicht.
+                <br><br>
+                400 ml Sahne mit hohem Fettgehalt<br>
+                140 ml Vollmilch<br>
+                85 g Zucker, braun oder weiß<br>
+                5 Eigelb<br>
+                1 Vanilleschote(n), das Mark<br>
+                Evtl. auch etwas flüssige Vanilleessenz<br>
+                Zitronenabrieb<br>
+                Zucker, fein, weiß, zum Karamellisieren
+            </p>
+            <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
+            <br><br>
+            <!--  <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+        </div>
+    </div>
+</div>
+
+
+<!-- Automatisches Pop-up mit Werbung -->
+<div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
             </div>
-            <!-- Rinderfilet mit Kartoffelgratin -->
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Weitere Pop-ups -->
+<div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe1()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe2()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe3()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe4()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe5()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p>Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe6()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p>Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;">
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe7()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 8 -->
+<div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe8()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 9 -->
+<div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe9()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 10 -->
+<div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe10()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 11 -->
+<div class="modal fade" id="autoAdModal11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe11()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 12 -->
+<div class="modal fade" id="autoAdModal12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe12()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 13 -->
+<div class="modal fade" id="autoAdModal13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe13()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 14 -->
+<div class="modal fade" id="autoAdModal14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                <div class="d-flex justify-content-center" style="gap: 10px;">
+                    <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                    <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe14()">Zum Rezept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Rezepte-->
+<!-- Automatisches Pop-up mit Rezepten -->
+<div class="modal fade" id="Rezept1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="recipe">
-                <h4>Rinderfilet</h4>
-                <img src="images/rinderfilet-aus-dem-ofen.jpg.webp" alt="Rinderfilet Bild" class="img-fluid">
-                <p class="recipe-text-container">
-                    Zartes Rinderfilet, perfekt gebraten, serviert mit einem cremigen Kartoffelgratin.
-                    <br><br>
-                    400 g festkochende Kartoffeln<br>
-                    n. B. Salz und Pfeffer<br>
-                    2 Prisen Muskatnuss, frisch gerieben<br>
-                    150 g Sahne<br>
-                    50 g Gouda, gerieben<br>
-                    Fett für die Form<br>
-                    50 g Cranberrys<br>
-                    400 g grüne Bohnen<br>
-                    3 Stängel Petersilie<br>
-                    1 Zwiebel<br>
-                    2 Rinderfiletsteaks à ca. 200 g<br>
+                <h3> Spaghetti-Bolognese</h3>
+                <p>250 g Spaghetti,
+                    2 Ei(er),
+                    1 Eigelb,
+                    2 Scheibe/n Speck, italienischer (Guanciale) oder Pancetta,
+                    30 g Parmesan oder Pecorino,
+                    n. B. Salz und Pfeffer, schwarzer</p>
+                <div class="modal-body">
+                    <img src="images/spaghetti-bolognese.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3> Hähnchen-Curry</h3>
+                <p>300 g Hähnchenbrustfilet(s),
+                    50 g Schalotte(n), fein gehackt,
+                    100 g Ananas aus der Dose, in Stückchen,
+                    100 g Pfirsich(e) aus der Dose, in Stückchen geschnitten,
+                    100 g Sahne oder Sojasahne,
+                    1 EL Öl,
+                    1 EL Saucenbinder nach Belieben,
+                    1 EL Currypulver,
+                    Salz und Pfeffer,
+                    100 ml Geflügelbrühe</p>
+                <div class="modal-body">
+                    <img src="images/haehnchen-curry.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3> Gemüsepfanne mit Reis</h3>
+                <p>1 m.-große Zucchini
+                    5 Tomate(n)
+                    3 Paprikaschote(n), bunte
+                    400 g Champignons
                     Olivenöl
-                </p>
-                <button class="btn btn-primary" onclick="showAd4('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                    Knoblauch
+                    Salz und Pfeffer
+                    2 Beutel Reis
+                    125 g Crème fraîche oder Schmande</p>
+                <div class="modal-body">
+                    <img src="images/gemuesecurry.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Ratatouille -->
-            <div class="recipe">
-                <h4>Ratatouille</h4>
-                <img src="images/ratatouille.jpg.webp" alt="Ratatouille Bild" class="img-fluid mb-3">
-                <p class="recipe-text-container">
-                    Ein mediterranes Gemüsegericht aus Tomaten, Zucchini, Auberginen und Paprika, geschmort in einer
-                    würzigen Soße.
-                    <br><br>
-                    1 m.-große Aubergine(n)<br>
-                    2 m.-große Zucchini<br>
-                    2 große Paprikaschote(n), rote<br>
-                    2 große Paprikaschote(n), gelbe<br>
-                    1 gr. Dose(n) Tomaten, geschälte<br>
-                    1 große Gemüsezwiebel(n)<br>
-                    4 Knoblauchzehe(n)<br>
-                    1 TL Rosmarin, frischer, gehackter<br>
-                    1 EL Thymian, frischer, gehackter<br>
-                    1 EL Salbei, frischer, gehackter<br>
-                    ½ TL Lavendelblüten, getrocknete und zerriebene<br>
-                    1 TL, gehäuft Zucker<br>
-                    100 ml Olivenöl<br>
-                    Etwas Meersalz und Pfeffer, schwarzer, aus der Mühle<br>
-                    ½ Tube(n) Tomatenmark
-                </p>
-                <button class="btn btn-primary" onclick="showAd5('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!-- <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
-            <!-- Gefüllte Paprika mit Hackfleisch -->
-            <div class="recipe">
-                <h4>Gefüllte Paprika</h4>
-                <img src="images/gefuellte-paprika-nach-uroma-susanne.jpg.webp" alt="Gefüllte Paprika Bild"
-                    class="img-fluid mb-3">
-                <p class="recipe-text-container">
-                    Paprikaschoten gefüllt mit einer Mischung aus Hackfleisch, Reis und Gewürzen, im Ofen gebacken.
-                    <br><br>
-                    1.000 g Hackfleisch, halb und halb<br>
-                    2 große Zwiebel(n), klein gehackt<br>
-                    3 EL Paniermehl<br>
-                    1 großes Ei(er)<br>
-                    2 TL Senf, mittelscharf<br>
-                    2 TL Mehl<br>
-                    2 TL Schnittlauch, klein gehackt<br>
-                    1 Zehe(n) Knoblauch, gepresst<br>
-                    1 TL Salz<br>
-                    1 TL, gehäuft Paprikapulver<br>
-                    1 TL Pfeffer<br>
-                    6 große Paprikaschote(n)<br>
-                    5 EL Ketchup<br>
-                    6 EL Tomatenmark<br>
-                    300 g Sahne<br>
-                    100 g Schmand<br>
-                    3 TL Kräuterfrischkäse<br>
-                    1 Zehe(n) Knoblauch, gepresst<br>
-                    2 EL Schnittlauch, klein gehackt<br>
-                    1 Msp. Rosmarin<br>
-                    1 Msp. Thymian<br>
-                    1 EL Zucker<br>
-                    1 TL Brühe, klare<br>
-                    1.000 ml Wasser<br>
-                    1 kleine Gemüsezwiebel(n)<br>
-                    300 g Reis, evtl. Basmati-Reis
-                </p>
-                <button class="btn btn-primary" onclick="showAd6('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--  <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
         </div>
-
-
-        <!-- Desserts -->
-        <h3 class="category-title">Desserts</h3>
-        <div class="recipe-container">
-            <!-- Schokoladenkuchen -->
+    </div>
+</div>
+<div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="recipe">
-                <h4>Schokoladenkuchen</h4>
-                <img src="images/saftiger-schokokuchen.jpg.webp" alt="Schokoladenkuchen Bild" class="img-fluid mb-3">
-
-                <p class="recipe-text-container">
-                    Ein klassischer Schokoladenkuchen, saftig und schokoladig, perfekt für Naschkatzen.
-                    <br><br>
-                    200 g Margarine<br>
-                    200 g Zucker<br>
-                    180 g Mehl<br>
-                    3 Ei(er)<br>
-                    2 TL Backpulver<br>
-                    200 ml Milch<br>
-                    45 g Kakaopulver<br>
-                    45 g Kokosraspel<br>
-                    50 g Schokostreusel<br>
-                    Evtl. Schokoglasur<br>
-                    Fett für die Form
-                </p>
-                <button class="btn btn-primary" onclick="showAd8('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-
+                <h3>gegrillter Lachs mit Kartoffeln und Salat</h3>
+                <p>1 kg Kartoffel(n), mehlig kochend
+                    500 ml Sahne
+                    Meersalz und frisch gemahlener schwarzer Pfeffer
+                    Muskat, frisch gerieben
+                    1 Bund Schnittlauch
+                    2 Zwiebel(n)
+                    Butter
+                    1 Fischfilet(s), (Lachsfilet) für 4 Personen
+                    1 Limette(n)
+                    Salz, (australisches Murray River Salt)</p>
+                <div class="modal-body">
+                    <img src="images/lachs-kartoffel-pfanne.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
             </div>
-            <!-- Tiramisu -->
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>Rinderfilet</h3>
+                R400 g Kartoffeln, festkochende
+                n. B. Salz und Pfeffer
+                2 Prisen Muskatnuss, frisch geriebene
+                150 g Sahne
+                50 g Gouda, gerieben
+                Fett für die Form
+                50 g Cranberrys
+                400 g Bohnen, grüne
+                3 Stängel Petersilie
+                1 Zwiebel(n)
+                2 Rinderfiletsteak(s) à ca. 200 g
+                2 EL Rapsöl
+                3 Thymianzweig(e)
+                2 Rosmarinzweig(e)
+                70 g Butter
+                1 Bio-Orange(n)
+                1 Eigelb
+                1 EL Obstessig</p>
+                <div class="modal-body">
+                    <img src="images/rinderfilet-aus-dem-ofen.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>Ratatouille</h3>
+                <p>1 m.-große Aubergine(n)
+                    2 m.-große Zucchini
+                    2 große Paprikaschote(n), rote
+                    2 große Paprikaschote(n), gelbe
+                    1 gr. Dose/n Tomaten, geschälte
+                    1 große Gemüsezwiebel(n)
+                    4 Knoblauchzehe(n)
+                    1 TL Rosmarin, frischer, gehackter
+                    1 EL Thymian, frischer, gehackter
+                    1 EL Salbei, frischer, gehackter
+                    ½ TL Lavendelblüten, getrocknete und zerriebene
+                    1 TL, gehäuft Zucker
+                    100 ml Olivenöl
+                    etwas Meersalz und Pfeffer, schwarzer, aus der Mühle
+                    ½ Tube/n Tomatenmark</p>
+                <div class="modal-body">
+                    <img src="images/ratatouille.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>
+                    Gefüllte Paprika mit Hackfleisch</h3>
+                <p>1.000 g Hackfleisch, halb und halb
+                    2 große Zwiebel(n), klein gehackt
+                    3 EL Paniermehl
+                    1 großes Ei(er)
+                    2 TL Senf, mittelscharf
+                    2 TL Mehl
+                    2 TL Schnittlauch, klein gehackt
+                    1 Zehe/n Knoblauch, gepresst
+                    1 TL Salz
+                    1 TL, gehäuft Paprikapulver
+                    1 TL Pfeffer
+                    6 große Paprikaschote(n)
+                    5 EL Ketchup
+                    6 EL Tomatenmark
+                    300 g Sahne
+                    100 g Schmand
+                    3 TL Kräuterfrischkäse
+                    1 Zehe/n Knoblauch, gepresst
+                    2 EL Schnittlauch, klein gehackt
+                    1 Msp. Rosmarin
+                    1 Msp. Oregano
+                    1 TL, gestr. Kräutersalz
+                    1 TL, gestr. Pfeffer, bunt, aus der Mühle
+                    1 Msp. Chili, aus der Mühle</p>
+                <div class="modal-body">
+                    <img src="images/gefuellte-paprika-nach-uroma-susanne.jpg.webp" alt="Werbung"
+                         style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>Griechischer Gyros mit Tzatziki</h3>
+                <p>600 g Rinderschnitzel
+                    2 TL Oregano
+                    2 TL Thymian
+                    3 TL Paprikapulver, edelsüßes
+                    1 TL Kreuzkümmelpulver
+                    2 Zehe/n Knoblauch
+                    2 Zwiebel(n)
+                    n. B. Salz
+                    150 ml Olivenöl
+                    2 Spritzer Zitronensaft
+                    1 TL Senf, scharfer
+                    Pfeffer, frisch gemahlen</p>
+                <div class="modal-body">
+                    <img src="images/pfannengyros.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>Schokoladenkuchen</h3>
+                <p>200 g Margarine
+                    200 g Zucker
+                    180 g Mehl
+                    3 Ei(er)
+                    2 TL Backpulver
+                    200 ml Milch
+                    45 g Kakaopulver
+                    45 g Kokosraspel
+                    50 g Schokostreusel
+                    evtl. Schokoglasur
+                    Fett für die Form</p>
+                <div class="modal-body">
+                    <img src="images/saftiger-schokokuchen.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="recipe">
                 <h4>Tiramisu</h4>
-                <img src="images/tiramisu.jpg.webp" alt="Tiramisu Bild" class="img-fluid mb-3">
-
-                <p class="recipe-text-container">
-                    Ein klassisches italienisches Dessert mit Schichten von Löffelbiskuits und Mascarpone-Creme.
-                    <br><br>
-                    500 g Mascarpone<br>
-                    100 g Puderzucker<br>
-                    200 g Löffelbiskuits<br>
-                    4 Eigelb<br>
-                    2 Eiweiß<br>
-                    3 Tasse(n) Kaffee, gekochter, abgekühlt<br>
-                    2 EL Amaretto, evtl. auch 3<br>
+                <p>
+                    500 g Mascarpone
+                    100 g Puderzucker
+                    200 g Löffelbiskuits
+                    4 Eigelb
+                    2 Eiweiß
+                    3 Tasse/n Kaffee, gekochter, abgekühlt
+                    2 EL Amaretto, evtl. auch 3
                     Kakaopulver, ungesüßtes, zum Bestreuen
                 </p>
-                <button class="btn btn-primary" onclick="showAd10('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--<button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
+                <div class="modal-body">
+                    <img src="images/tiramisu.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Creme Brulee -->
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="Rezept11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
             <div class="recipe">
-                <h4>Creme Brulee</h4>
-                <img src="images/creme-brulee.jpg.webp" alt="Creme Brulee Bild" class="img-fluid mb-3">
-
-                <p class="recipe-text-container">
-                    Ein elegantes französisches Dessert mit einer knusprigen Karamellschicht.
-                    <br><br>
-                    400 ml Sahne mit hohem Fettgehalt<br>
-                    140 ml Vollmilch<br>
-                    85 g Zucker, braun oder weiß<br>
-                    5 Eigelb<br>
-                    1 Vanilleschote(n), das Mark<br>
-                    Evtl. auch etwas flüssige Vanilleessenz<br>
-                    Zitronenabrieb<br>
+                <h3>Creme-brulee</h3>
+                <p>
+                    400 ml Sahne mit hohem Fettgehalt
+                    140 ml Vollmilch
+                    85 g Zucker, braun oder weiß
+                    5 Eigelb
+                    1 Vanilleschote(n), das Mark, evt. auch etwas flüssige Vanilleessenz
+                    Zitronenabrieb
                     Zucker, fein, weiß, zum Karamellisieren
                 </p>
-                <button class="btn btn-primary" onclick="showAd11('images/werbung.jpg')">Rezept anzeigen</button>
-                <br><br>
-                <!--  <button class="btn btn-primary" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>-->
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
                 <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe1()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe2()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe3()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe4()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe5()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe6()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe7()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe8()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe9()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe10()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe11()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe12()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe13()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-danger large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary small-button" data-dismiss="modal" onclick="showRecipe14()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
-
-    <!-- Rezepte-->
-    <!-- Automatisches Pop-up mit Rezepten -->
-    <div class="modal fade" id="Rezept1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3> Spaghetti-Bolognese</h3>
-                    <p>250 g Spaghetti,
-                        2 Ei(er),
-                        1 Eigelb,
-                        2 Scheibe/n Speck, italienischer (Guanciale) oder Pancetta,
-                        30 g Parmesan oder Pecorino,
-                        n. B. Salz und Pfeffer, schwarzer</p>
-                    <div class="modal-body">
-                        <img src="images/spaghetti-bolognese.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
+                    <img src="images/creme-brulee.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
-    <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3> Hähnchen-Curry</h3>
-                    <p>300 g Hähnchenbrustfilet(s),
-                        50 g Schalotte(n), fein gehackt,
-                        100 g Ananas aus der Dose, in Stückchen,
-                        100 g Pfirsich(e) aus der Dose, in Stückchen geschnitten,
-                        100 g Sahne oder Sojasahne,
-                        1 EL Öl,
-                        1 EL Saucenbinder nach Belieben,
-                        1 EL Currypulver,
-                        Salz und Pfeffer,
-                        100 ml Geflügelbrühe</p>
-                    <div class="modal-body">
-                        <img src="images/haehnchen-curry.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
+</div>
+<div class="modal fade" id="Rezept12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>
+                    Bruschetta</h3>
+                <p>1 kg Strauchtomate(n)
+                    3 Zwiebel(n)
+                    4 Zehe/n Knoblauch
+                    Meersalz und Pfeffer aus der Mühle
+                    Olivenöl
+                    1 Ciabatta
+                    1 Bund Basilikum
+                    n. B. Parmesan oder Mozzarella
+                </p>
+                <div class="modal-body">
+                    <img src="images/bruschetta.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                     </div>
                 </div>
-
             </div>
+
         </div>
     </div>
-    <div class="modal fade" id="Rezept3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3> Gemüsepfanne mit Reis</h3>
-                    <p>1 m.-große Zucchini
-                        5 Tomate(n)
-                        3 Paprikaschote(n), bunte
-                        400 g Champignons
-                        Olivenöl
-                        Knoblauch
-                        Salz und Pfeffer
-                        2 Beutel Reis
-                        125 g Crème fraîche oder Schmande</p>
-                    <div class="modal-body">
-                        <img src="images/gemuesecurry.jpeg" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>gegrillter Lachs mit Kartoffeln und Salat</h3>
-                    <p>1 kg Kartoffel(n), mehlig kochend
-                        500 ml Sahne
-                        Meersalz und frisch gemahlener schwarzer Pfeffer
-                        Muskat, frisch gerieben
-                        1 Bund Schnittlauch
-                        2 Zwiebel(n)
-                        Butter
-                        1 Fischfilet(s), (Lachsfilet) für 4 Personen
-                        1 Limette(n)
-                        Salz, (australisches Murray River Salt)</p>
-                    <div class="modal-body">
-                        <img src="images/lachs-kartoffel-pfanne.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Rinderfilet</h3>
-                    R400 g Kartoffeln, festkochende
-                    n. B. Salz und Pfeffer
-                    2 Prisen Muskatnuss, frisch geriebene
-                    150 g Sahne
-                    50 g Gouda, gerieben
-                    Fett für die Form
-                    50 g Cranberrys
-                    400 g Bohnen, grüne
-                    3 Stängel Petersilie
-                    1 Zwiebel(n)
-                    2 Rinderfiletsteak(s) à ca. 200 g
-                    2 EL Rapsöl
-                    3 Thymianzweig(e)
-                    2 Rosmarinzweig(e)
-                    70 g Butter
-                    1 Bio-Orange(n)
+</div>
+<div class="modal fade" id="Rezept13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>
+                    Börek mit Joghurt Dip</h3>
+                <p> Yufka-Teigblätter, sehr große (aus dem türkischen Lebensmittelgeschäft)
+                    200 g Feta-Käse, türkischer (Ziege oder Schaf)
+                    200 g Käse, geriebener, milder
+                    2 m.-große Kartoffel(n)
+                    3 Ei(er)
+                    200 ml Milch
+                    125 g Butter
+                    1 Handvoll Petersilie, glatte, gehackt
+                    1 Handvoll Dill, frischer, gehackt
+                    Pfeffer
+                    Pul Biber (türkische Chilimischung)
+                    Schwarzkümmel
                     1 Eigelb
-                    1 EL Obstessig</p>
-                    <div class="modal-body">
-                        <img src="images/rinderfilet-aus-dem-ofen.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
+                </p>
+                <div class="modal-body">
+                    <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Ratatouille</h3>
-                    <p>1 m.-große Aubergine(n)
-                        2 m.-große Zucchini
-                        2 große Paprikaschote(n), rote
-                        2 große Paprikaschote(n), gelbe
-                        1 gr. Dose/n Tomaten, geschälte
-                        1 große Gemüsezwiebel(n)
-                        4 Knoblauchzehe(n)
-                        1 TL Rosmarin, frischer, gehackter
-                        1 EL Thymian, frischer, gehackter
-                        1 EL Salbei, frischer, gehackter
-                        ½ TL Lavendelblüten, getrocknete und zerriebene
-                        1 TL, gehäuft Zucker
-                        100 ml Olivenöl
-                        etwas Meersalz und Pfeffer, schwarzer, aus der Mühle
-                        ½ Tube/n Tomatenmark</p>
-                    <div class="modal-body">
-                        <img src="images/ratatouille.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
+</div>
+<div class="modal fade" id="Rezept14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="recipe">
+                <h3>
+                    Blätterteig-Lachs-Schnecken</h3>
+                <p>1 Rolle(n) Blätterteig (Kühlregal)
+                    100 g Frischkäse
+                    200 g Räucherlachs in Scheiben
+                    etwas Dill
+                    1 Ei(er)
+                </p>
+                <div class="modal-body">
+                    <img src="images/blaetterteig-lachs-schnecken.jpg.webp" alt="Werbung" style="max-width: 100%;">
+                    <br>
+                    <br>
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
+                            hinzufügen</button>
+                        <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                     </div>
                 </div>
 
             </div>
         </div>
     </div>
-    <div class="modal fade" id="Rezept7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>
-                        Gefüllte Paprika mit Hackfleisch</h3>
-                    <p>1.000 g Hackfleisch, halb und halb
-                        2 große Zwiebel(n), klein gehackt
-                        3 EL Paniermehl
-                        1 großes Ei(er)
-                        2 TL Senf, mittelscharf
-                        2 TL Mehl
-                        2 TL Schnittlauch, klein gehackt
-                        1 Zehe/n Knoblauch, gepresst
-                        1 TL Salz
-                        1 TL, gehäuft Paprikapulver
-                        1 TL Pfeffer
-                        6 große Paprikaschote(n)
-                        5 EL Ketchup
-                        6 EL Tomatenmark
-                        300 g Sahne
-                        100 g Schmand
-                        3 TL Kräuterfrischkäse
-                        1 Zehe/n Knoblauch, gepresst
-                        2 EL Schnittlauch, klein gehackt
-                        1 Msp. Rosmarin
-                        1 Msp. Oregano
-                        1 TL, gestr. Kräutersalz
-                        1 TL, gestr. Pfeffer, bunt, aus der Mühle
-                        1 Msp. Chili, aus der Mühle</p>
-                    <div class="modal-body">
-                        <img src="images/gefuellte-paprika-nach-uroma-susanne.jpg.webp" alt="Werbung"
-                            style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Griechischer Gyros mit Tzatziki</h3>
-                    <p>600 g Rinderschnitzel
-                        2 TL Oregano
-                        2 TL Thymian
-                        3 TL Paprikapulver, edelsüßes
-                        1 TL Kreuzkümmelpulver
-                        2 Zehe/n Knoblauch
-                        2 Zwiebel(n)
-                        n. B. Salz
-                        150 ml Olivenöl
-                        2 Spritzer Zitronensaft
-                        1 TL Senf, scharfer
-                        Pfeffer, frisch gemahlen</p>
-                    <div class="modal-body">
-                        <img src="images/pfannengyros.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Schokoladenkuchen</h3>
-                    <p>200 g Margarine
-                        200 g Zucker
-                        180 g Mehl
-                        3 Ei(er)
-                        2 TL Backpulver
-                        200 ml Milch
-                        45 g Kakaopulver
-                        45 g Kokosraspel
-                        50 g Schokostreusel
-                        evtl. Schokoglasur
-                        Fett für die Form</p>
-                    <div class="modal-body">
-                        <img src="images/saftiger-schokokuchen.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h4>Tiramisu</h4>
-                    <p>
-                        500 g Mascarpone
-                        100 g Puderzucker
-                        200 g Löffelbiskuits
-                        4 Eigelb
-                        2 Eiweiß
-                        3 Tasse/n Kaffee, gekochter, abgekühlt
-                        2 EL Amaretto, evtl. auch 3
-                        Kakaopulver, ungesüßtes, zum Bestreuen
-                    </p>
-                    <div class="modal-body">
-                        <img src="images/tiramisu.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept11" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>Creme-brulee</h3>
-                    <p>
-                        400 ml Sahne mit hohem Fettgehalt
-                        140 ml Vollmilch
-                        85 g Zucker, braun oder weiß
-                        5 Eigelb
-                        1 Vanilleschote(n), das Mark, evt. auch etwas flüssige Vanilleessenz
-                        Zitronenabrieb
-                        Zucker, fein, weiß, zum Karamellisieren
-                    </p>
-                    <div class="modal-body">
-                        <img src="images/creme-brulee.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept12" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>
-                        Bruschetta</h3>
-                    <p>1 kg Strauchtomate(n)
-                        3 Zwiebel(n)
-                        4 Zehe/n Knoblauch
-                        Meersalz und Pfeffer aus der Mühle
-                        Olivenöl
-                        1 Ciabatta
-                        1 Bund Basilikum
-                        n. B. Parmesan oder Mozzarella
-                    </p>
-                    <div class="modal-body">
-                        <img src="images/bruschetta.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept13" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>
-                        Börek mit Joghurt Dip</h3>
-                    <p> Yufka-Teigblätter, sehr große (aus dem türkischen Lebensmittelgeschäft)
-                        200 g Feta-Käse, türkischer (Ziege oder Schaf)
-                        200 g Käse, geriebener, milder
-                        2 m.-große Kartoffel(n)
-                        3 Ei(er)
-                        200 ml Milch
-                        125 g Butter
-                        1 Handvoll Petersilie, glatte, gehackt
-                        1 Handvoll Dill, frischer, gehackt
-                        Pfeffer
-                        Pul Biber (türkische Chilimischung)
-                        Schwarzkümmel
-                        1 Eigelb
-                    </p>
-                    <div class="modal-body">
-                        <img src="images/boerek-mit-joghurt-dip.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="Rezept14" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="recipe">
-                    <h3>
-                        Blätterteig-Lachs-Schnecken</h3>
-                    <p>1 Rolle(n) Blätterteig (Kühlregal)
-                        100 g Frischkäse
-                        200 g Räucherlachs in Scheiben
-                        etwas Dill
-                        1 Ei(er)
-                    </p>
-                    <div class="modal-body">
-                        <img src="images/blaetterteig-lachs-schnecken.jpg.webp" alt="Werbung" style="max-width: 100%;">
-                        <br>
-                        <br>
-                        <div class="d-flex justify-content-between">
-                            <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
-                                hinzufügen</button>
-                            <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
 
 
 
-    </div>
-
+</div>
 
     <!-- Bootstrap JS und jQuery einbinden -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

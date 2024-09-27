@@ -20,78 +20,97 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="alertModalLabel">Warnung!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Hier ist eine wichtige Warnung! Bitte lesen Sie die folgenden Informationen sorgfältig:
+                    Achtung: Unterschiedlich gestaltete Buttons können deine Aufmerksamkeit unbewusst auf eine bestimmte Option lenken.
                     <br>
                     <br>
-                    Die Farben der Buttons im Fenster sind unterschiedlich.
+                    Dies könnte dazu führen, dass du eine Entscheidung triffst, die nicht in deinem besten Interesse ist.
+                    <br>
+                    <br>
+                    Überlege genau, bevor du auswählst, da dies Auswirkungen wie unerwartete Kosten oder unerwünschte Einstellungen haben könnte.
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Verstanden</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Abbrechen</button>
+                   </div>
+            </div>
+        </div>
+    </div>
+    <!-- Alert Modal -->
+    <div class="modal fade" id="newAlertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newAlertModalLabel">Warnung!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Es sind Checkboxen bereits im Cookie Dialog voraktiviert.
+                    <br>
+                    <br>
+                    Dies könnte dazu führen, dass du eine Entscheidung triffst, die nicht in deinem besten Interesse ist.
+                    <br>
+                    <br>
+                    Dies könnte Auswirkungen haben, die unerwünschte Einstellungen hat.
+                </div>
+                <div class="modal-footer">
                 </div>
             </div>
         </div>
     </div>
 
 
-
     <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button id="offerButton" class="btn btn-success large-button"
-                        onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                    <div style="margin-top: 10px;">
-                        <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur
-                            Seite</button>
-                        <button class="btn btn-secondary small-button" onclick="rezeptHinzufuegen(this)">Rezept
-                            hinzufügen</button>
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button id="offerButton" class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal">Zurück zur Seite</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" onclick="rezeptHinzufuegen(this)">Rezept hinzufügen</button>
                     </div>
                     <div id="timerDisplay" class="text-danger mt-2"></div>
                 </div>
             </div>
         </div>
     </div>
+
     <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="autoAdModal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button id="offerButton" class="btn btn-success large-button"
-                        onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
-                    <div style="margin-top: 10px;">
-                        <button class="btn btn-secondary small-button mr-2" data-dismiss="modal">Zurück zur
-                            Seite</button>
-
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button id="offerButton" class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal">Zurück zur Seite</button>
                     </div>
                     <div id="timerDisplay" class="text-danger mt-2"></div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <!-- Cookie-Akzeptanz-Popup -->
     <div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel"
         aria-hidden="true">
@@ -157,7 +176,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="settingsModalLabel">Cookie-Einstellungen</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -165,7 +184,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="functionalSwitch">
+                                    <input type="checkbox" class="custom-control-input" id="functionalSwitch" checked>
                                     <label class="custom-control-label" for="functionalSwitch">Funktionale
                                         Zwecke</label>
                                 </div>
@@ -174,7 +193,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="marketingSwitch">
+                                    <input type="checkbox" class="custom-control-input" id="marketingSwitch" checked>
                                     <label class="custom-control-label" for="marketingSwitch">Marketingzwecke</label>
                                 </div>
                             </div>
@@ -182,7 +201,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="personalizedAdsSwitch">
+                                    <input type="checkbox" class="custom-control-input" id="personalizedAdsSwitch"checked>
                                     <label class="custom-control-label" for="personalizedAdsSwitch">Personalisierte
                                         Werbung</label>
                                 </div>
@@ -493,262 +512,265 @@
     </div>
 
     <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary large-button" onclick="openVegetarianRecipes()">Zu den
-                        Rezepten</button>
+                <div class="modal-body text-center">
+                    <img id="adImage" src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button id="offerButton" class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" onclick="openVegetarianRecipes()">Zu den Rezepten</button>
+                    </div>
+                    <div id="timerDisplay" class="text-danger mt-2"></div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/werbung.jpg" alt="Werbung">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" onclick="openVegan()">Zu den Rezepten</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe2()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe3()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe4()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe5()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe6()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe7()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe8()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe9()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary button" data-dismiss="modal" onclick="showRecipe10()">Zum
-                        Rezept</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
 
     <!-- Automatisches Pop-up mit Werbung -->
-    <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body text-center">
                     <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
-                    <p>Kaufen Sie jetzt das beste Produkt!</p>
-                    <button class="btn btn-success large-button" onclick="window.location.href='https://amazon.de'">Zum
-                        Angebot</button>
-                    <button class="btn btn-secondary large-button" onclick="openAll()">Zu den Rezepten</button>
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" onclick="openVegan()">Zu den Rezepten</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="autoAdModal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe2()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal3" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe3()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal4" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe4()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal5" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe5()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal6" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe6()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal7" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe7()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal8" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe8()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal9" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe9()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="autoAdModal10" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/vegetarisch.jpeg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" data-dismiss="modal" onclick="showRecipe10()">Zum Rezept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Automatisches Pop-up mit Werbung -->
+    <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="autoAdModalLabel">Werbung</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="images/werbung.jpg" alt="Werbung" style="max-width: 100%;">
+                    <p class="mt-3">Kaufen Sie jetzt das beste Produkt!</p>
+                    <div class="d-flex justify-content-center" style="gap: 10px;"> <!-- Flexbox für nebeneinander -->
+                        <button class="btn btn-success btn-lg rounded-pill" onclick="window.location.href='https://amazon.de'">Zum Angebot</button>
+                        <button class="btn btn-secondary btn-lg rounded-pill" onclick="openAll()">Zu den Rezepten</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal für Kartoffelsalat -->
     <div class="modal fade" id="Rezept2" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel"
         aria-hidden="true">
@@ -757,7 +779,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Kartoffelsalat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -790,7 +812,7 @@
                 <div class="modal-header">
                     <h4 class="modal-title">Avocadosalat</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -853,7 +875,7 @@
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
                                     hinzufügen</button>
-                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                             </div>
                         </div>
                     </div>
@@ -888,7 +910,7 @@
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
                                     hinzufügen</button>
-                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                             </div>
                         </div>
                     </div>
@@ -931,7 +953,7 @@
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
                                     hinzufügen</button>
-                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                             </div>
                         </div>
                     </div>
@@ -969,7 +991,7 @@
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
                                     hinzufügen</button>
-                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                <button class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                             </div>
                         </div>
                     </div>
@@ -1009,7 +1031,7 @@
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
                                     hinzufügen</button>
-                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                <button  class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                             </div>
                         </div>
                     </div>
@@ -1045,7 +1067,7 @@
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
                                     hinzufügen</button>
-                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                <button  class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                             </div>
                         </div>
                     </div>
@@ -1086,7 +1108,7 @@
                             <div class="d-flex justify-content-between">
                                 <button class="btn btn-primary button" onclick="rezeptHinzufuegen(this)">Rezept
                                     hinzufügen</button>
-                                <button class="btn btn-secondary button" data-dismiss="modal">Zurück</button>
+                                <button  class="btn btn-primary button" data-dismiss="modal">Zurück</button>
                             </div>
                         </div>
                     </div>
@@ -1563,8 +1585,38 @@
             $('#Modal1').modal('show');
         }
 
+        let alertShown = false;
+
+            var checkboxes = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
+
+            checkboxes.forEach(function (checkbox) {
+                var isChecked = checkbox.checked;
+                var checkboxId = checkbox.id;
+                var checkboxName = checkbox.name;
+
+                console.log(`Checkbox ID: ${checkboxId}, Name: ${checkboxName}, Aktiviert: ${isChecked}`);
+            });
+
+            var allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+            console.log(`Alle Checkboxen aktiviert: ${allChecked}`);
+
+            if (allChecked) {
+                if (!alertShown) {
+                    $('#newAlertModal').modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    alertShown = true;
+                }
+            } else {
+                console.log("Mindestens eine Checkbox ist nicht aktiviert.");
+                alertShown = false; // Zurücksetzen, wenn nicht alle aktiviert sind
+            }
+
         // Funktion zum Prüfen der Farben in einem Modal
         function checkModalColors(modalId) {
+
+
             var modal = $('#' + modalId);
             var buttons = modal.find('button');
             var colors = [];
@@ -1647,7 +1699,7 @@
                 return color.color === colors[0].color;
             })) {
                 // Nachricht für das Alert-Modal
-                console.log('Hallo')
+                //console.log('Hallo')
                 var message = 'Die Farben der Buttons im Fenster sind unterschiedlich.';
                 $('#alertMessage').html(message);
                 $('#alertModal').modal({
