@@ -210,9 +210,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="saveButton" disabled>Speichern</button>
-                    <button type="button" class="btn btn-outline-danger" id="resetButton">Zustimmung
-                        zurücksetzen</button>
+                    <button type="button" class="btn btn-primary" id="saveButton"  data-dismiss="modal">Speichern</button>
+
                 </div>
             </div>
         </div>
@@ -1236,7 +1235,7 @@
                 if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
                     saveButton.disabled = false;
                 } else {
-                    saveButton.disabled = true;
+                    saveButton.disabled = false;
                 }
             }
 
@@ -1276,7 +1275,7 @@
                 if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
                     saveButton.disabled = false;
                 } else {
-                    saveButton.disabled = true;
+                    saveButton.disabled = false;
                 }
             };
 
@@ -1305,14 +1304,14 @@
             saveButton.addEventListener('click', () => {
                 if (functionalSwitch.checked && marketingSwitch.checked && personalizedAdsSwitch.checked) {
                     saveSettings();
-                    saveButton.disabled = true; // Disable save button after saving
+                    saveButton.disabled = false; // Disable save button after saving
                 }
             });
 
             // Event listener for the "Zustimmung zurücksetzen" Button
             resetButton.addEventListener('click', () => {
                 localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
-                saveButton.disabled = true; // Disable save button
+                saveButton.disabled = false; // Disable save button
                 functionalSwitch.checked = false; // Reset switches
                 marketingSwitch.checked = false;
                 personalizedAdsSwitch.checked = false;
