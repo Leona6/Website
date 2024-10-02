@@ -51,10 +51,36 @@
                     Es sind Checkboxen bereits im Cookie Dialog voraktiviert.
                     <br>
                     <br>
-                    Dies könnte dazu führen, dass du eine Entscheidung triffst, die nicht in deinem besten Interesse ist.
+                   Hier wurde bereits für dich eine Vorauswahl getroffen. Dies könnte die Folge haben, dass du unwissentlich Informationen preisgibst.
                     <br>
                     <br>
-                    Dies könnte Auswirkungen haben, die unerwünschte Einstellungen hat.
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Alert Modal -->
+    <div class="modal fade" id="newAlertModal2" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="newAlertModalLabel">Warnung!</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Sie müssen unter Einstellungen ihre Cookies spezifizieren.
+                    <br>
+                    <br>
+                    Da man die nicht sofort ablehnen kann, könnten Sie dazu neigen alle Cookies direkt zu akzeptieren.
+                    <br>
+                    <br>
+                    Das heißt auch man kann anhand ihrer Daten ein Profil erstellen!
+
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -147,7 +173,10 @@
                                     nahezu ohne Werbung, indem Sie ein Abo abonnieren oder sich hier mit Ihrem
                                     bestehenden Pur-Abo einloggen. Informationen zur Datenverarbeitung im Pur-Abo finden
                                     Sie in unserer Datenschutzerklärung und in den FAQ.</p>
-                                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Werbefrei
+                                <button type="button" class="btn btn-secondary btn-block" onclick="function openAdFree() {
+                                $('#settingsModal3').modal('show');
+                                }
+                                openAdFree()">Werbefrei
                                     fortfahren</button>
                             </div>
                         </div>
@@ -159,7 +188,7 @@
                                     Seite zustimmen oder sie teilweise ablehnen. Ihre Zustimmung insgesamt können Sie
                                     jederzeit über den Link Privacy Einstellungen am Ende jeder Seite entziehen.</p>
                                 <button type="button" class="btn btn-outline-secondary btn-block" data-dismiss="modal"
-                                    data-toggle="modal" data-target="#settingsModal">Einstellungen</button>
+                                    data-toggle="modal" id ="settingsButton"data-target="#settingsModal">Einstellungen</button>
                             </div>
                         </div>
                     </div>
@@ -217,6 +246,67 @@
         </div>
     </div>
 
+    <!-- Einstellungs-Modal -->
+    <div class="modal fade" id="settingsModal3" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel3">Cookie-Einstellungen</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" onclick="window.location.href='https://amazon.de'">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <!-- Eingabefelder für Name und E-Mail -->
+                        <div class="form-group">
+                            <label for="nameInput">Name:</label>
+                            <input type="text" class="form-control" id="nameInput" placeholder="Geben Sie Ihren Namen ein" oninput="checkInput()">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailInput">E-Mail:</label>
+                            <input type="email" class="form-control" id="emailInput" placeholder="Geben Sie Ihre E-Mail ein" oninput="checkInput()">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="saveButton" data-dismiss="modal" onclick="saveAdFree()" >Speichern</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function checkInput() {
+        // Eingabefelder abrufen
+        var name = document.getElementById('nameInput').value.trim();
+        var email = document.getElementById('emailInput').value.trim();
+        var saveButton = document.getElementById('saveButton');
+
+        // Überprüfen, ob beide Felder ausgefüllt sind
+        if (name !== "" && email !== "") {
+            saveButton.disabled = false;  // Button aktivieren
+        } else {
+            saveButton.disabled = true;   // Button deaktivieren
+        }
+    }
+
+    function saveAdFree() {
+        // Eingabefelder abrufen
+        var name = document.getElementById('nameInput').value.trim();
+        var email = document.getElementById('emailInput').value.trim();
+
+        // Überprüfen, ob die Felder ausgefüllt sind
+        if (name === "" || email === "") {
+            alert("Bitte geben Sie sowohl Ihren Namen als auch Ihre E-Mail-Adresse ein.");
+        } else {
+            alert("Danke, " + name + "! Ihre E-Mail-Adresse " + email + " wurde erfolgreich gespeichert.");
+            // Hier kannst du weiteren Code hinzufügen, um die Daten zu verarbeiten oder zu speichern
+            $('#cookieModal').modal('hide'); // Modal schließen
+        }
+    }
+</script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 
@@ -243,7 +333,7 @@
     <div class="container mt-4">
         <div class="row">
             <!-- Kategorie Vegetarisch -->
-            <div class="col-12">
+            <div class="col-12" id="vegetarisch>
                 <div id="vegetarisch">
                     <h2>Vegetarische Rezepte</h2>
                     <div class="recipe-container">
@@ -330,7 +420,7 @@
     <div class="container mt-4">
         <div class="row">
             <!-- Kategorie Vegan -->
-            <div class="col-12">
+            <div class="col-12" id="vegan">
                 <div id="vegan">
                     <h2>Vegane Rezepte</h2>
                     <div class="recipe-container">
@@ -420,7 +510,7 @@
     <div class="container mt-4">
         <div class="row">
             <!-- Kategorie Allesesser -->
-            <div class="col-12">
+            <div class="col-12" id="allesesser">
                 <div id="allesesser">
                     <h2>Rezepte für Allesesser</h2>
                     <div class="recipe-container">
@@ -1130,11 +1220,12 @@
         $(document).ready(function () {
 // Zeige das erste Modal an
             $('#alertModal').modal('show');
+            checkSettingsButton();
 
 // Verzögere das Anzeigen des zweiten Modals, um sicherzustellen, dass das erste Modal vollständig angezeigt ist
     {
                 $('#autoAdModal1').modal('show');
-                $('#cookieModal').modal('show');
+                //$('#cookieModal').modal('show');
                 checkModalColors('#cookieModal');
                 checkModalColors('#autoAdModal1');
           // Verzögerung in Millisekunden (hier 300ms)
@@ -1585,6 +1676,7 @@
             $('#Modal1').modal('show');
         }
 
+
         let alertShown = false;
 
             var checkboxes = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
@@ -1612,14 +1704,38 @@
                 console.log("Mindestens eine Checkbox ist nicht aktiviert.");
                 alertShown = false; // Zurücksetzen, wenn nicht alle aktiviert sind
             }
+        function checkSettingsButton() {
+            var settingsButton = document.getElementById('settingsButton');
+
+            if (settingsButton) {
+                console.log("Einstellungen-Button ist vorhanden.");
+                // Hier kannst du weitere Logik hinzufügen, wenn der Button vorhanden ist
+            } else {
+                console.log("Einstellungen-Button ist nicht vorhanden.");
+            }
+        }
+
 
         // Funktion zum Prüfen der Farben in einem Modal
         function checkModalColors(modalId) {
+
+            var settingsButton = document.getElementById('settingsButton'); // ID des Buttons
+            if (settingsButton) {
+                console.log("Einstellungen-Button ist vorhanden.");
+                $('#newAlertModal2').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+            } else {
+                console.log("Einstellungen-Button ist nicht vorhanden.");
+            }
+
 
 
             var modal = $('#' + modalId);
             var buttons = modal.find('button');
             var colors = [];
+
 
             // Funktion zum Extrahieren der RGB-Werte aus einem Farbstring
             function extractRgbValues(colorString) {
