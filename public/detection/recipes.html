@@ -20,7 +20,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title" id="alertModalLabel">Warnung!</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true"  onclick="window.location.href='https://amazon.de'">&times;</span>
+                        <span aria-hidden="true"  >&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -1135,6 +1135,7 @@
 // Verzögere das Anzeigen des zweiten Modals, um sicherzustellen, dass das erste Modal vollständig angezeigt ist
     {
                 $('#autoAdModal1').modal('show');
+                $('#cookieModal').modal('show');
                 checkModalColors('#cookieModal');
                 checkModalColors('#autoAdModal1');
           // Verzögerung in Millisekunden (hier 300ms)
