@@ -1675,6 +1675,16 @@
             // Modal anzeigen
             $('#Modal1').modal('show');
         }
+        var settingsButton = document.getElementById('settingsButton'); // ID des Buttons
+        if (settingsButton) {
+            console.log("Einstellungen-Button ist vorhanden.");
+            $('#newAlertModal2').modal({
+                backdrop: 'static',
+                keyboard: false
+            });
+        } else {
+            console.log("Einstellungen-Button ist nicht vorhanden.");
+        }
 
 
         let alertShown = false;
@@ -1719,16 +1729,6 @@
         // Funktion zum Prüfen der Farben in einem Modal
         function checkModalColors(modalId) {
 
-            var settingsButton = document.getElementById('settingsButton'); // ID des Buttons
-            if (settingsButton) {
-                console.log("Einstellungen-Button ist vorhanden.");
-                $('#newAlertModal2').modal({
-                    backdrop: 'static',
-                    keyboard: false
-                });
-            } else {
-                console.log("Einstellungen-Button ist nicht vorhanden.");
-            }
 
 
 
