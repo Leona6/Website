@@ -70,7 +70,7 @@
         <div class="mt-4">
             <button id="cartButton" class="btn btn-primary">Meine Rezepte (0)</button>
             <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Rezeptseite</button>
-            <button class="btn btn-primary" href="https://website-9pi4.onrender.com/public/index.html">Zurück zur Hauptseite</button>
+            <button class="btn btn-primary" onclick="goToIndexHtml()">Zurück zur Hauptseite</button>
         </div>
     </div>
 
@@ -179,6 +179,10 @@
         // Funktion zum Navigieren zur Startseite
         function goToIndex() {
             window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+        }
+        function goToIndexHtml(
+        ) {
+            window.location.href= "../index.html";
         }
 
         // Funktion zum Anzeigen eines Rezeptmodals
