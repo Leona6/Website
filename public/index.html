@@ -34,11 +34,10 @@
     <div class="button-container">
       <button onclick="window.location.href='https://website-9pi4.onrender.com/default/recipes'"
         class="btn btn-primary">Phase 1</button>
-      <button onclick="window.location.href='https://website-9pi4.onrender.com/detection/recipes'"
-        class="btn btn-primary">Phase 2</button>
-    </div>
+      <button onclick="localStorage.removeItem('hinzugefuegteRezepte'); window.location.href='https://website-9pi4.onrender.com/detection/recipes.html';" class="btn btn-primary">Phase 2</button>
 
-    <h1 class="text-center">Recipe Links</h1>
+
+      <h1 class="text-center">Recipe Links</h1>
     <ul class="list-unstyled text-center">
       <li><a href="https://website-9pi4.onrender.com/default/recipes" class="btn btn-link">Recipes</a></li>
       <li><a href="https://website-9pi4.onrender.com/default/alles" class="btn btn-link">Alles</a></li>
@@ -117,6 +116,21 @@
         }, 2000); // Nach 2 Sekunden ausblenden (Anpassbar nach Bedarf)
       });
     });
+  </script>
+  <script src="detection/myrecipes.html"> </script>
+  <script src="detection/recipes.html"></script>
+  <script>
+  /*  function clearLocalStorageAndRedirect() {
+      localStorage.clear();  // Lösche den Local Storage
+      localStorage.removeItem('hinzugefuegteRezepte');
+
+      // Leere die globale Variable, die die Rezepte speichert
+      hinzugefuegteRezepte = [];
+
+      // Aktualisiere die Anzeige der Rezeptliste
+      updateRecipeList();
+      window.location.href = 'https://website-9pi4.onrender.com/detection/recipes';  // Weiterleitung zur neuen URL
+    }*/
   </script>
 </body>
 
