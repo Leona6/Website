@@ -107,6 +107,7 @@
     <div id="modalsContainer"></div>
 
     <script>
+
         // Globale Variable für die hinzugefügten Rezepte
         var hinzugefuegteRezepte = [];
 
@@ -137,17 +138,7 @@
             }
         }
 
-        function checkRecipesAndToggleSurveyButton() {
-            let surveyButton = document.getElementById("surveyButton");
-
-            if (hinzugefuegteRezepte.length >= 5) {
-                surveyButton.disabled = false;
-                showSurveyPopup(); // Popup anzeigen, wenn 5 Rezepte hinzugefügt wurden
-            } else {
-                surveyButton.disabled = true;
-            }
-        }
-        // Funktion, um die Rezeptanzahl zu überprüfen und das Popup zu aktualisieren
+        // Funktion zum Überprüfen der Rezepte und Aktualisieren des Popups
         function checkRecipesAndUpdatePopup() {
             let surveyButton = document.getElementById("surveyButton");
             let recipeCounterMessage = document.getElementById("recipeCounterMessage");
@@ -162,7 +153,7 @@
             }
         }
 
-        // Aktualisiere die Funktion `updateRecipeList`, damit sie die Aktivierung des Buttons prüft:
+        // Aktualisiere die Funktion updateRec<ipeList, damit sie die Aktivierung des Buttons prüft:
         function updateRecipeList() {
             var recipeContainer = document.getElementById('recipeContainer');
             var modalsContainer = document.getElementById('modalsContainer');
@@ -211,7 +202,7 @@
                     localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
                     updateRecipeList(); // Liste aktualisieren nach Entfernung
                     updateCartButton(); // Warenkorb-Button aktualisieren
-                    checkRecipesAndToggleSurveyButton(); // Den Button prüfen
+                    checkRecipesAndUpdatePopup(); // Den Button und Popup prüfen
                 };
                 cardBodyDiv.appendChild(deleteButton);
 
@@ -222,15 +213,16 @@
             });
 
             updateCartButton(); // Warenkorb-Button aktualisieren
-            checkRecipesAndToggleSurveyButton(); // Den Button prüfen
+            checkRecipesAndUpdatePopup(); // Den Button und Popup prüfen
         }
 
         // Beim Laden der Seite die gespeicherten Rezepte laden und den Fragebogen-Button prüfen
         document.addEventListener('DOMContentLoaded', function () {
             loadRecipesFromLocalStorage();
             updateCartButton();
-            checkRecipesAndToggleSurveyButton();
+            checkRecipesAndUpdatePopup(); // Korrekte Funktion aufrufen
         });
+
 
         // Funktion zum Aktualisieren des Warenkorb-Buttons
         function updateCartButton() {
@@ -315,6 +307,8 @@
         // Funktion zum Öffnen des Fragebogens (kann durch Link ersetzt werden)
         function openSurvey() {
             // Hier kannst du die URL zu deinem Fragebogen einfügen
+            document.getElementById("surveySection").style.display = "block";
+            document.getElementById("recipeCounterPopup").classList.remove("show");
             window.location.href = "https://deinfragebogenlink.com";
         }
 
