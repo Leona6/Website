@@ -62,21 +62,25 @@
     </div>
 </div>
 <!-- Popup zur Information über die Anzahl der Rezepte -->
-<div id="recipeCounterPopup" class="popup">
-    <p id="recipeCounterMessage">Noch 5 Rezepte hinzufügen, um den Fragebogen freizuschalten.</p>
-    <button id="surveyButton" disabled onclick="openSurvey()">Zum Fragebogen</button>
+<div id="recipeCounterPopup" class="popup" style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9; text-align: center;">
+    <p id="recipeCounterMessage" style="font-size: 1.2em; margin-bottom: 15px;">Füge noch 5 Rezepte hinzu, um den Fragebogen freizuschalten!</p>
+    <button id="surveyButton" onclick="openSurvey()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Zum Fragebogen</button>
 </div>
 
 <!-- Fragebogen-Bereich -->
-<div id="surveySection" style="display: none;">
-    <h2>Fragebogen</h2>
-    <form>
+<div id="surveySection" style="display: none; margin-top: 30px;">
+    <h2 style="font-family: Arial, sans-serif; color: #333;">Fragebogen</h2>
+    <form style="background-color: #f9f9f9; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         <!-- Füge hier die Fragen hinzu -->
-        <label for="question1">Frage 1:</label>
-        <input type="text" id="question1" name="question1" required>
-        <button type="submit">Absenden</button>
+        <div style="margin-bottom: 15px;">
+            <label for="question1" style="font-size: 1em; color: #555;">Frage 1:</label><br>
+            <input type="text" id="question1" name="question1" required style="width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+        <button type="submit" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #007BFF; color: white; cursor: pointer;">Absenden</button>
     </form>
 </div>
+
+
 <!-- Automatisches Pop-up mit Werbung -->
 <div class="modal fade" id="autoAdModal" tabindex="-1" role="dialog" aria-labelledby="autoAdModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
