@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recipe Links</title>
+  <title>Aufgaben für das Abendessen</title>
   <!-- Bootstrap CSS einbinden -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -25,115 +25,69 @@
       gap: 10px;
       margin-bottom: 20px;
     }
+
+    .task-description {
+      margin-top: 20px;
+      text-align: left;
+    }
   </style>
 </head>
 
 <body>
 
-  <div class="container mt-5">
-    <div class="button-container">
-      <button onclick="window.location.href='https://website-9pi4.onrender.com/default/recipes'"
-        class="btn btn-primary">Phase 1</button>
-      <button onclick="localStorage.removeItem('hinzugefuegteRezepte'); window.location.href='https://website-9pi4.onrender.com/detection/recipes.html';" class="btn btn-primary">Phase 2</button>
-
-
-      <h1 class="text-center">Recipe Links</h1>
-    <ul class="list-unstyled text-center">
-      <li><a href="https://website-9pi4.onrender.com/default/recipes" class="btn btn-link">Recipes</a></li>
-      <li><a href="https://website-9pi4.onrender.com/default/alles" class="btn btn-link">Alles</a></li>
-      <li><a href="https://website-9pi4.onrender.com/default/vegan" class="btn btn-link">Vegan</a></li>
-      <li><a href="https://website-9pi4.onrender.com/default/vegetarisch" class="btn btn-link">Vegetarisch</a></li>
-      <li><a href="https://website-9pi4.onrender.com/default/myrecipes" class="btn btn-link">My Recipes</a></li>
-    </ul>
+<div class="container mt-5">
+  <h1 class="text-center">Aufgaben für das Abendessen</h1>
+  <div class="button-container">
+    <button onclick="window.location.href='https://website-9pi4.onrender.com/default/recipes'"
+            class="btn btn-primary">Phase 1</button>
+    <button onclick="localStorage.removeItem('hinzugefuegteRezepte'); window.location.href='https://website-9pi4.onrender.com/detection/recipes.html';" class="btn btn-primary">Phase 2</button>
   </div>
 
-  <div class="container mt-5">
-    <h2 class="text-center">Detection Recipe Links</h2>
-    <ul class="list-unstyled text-center">
-      <li><a href="https://website-9pi4.onrender.com/detection/recipes" class="btn btn-link">Detection Recipes</a></li>
-      <li><a href="https://website-9pi4.onrender.com/detection/alles" class="btn btn-link">Detection Alles</a></li>
-      <li><a href="https://website-9pi4.onrender.com/detection/vegan" class="btn btn-link">Detection Vegan</a></li>
-      <li><a href="https://website-9pi4.onrender.com/detection/vegetarisch" class="btn btn-link">Detection
-          Vegetarisch</a></li>
-      <li><a href="https://website-9pi4.onrender.com/detection/myrecipes" class="btn btn-link">Detection My Recipes</a>
-      </li>
-    </ul>
+  <!-- Aufgabenbeschreibung -->
+  <div class="task-description">
+    <h4>Aufgabenbeschreibung</h4>
+    <p><strong>Aufgabe 1:</strong> Du und deine Gruppe von Freunden, die aus insgesamt zehn Personen besteht, haben geplant, dieses Wochenende zusammen zu Abend zu essen. Da in deiner Gruppe unterschiedliche Nahrungspräferenzen herrschen, musst du sicherstellen, dass für jeden etwas dabei ist. Zwei deiner Freunde sind Veganer und die anderen drei sind Allesesser. Wähle mindestens 5 Rezepte für die beschriebenen Personen aus.</p>
+    <p><strong>Aufgabe 2:</strong> Du und deine Gruppe von Freunden, die aus insgesamt zehn Personen besteht, haben geplant, dieses Wochenende zusammen zu Abend zu essen. Da in deiner Gruppe unterschiedliche Nahrungspräferenzen herrschen, musst du sicherstellen, dass für jeden etwas dabei ist. Zwei deiner Freunde sind Vegetarier und die anderen drei sind Allesesser. Wähle mindestens 5 Rezepte für die beschriebenen Personen aus.</p>
   </div>
+</div>
 
-  <!-- Bootstrap Alert für "Hallo" <div id="helloAlert" class="alert alert-success alert-dismissible fade" role="alert" style="display: none;">
-    <strong>Hallo!</strong> Sie haben den Button geklickt.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
--->
-  <!-- Bootstrap Modal für Begrüßung -->
-  <div class="modal fade" id="greetingModal" tabindex="-1" role="dialog" aria-labelledby="greetingModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="greetingModalLabel">Willkommen</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p>Herzlich Willkommen zur Evaluation meiner Masterarbeit!</p>
-          <p>Die Evaluation beinhaltet 2 Phasen. In der ersten Phase werden Sie eine Aufgabe bekommen bezüglich des
-            Prototypen. Wird die Aufgabe erfüllt, folgt anschließend ein Fragebogen.</p>
-          <p>Die zweite Phase beinhaltet die selbe Aufgabe und anschließend muss erneut ein Fragebogen ausgefüllt
-            werden, basierend auf dem zweiten Prototypen.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-        </div>
+<!-- Bootstrap Modal für Begrüßung -->
+<div class="modal fade" id="greetingModal" tabindex="-1" role="dialog" aria-labelledby="greetingModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="greetingModalLabel">Willkommen</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Herzlich Willkommen zur Evaluation meiner Masterarbeit!</p>
+        <p>Die Evaluation beinhaltet 2 Phasen, und jede Aufgabe muss separat erledigt werden. Nachdem eine Phase beendet wird, muss ein Fragebogen ausgefüllt werden</p>
+        <p>In dieser Evaluation müssen insgesamt 2 Fragebögen ausgefüllt werden.</p>
+        <p>Bitte vorher die Rezepte in der zweiten Phase löschen, falls diese aus der ersten noch vorhanden sind.</p>
+        <p>Wichtig! Wenn ihr eine Phase beendet habt, geht unter "Meine Rezepte" auf den Button "Zurück zur Hauptseite", damit ihr zur zweiten Phase kommt!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
       </div>
     </div>
   </div>
-  </div>
+</div>
 
+<!-- Bootstrap JS und Popper.js einbinden -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Bootstrap JS und Popper.js einbinden -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-  <!-- Custom Script, um das Modal beim Laden der Seite zu zeigen -->
-  <script>
-    $(document).ready(function () {
-      // Modal für die Begrüßung anzeigen
-      $('#greetingModal').modal('show');
-
-      // Event-Handler für den Button "Hallo"
-      $('#helloButton').click(function () {
-        // Bootstrap Alert anzeigen
-        $('#helloAlert').addClass('show');
-        $('#helloAlert').css('display', 'block'); // Zeige den Alert an
-
-        // Nach einer Verzögerung den Alert ausblenden
-        setTimeout(function () {
-          $('#helloAlert').removeClass('show');
-          $('#helloAlert').css('display', 'none'); // Verstecke den Alert
-        }, 2000); // Nach 2 Sekunden ausblenden (Anpassbar nach Bedarf)
-      });
-    });
-  </script>
-  <script src="detection/myrecipes.html"> </script>
-  <script src="detection/recipes.html"></script>
-  <script>
-  /*  function clearLocalStorageAndRedirect() {
-      localStorage.clear();  // Lösche den Local Storage
-      localStorage.removeItem('hinzugefuegteRezepte');
-
-      // Leere die globale Variable, die die Rezepte speichert
-      hinzugefuegteRezepte = [];
-
-      // Aktualisiere die Anzeige der Rezeptliste
-      updateRecipeList();
-      window.location.href = 'https://website-9pi4.onrender.com/detection/recipes';  // Weiterleitung zur neuen URL
-    }*/
-  </script>
+<!-- Custom Script, um das Modal beim Laden der Seite zu zeigen -->
+<script>
+  $(document).ready(function () {
+    // Modal für die Begrüßung anzeigen
+    $('#greetingModal').modal('show');
+  });
+</script>
 </body>
 
 </html>
