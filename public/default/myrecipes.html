@@ -55,6 +55,24 @@
         .modal-body img {
             height: auto;
         }
+        /* CSS für das Popup */
+        /* CSS für das Popup */
+        .popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .popup button {
+            margin-top: 10px;
+        }
+
+
     </style>
 </head>
 
@@ -71,7 +89,18 @@
             <button id="cartButton" class="btn btn-primary">Meine Rezepte (0)</button>
             <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Rezeptseite</button>
             <button class="btn btn-primary" onclick="goToIndexHtml()">Zurück zur Hauptseite</button>
+            <!-- myRecipes.html --><!-- myRecipes.html -->
+            <button class="btn btn-primary" id="surveyButton1" disabled>Fragebogen ausfüllen</button>
+
         </div>
+        <!-- Popup für die Aufforderung zum Fragebogen -->
+        <!-- Popup zur Information über die Anzahl der Rezepte -->
+        <div id="recipeCounterPopup" class="popup">
+            <p id="recipeCounterMessage">Noch 5 Rezepte hinzufügen, um den Fragebogen freizuschalten.</p>
+            <button id="surveyButton" disabled onclick="openSurvey()">Zum Fragebogen</button>
+        </div>
+
+
     </div>
 
     <!-- Modals Container -->
@@ -93,7 +122,47 @@
             }
         }
 
-        // Funktion zum Anzeigen der hinzugefügten Rezepte
+        // Funktion zum Anzeigen des Fragebogen-Buttons
+        function checkRecipesAndShowSurveyButton() {
+            let surveyButton = document.getElementById("surveyButton");
+
+            if (hinzugefuegteRezepte.length >= 5) {
+                surveyButton.style.display = "block";
+                surveyButton.onclick = function() {
+                    // Link zum Fragebogen öffnen
+                    window.open("https://soscisurvey.de/dein-fragebogen-url", "_blank");
+                };
+            } else {
+                surveyButton.style.display = "none";
+            }
+        }
+
+        function checkRecipesAndToggleSurveyButton() {
+            let surveyButton = document.getElementById("surveyButton");
+
+            if (hinzugefuegteRezepte.length >= 5) {
+                surveyButton.disabled = false;
+                showSurveyPopup(); // Popup anzeigen, wenn 5 Rezepte hinzugefügt wurden
+            } else {
+                surveyButton.disabled = true;
+            }
+        }
+        // Funktion, um die Rezeptanzahl zu überprüfen und das Popup zu aktualisieren
+        function checkRecipesAndUpdatePopup() {
+            let surveyButton = document.getElementById("surveyButton");
+            let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+            let fehlendeRezepte = 5 - hinzugefuegteRezepte.length;
+
+            if (hinzugefuegteRezepte.length >= 5) {
+                surveyButton.disabled = false;
+                recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+            } else {
+                surveyButton.disabled = true;
+                recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+            }
+        }
+
+        // Aktualisiere die Funktion `updateRecipeList`, damit sie die Aktivierung des Buttons prüft:
         function updateRecipeList() {
             var recipeContainer = document.getElementById('recipeContainer');
             var modalsContainer = document.getElementById('modalsContainer');
@@ -134,14 +203,6 @@
                 recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : 'Zutaten nicht verfügbar';
                 cardBodyDiv.appendChild(recipeIngredients);
 
-                /*var showButton = document.createElement('button');
-                showButton.textContent = 'Rezept anzeigen';
-                showButton.className = 'btn btn-info show-button';
-                showButton.onclick = function() {
-                    showModal(recipe.name, recipe.image, recipe.description, recipe.ingredients);
-                };
-                cardBodyDiv.appendChild(showButton);*/
-
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Löschen';
                 deleteButton.className = 'btn btn-danger delete-button';
@@ -150,6 +211,7 @@
                     localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
                     updateRecipeList(); // Liste aktualisieren nach Entfernung
                     updateCartButton(); // Warenkorb-Button aktualisieren
+                    checkRecipesAndToggleSurveyButton(); // Den Button prüfen
                 };
                 cardBodyDiv.appendChild(deleteButton);
 
@@ -160,7 +222,15 @@
             });
 
             updateCartButton(); // Warenkorb-Button aktualisieren
+            checkRecipesAndToggleSurveyButton(); // Den Button prüfen
         }
+
+        // Beim Laden der Seite die gespeicherten Rezepte laden und den Fragebogen-Button prüfen
+        document.addEventListener('DOMContentLoaded', function () {
+            loadRecipesFromLocalStorage();
+            updateCartButton();
+            checkRecipesAndToggleSurveyButton();
+        });
 
         // Funktion zum Aktualisieren des Warenkorb-Buttons
         function updateCartButton() {
@@ -232,6 +302,24 @@
                 $(this).remove();
             });
         }
+        // Funktion zum Anzeigen des Popups
+        function showSurveyPopup() {
+            document.getElementById("surveyPopup").classList.remove("hidden");
+        }
+
+        // Funktion zum Schließen des Popups
+        function closePopup() {
+            document.getElementById("surveyPopup").classList.add("hidden");
+        }
+
+        // Funktion zum Öffnen des Fragebogens (kann durch Link ersetzt werden)
+        function openSurvey() {
+            // Hier kannst du die URL zu deinem Fragebogen einfügen
+            window.location.href = "https://deinfragebogenlink.com";
+        }
+
+
+
     </script>
 
     <!-- Bootstrap JS und jQuery -->

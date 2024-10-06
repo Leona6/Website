@@ -61,6 +61,11 @@
         </div>
     </div>
 </div>
+<!-- Popup zur Information über die Anzahl der Rezepte -->
+<div id="recipeCounterPopup" class="popup">
+    <p id="recipeCounterMessage">Noch 5 Rezepte hinzufügen, um den Fragebogen freizuschalten.</p>
+    <button id="surveyButton" disabled onclick="openSurvey()">Zum Fragebogen</button>
+</div>
 
 
 <!-- Automatisches Pop-up mit Werbung -->
@@ -241,6 +246,8 @@
         </li>
     </ul>
 </nav>
+
+
 <div class="container mt-4">
     <div class="row">
         <!-- Kategorie Vegetarisch -->
@@ -1380,6 +1387,7 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
             };
             // Rezept zur Liste hinzufügen
             hinzugefuegteRezepte.push(recipe);
+            checkRecipesAndUpdatePopup();
             localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
             // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
@@ -1527,6 +1535,76 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
         function showRecipe10() {
             $('#Rezept10').modal('show');
         }
+
+        function checkRecipesCount() {
+            // Rezepte aus dem localStorage laden
+            let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+
+            // Überprüfen, ob es mindestens 5 Rezepte gibt
+            if (recipes.length >= 5) {
+                openSurveyPopup();
+                enableSurveyButton();
+            } else {
+                disableSurveyButton();
+            }
+        }
+        function openSurveyPopup() {
+            let popup = window.open("", "Survey Invitation", "width=500,height=400");
+            popup.document.write("<h2>Vielen Dank für Ihre Rezepte!</h2>");
+            popup.document.write("<p>Sie haben 5 Rezepte hinzugefügt. Bitte füllen Sie unseren kurzen Fragebogen aus.</p>");
+            popup.document.write('<a href="https://soscisurvey.de/dein-fragebogen-url" target="_blank">Zum Fragebogen</a>');
+        }
+
+        function addRecipe(recipe) {
+            let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+            recipes.push(recipe);
+            localStorage.setItem("recipes", JSON.stringify(recipes));
+
+            // Anzahl der Rezepte überprüfen
+            checkRecipesCount();
+        }
+        function enableSurveyButton() {
+            let button = document.getElementById("surveyButton");
+            button.disabled = false;
+            button.onclick = function() {
+                // Link zum Fragebogen öffnen
+                window.open("https://soscisurvey.de/dein-fragebogen-url", "_blank");
+            };
+        }
+
+        function disableSurveyButton() {
+            let button = document.getElementById("surveyButton");
+            button.disabled = true;
+        }
+
+        function checkRecipesAndToggleSurveyButton() {
+            let surveyButton = document.getElementById("surveyButton");
+
+            if (hinzugefuegteRezepte.length >= 5) {
+                surveyButton.disabled = false;
+                showSurveyPopup(); // Popup anzeigen, wenn 5 Rezepte hinzugefügt wurden
+            } else {
+                surveyButton.disabled = true;
+            }
+        }
+        // Funktion, um die Rezeptanzahl zu überprüfen und das Popup zu aktualisieren
+        function checkRecipesAndUpdatePopup() {
+            let surveyButton = document.getElementById("surveyButton");
+            let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+            let fehlendeRezepte = 5 - hinzugefuegteRezepte.length;
+
+            if (hinzugefuegteRezepte.length >= 5) {
+                surveyButton.disabled = false;
+                recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+            } else {
+                surveyButton.disabled = true;
+                recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+            }
+        }
+
+
+
+
     </script>
 </body>
 
