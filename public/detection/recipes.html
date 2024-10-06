@@ -181,7 +181,7 @@
                                     gespeicherten Daten wie z.B. persönlichen Identifikatoren oder IP-Adressen für diese
                                     Verarbeitungszwecke gem. § 25 Abs. 1 TDDDG sowie Art. 6 Abs. 1 lit. a DSGVO zu.</p>
                                 <button type="button" class="btn btn-primary btn-block"
-                                    onclick="showAd('images/werbung.jpg')" data-dismiss="modal">Mit Werbung
+                                  onclick="" data-dismiss="modal" id="acceptBtn">Mit Werbung
                                     fortfahren</button>
                             </div>
                         </div>
@@ -1239,97 +1239,74 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
+            var cookiesAccepted = localStorage.getItem("cookiesAccepted");
+
+            if (cookiesAccepted) {
+                console.log("Cookies wurden bereits akzeptiert.");
+            } else {
+                console.log("Cookies wurden noch nicht akzeptiert.");
+            }
+
+            // Klick-Handler für den Akzeptieren-Button
+            $('#acceptBtn').on('click', function () {
+                localStorage.setItem("cookiesAccepted", "true");
+                $('#cookieModal').modal('hide');
+                console.log("Accepted");
+            });
+            if (!localStorage.getItem("cookiesAccepted")) {
+                $('#cookieModal').modal('show');
+            }
 
             // Rezepte aus dem localStorage laden
-            let recipes = JSON.parse(localStorage.getItem("hinzugefuegteRezepte")) || [];
-            console.log("Lade Rezepte: ", recipes.length); // Debugging
-            let surveyButton = document.getElementById("surveyButton");
-            let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-            let fehlendeRezepte = 5 - recipes.length;
+                let recipes = JSON.parse(localStorage.getItem("hinzugefuegteRezepte")) || [];
+                console.log("Lade Rezepte: ", recipes.length); // Debugging
+                let surveyButton = document.getElementById("surveyButton");
+                let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+                let fehlendeRezepte = 5 - recipes.length;
 
-            // Überprüfen, ob es mindestens 5 Rezepte gibt
-            if (recipes.length >= 5) {
-                enableSurveyButton();
-                showSurveyPopup();
-                recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
-            } else {
-                disableSurveyButton();
-                recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
-            }
+                // Überprüfen, ob es mindestens 5 Rezepte gibt
+                if (recipes.length >= 5) {
+                    enableSurveyButton();
+                    showSurveyPopup();
+                    recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+                } else {
+                    disableSurveyButton();
+                    recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+                }
 // Zeige das erste Modal an
-            $('#alertModal').modal('show');
-            checkSettingsButton();
+                $('#alertModal').modal('show');
+                checkSettingsButton();
 
 // Verzögere das Anzeigen des zweiten Modals, um sicherzustellen, dass das erste Modal vollständig angezeigt ist
-    {
-                $('#autoAdModal1').modal('show');
-                $('#cookieModal').modal('show');
-                checkModalColors('#cookieModal');
-                checkModalColors('#autoAdModal1');
-          // Verzögerung in Millisekunden (hier 300ms)
+                {
+                    $('#autoAdModal1').modal('show');
+                    //$('#cookieModal').modal('show');
+                    checkModalColors('#cookieModal');
+                    checkModalColors('#autoAdModal1');
+                    // Verzögerung in Millisekunden (hier 300ms)
 
 
 
-                var cookiesAccepted = localStorage.getItem("cookiesAccepted");
+                    //  $('#autoAdModal1').modal('show');
+                    //$('#cookieModal').modal('show');
+                    // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
 
-                if (cookiesAccepted) {
-                    console.log("Cookies wurden bereits akzeptiert.");
-                } else {
-                    console.log("Cookies wurden noch nicht akzeptiert.");
+
+
+
                 }
 
 
-              //  $('#autoAdModal1').modal('show');
-                //$('#cookieModal').modal('show');
-                // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
-                if (!localStorage.getItem("cookiesAccepted")) {
-                    $('#cookieModal').modal('show');
+                // Rezeptdetails anzeigen
+                function showRecipeDetails(rezeptName) {
+                    alert('Details zu ' + rezeptName);
                 }
 
-                // Klick-Handler für den Akzeptieren-Button
-                $('#acceptBtn').on('click', function () {
-                    localStorage.setItem("cookiesAccepted", "true");
-                    $('#cookieModal').modal('hide');
-                    console.log("Accepted");
+                // Cookie-Einstellungen anzeigen
+                $('#Einstellungen').click(function () {
+                    $('#settingsModal').modal('show');
                 });
 
-                // Klick-Handler für den Zurücksetzen-Button
-                $('#resetBtn').on('click', function () {
-                    localStorage.removeItem("cookiesAccepted");
-                    alert("Die Cookie-Einstellung wurde zurückgesetzt.");
-                    window.location.reload();
-                });
-            };
-
-            // Rezeptdetails anzeigen
-            function showRecipeDetails(rezeptName) {
-                alert('Details zu ' + rezeptName);
-            }
-
-            // Cookie-Einstellungen anzeigen
-            $('#Einstellungen').click(function () {
-                $('#settingsModal').modal('show');
-            });
-
-
-            // Zurücksetzen der Cookies
-            $('#cookiesAccepted').click(function () {
-                // Hier werden die Cookies zurückgesetzt (z.B. durch Löschung der gespeicherten Zustimmungen)
-                alert('Cookies wurden zurückgesetzt.');
-            });
-
-            function deleteAllCookies() {
-                // Löschen aller Cookies
-                $.each($.cookie(), function (key, value) {
-                    $.removeCookie(key);
-                });
-
-                // Zurücksetzen des LocalStorage-Eintrags für Cookies-Akzeptanz
-                localStorage.removeItem('cookiesAccepted');
-
-                // Feedback für den Benutzer
-                alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
-            }
         })
     </script>
 
@@ -1388,8 +1365,8 @@
                     saveSettings();
                 }
             });
+        })
 
-        });
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -1437,17 +1414,7 @@
                 }
             });
 
-            // Event listener for the "Zustimmung zurücksetzen" Button
-            resetButton.addEventListener('click', () => {
-                localStorage.removeItem('cookiesAccepted'); // Remove cookiesAccepted from localStorage
-                saveButton.disabled = false; // Disable save button
-                functionalSwitch.checked = false; // Reset switches
-                marketingSwitch.checked = false;
-                personalizedAdsSwitch.checked = false;
-                $('#cookieModal').modal('show'); // Show cookie modal after resetting
-            });
 
-            // Check if user has already accepted cookies
             const cookiesAccepted = localStorage.getItem('cookiesAccepted');
             if (cookiesAccepted === 'true') {
                 $('#cookieModal').modal('hide'); // Hide cookie modal if already accepted
@@ -1804,22 +1771,14 @@
             // Modal anzeigen
             $('#Modal1').modal('show');
         }
-        var settingsButton = document.getElementById('settingsButton'); // ID des Buttons
-        if (settingsButton) {
-            console.log("Einstellungen-Button ist vorhanden.");
-            $('#newAlertModal2').modal({
-                backdrop: 'static',
-                keyboard: false
-            });
-        } else {
-            console.log("Einstellungen-Button ist nicht vorhanden.");
-        }
 
-
-        let alertShown = false;
+        // Überprüfe, ob die Cookies nicht akzeptiert sind
+        if (localStorage.getItem('cookiesAccepted') !== 'true') {
+            let alertShown = false; // Flag, um zu verfolgen, ob das Modal bereits angezeigt wurde
 
             var checkboxes = document.querySelectorAll('input[type="checkbox"], input[type="radio"]');
 
+            // Überprüfe den Status jeder Checkbox
             checkboxes.forEach(function (checkbox) {
                 var isChecked = checkbox.checked;
                 var checkboxId = checkbox.id;
@@ -1828,9 +1787,11 @@
                 console.log(`Checkbox ID: ${checkboxId}, Name: ${checkboxName}, Aktiviert: ${isChecked}`);
             });
 
+            // Überprüfe, ob alle Checkboxen aktiviert sind
             var allChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
             console.log(`Alle Checkboxen aktiviert: ${allChecked}`);
 
+            // Zeige das Modal nur an, wenn alle Checkboxen aktiviert sind
             if (allChecked) {
                 if (!alertShown) {
                     $('#newAlertModal').modal({
@@ -1843,16 +1804,33 @@
                 console.log("Mindestens eine Checkbox ist nicht aktiviert.");
                 alertShown = false; // Zurücksetzen, wenn nicht alle aktiviert sind
             }
-        function checkSettingsButton() {
-            var settingsButton = document.getElementById('settingsButton');
 
+            function checkSettingsButton() {
+                var settingsButton = document.getElementById('settingsButton');
+
+                if (settingsButton) {
+                    console.log("Einstellungen-Button ist vorhanden.");
+                    // Hier kannst du weitere Logik hinzufügen, wenn der Button vorhanden ist
+                } else {
+                    console.log("Einstellungen-Button ist nicht vorhanden.");
+                }
+            }
+
+            var settingsButton = document.getElementById('settingsButton'); // ID des Buttons
             if (settingsButton) {
                 console.log("Einstellungen-Button ist vorhanden.");
-                // Hier kannst du weitere Logik hinzufügen, wenn der Button vorhanden ist
+                $('#newAlertModal2').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
             } else {
                 console.log("Einstellungen-Button ist nicht vorhanden.");
             }
+        } else {
+            console.log("Cookies Akzeptiert");
+            // Hier kannst du optional Code hinzufügen, der ausgeführt werden soll, wenn die Cookies bereits akzeptiert wurden
         }
+
 
 
         // Funktion zum Prüfen der Farben in einem Modal

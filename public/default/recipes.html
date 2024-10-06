@@ -129,62 +129,6 @@
 </div>
 
 
-<!-- Cookie-Akzeptanz-Popup -->
-<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="cookieModalLabel">Cookie-Hinweis</h5>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer
-                                Website zu bieten. Durch die Nutzung unserer Website stimmen Sie der Verwendung von
-                                Cookies zu.</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <hr>
-                            <p><strong>Werbung lesen:</strong> Durch das Klicken des Buttons „Zustimmen und weiter“
-                                stimmen Sie der Verarbeitung der auf Ihrem Gerät bzw. Ihrer Endeinrichtung
-                                gespeicherten Daten wie z.B. persönlichen Identifikatoren oder IP-Adressen für diese
-                                Verarbeitungszwecke gem. § 25 Abs. 1 TDDDG sowie Art. 6 Abs. 1 lit. a DSGVO zu.</p>
-                            <button type="button" class="btn btn-primary btn-block"
-                                    onclick="showAd('images/werbung.jpg')" data-dismiss="modal">Mit Werbung
-                                fortfahren</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <hr>
-                            <p><strong>Werbefrei lesen:</strong> Oder nutzen Sie die Seite ohne Werbetracking und
-                                nahezu ohne Werbung, indem Sie ein Abo abonnieren oder sich hier mit Ihrem
-                                bestehenden Pur-Abo einloggen. Informationen zur Datenverarbeitung im Pur-Abo finden
-                                Sie in unserer Datenschutzerklärung und in den FAQ.</p>
-                            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">Werbefrei
-                                fortfahren</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <hr>
-                            <p><strong>Einstellungen:</strong> Einzelnen Zwecken der Datenverarbeitung können Sie
-                                über den Button „Einstellungen“ oder den Menüpunkt Cookies & Tracking am Ende jeder
-                                Seite zustimmen oder sie teilweise ablehnen. Ihre Zustimmung insgesamt können Sie
-                                jederzeit über den Link Privacy Einstellungen am Ende jeder Seite entziehen.</p>
-                            <button type="button" class="btn btn-outline-secondary btn-block" data-dismiss="modal"
-                                    data-toggle="modal" data-target="#settingsModal">Einstellungen</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <!-- Einstellungs-Modal -->
 <div class="modal fade" id="settingsModal" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel"
@@ -228,18 +172,76 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="saveButton" disabled>Speichern</button>
-                <button type="button" class="btn btn-outline-danger" id="resetButton">Zustimmung
-                    zurücksetzen</button>
+                <button type="button" class="btn btn-primary" id="saveButton"  data-dismiss="modal">Speichern</button>
+
             </div>
         </div>
     </div>
 </div>
 
+<!-- Einstellungs-Modal -->
+<div class="modal fade" id="settingsModal3" tabindex="-1" role="dialog" aria-labelledby="settingsModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="settingsModalLabel3">Cookie-Einstellungen</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" onclick="window.location.href='https://amazon.de'">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <!-- Eingabefelder für Name und E-Mail -->
+                    <div class="form-group">
+                        <label for="nameInput">Name:</label>
+                        <input type="text" class="form-control" id="nameInput" placeholder="Geben Sie Ihren Namen ein" oninput="checkInput()">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailInput">E-Mail:</label>
+                        <input type="email" class="form-control" id="emailInput" placeholder="Geben Sie Ihre E-Mail ein" oninput="checkInput()">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="saveButton1" data-dismiss="modal" onclick="saveAdFree()" >Speichern</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function checkInput() {
+        // Eingabefelder abrufen
+        var name = document.getElementById('nameInput').value.trim();
+        var email = document.getElementById('emailInput').value.trim();
+        var saveButton = document.getElementById('saveButton1');
+
+        // Überprüfen, ob beide Felder ausgefüllt sind
+        if (name !== "" && email !== "") {
+            saveButton.disabled = false;  // Button aktivieren
+        } else {
+            saveButton.disabled = true;   // Button deaktivieren
+        }
+    }
+
+    function saveAdFree() {
+        // Eingabefelder abrufen
+        var name = document.getElementById('nameInput').value.trim();
+        var email = document.getElementById('emailInput').value.trim();
+
+        // Überprüfen, ob die Felder ausgefüllt sind
+        if (name === "" || email === "") {
+            alert("Bitte geben Sie sowohl Ihren Namen als auch Ihre E-Mail-Adresse ein.");
+        } else {
+            alert("Danke, " + name + "! Ihre E-Mail-Adresse " + email + " wurde erfolgreich gespeichert.");
+            // Hier kannst du weiteren Code hinzufügen, um die Daten zu verarbeiten oder zu speichern
+            $('#cookieModal').modal('hide'); // Modal schließen
+        }
+    }
+</script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-<script src="myrecipes.html"></script>
-
 
 <!-- Navbar -->
 <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -1152,32 +1154,26 @@
     <script>
         $(document).ready(function () {
 
-
-                // Rezepte aus dem localStorage laden
-                let recipes = JSON.parse(localStorage.getItem("hinzugefuegteRezepte")) || [];
-                console.log("Lade Rezepte: ", recipes.length); // Debugging
-                let surveyButton = document.getElementById("surveyButton");
-                let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-                let fehlendeRezepte = 5 - recipes.length;
-
-                // Überprüfen, ob es mindestens 5 Rezepte gibt
-                if (recipes.length >= 5) {
-                    enableSurveyButton();
-                    showSurveyPopup();
-                    recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
-                } else {
-                    disableSurveyButton();
-                    recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
-                }
+            $('#cookieModal').modal('show')
 
 
+            // Rezepte aus dem localStorage laden
+            let recipes = JSON.parse(localStorage.getItem("hinzugefuegteRezepte")) || [];
+            console.log("Lade Rezepte: ", recipes.length); // Debugging
+            let surveyButton = document.getElementById("surveyButton");
+            let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+            let fehlendeRezepte = 5 - recipes.length;
 
-            // Automatisches Pop-up nach 3 Sekunden anzeigen
-            // Cookie-Akzeptanz-Popup anzeigen
+            // Überprüfen, ob es mindestens 5 Rezepte gibt
+            if (recipes.length >= 5) {
+                enableSurveyButton();
 
-            // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
-            // Überprüfen, ob der Eintrag "cookiesAccepted" im localStorage vorhanden ist
-           // localStorage.removeItem("cookiesAccepted");
+                recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+            } else {
+                disableSurveyButton();
+                recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+            }
+
 
             var cookiesAccepted = localStorage.getItem("cookiesAccepted");
 
@@ -1191,7 +1187,7 @@
             //$('#cookieModal').modal('show');
             // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
             if (!localStorage.getItem("cookiesAccepted")) {
-                $('#cookieModal').modal('show');
+                //$('#cookieModal').modal('show');
             }
 
             // Klick-Handler für den Akzeptieren-Button
@@ -1201,43 +1197,13 @@
                 console.log("Accepted");
             });
 
-            // Klick-Handler für den Zurücksetzen-Button
-            $('#resetBtn').on('click', function () {
-                localStorage.removeItem("cookiesAccepted");
-                alert("Die Cookie-Einstellung wurde zurückgesetzt.");
-                window.location.reload();
-            });
-        });
-
-        // Rezeptdetails anzeigen
-        function showRecipeDetails(rezeptName) {
-            alert('Details zu ' + rezeptName);
-        }
-
-        // Cookie-Einstellungen anzeigen
-        $('#Einstellungen').click(function () {
-            $('#settingsModal').modal('show');
-        });
-
-
-        // Zurücksetzen der Cookies
-        $('#cookiesAccepted').click(function () {
-            // Hier werden die Cookies zurückgesetzt (z.B. durch Löschung der gespeicherten Zustimmungen)
-            alert('Cookies wurden zurückgesetzt.');
-        });
-        function deleteAllCookies() {
-            // Löschen aller Cookies
-            $.each($.cookie(), function (key, value) {
-                $.removeCookie(key);
+            // Cookie-Einstellungen anzeigen
+            $('#Einstellungen').click(function () {
+                $('#settingsModal').modal('show');
             });
 
-            // Zurücksetzen des LocalStorage-Eintrags für Cookies-Akzeptanz
-            localStorage.removeItem('cookiesAccepted');
 
-            // Feedback für den Benutzer
-            alert('Alle Cookies wurden erfolgreich zurückgesetzt.');
-        }
-
+        })
 
     </script>
 
@@ -1282,15 +1248,7 @@ function initializeSwitches() {
         }
     });
 
-    // Event Listener für den "Zustimmung zurücksetzen"-Button
-    resetButton.addEventListener('click', () => {
-        localStorage.removeItem('cookiesAccepted'); // Eintrag aus localStorage entfernen
-        saveButton.disabled = true; // Speichern-Button deaktivieren
-        functionalSwitch.checked = false; // Schalter zurücksetzen
-        marketingSwitch.checked = false;
-        personalizedAdsSwitch.checked = false;
-        $('#cookieModal').modal('show'); // Cookie-Modal anzeigen
-    });
+
 
     // Überprüfen, ob Cookies bereits akzeptiert wurden
     const cookiesAccepted = localStorage.getItem('cookiesAccepted');

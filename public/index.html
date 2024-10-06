@@ -38,11 +38,37 @@
 <div class="container mt-5">
   <h1 class="text-center">Aufgaben für das Abendessen</h1>
   <div class="button-container">
-    <button onclick="window.location.href='https://website-9pi4.onrender.com/default/recipes'"
+    <button onclick="localStorage.clear(); window.location.href='default/recipes.html'"
             class="btn btn-primary">Phase 1</button>
-    <button onclick="localStorage.removeItem('hinzugefuegteRezepte'); window.location.href='https://website-9pi4.onrender.com/detection/recipes.html';" class="btn btn-primary">Phase 2</button>
-  </div>
+    <button class="btn btn-primary" onclick="localStorage.clear(); window.location.href='detection/recipes.html'">Phase 2</button>
 
+  </div>
+  <!-- Bootstrap JS und jQuery einbinden -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+
+  $(document).ready(function () {
+    localStorage.clear()
+  })
+
+  console.log(localStorage)
+  localStorage.clear()
+  localStorage.removeItem('cookiesAccepted')
+  function clearDataForPhase2() {
+
+    window.location.href = 'detection/recipes.html';
+    localStorage.clear()
+    localStorage.getItem('cookiesAccepted')
+    console.log(localStorage)
+    localStorage.removeItem('cookiesAccepted')
+  }
+
+</script>
   <!-- Aufgabenbeschreibung -->
   <div class="task-description">
     <h4>Aufgabenbeschreibung</h4>
@@ -85,6 +111,8 @@
 <script>
   $(document).ready(function () {
     // Modal für die Begrüßung anzeigen
+    localStorage.clear()
+    localStorage.removeItem('cookiesAccepted')
     $('#greetingModal').modal('show');
   });
 </script>
