@@ -55,149 +55,209 @@
         .modal-body img {
             height: auto;
         }
+        /* CSS für das Popup */
+        /* CSS für das Popup */
+        .popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .popup button {
+            margin-top: 10px;
+        }
+
+
     </style>
 </head>
 
 <body>
-    <div class="container mt-4">
-        <!-- Bereich für die hinzugefügten Rezepte -->
-        <div id="hinzugefuegteRezepte" class="recipe-list">
-            <h3 class="mb-3">Meine Rezepte</h3>
-            <div id="recipeContainer" class="row"></div>
-        </div>
-
-        <!-- Hauptinhalt -->
-        <div class="mt-4">
-            <button id="cartButton" class="btn btn-primary">Meine Rezepte (0)</button>
-            <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Rezeptseite</button>
-            <button class="btn btn-primary" onclick="goToIndexHtml()">Zurück zur Hauptseite</button>
-
-        </div>
+<div class="container mt-4">
+    <!-- Bereich für die hinzugefügten Rezepte -->
+    <div id="hinzugefuegteRezepte" class="recipe-list">
+        <h3 class="mb-3">Meine Rezepte</h3>
+        <div id="recipeContainer" class="row"></div>
     </div>
 
-    <!-- Modals Container -->
-    <div id="modalsContainer"></div>
+    <!-- Hauptinhalt -->
+    <div class="mt-4">
+        <button id="cartButton" class="btn btn-primary">Meine Rezepte (0)</button>
+        <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Rezeptseite</button>
+        <button class="btn btn-primary" onclick="goToIndexHtml()">Zurück zur Hauptseite</button>
+        <!-- myRecipes.html --><!-- myRecipes.html -->
+        <button class="btn btn-primary" id="surveyButton1" onclick=openSurvey()>Fragebogen ausfüllen</button>
 
-    <script>
-        // Globale Variable für die hinzugefügten Rezepte
-        var hinzugefuegteRezepte = [];
+    </div>
+    <!-- Popup für die Aufforderung zum Fragebogen -->
+    <!-- Popup zur Information über die Anzahl der Rezepte -->
+    <div id="recipeCounterPopup" class="popup">
+        <p id="recipeCounterMessage">Noch 5 Rezepte hinzufügen, um den Fragebogen freizuschalten.</p>
+        <button id="surveyButton" disabled onclick="openSurvey()">Zum Fragebogen</button>
+    </div>
 
-        // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
-        function loadRecipesFromLocalStorage() {
-            var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
-            if (storedRecipes) {
-                hinzugefuegteRezepte = JSON.parse(storedRecipes);
-                console.log('Gespeicherte Rezepte:', hinzugefuegteRezepte); // Konsolenausgabe hinzufügen
-                updateRecipeList(); // Rezeptliste aktualisieren
-            } else {
-                console.log('Keine Rezepte im Local Storage gefunden.');
+
+</div>
+
+<!-- Modals Container -->
+<div id="modalsContainer"></div>
+
+<script>
+    // Globale Variable für die hinzugefügten Rezepte
+    var hinzugefuegteRezepte = [];
+
+    // Funktion zum Laden der Rezepte aus dem Local Storage beim Seitenstart
+    function loadRecipesFromLocalStorage() {
+        var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
+        if (storedRecipes) {
+            hinzugefuegteRezepte = JSON.parse(storedRecipes);
+            console.log('Gespeicherte Rezepte:', hinzugefuegteRezepte); // Konsolenausgabe hinzufügen
+            updateRecipeList(); // Rezeptliste aktualisieren
+        } else {
+            console.log('Keine Rezepte im Local Storage gefunden.');
+        }
+    }
+
+    // Funktion zum Anzeigen des Fragebogen-Buttons
+    function checkRecipesAndShowSurveyButton() {
+        let surveyButton = document.getElementById("surveyButton");
+
+        if (hinzugefuegteRezepte.length >= 5) {
+            surveyButton.style.display = "block";
+            surveyButton.onclick = function() {
+                // Link zum Fragebogen öffnen
+                window.open("https://www.soscisurvey.de/Fragebogen10_2024/?q=Phase_2");
+            };
+        } else {
+            surveyButton.style.display = "none";
+        }
+    }
+
+    // Funktion zum Überprüfen der Rezepte und Aktualisieren des Popups
+    function checkRecipesAndUpdatePopup() {
+        let surveyButton = document.getElementById("surveyButton");
+        let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+        let fehlendeRezepte = 5 - hinzugefuegteRezepte.length;
+
+        if (hinzugefuegteRezepte.length >= 5) {
+            surveyButton.disabled = false;
+            recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+        } else {
+            surveyButton.disabled = true;
+            recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+        }
+    }
+
+    // Aktualisiere die Funktion updateRec<ipeList, damit sie die Aktivierung des Buttons prüft:
+    function updateRecipeList() {
+        var recipeContainer = document.getElementById('recipeContainer');
+        var modalsContainer = document.getElementById('modalsContainer');
+        recipeContainer.innerHTML = ''; // Liste leeren
+        modalsContainer.innerHTML = ''; // Modals leeren
+
+        hinzugefuegteRezepte.forEach(function (recipe, index) {
+            var recipeCard = document.createElement('div');
+            recipeCard.className = 'col-md-4'; // Bootstrap Grid-Klasse für drei Spalten
+
+            var cardDiv = document.createElement('div');
+            cardDiv.className = 'recipe-card card';
+
+            var cardBodyDiv = document.createElement('div');
+            cardBodyDiv.className = 'card-body';
+
+            // Bild hinzufügen, falls vorhanden
+            if (recipe.image) {
+                var recipeImage = document.createElement('img');
+                recipeImage.src = recipe.image;
+                recipeImage.alt = recipe.name;
+                recipeImage.className = 'card-img-top';
+                cardDiv.appendChild(recipeImage);
             }
-        }
 
-        // Funktion zum Anzeigen der hinzugefügten Rezepte
-        function updateRecipeList() {
-            var recipeContainer = document.getElementById('recipeContainer');
-            var modalsContainer = document.getElementById('modalsContainer');
-            recipeContainer.innerHTML = ''; // Liste leeren
-            modalsContainer.innerHTML = ''; // Modals leeren
+            var recipeName = document.createElement('h4');
+            recipeName.className = 'card-title';
+            recipeName.textContent = recipe.name;
+            cardBodyDiv.appendChild(recipeName);
 
-            hinzugefuegteRezepte.forEach(function (recipe, index) {
-                var recipeCard = document.createElement('div');
-                recipeCard.className = 'col-md-4'; // Bootstrap Grid-Klasse für drei Spalten
+            var recipeDescription = document.createElement('p');
+            recipeDescription.className = 'card-text';
+            recipeDescription.innerHTML = recipe.description ? recipe.description.replace(/\n/g, '<br>') : 'Keine Beschreibung verfügbar';
+            cardBodyDiv.appendChild(recipeDescription);
 
-                var cardDiv = document.createElement('div');
-                cardDiv.className = 'recipe-card card';
+            var recipeIngredients = document.createElement('p');
+            recipeIngredients.className = 'card-text';
+            recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : 'Zutaten nicht verfügbar';
+            cardBodyDiv.appendChild(recipeIngredients);
 
-                var cardBodyDiv = document.createElement('div');
-                cardBodyDiv.className = 'card-body';
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Löschen';
+            deleteButton.className = 'btn btn-danger delete-button';
+            deleteButton.onclick = function () {
+                hinzugefuegteRezepte.splice(index, 1);
+                localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+                updateRecipeList(); // Liste aktualisieren nach Entfernung
+                updateCartButton(); // Warenkorb-Button aktualisieren
+                checkRecipesAndUpdatePopup(); // Den Button und Popup prüfen
+            };
+            cardBodyDiv.appendChild(deleteButton);
 
-                // Bild hinzufügen, falls vorhanden
-                if (recipe.image) {
-                    var recipeImage = document.createElement('img');
-                    recipeImage.src = recipe.image;
-                    recipeImage.alt = recipe.name;
-                    recipeImage.className = 'card-img-top';
-                    cardDiv.appendChild(recipeImage);
-                }
+            cardDiv.appendChild(cardBodyDiv);
+            recipeCard.appendChild(cardDiv);
 
-                var recipeName = document.createElement('h4');
-                recipeName.className = 'card-title';
-                recipeName.textContent = recipe.name;
-                cardBodyDiv.appendChild(recipeName);
-
-                var recipeDescription = document.createElement('p');
-                recipeDescription.className = 'card-text';
-                recipeDescription.innerHTML = recipe.description ? recipe.description.replace(/\n/g, '<br>') : 'Keine Beschreibung verfügbar';
-                cardBodyDiv.appendChild(recipeDescription);
-
-                var recipeIngredients = document.createElement('p');
-                recipeIngredients.className = 'card-text';
-                recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : 'Zutaten nicht verfügbar';
-                cardBodyDiv.appendChild(recipeIngredients);
-
-                /*var showButton = document.createElement('button');
-                showButton.textContent = 'Rezept anzeigen';
-                showButton.className = 'btn btn-info show-button';
-                showButton.onclick = function() {
-                    showModal(recipe.name, recipe.image, recipe.description, recipe.ingredients);
-                };
-                cardBodyDiv.appendChild(showButton);*/
-
-                var deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Löschen';
-                deleteButton.className = 'btn btn-danger delete-button';
-                deleteButton.onclick = function () {
-                    hinzugefuegteRezepte.splice(index, 1);
-                    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
-                    updateRecipeList(); // Liste aktualisieren nach Entfernung
-                    updateCartButton(); // Warenkorb-Button aktualisieren
-                };
-                cardBodyDiv.appendChild(deleteButton);
-
-                cardDiv.appendChild(cardBodyDiv);
-                recipeCard.appendChild(cardDiv);
-
-                recipeContainer.appendChild(recipeCard);
-            });
-
-            updateCartButton(); // Warenkorb-Button aktualisieren
-        }
-
-        // Funktion zum Aktualisieren des Warenkorb-Buttons
-        function updateCartButton() {
-            var cartButton = document.getElementById('cartButton');
-            if (cartButton) {
-                cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
-            }
-        }
-
-        // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
-        document.addEventListener('DOMContentLoaded', function () {
-            loadRecipesFromLocalStorage();
-            updateCartButton();
+            recipeContainer.appendChild(recipeCard);
         });
 
-        // Funktion zum Navigieren zur Startseite
-        function goToIndex() {
-            window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+        updateCartButton(); // Warenkorb-Button aktualisieren
+        checkRecipesAndUpdatePopup(); // Den Button und Popup prüfen
+    }
+
+    // Beim Laden der Seite die gespeicherten Rezepte laden und den Fragebogen-Button prüfen
+    document.addEventListener('DOMContentLoaded', function () {
+        loadRecipesFromLocalStorage();
+        updateCartButton();
+        checkRecipesAndUpdatePopup(); // Korrekte Funktion aufrufen
+    });
+
+
+    // Funktion zum Aktualisieren des Warenkorb-Buttons
+    function updateCartButton() {
+        var cartButton = document.getElementById('cartButton');
+        if (cartButton) {
+            cartButton.innerText = 'Meine Rezepte (' + hinzugefuegteRezepte.length + ')';
         }
-        function goToIndexHtml(
-        ) {
-            window.location.href= "../index.html";
-        }
+    }
 
-        // Funktion zum Anzeigen eines Rezeptmodals
-        function showModal(name, imageUrl, description, ingredients) {
-            console.log('Modal-Daten:', {
-                name: name,
-                imageUrl: imageUrl,
-                description: description,
-                ingredients: ingredients
-            });
+    // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
+    document.addEventListener('DOMContentLoaded', function () {
+        loadRecipesFromLocalStorage();
+        updateCartButton();
+    });
 
-            var modalId = 'Rezept' + Date.now(); // Eindeutige ID für jedes Modal
+    // Funktion zum Navigieren zur Startseite
+    function goToIndex() {
+        window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
+    }
+    function goToIndexHtml(
+    ) {
+        window.location.href= "../index.html";
+    }
 
-            var modalHtml = `
+    // Funktion zum Anzeigen eines Rezeptmodals
+    function showModal(name, imageUrl, description, ingredients) {
+        console.log('Modal-Daten:', {
+            name: name,
+            imageUrl: imageUrl,
+            description: description,
+            ingredients: ingredients
+        });
+
+        var modalId = 'Rezept' + Date.now(); // Eindeutige ID für jedes Modal
+
+        var modalHtml = `
                 <div class="modal fade" id="${modalId}" tabindex="-1" role="dialog" aria-labelledby="${modalId}Label" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -211,7 +271,7 @@
                                 <img src="${imageUrl}" class="img-fluid mb-3" alt="${name}">
                                 <p>${description || 'Keine Beschreibung verfügbar'}</p>
                                 <h5>Zutaten:</h5>
-
+                                <p>${ingredients || 'Zutaten nicht verfügbar'}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Zurück</button>
@@ -221,24 +281,42 @@
                 </div>
             `;
 
-            // Modal zur Modalsammlung hinzufügen
-            var modalsContainer = document.getElementById('modalsContainer');
-            modalsContainer.insertAdjacentHTML('beforeend', modalHtml);
+        // Modal zur Modalsammlung hinzufügen
+        var modalsContainer = document.getElementById('modalsContainer');
+        modalsContainer.insertAdjacentHTML('beforeend', modalHtml);
 
-            // Modal öffnen
-            $('#' + modalId).modal('show');
+        // Modal öffnen
+        $('#' + modalId).modal('show');
 
-            // Modal entfernen, wenn es geschlossen wird
-            $('#' + modalId).on('hidden.bs.modal', function () {
-                $(this).remove();
-            });
-        }
-    </script>
+        // Modal entfernen, wenn es geschlossen wird
+        $('#' + modalId).on('hidden.bs.modal', function () {
+            $(this).remove();
+        });
+    }
+    // Funktion zum Anzeigen des Popups
+    function showSurveyPopup() {
+        document.getElementById("surveyPopup").classList.remove("hidden");
+    }
 
-    <!-- Bootstrap JS und jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    // Funktion zum Schließen des Popups
+    function closePopup() {
+        document.getElementById("surveyPopup").classList.add("hidden");
+    }
+
+    // Funktion zum Öffnen des Fragebogens (kann durch Link ersetzt werden)
+    function openSurvey() {
+
+        window.location.href = "https://www.soscisurvey.de/Fragebogen10_2024/?q=Phase_2";
+    }
+
+
+
+</script>
+
+<!-- Bootstrap JS und jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>

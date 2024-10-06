@@ -1676,20 +1676,13 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
         }
 
 
-        function showSurveyPopup() {
-            let popup = window.open("", "Survey Invitation", "width=500,height=400");
-            popup.document.write("<h2>Vielen Dank für Ihre Rezepte!</h2>");
-            popup.document.write("<p>Sie haben 5 Rezepte hinzugefügt. Bitte füllen Sie unseren kurzen Fragebogen aus.</p>");
-            popup.document.write('<a href="https://soscisurvey.de/dein-fragebogen-url" target="_blank">Zum Fragebogen</a>');
-        }
-
 
         function enableSurveyButton() {
             let button = document.getElementById("surveyButton");
             button.disabled = false;
             button.onclick = function() {
                 // Link zum Fragebogen öffnen
-                window.open("https://soscisurvey.de/dein-fragebogen-url", "_blank");
+                window.open("https://www.soscisurvey.de/Fragebogen10_2024/", "_blank");
             };
         }
 
@@ -1698,6 +1691,11 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
             button.disabled = true;
         }
 
+        // Funktion zum Öffnen des Fragebogens (kann durch Link ersetzt werden)
+        function openSurvey() {
+
+            window.location.href = "https://www.soscisurvey.de/Fragebogen10_2024/";
+        }
     </script>
 </body>
 

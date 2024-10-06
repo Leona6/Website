@@ -90,7 +90,7 @@
             <button class="btn btn-primary" onclick="goToIndex()">Zurück zur Rezeptseite</button>
             <button class="btn btn-primary" onclick="goToIndexHtml()">Zurück zur Hauptseite</button>
             <!-- myRecipes.html --><!-- myRecipes.html -->
-            <button class="btn btn-primary" id="surveyButton1" disabled>Fragebogen ausfüllen</button>
+            <button class="btn btn-primary" id="surveyButton1" onclick="openSurvey()">Fragebogen ausfüllen</button>
 
         </div>
         <!-- Popup für die Aufforderung zum Fragebogen -->
@@ -107,7 +107,6 @@
     <div id="modalsContainer"></div>
 
     <script>
-
         // Globale Variable für die hinzugefügten Rezepte
         var hinzugefuegteRezepte = [];
 
@@ -131,7 +130,7 @@
                 surveyButton.style.display = "block";
                 surveyButton.onclick = function() {
                     // Link zum Fragebogen öffnen
-                    window.open("https://soscisurvey.de/dein-fragebogen-url", "_blank");
+                    window.open("https://www.soscisurvey.de/Fragebogen10_2024/");
                 };
             } else {
                 surveyButton.style.display = "none";
@@ -306,10 +305,8 @@
 
         // Funktion zum Öffnen des Fragebogens (kann durch Link ersetzt werden)
         function openSurvey() {
-            // Hier kannst du die URL zu deinem Fragebogen einfügen
-            document.getElementById("surveySection").style.display = "block";
-            document.getElementById("recipeCounterPopup").classList.remove("show");
-            window.location.href = "https://deinfragebogenlink.com";
+
+            window.location.href = "https://www.soscisurvey.de/Fragebogen10_2024/";
         }
 
 

@@ -12,6 +12,22 @@
 </head>
 
 <body>
+<!-- Popup zur Information über die Anzahl der Rezepte -->
+<div id="recipeCounterPopup" class="popup">
+    <p id="recipeCounterMessage">Noch 5 Rezepte hinzufügen, um den Fragebogen freizuschalten.</p>
+    <button id="surveyButton" onclick="openSurvey()">Zum Fragebogen</button>
+</div>
+
+<!-- Fragebogen-Bereich -->
+<div id="surveySection" style="display: none;">
+    <h2>Fragebogen</h2>
+    <form>
+        <!-- Füge hier die Fragen hinzu -->
+        <label for="question1">Frage 1:</label>
+        <input type="text" id="question1" name="question1" required>
+        <button type="submit">Absenden</button>
+    </form>
+</div>
     <!-- Bootstrap Alert als Modal -->
     <!-- Alert Modal -->
     <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
@@ -48,14 +64,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Es sind Checkboxen bereits im Cookie Dialog voraktiviert.
+                    In den Einstellungen des Cookie-Dialogs sind bereits Checkboxen voraktiviert.
                     <br>
                     <br>
-                   Hier wurde bereits für dich eine Vorauswahl getroffen. Dies könnte die Folge haben, dass du unwissentlich Informationen preisgibst.
+                    Es wurde eine Vorauswahl für dich getroffen. Es wird empfohlen, die Einstellungen gründlich zu prüfen, bevor du auf "Alle akzeptieren" klickst, um sicherzustellen, dass du nur die Informationen preisgibst, mit denen du einverstanden bist.
                     <br>
                     <br>
-
                 </div>
+
                 <div class="modal-footer">
                 </div>
             </div>
@@ -73,15 +89,15 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Sie müssen unter Einstellungen ihre Cookies spezifizieren.
+                    Bitte spezifizieren Sie Ihre Cookie-Einstellungen, indem Sie auf "Einstellungen" klicken.
                     <br>
                     <br>
-                    Da man die nicht sofort ablehnen kann, könnten Sie dazu neigen alle Cookies direkt zu akzeptieren.
+                    Da die Option zum sofortigen Ablehnen nicht verfügbar ist, könnten Sie dazu verleitet werden, alle Cookies direkt zu akzeptieren.
                     <br>
                     <br>
-                    Das heißt auch man kann anhand ihrer Daten ein Profil erstellen!
-
+                    Dies könnte dazu führen, dass anhand Ihrer Daten ein Profil erstellt wird!
                 </div>
+
                 <div class="modal-footer">
                 </div>
             </div>
@@ -330,6 +346,8 @@
             </li>
         </ul>
     </nav>
+
+
     <div class="container mt-4">
         <div class="row">
             <!-- Kategorie Vegetarisch -->
@@ -1218,6 +1236,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
+
+            // Rezepte aus dem localStorage laden
+            let recipes = JSON.parse(localStorage.getItem("hinzugefuegteRezepte")) || [];
+            console.log("Lade Rezepte: ", recipes.length); // Debugging
+            let surveyButton = document.getElementById("surveyButton");
+            let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+            let fehlendeRezepte = 5 - recipes.length;
+
+            // Überprüfen, ob es mindestens 5 Rezepte gibt
+            if (recipes.length >= 5) {
+                enableSurveyButton();
+                showSurveyPopup();
+                recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+            } else {
+                disableSurveyButton();
+                recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+            }
 // Zeige das erste Modal an
             $('#alertModal').modal('show');
             checkSettingsButton();
@@ -1441,6 +1476,21 @@
 
     <script>
 
+        // Funktion zum Überprüfen der Rezepte und Aktualisieren des Popups
+        function checkRecipesAndUpdatePopup() {
+            let surveyButton = document.getElementById("surveyButton");
+            let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+            let fehlendeRezepte = 5 - hinzugefuegteRezepte.length;
+
+            if (hinzugefuegteRezepte.length >= 5) {
+                surveyButton.disabled = false;
+                recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+            } else {
+                surveyButton.disabled = true;
+                recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+            }
+        }
+
         // Globale Variable für die hinzugefügten Rezepte
         var hinzugefuegteRezepte = [];
 
@@ -1448,18 +1498,22 @@
         function loadRecipesFromLocalStorage() {
             var storedRecipes = localStorage.getItem('hinzugefuegteRezepte');
             if (storedRecipes) {
+                console.log('es sind welche da', storedRecipes)
                 hinzugefuegteRezepte = JSON.parse(storedRecipes);
-                // updateRecipeList(); // Rezeptliste aktualisieren
+                updateCartButton(); // Aktualisiere den Warenkorb-Button
+                checkRecipesAndUpdatePopup(); // Überprüfe die Anzahl der Rezepte und aktualisiere das Popup
             }
+            else{
+                console.log('Es sind keine da')
+            }
+
         }
 
         // Funktion zum Hinzufügen eines Rezepts
         function rezeptHinzufuegen(button) {
             var modalContent = button.closest('.modal-content');
             var recipeDiv = button.parentElement;
-            // var recipeName = button.parentElement.querySelector('h4').textContent;
-            // var recipeDescription = button.parentElement.querySelector('p').textContent;
-            //var recipeImage= button.parentElement.querySelector('img').src;
+
             var recipeModalName = modalContent.querySelector('h4').textContent;
             var recipeModalDescription = modalContent.querySelector('p').innerHTML;
             var recipeModalImage = modalContent.querySelector('img').src;
@@ -1491,13 +1545,15 @@
             };
             // Rezept zur Liste hinzufügen
             hinzugefuegteRezepte.push(recipe);
+            checkRecipesAndUpdatePopup();
             localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
             // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
             alert("Rezept hinzugefügt");
 
-            //updateRecipeList();
+            updateRecipeList();
             updateCartButton();
+            checkRecipesAndUpdatePopup();
         }
         // Funktion zum Aktualisieren des Warenkorb-Buttons
         function updateCartButton() {
@@ -1511,8 +1567,79 @@
         // Beim Laden der Seite die gespeicherten Rezepte laden und den Warenkorb-Button aktualisieren
         document.addEventListener('DOMContentLoaded', function () {
             loadRecipesFromLocalStorage();
-            // updateRecipeList();
+            updateRecipeList();
             updateCartButton();
+            checkRecipesAndUpdatePopup();
+        });
+
+        // Aktualisiere die Funktion updateRecipeList, damit sie die Aktivierung des Buttons prüft:
+        function updateRecipeList() {
+            var recipeContainer = document.getElementById('recipeContainer');
+            var modalsContainer = document.getElementById('modalsContainer');
+            recipeContainer.innerHTML = ''; // Liste leeren
+            modalsContainer.innerHTML = ''; // Modals leeren
+
+            hinzugefuegteRezepte.forEach(function (recipe, index) {
+                var recipeCard = document.createElement('div');
+                recipeCard.className = 'col-md-4'; // Bootstrap Grid-Klasse für drei Spalten
+
+                var cardDiv = document.createElement('div');
+                cardDiv.className = 'recipe-card card';
+
+                var cardBodyDiv = document.createElement('div');
+                cardBodyDiv.className = 'card-body';
+
+                // Bild hinzufügen, falls vorhanden
+                if (recipe.image) {
+                    var recipeImage = document.createElement('img');
+                    recipeImage.src = recipe.image;
+                    recipeImage.alt = recipe.name;
+                    recipeImage.className = 'card-img-top';
+                    cardDiv.appendChild(recipeImage);
+                }
+
+                var recipeName = document.createElement('h4');
+                recipeName.className = 'card-title';
+                recipeName.textContent = recipe.name;
+                cardBodyDiv.appendChild(recipeName);
+
+                var recipeDescription = document.createElement('p');
+                recipeDescription.className = 'card-text';
+                recipeDescription.innerHTML = recipe.description ? recipe.description.replace(/\n/g, '<br>') : 'Keine Beschreibung verfügbar';
+                cardBodyDiv.appendChild(recipeDescription);
+
+                var recipeIngredients = document.createElement('p');
+                recipeIngredients.className = 'card-text';
+                recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : 'Zutaten nicht verfügbar';
+                cardBodyDiv.appendChild(recipeIngredients);
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Löschen';
+                deleteButton.className = 'btn btn-danger delete-button';
+                deleteButton.onclick = function () {
+                    hinzugefuegteRezepte.splice(index, 1);
+                    localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
+                    updateRecipeList(); // Liste aktualisieren nach Entfernung
+                    updateCartButton(); // Warenkorb-Button aktualisieren
+                    checkRecipesAndUpdatePopup(); // Den Button und Popup prüfen
+                };
+                cardBodyDiv.appendChild(deleteButton);
+
+                cardDiv.appendChild(cardBodyDiv);
+                recipeCard.appendChild(cardDiv);
+
+                recipeContainer.appendChild(recipeCard);
+            });
+
+            updateCartButton(); // Warenkorb-Button aktualisieren
+            checkRecipesAndUpdatePopup(); // Den Button und Popup prüfen
+        }
+
+        // Beim Laden der Seite die gespeicherten Rezepte laden und den Fragebogen-Button prüfen
+        document.addEventListener('DOMContentLoaded', function () {
+            loadRecipesFromLocalStorage();
+            updateCartButton();
+            checkRecipesAndUpdatePopup(); // Korrekte Funktion aufrufen
         });
 
         // Funktion zum Einklappen und Erweitern der Rezepttexte
@@ -1528,7 +1655,6 @@
         function goToIndex() {
             window.location.href = "recipes.html"; // Hier URL zur Startseite angeben
         }
-
 
         // Timer für automatisches Schließen des Modals nach einer gewissen Zeit
         var modal = $('#autoAdModal');
@@ -1866,6 +1992,48 @@
             $('#Modal2').modal('show');
         }, 60000); // 60000 Millisekunden entsprechen 60 Sekunden
       */
+
+      function checkRecipesAndUpdateSurvey() {
+          // Rezepte aus dem localStorage laden
+          let recipes = JSON.parse(localStorage.getItem("recipes")) || [];
+          console.log("Lade Rezepte: ", recipes); // Debugging
+          let surveyButton = document.getElementById("surveyButton");
+          let recipeCounterMessage = document.getElementById("recipeCounterMessage");
+          let fehlendeRezepte = 5 - recipes.length;
+
+          // Überprüfen, ob es mindestens 5 Rezepte gibt
+          if (recipes.length >= 5) {
+              enableSurveyButton();
+              showSurveyPopup();
+              recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+          } else {
+              disableSurveyButton();
+              recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
+          }
+      }
+
+
+
+
+      function enableSurveyButton() {
+          let button = document.getElementById("surveyButton");
+          button.disabled = false;
+          button.onclick = function() {
+              // Link zum Fragebogen öffnen
+              window.open("https://www.soscisurvey.de/Fragebogen10_2024/?q=Phase_2");
+          };
+      }
+
+      function disableSurveyButton() {
+          let button = document.getElementById("surveyButton");
+          button.disabled = true;
+      }
+      // Funktion zum Öffnen des Fragebogens (kann durch Link ersetzt werden)
+      function openSurvey() {
+          // Hier kannst du die URL zu deinem Fragebogen einfügen
+
+          window.location.href = "https://www.soscisurvey.de/Fragebogen10_2024/?q=Phase_2";
+      }
     </script>
 
 </body>
