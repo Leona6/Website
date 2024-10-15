@@ -1155,6 +1155,7 @@
         $(document).ready(function () {
 
             $('#cookieModal').modal('show')
+            $('#autoAdModal1').modal('show');
 
 
             // Rezepte aus dem localStorage laden
@@ -1176,6 +1177,7 @@
 
 
             var cookiesAccepted = localStorage.getItem("cookiesAccepted");
+            console.log(cookiesAccepted)
 
             if (cookiesAccepted) {
                 console.log("Cookies wurden bereits akzeptiert.");
@@ -1183,11 +1185,11 @@
                 console.log("Cookies wurden noch nicht akzeptiert.");
             }
 
-            $('#autoAdModal1').modal('show');
+
             //$('#cookieModal').modal('show');
             // Überprüfen, ob der Benutzer die Cookies bereits akzeptiert hat
             if (!localStorage.getItem("cookiesAccepted")) {
-                //$('#cookieModal').modal('show');
+                $('#cookieModal').modal('show');
             }
 
             // Klick-Handler für den Akzeptieren-Button
@@ -1381,11 +1383,6 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
             console.log("Beschreibung:", recipeModalDescription);
             console.log("Bild-URL:", recipeModalImage);
 
-
-
-            var recipeNameElement = modalContent.querySelector('h4');
-            var recipeDescriptionElement = modalContent.querySelector('p');
-            var recipeImageElement = modalContent.querySelector('img');
 
             var recipe = {
                 name: recipeModalName,
