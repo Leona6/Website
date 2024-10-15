@@ -128,6 +128,66 @@
     </div>
 </div>
 
+<!-- Cookie-Akzeptanz-Popup -->
+<div class="modal fade" id="cookieModal" tabindex="-1" role="dialog" aria-labelledby="cookieModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cookieModalLabel">Cookie-Hinweis</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <p>Diese Website verwendet Cookies, um Ihnen die bestmögliche Erfahrung auf unserer
+                                Website zu bieten. Durch die Nutzung unserer Website stimmen Sie der Verwendung von
+                                Cookies zu.</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p><strong>Werbung lesen:</strong> Durch das Klicken des Buttons „Zustimmen und weiter“
+                                stimmen Sie der Verarbeitung der auf Ihrem Gerät bzw. Ihrer Endeinrichtung
+                                gespeicherten Daten wie z.B. persönlichen Identifikatoren oder IP-Adressen für diese
+                                Verarbeitungszwecke gem. § 25 Abs. 1 TDDDG sowie Art. 6 Abs. 1 lit. a DSGVO zu.</p>
+                            <button type="button" class="btn btn-primary btn-block"
+                                    onclick="" data-dismiss="modal" id="acceptBtn">Mit Werbung
+                                fortfahren</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p><strong>Werbefrei lesen:</strong> Oder nutzen Sie die Seite ohne Werbetracking und
+                                nahezu ohne Werbung, indem Sie ein Abo abonnieren oder sich hier mit Ihrem
+                                bestehenden Pur-Abo einloggen. Informationen zur Datenverarbeitung im Pur-Abo finden
+                                Sie in unserer Datenschutzerklärung und in den FAQ.</p>
+                            <button type="button" class="btn btn-secondary btn-block" onclick="function openAdFree() {
+                                $('#settingsModal3').modal('show');
+                                }
+                                openAdFree()">Werbefrei
+                                fortfahren</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <hr>
+                            <p><strong>Einstellungen:</strong> Einzelnen Zwecken der Datenverarbeitung können Sie
+                                über den Button „Einstellungen“ oder den Menüpunkt Cookies & Tracking am Ende jeder
+                                Seite zustimmen oder sie teilweise ablehnen. Ihre Zustimmung insgesamt können Sie
+                                jederzeit über den Link Privacy Einstellungen am Ende jeder Seite entziehen.</p>
+                            <button type="button" class="btn btn-outline-secondary btn-block" data-dismiss="modal"
+                                    data-toggle="modal" id ="settingsButton"data-target="#settingsModal">Einstellungen</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Einstellungs-Modal -->
