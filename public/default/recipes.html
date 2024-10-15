@@ -1181,8 +1181,10 @@
 
             if (cookiesAccepted) {
                 console.log("Cookies wurden bereits akzeptiert.");
+                $('#cookieModal').modal('hide');
             } else {
                 console.log("Cookies wurden noch nicht akzeptiert.");
+                $('#cookieModal').modal('show');
             }
 
 
