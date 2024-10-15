@@ -219,7 +219,7 @@
 
             var recipeIngredients = document.createElement('p');
             recipeIngredients.className = 'card-text';
-            recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : 'Zutaten nicht verfügbar';
+            recipeIngredients.innerHTML = recipe.ingredients ? recipe.ingredients : '';
             cardBodyDiv.appendChild(recipeIngredients);
 
             var deleteButton = document.createElement('button');
