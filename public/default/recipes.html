@@ -1162,10 +1162,10 @@
             console.log("Lade Rezepte: ", recipes.length); // Debugging
             let surveyButton = document.getElementById("surveyButton");
             let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-            let fehlendeRezepte = 5 - recipes.length;
+            let fehlendeRezepte = 3 - recipes.length;
 
             // Überprüfen, ob es mindestens 5 Rezepte gibt
-            if (recipes.length >= 5) {
+            if (recipes.length >= 3) {
                 enableSurveyButton();
 
                 recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
@@ -1624,10 +1624,10 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
             console.log("Lade Rezepte: ", recipes); // Debugging
             let surveyButton = document.getElementById("surveyButton");
             let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-            let fehlendeRezepte = 5 - recipes.length;
+            let fehlendeRezepte = 3 - recipes.length;
 
             // Überprüfen, ob es mindestens 5 Rezepte gibt
-            if (recipes.length >= 5) {
+            if (recipes.length >= 3) {
                 enableSurveyButton();
                 showSurveyPopup();
                 recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";

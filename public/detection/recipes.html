@@ -14,7 +14,7 @@
 <body>
 <!-- Popup zur Information über die Anzahl der Rezepte -->
 <div id="recipeCounterPopup" class="popup" style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9; text-align: center;">
-    <p id="recipeCounterMessage" style="font-size: 1.2em; margin-bottom: 15px;">Füge noch 5 Rezepte hinzu, um den Fragebogen freizuschalten!</p>
+    <p id="recipeCounterMessage" style="font-size: 1.2em; margin-bottom: 15px;">Füge noch 3 Rezepte hinzu, um den Fragebogen freizuschalten!</p>
     <button id="surveyButton" onclick="openSurvey()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Zum Fragebogen</button>
 </div>
 
@@ -1262,10 +1262,10 @@
                 console.log("Lade Rezepte: ", recipes.length); // Debugging
                 let surveyButton = document.getElementById("surveyButton");
                 let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-                let fehlendeRezepte = 5 - recipes.length;
+                let fehlendeRezepte = 3 - recipes.length;
 
                 // Überprüfen, ob es mindestens 5 Rezepte gibt
-                if (recipes.length >= 5) {
+                if (recipes.length >= 3) {
                     enableSurveyButton();
                     showSurveyPopup();
                     recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
@@ -1450,9 +1450,10 @@
         function checkRecipesAndUpdatePopup() {
             let surveyButton = document.getElementById("surveyButton");
             let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-            let fehlendeRezepte = 5 - hinzugefuegteRezepte.length;
+            let fehlendeRezepte = 3 - hinzugefuegteRezepte.length;
 
-            if (hinzugefuegteRezepte.length >= 5) {
+            if (hinzugefuegteRezepte.length >= 3
+            ) {
                 surveyButton.disabled = false;
                 recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
             } else {
@@ -1980,10 +1981,10 @@
           console.log("Lade Rezepte: ", recipes); // Debugging
           let surveyButton = document.getElementById("surveyButton");
           let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-          let fehlendeRezepte = 5 - recipes.length;
+          let fehlendeRezepte = 3 - recipes.length;
 
           // Überprüfen, ob es mindestens 5 Rezepte gibt
-          if (recipes.length >= 5) {
+          if (recipes.length >= 3) {
               enableSurveyButton();
               showSurveyPopup();
               recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
@@ -2001,7 +2002,7 @@
           button.disabled = false;
           button.onclick = function() {
               // Link zum Fragebogen öffnen
-              window.open("https://www.soscisurvey.de/Fragebogen10_2024/?q=Phase_2");
+              window.open("https://www.soscisurvey.de/Fragebogen10_2024/");
           };
       }
 
@@ -2013,7 +2014,7 @@
       function openSurvey() {
           // Hier kannst du die URL zu deinem Fragebogen einfügen
 
-          window.location.href = "https://www.soscisurvey.de/Fragebogen10_2024/?q=Phase_2";
+          window.location.href = "\thttps://www.soscisurvey.de/Fragebogen10_2024/";
       }
     </script>
 
