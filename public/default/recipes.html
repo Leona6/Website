@@ -1457,6 +1457,7 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
             // Rezept zur Liste hinzufügen
             hinzugefuegteRezepte.push(recipe);
             checkRecipesAndUpdatePopup();
+            updateCartButton();
             localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
             // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
