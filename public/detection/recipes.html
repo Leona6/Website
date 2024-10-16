@@ -1447,13 +1447,14 @@
     <script>
 
         // Funktion zum Überprüfen der Rezepte und Aktualisieren des Popups
-        function checkRecipesAndUpdatePopup() {
+        function
+
+        checkRecipesAndUpdatePopup() {
             let surveyButton = document.getElementById("surveyButton");
             let recipeCounterMessage = document.getElementById("recipeCounterMessage");
             let fehlendeRezepte = 3 - hinzugefuegteRezepte.length;
 
-            if (hinzugefuegteRezepte.length >= 3
-            ) {
+            if (hinzugefuegteRezepte.length >= 3) {
                 surveyButton.disabled = false;
                 recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
             } else {
@@ -1517,6 +1518,7 @@
             // Rezept zur Liste hinzufügen
             hinzugefuegteRezepte.push(recipe);
             checkRecipesAndUpdatePopup();
+            updateCartButton();
             localStorage.setItem('hinzugefuegteRezepte', JSON.stringify(hinzugefuegteRezepte));
 
             // Benachrichtigung und Aktualisierung des Warenkorb-Buttons
@@ -1746,6 +1748,7 @@
         }
         function showModal(imageUrl) {
             checkModalColors('Modal');
+
 
             $('#Modal').find('.modal-body img').attr('src', imageUrl);
 

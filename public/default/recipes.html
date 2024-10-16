@@ -1396,9 +1396,9 @@ document.getElementById('Einstellungen').addEventListener('click', function () {
         function checkRecipesAndUpdatePopup() {
             let surveyButton = document.getElementById("surveyButton");
             let recipeCounterMessage = document.getElementById("recipeCounterMessage");
-            let fehlendeRezepte = 5 - hinzugefuegteRezepte.length;
+            let fehlendeRezepte = 3 - hinzugefuegteRezepte.length;
 
-            if (hinzugefuegteRezepte.length >= 5) {
+            if (hinzugefuegteRezepte.length >= 3) {
                 surveyButton.disabled = false;
                 recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
             } else {
