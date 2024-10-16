@@ -12,10 +12,87 @@
 </head>
 
 <body>
+<!-- Popup zur Information über die Aufgabenbeschreibung -->
+<div id="taskDescriptionPopup" class="popup" style="position: fixed; top: 20%; left: 15%; width: 250px; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9; text-align: center; display: none;">
+    <p id="taskDescriptionMessage" style="font-size: 1em; margin-bottom: 15px;">Aufgabenbeschreibung: Du und deine Gruppe von Freunden, die aus insgesamt zehn Personen besteht, haben geplant, dieses Wochenende zusammen zu Abend zu essen. Da in deiner Gruppe unterschiedliche Nahrungspräferenzen herrschen, musst du sicherstellen, dass für jeden etwas dabei ist. Zwei deiner Freunde sind Vegetarier und die anderen sind Allesesser. Wähle mindestens 3 Rezepte (Vorspeise, Hauptspeise und Nachspeise) für die beschriebenen Personen aus.</p>
+    </p>
+    <button id="closeTaskButton" onclick="closeTaskDescription()" style="padding: 8px 16px; font-size: 0.9em; border: none; border-radius: 5px; background-color: #f44336; color: white; cursor: pointer;">Schließen</button>
+</div>
+
+<!-- Survey Popup -->
+<div id="surveyPopup" class="popup" style="position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 300px; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9; text-align: center; display: none;">
+    <p id="surveyMessage" style="font-size: 1.2em; margin-bottom: 15px;">Füge noch 5 Rezepte hinzu, um den Fragebogen freizuschalten!</p>
+    <button id="surveyButton" onclick="openSurvey()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Zum Fragebogen</button>
+</div>
+
+
+<script>
+    // Funktion zum Öffnen des Aufgaben-Popups
+    function openTaskDescription() {
+        document.getElementById('taskDescriptionPopup').style.display = 'block';
+    }
+
+    // Funktion zum Schließen des Aufgaben-Popups
+    function closeTaskDescription() {
+        document.getElementById('taskDescriptionPopup').style.display = 'none';
+    }
+
+    // Funktion zum Öffnen des Survey-Popups
+    function openSurvey() {
+        document.getElementById('surveyPopup').style.display = 'block';
+    }
+</script>
+
+<!-- Popup für Hauptmenü -->
+<div id="mainMenuPopup" class="popup" style="position: fixed; top: 30%; left: 25%; width: 250px; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9; text-align: center; display: none;">
+    <p id="mainMenuMessage" style="font-size: 1em; margin-bottom: 15px;">Zum Hauptmenü: Klicken Sie hier, um zum Hauptmenü zu gelangen.</p>
+    <button id="closeMenuButton" onclick="closePopup('mainMenuPopup')" style="padding: 8px 16px; font-size: 0.9em; border: none; border-radius: 5px; background-color: #f44336; color: white; cursor: pointer;">Schließen</button>
+</div>
+
+
+
+<!-- Buttons zum Öffnen der Pop-ups -->
+<div style="margin-top: 30px;">
+
+    <!-- Button zum Öffnen des Aufgaben-Popups -->
+    <button id="openTaskButton" onclick="openTaskDescription()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Aufgabenbeschreibung anzeigen</button>
+
+
+    <button id="openMainMenuButton" onclick="goToIndexHtml()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Zum Hauptmenü</button>
+
+    <button id="openInstructionButton" onclick="openInstruction('instructionPopup')" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Anleitung anzeigen</button>
+</div>
+<!-- Popup für Anleitung -->
+<div id="instructionPopup" class="popup" style="position: fixed; top: 40%; left: 35%; width: 250px; padding: 15px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9; text-align: center; display: none;">
+    <p id="instructionMessage" style="font-size: 1em; margin-bottom: 15px;">Anleitung: Hier erfahren Sie, wie die Anwendung zu verwenden ist.</p>
+    <button id="closeInstructionButton" onclick="closeInstruction('instructionPopup')" style="padding: 8px 16px; font-size: 0.9em; border: none; border-radius: 5px; background-color: #f44336; color: white; cursor: pointer;">Schließen</button>
+</div>
+<script>
+    // Funktion zum Öffnen eines Popups
+    function openPopup(popupId) {
+        document.getElementById(popupId).style.display = 'block';
+    }
+
+    // Funktion zum Schließen eines Popups
+    function closePopup(popupId) {
+        document.getElementById(popupId).style.display = 'none';
+    }
+    function goToIndexHtml() {
+        window.location.href = "../index.html";
+    }
+    function openInstruction(popupId){
+        document.getElementById(popupId).style.display = 'block';
+    }
+    function closeInstruction(popupId){
+        document.getElementById(popupId).style.display= 'none';
+    }
+</script>
+
+
 <!-- Popup zur Information über die Anzahl der Rezepte -->
 <div id="recipeCounterPopup" class="popup" style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); background-color: #f9f9f9; text-align: center;">
     <p id="recipeCounterMessage" style="font-size: 1.2em; margin-bottom: 15px;">Füge noch 3 Rezepte hinzu, um den Fragebogen freizuschalten!</p>
-    <button id="surveyButton" onclick="openSurvey()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Zum Fragebogen</button>
+   <button id="surveyButton" onclick="openSurvey()" style="padding: 10px 20px; font-size: 1em; border: none; border-radius: 5px; background-color: #4CAF50; color: white; cursor: pointer;">Zum Fragebogen</button>
 </div>
 
 <!-- Fragebogen-Bereich -->
@@ -1268,7 +1345,7 @@
                 if (recipes.length >= 3) {
                     enableSurveyButton();
                     showSurveyPopup();
-                    recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+                    recipeCounterMessage.textContent = "Kehre zum Fragebogen zurück für die zweite Phase!";
                 } else {
                     disableSurveyButton();
                     recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
@@ -1456,7 +1533,7 @@
 
             if (hinzugefuegteRezepte.length >= 3) {
                 surveyButton.disabled = false;
-                recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+                recipeCounterMessage.textContent = "Kehre zum Fragebogen zurück für die zweite Phase!";
             } else {
                 surveyButton.disabled = true;
                 recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
@@ -1987,11 +2064,11 @@
 
           // Überprüfen, ob es mindestens 5 Rezepte gibt
           if (recipes.length >= 3) {
-              enableSurveyButton();
-              showSurveyPopup();
-              recipeCounterMessage.textContent = "Du kannst nun den Fragebogen ausfüllen!";
+             // enableSurveyButton();
+              //showSurveyPopup();
+               recipeCounterMessage.textContent = "Kehre zum Fragebogen zurück!";
           } else {
-              disableSurveyButton();
+             // disableSurveyButton();
               recipeCounterMessage.textContent = `Noch ${fehlendeRezepte} Rezept(e) hinzufügen, um den Fragebogen freizuschalten.`;
           }
       }
